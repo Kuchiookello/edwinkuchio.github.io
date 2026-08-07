@@ -545,62 +545,285 @@ section:not(.hero) > p:not(.eyebrow) {
    EXPERIENCE
 ========================= */
 
-.experience {
-    margin-top: 50px;
+:root {
 
-    border-left:
-        2px solid
-        #e1e5e7;
-}
+--navy:#0b1f3a;
+--gold:#c9a227;
+--emerald:#008060;
+--light:#f7f9fb;
+--text:#333;
 
-.experience > div {
-    position: relative;
-
-    padding:
-        0 0 45px 35px;
-}
-
-.experience > div::before {
-    content: "";
-
-    position: absolute;
-
-    width: 10px;
-    height: 10px;
-
-    background: var(--gold);
-
-    border-radius: 50%;
-
-    left: -6px;
-    top: 6px;
-}
-
-.experience strong {
-    color: var(--emerald);
-
-    font-size: 13px;
-
-    letter-spacing: 1px;
-}
-
-.experience h3 {
-    font-family: Georgia, serif;
-
-    color: var(--navy);
-
-    font-size: 23px;
-
-    margin: 8px 0;
-}
-
-.experience p {
-    color: var(--muted);
-
-    max-width: 700px;
 }
 
 
+.experience-section{
+
+padding:90px 8%;
+background:white;
+
+}
+
+
+
+.experience-header{
+
+text-align:center;
+max-width:750px;
+margin:auto;
+
+}
+
+
+.experience-header h2{
+
+font-size:42px;
+color:var(--navy);
+margin-bottom:15px;
+
+}
+
+
+
+.gold-line{
+
+width:80px;
+height:4px;
+background:var(--gold);
+margin:20px auto;
+
+}
+
+
+
+.experience-header p{
+
+color:#666;
+font-size:18px;
+line-height:1.7;
+
+}
+
+
+
+
+.timeline-container{
+
+position:relative;
+max-width:1000px;
+margin:70px auto;
+
+}
+
+
+
+.timeline-container:before{
+
+content:"";
+position:absolute;
+left:130px;
+top:0;
+bottom:0;
+width:3px;
+background:var(--gold);
+
+}
+
+
+
+
+.timeline-item{
+
+display:flex;
+gap:50px;
+margin-bottom:60px;
+position:relative;
+
+}
+
+
+
+.year{
+
+width:100px;
+font-weight:bold;
+color:var(--navy);
+font-size:18px;
+
+}
+
+
+
+
+.experience-card{
+
+background:white;
+padding:35px;
+border-radius:18px;
+box-shadow:0 15px 35px rgba(0,0,0,0.08);
+flex:1;
+border-left:5px solid var(--emerald);
+
+}
+
+
+
+.location{
+
+color:var(--gold);
+font-weight:bold;
+margin-bottom:10px;
+
+}
+
+
+
+.experience-card h3{
+
+color:var(--navy);
+font-size:25px;
+
+}
+
+
+
+.experience-card h4{
+
+color:var(--emerald);
+
+}
+
+
+
+.experience-card p{
+
+line-height:1.8;
+color:var(--text);
+
+}
+
+
+
+.tags{
+
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:20px;
+
+}
+
+
+
+.tags span,
+.skills span{
+
+background:#eef6f3;
+color:var(--emerald);
+padding:8px 15px;
+border-radius:20px;
+font-size:14px;
+
+}
+
+
+
+
+details{
+
+margin-top:20px;
+
+}
+
+
+summary{
+
+cursor:pointer;
+color:var(--navy);
+font-weight:bold;
+
+}
+
+
+
+
+.skills-box{
+
+margin-top:80px;
+background:var(--navy);
+padding:40px;
+border-radius:20px;
+text-align:center;
+
+}
+
+
+.skills-box h3{
+
+color:white;
+font-size:28px;
+
+}
+
+
+.skills{
+
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:15px;
+
+}
+
+
+.skills span{
+
+background:white;
+
+}
+
+
+
+
+@media(max-width:768px){
+
+
+.timeline-container:before{
+
+left:15px;
+
+}
+
+
+.timeline-item{
+
+display:block;
+padding-left:45px;
+
+}
+
+
+.year{
+
+margin-bottom:15px;
+
+}
+
+
+.experience-card{
+
+padding:25px;
+
+}
+
+
+.experience-header h2{
+
+font-size:32px;
+
+}
+
+
+}
 /* =========================
    EDUCATION
 ========================= */
