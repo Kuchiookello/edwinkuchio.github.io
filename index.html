@@ -2,126 +2,357 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="Professional portfolio of Edwin Kuchio Okello — administration, communication, research, data, legal and international experience.">
+          content="Professional portfolio of Edwin Kuchio Okello">
 
     <meta name="author"
           content="Edwin Kuchio Okello">
 
     <title>Edwin Kuchio Okello | Professional Portfolio</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap"
           rel="stylesheet">
 
-    <!-- Font Awesome -->
+
+    <!-- FONT AWESOME -->
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Your existing stylesheet -->
-    <link rel="stylesheet" href="style.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="style.css">
+
 </head>
+
 
 <body>
 
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
 
-<header class="navbar">
+<!-- =====================================================
+     TOP LEFT THREE-DOT MENU
+===================================================== -->
 
-    <div class="nav-container">
+<button class="corner-menu"
+        id="cornerMenu"
+        aria-label="Open quick menu">
 
-        <a href="#home" class="logo">
-            Edwin Kuchio Okello
+    <i class="fas fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<!-- =====================================================
+     QUICK MENU
+===================================================== -->
+
+<div class="quick-menu"
+     id="quickMenu">
+
+    <div class="quick-menu-header">
+
+        <strong>Quick Access</strong>
+
+        <button id="closeQuickMenu">
+            <i class="fas fa-xmark"></i>
+        </button>
+
+    </div>
+
+
+    <a href="#home">
+        <i class="fas fa-house"></i>
+        Home
+    </a>
+
+    <a href="#experience">
+        <i class="fas fa-briefcase"></i>
+        Experience
+    </a>
+
+    <a href="#projects">
+        <i class="fas fa-diagram-project"></i>
+        Projects
+    </a>
+
+    <a href="#pictorial">
+        <i class="fas fa-images"></i>
+        Pictorial
+    </a>
+
+    <a href="#contact">
+        <i class="fas fa-envelope"></i>
+        Contact
+    </a>
+
+    <a href="#admin">
+        <i class="fas fa-cloud-arrow-up"></i>
+        Manage Files
+    </a>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header"
+        id="header">
+
+    <nav class="navbar container">
+
+
+        <!-- LOGO -->
+
+        <a href="#home"
+           class="logo">
+
+            <span>E</span>KO
+
         </a>
+
+
+        <!-- MOBILE MENU -->
 
         <button class="menu-toggle"
                 id="menuToggle"
-                aria-label="Open navigation menu">
+                aria-label="Open navigation">
+
             <i class="fas fa-bars"></i>
+
         </button>
 
-        <nav id="mainNav">
 
-            <a href="#home">Home</a>
+        <!-- NAVIGATION -->
 
-            <a href="#about">About</a>
+        <ul class="nav-menu"
+            id="navMenu">
 
-            <a href="#experience">Experience</a>
+            <li>
+                <a href="#home"
+                   class="nav-link active">
 
-            <a href="#education">Education</a>
+                    Home
 
-            <a href="#skills">Skills</a>
+                </a>
+            </li>
 
-            <a href="#projects">Projects</a>
+            <li>
+                <a href="#about"
+                   class="nav-link">
 
-            <a href="#pictorial">Pictorial</a>
+                    About
 
-            <a href="#contact">Contact</a>
+                </a>
+            </li>
 
-        </nav>
+            <li>
+                <a href="#experience"
+                   class="nav-link">
 
-    </div>
+                    Experience
+
+                </a>
+            </li>
+
+            <li>
+                <a href="#education"
+                   class="nav-link">
+
+                    Education
+
+                </a>
+            </li>
+
+            <li>
+                <a href="#skills"
+                   class="nav-link">
+
+                    Skills
+
+                </a>
+            </li>
+
+            <li>
+                <a href="#projects"
+                   class="nav-link">
+
+                    Projects
+
+                </a>
+            </li>
+
+            <li>
+                <a href="#pictorial"
+                   class="nav-link">
+
+                    Pictorial
+
+                </a>
+            </li>
+
+            <li>
+                <a href="#contact"
+                   class="nav-link">
+
+                    Contact
+
+                </a>
+            </li>
+
+        </ul>
+
+
+        <a href="#contact"
+           class="nav-button">
+
+            Let's Connect
+
+        </a>
+
+    </nav>
 
 </header>
 
 
-<!-- =========================================================
-     HERO / HOME
-========================================================= -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-<section id="home" class="hero">
+<section class="hero"
+         id="home">
 
-    <div class="hero-content">
+    <div class="hero-decoration"></div>
 
-        <div class="hero-text">
 
-            <p class="eyebrow">
-                PROFESSIONAL PORTFOLIO
+    <div class="container hero-container">
+
+
+        <!-- HERO CONTENT -->
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+
+                <span></span>
+
+                Open to Professional Opportunities
+
+            </div>
+
+
+            <p class="hero-intro">
+                HELLO, I'M
             </p>
+
 
             <h1>
-                Edwin Kuchio Okello
+                Edwin
+                <span>Kuchio</span>
+                Okello
             </h1>
 
+
             <h2>
-                Administration • Communication • Research • Data
+                Research • Administration • Communication •
+                Data & Analytics
             </h2>
 
-            <p>
-                A multidisciplinary professional with academic and
-                international experience across administration,
-                communication, research, education, pastoral service
-                and intercultural environments.
+
+            <p class="hero-description">
+
+                A multidisciplinary professional with academic,
+                international and community experience, bringing
+                together research, communication, administration,
+                analytical thinking and cross-cultural experience.
+
             </p>
+
+
+            <!-- MAIN ACTIONS -->
 
             <div class="hero-buttons">
 
-                <a href="#about" class="btn">
-                    Explore My Portfolio
+
+                <a href="#experience"
+                   class="btn btn-primary">
+
+                    <i class="fas fa-briefcase"></i>
+
+                    Explore My Experience
+
                 </a>
 
-                <!-- IMPORTANT:
-                     This is the exact CV filename already in your
-                     GitHub repository.
-                -->
 
-                <a href="Kuchio%20Edwin%20Okello%2C%20cv.pdf"
-                   class="btn btn-outline"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a href="#contact"
+                   class="btn btn-outline">
+
+                    <i class="fas fa-envelope"></i>
+
+                    Contact Me
+
+                </a>
+
+
+                <a href="#cv"
+                   class="btn btn-cv">
 
                     <i class="fas fa-file-pdf"></i>
-                    View My CV
+
+                    My CV
+
+                </a>
+
+
+                <a href="#pictorial"
+                   class="btn btn-pictorial">
+
+                    <i class="fas fa-images"></i>
+
+                    Pictorial
+
+                </a>
+
+            </div>
+
+
+            <!-- SOCIAL -->
+
+            <div class="hero-socials">
+
+                <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="LinkedIn">
+
+                    <i class="fab fa-linkedin-in"></i>
+
+                </a>
+
+
+                <a href="mailto:edwinokello24@gmail.com"
+                   aria-label="Email">
+
+                    <i class="fas fa-envelope"></i>
 
                 </a>
 
@@ -132,74 +363,167 @@
 
         <!-- PROFILE PHOTO -->
 
-        <div class="hero-photo">
+        <div class="hero-visual">
 
-            <!--
-                ADMIN IMAGE LOCATION
+            <div class="profile-card">
 
-                Upload your profile photo to:
 
-                assets/images/edwin-profile.jpg
+                <div class="profile-photo">
 
-                Then you do NOT need to change this HTML again.
-            -->
+                    <img id="profileImage"
+                         src=""
+                         alt="Edwin Kuchio Okello">
 
-            <img src="assets/images/edwin-profile.jpg"
-                 alt="Edwin Kuchio Okello"
-                 onerror="this.style.display='none';">
+                    <div class="photo-placeholder"
+                         id="photoPlaceholder">
+
+                        <i class="fas fa-user-tie"></i>
+
+                        <strong>
+                            Professional Photo
+                        </strong>
+
+                        <small>
+                            Upload your photo below
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <h3>
+                        Edwin Kuchio Okello
+                    </h3>
+
+                    <p>
+                        Multidisciplinary Professional
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card card-one">
+
+                <i class="fas fa-chart-line"></i>
+
+                <div>
+
+                    <strong>
+                        Research
+                    </strong>
+
+                    <small>
+                        & Analysis
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card card-two">
+
+                <i class="fas fa-globe-africa"></i>
+
+                <div>
+
+                    <strong>
+                        International
+                    </strong>
+
+                    <small>
+                        Experience
+                    </small>
+
+                </div>
+
+            </div>
 
         </div>
+
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        <span>
+            Scroll to explore
+        </span>
+
+        <i class="fas fa-chevron-down"></i>
 
     </div>
 
 </section>
 
 
-
-<!-- =========================================================
+<!-- =====================================================
      ABOUT
-========================================================= -->
+===================================================== -->
 
-<section id="about" class="section">
+<section class="section"
+         id="about">
 
     <div class="container">
 
+
         <div class="section-heading">
 
-            <p class="eyebrow">
-                PROFILE
-            </p>
+            <span class="section-label">
+                ABOUT ME
+            </span>
 
             <h2>
-                About Me
+                A multidisciplinary professional
             </h2>
+
+            <p>
+                Combining academic formation, international
+                exposure, communication and analytical skills.
+            </p>
 
         </div>
 
 
         <div class="about-grid">
 
-            <div>
 
-                <p>
-                    I am Edwin Kuchio Okello, a Kenyan professional
-                    with a multidisciplinary academic and international
-                    background. My experience has exposed me to diverse
-                    cultural, educational, pastoral and professional
-                    environments across Africa.
+            <div class="about-text">
+
+                <p class="lead">
+
+                    I am a multidisciplinary professional with
+                    academic formation in Philosophy and Theology,
+                    international experience across Africa and a
+                    growing interest in research, administration,
+                    communication and analytical work.
+
                 </p>
 
-                <p>
-                    My professional interests include administration,
-                    communication, research, data, project support,
-                    legal and institutional environments, education
-                    and international development.
-                </p>
 
                 <p>
-                    I bring adaptability, intercultural competence,
-                    strong communication skills, analytical thinking,
-                    teamwork and a commitment to professional excellence.
+
+                    My experiences have developed my ability to
+                    work across cultures, communicate effectively,
+                    conduct research, organize information and
+                    approach complex situations with objectivity
+                    and professionalism.
+
+                </p>
+
+
+                <p>
+
+                    I am particularly interested in opportunities
+                    where strong communication, research,
+                    organization, critical thinking and service
+                    can contribute to meaningful results.
+
                 </p>
 
             </div>
@@ -207,42 +531,73 @@
 
             <div class="about-highlights">
 
-                <div class="highlight">
-                    <i class="fas fa-globe-africa"></i>
+
+                <div class="highlight-card">
+
+                    <div class="highlight-icon">
+                        <i class="fas fa-magnifying-glass-chart"></i>
+                    </div>
 
                     <div>
-                        <h3>International Exposure</h3>
+
+                        <h3>
+                            Research & Analysis
+                        </h3>
+
                         <p>
-                            Experience across multiple African countries
-                            and multicultural environments.
+                            Research, critical thinking,
+                            information gathering and
+                            evidence-based analysis.
                         </p>
+
                     </div>
+
                 </div>
 
 
-                <div class="highlight">
-                    <i class="fas fa-graduation-cap"></i>
+                <div class="highlight-card">
+
+                    <div class="highlight-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
 
                     <div>
-                        <h3>Academic Background</h3>
+
+                        <h3>
+                            Communication
+                        </h3>
+
                         <p>
-                            Philosophy and Theology with broad
-                            interdisciplinary exposure.
+                            Written, verbal and intercultural
+                            communication developed through
+                            international experience.
                         </p>
+
                     </div>
+
                 </div>
 
 
-                <div class="highlight">
-                    <i class="fas fa-people-group"></i>
+                <div class="highlight-card">
+
+                    <div class="highlight-icon">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
 
                     <div>
-                        <h3>People & Communication</h3>
+
+                        <h3>
+                            Administration
+                        </h3>
+
                         <p>
-                            Strong interpersonal, communication and
-                            collaborative abilities.
+                            Organization, documentation,
+                            coordination and professional
+                            administrative support.
                         </p>
+
                     </div>
+
                 </div>
 
             </div>
@@ -254,29 +609,29 @@
 </section>
 
 
-
-<!-- =========================================================
+<!-- =====================================================
      EXPERIENCE
-========================================================= -->
+===================================================== -->
 
-<section id="experience" class="section section-alt">
+<section class="section experience-section"
+         id="experience">
 
     <div class="container">
 
+
         <div class="section-heading">
 
-            <p class="eyebrow">
-                PROFESSIONAL JOURNEY
-            </p>
+            <span class="section-label">
+                EXPERIENCE
+            </span>
 
             <h2>
-                Experience
+                A journey shaped by diverse experiences
             </h2>
 
             <p>
-                A diverse professional journey shaped by service,
-                international exposure, formation and community
-                engagement.
+                Academic, pastoral, community and international
+                experiences across different environments.
             </p>
 
         </div>
@@ -285,145 +640,140 @@
         <div class="timeline">
 
 
-            <!-- 2015 -->
+            <div class="timeline-item">
 
-            <article class="timeline-item">
+                <div class="timeline-marker"></div>
 
-                <div class="timeline-date">
+                <span class="timeline-date">
                     2015
-                </div>
+                </span>
 
                 <div class="timeline-content">
 
                     <h3>
-                        Volunteer
+                        Community Volunteer
                     </h3>
 
                     <h4>
                         Kwetu Home of Peace Rehabilitation Centre
                     </h4>
 
-                    <p>
+                    <p class="location">
+                        <i class="fas fa-location-dot"></i>
                         Nairobi, Kenya
                     </p>
 
-                    <ul>
+                    <p>
 
-                        <li>
-                            Supported activities serving vulnerable
-                            children and young people.
-                        </li>
+                        Volunteered at a rehabilitation centre
+                        serving street-connected children,
+                        gaining experience in community service,
+                        interpersonal communication and working
+                        with vulnerable communities.
 
-                        <li>
-                            Developed interpersonal communication,
-                            teamwork and community engagement skills.
-                        </li>
+                    </p>
 
-                        <li>
-                            Gained practical experience working within
-                            a social-support environment.
-                        </li>
+                    <div class="tag-list">
 
-                    </ul>
+                        <span>
+                            Community Service
+                        </span>
+
+                        <span>
+                            Communication
+                        </span>
+
+                        <span>
+                            Teamwork
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </article>
+            </div>
 
 
+            <div class="timeline-item">
 
-            <!-- 2016 -->
+                <div class="timeline-marker"></div>
 
-            <article class="timeline-item">
-
-                <div class="timeline-date">
-                    2016
-                </div>
+                <span class="timeline-date">
+                    2016 – 2019
+                </span>
 
                 <div class="timeline-content">
 
                     <h3>
-                        Formation & Academic Development
+                        Philosophical & Formation Experience
                     </h3>
 
                     <h4>
-                        Tanzania / Uganda
+                        International Formation
                     </h4>
 
-                    <ul>
+                    <p class="location">
+                        <i class="fas fa-globe-africa"></i>
+                        Tanzania • Uganda • Congo
+                    </p>
 
-                        <li>
-                            Began international formation experience
-                            in Tanzania.
-                        </li>
+                    <p>
 
-                        <li>
-                            Undertook philosophical studies in Uganda.
-                        </li>
+                        Undertook philosophical studies and
+                        international formation in multicultural
+                        environments, developing critical thinking,
+                        research, communication and adaptability.
 
-                        <li>
-                            Developed communication and intercultural
-                            skills in an international environment.
-                        </li>
-
-                    </ul>
+                    </p>
 
                 </div>
 
-            </article>
+            </div>
 
 
+            <div class="timeline-item">
 
-            <!-- 2019 -->
+                <div class="timeline-marker"></div>
 
-            <article class="timeline-item">
-
-                <div class="timeline-date">
-                    2019–2020
-                </div>
+                <span class="timeline-date">
+                    2019 – 2020
+                </span>
 
                 <div class="timeline-content">
 
                     <h3>
-                        International Formation & Cultural Immersion
+                        International Formation
                     </h3>
 
                     <h4>
-                        Congo • Zambia • Burkina Faso
+                        Zambia & Burkina Faso
                     </h4>
 
-                    <ul>
+                    <p class="location">
+                        <i class="fas fa-globe-africa"></i>
+                        Zambia • Burkina Faso
+                    </p>
 
-                        <li>
-                            Participated in international formation
-                            and community life.
-                        </li>
+                    <p>
 
-                        <li>
-                            Experienced diverse cultural and linguistic
-                            environments.
-                        </li>
+                        Gained further cross-cultural experience,
+                        including French immersion and community
+                        engagement in different African contexts.
 
-                        <li>
-                            Undertook French language immersion in
-                            Burkina Faso.
-                        </li>
-
-                    </ul>
+                    </p>
 
                 </div>
 
-            </article>
+            </div>
 
 
+            <div class="timeline-item">
 
-            <!-- 2021 -->
+                <div class="timeline-marker"></div>
 
-            <article class="timeline-item">
-
-                <div class="timeline-date">
-                    2021–2022
-                </div>
+                <span class="timeline-date">
+                    2021 – 2022
+                </span>
 
                 <div class="timeline-content">
 
@@ -435,79 +785,59 @@
                         Togo
                     </h4>
 
-                    <ul>
+                    <p class="location">
+                        <i class="fas fa-location-dot"></i>
+                        Togo
+                    </p>
 
-                        <li>
-                            Participated in pastoral and community
-                            activities.
-                        </li>
+                    <p>
 
-                        <li>
-                            Strengthened intercultural communication
-                            and adaptability.
-                        </li>
+                        Developed practical experience in
+                        pastoral, community and intercultural
+                        environments.
 
-                        <li>
-                            Worked within a multilingual and
-                            multicultural environment.
-                        </li>
-
-                    </ul>
+                    </p>
 
                 </div>
 
-            </article>
+            </div>
 
 
+            <div class="timeline-item">
 
-            <!-- 2022–2026 -->
+                <div class="timeline-marker"></div>
 
-            <article class="timeline-item">
-
-                <div class="timeline-date">
-                    2022–2026
-                </div>
+                <span class="timeline-date">
+                    2022 – 2026
+                </span>
 
                 <div class="timeline-content">
 
                     <h3>
-                        Theological Studies & International Experience
+                        Theology & International Academic Experience
                     </h3>
 
                     <h4>
                         St. Joseph's Theological Institute
                     </h4>
 
-                    <p>
+                    <p class="location">
+                        <i class="fas fa-location-dot"></i>
                         South Africa
                     </p>
 
-                    <ul>
+                    <p>
 
-                        <li>
-                            Completed advanced theological studies.
-                        </li>
+                        Completed theological studies in an
+                        international academic environment while
+                        interacting with students and professionals
+                        from different cultural backgrounds.
 
-                        <li>
-                            Studied and lived within an international
-                            student community.
-                        </li>
-
-                        <li>
-                            Developed research, writing, presentation
-                            and analytical skills.
-                        </li>
-
-                        <li>
-                            Participated in academic, community and
-                            pastoral activities.
-                        </li>
-
-                    </ul>
+                    </p>
 
                 </div>
 
-            </article>
+            </div>
 
         </div>
 
@@ -516,34 +846,43 @@
 </section>
 
 
-
-<!-- =========================================================
+<!-- =====================================================
      EDUCATION
-========================================================= -->
+===================================================== -->
 
-<section id="education" class="section">
+<section class="section"
+         id="education">
 
     <div class="container">
 
+
         <div class="section-heading">
 
-            <p class="eyebrow">
-                ACADEMIC BACKGROUND
-            </p>
+            <span class="section-label">
+                EDUCATION
+            </span>
 
             <h2>
-                Education
+                Academic foundation
             </h2>
 
         </div>
 
 
-        <div class="cards-grid">
+        <div class="education-grid">
 
 
-            <article class="card">
+            <div class="education-card featured">
 
-                <i class="fas fa-book-open card-icon"></i>
+                <div class="education-icon">
+
+                    <i class="fas fa-graduation-cap"></i>
+
+                </div>
+
+                <span class="education-year">
+                    Bachelor's Degree
+                </span>
 
                 <h3>
                     Bachelor of Theology
@@ -553,21 +892,26 @@
                     St. Joseph's Theological Institute
                 </h4>
 
+                <div class="education-line"></div>
+
                 <p>
                     South Africa
                 </p>
 
-                <span>
-                    2022–2026
+            </div>
+
+
+            <div class="education-card">
+
+                <div class="education-icon">
+
+                    <i class="fas fa-book-open"></i>
+
+                </div>
+
+                <span class="education-year">
+                    Bachelor's Degree
                 </span>
-
-            </article>
-
-
-
-            <article class="card">
-
-                <i class="fas fa-brain card-icon"></i>
 
                 <h3>
                     Bachelor of Philosophy
@@ -577,31 +921,13 @@
                     Urbaniana University
                 </h4>
 
-                <p>
-                    Philosophy
-                </p>
-
-            </article>
-
-
-
-            <article class="card">
-
-                <i class="fas fa-school card-icon"></i>
-
-                <h3>
-                    Secondary Education
-                </h3>
-
-                <h4>
-                    St. Gabriel's Minor Seminary
-                </h4>
+                <div class="education-line"></div>
 
                 <p>
-                    Early academic and vocational formation.
+                    Philosophy and critical thinking formation.
                 </p>
 
-            </article>
+            </div>
 
         </div>
 
@@ -610,23 +936,24 @@
 </section>
 
 
-
-<!-- =========================================================
+<!-- =====================================================
      SKILLS
-========================================================= -->
+===================================================== -->
 
-<section id="skills" class="section section-alt">
+<section class="section skills-section"
+         id="skills">
 
     <div class="container">
 
+
         <div class="section-heading">
 
-            <p class="eyebrow">
-                PROFESSIONAL CAPABILITIES
-            </p>
+            <span class="section-label">
+                PROFESSIONAL SKILLS
+            </span>
 
             <h2>
-                Skills
+                Skills I bring to an organization
             </h2>
 
         </div>
@@ -637,15 +964,17 @@
 
             <div class="skill-card">
 
-                <i class="fas fa-building"></i>
+                <div class="skill-icon">
+                    <i class="fas fa-magnifying-glass"></i>
+                </div>
 
                 <h3>
-                    Administration
+                    Research
                 </h3>
 
                 <p>
-                    Organisation, coordination, documentation,
-                    scheduling and institutional support.
+                    Information gathering, critical analysis,
+                    research organization and synthesis.
                 </p>
 
             </div>
@@ -653,15 +982,35 @@
 
             <div class="skill-card">
 
-                <i class="fas fa-comments"></i>
+                <div class="skill-icon">
+                    <i class="fas fa-chart-column"></i>
+                </div>
+
+                <h3>
+                    Data & Analytics
+                </h3>
+
+                <p>
+                    Analytical thinking, information
+                    interpretation and evidence-based reasoning.
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
 
                 <h3>
                     Communication
                 </h3>
 
                 <p>
-                    Written, verbal, interpersonal and
-                    cross-cultural communication.
+                    Professional written, verbal and
+                    intercultural communication.
                 </p>
 
             </div>
@@ -669,15 +1018,17 @@
 
             <div class="skill-card">
 
-                <i class="fas fa-magnifying-glass-chart"></i>
+                <div class="skill-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
 
                 <h3>
-                    Research & Analysis
+                    Administration
                 </h3>
 
                 <p>
-                    Academic research, information analysis,
-                    critical thinking and report preparation.
+                    Organization, documentation, coordination
+                    and administrative support.
                 </p>
 
             </div>
@@ -685,15 +1036,17 @@
 
             <div class="skill-card">
 
-                <i class="fas fa-database"></i>
+                <div class="skill-icon">
+                    <i class="fas fa-people-group"></i>
+                </div>
 
                 <h3>
-                    Data
+                    Teamwork
                 </h3>
 
                 <p>
-                    Analytical thinking, information organisation
-                    and data-oriented problem solving.
+                    Collaboration and effective engagement in
+                    multicultural teams.
                 </p>
 
             </div>
@@ -701,31 +1054,17 @@
 
             <div class="skill-card">
 
-                <i class="fas fa-scale-balanced"></i>
-
-                <h3>
-                    Legal & Institutional Support
-                </h3>
-
-                <p>
-                    Interest and transferable skills relevant to
-                    legal, institutional and administrative settings.
-                </p>
-
-            </div>
-
-
-            <div class="skill-card">
-
-                <i class="fas fa-language"></i>
+                <div class="skill-icon">
+                    <i class="fas fa-language"></i>
+                </div>
 
                 <h3>
                     Languages
                 </h3>
 
                 <p>
-                    English, French and experience working across
-                    multilingual environments.
+                    English and French communication in
+                    international environments.
                 </p>
 
             </div>
@@ -737,64 +1076,75 @@
 </section>
 
 
+<!-- =====================================================
+     INTERNATIONAL EXPERIENCE
+===================================================== -->
 
-<!-- =========================================================
-     INTERNATIONAL EXPOSURE
-========================================================= -->
-
-<section class="section">
+<section class="section international-section">
 
     <div class="container">
 
+
         <div class="section-heading">
 
-            <p class="eyebrow">
-                INTERNATIONAL EXPERIENCE
-            </p>
+            <span class="section-label">
+                INTERNATIONAL EXPOSURE
+            </span>
 
             <h2>
-                International Exposure
+                Experience across Africa
             </h2>
+
+            <p>
+                International formation and community experience
+                across different African countries.
+            </p>
 
         </div>
 
 
-        <div class="country-list">
+        <div class="countries">
 
-            <span>
-                <i class="fas fa-location-dot"></i>
-                Tanzania
-            </span>
 
-            <span>
-                <i class="fas fa-location-dot"></i>
-                Uganda
-            </span>
+            <div class="country">
+                <strong>TZ</strong>
+                <span>Tanzania</span>
+            </div>
 
-            <span>
-                <i class="fas fa-location-dot"></i>
-                Democratic Republic of Congo
-            </span>
+            <div class="country">
+                <strong>UG</strong>
+                <span>Uganda</span>
+            </div>
 
-            <span>
-                <i class="fas fa-location-dot"></i>
-                Zambia
-            </span>
+            <div class="country">
+                <strong>CD</strong>
+                <span>Congo</span>
+            </div>
 
-            <span>
-                <i class="fas fa-location-dot"></i>
-                Burkina Faso
-            </span>
+            <div class="country">
+                <strong>ZM</strong>
+                <span>Zambia</span>
+            </div>
 
-            <span>
-                <i class="fas fa-location-dot"></i>
-                Togo
-            </span>
+            <div class="country">
+                <strong>BF</strong>
+                <span>Burkina Faso</span>
+            </div>
 
-            <span>
-                <i class="fas fa-location-dot"></i>
-                South Africa
-            </span>
+            <div class="country">
+                <strong>TG</strong>
+                <span>Togo</span>
+            </div>
+
+            <div class="country">
+                <strong>ZA</strong>
+                <span>South Africa</span>
+            </div>
+
+            <div class="country">
+                <strong>KE</strong>
+                <span>Kenya</span>
+            </div>
 
         </div>
 
@@ -803,24 +1153,30 @@
 </section>
 
 
-
-<!-- =========================================================
+<!-- =====================================================
      PROJECTS
-========================================================= -->
+===================================================== -->
 
-<section id="projects" class="section section-alt">
+<section class="section"
+         id="projects">
 
     <div class="container">
 
+
         <div class="section-heading">
 
-            <p class="eyebrow">
-                PROFESSIONAL WORK
-            </p>
+            <span class="section-label">
+                PROJECTS
+            </span>
 
             <h2>
-                Projects & Areas of Interest
+                Selected professional projects
             </h2>
+
+            <p>
+                Projects and initiatives reflecting my interests,
+                skills and professional direction.
+            </p>
 
         </div>
 
@@ -828,76 +1184,197 @@
         <div class="projects-grid">
 
 
-            <article class="project-card">
+            <!-- EKO ANALYTICS -->
+
+            <article class="project-card featured-project">
+
+                <div class="project-number">
+                    01
+                </div>
+
+
+                <div class="project-status">
+
+                    <span class="status-dot"></span>
+
+                    Startup in Development
+
+                </div>
+
 
                 <div class="project-icon">
+
                     <i class="fas fa-chart-line"></i>
+
                 </div>
 
+
                 <h3>
-                    Research & Analysis
+                    EKO Analytics & Research
                 </h3>
 
+
+                <h4>
+                    Founder & Startup Project
+                </h4>
+
+
                 <p>
-                    Academic and professional research,
-                    information analysis and structured
-                    problem solving.
+
+                    EKO Analytics & Research is a startup company
+                    currently in development, founded by Edwin
+                    Kuchio Okello.
+
                 </p>
+
+
+                <p>
+
+                    The venture is being developed around research,
+                    data analytics, information management and
+                    evidence-based insights.
+
+                </p>
+
+
+                <div class="project-tags">
+
+                    <span>
+                        Startup
+                    </span>
+
+                    <span>
+                        Research
+                    </span>
+
+                    <span>
+                        Data Analytics
+                    </span>
+
+                    <span>
+                        Consulting
+                    </span>
+
+                </div>
+
+
+                <div class="project-role">
+
+                    <i class="fas fa-user-tie"></i>
+
+                    <div>
+
+                        <small>
+                            My Role
+                        </small>
+
+                        <strong>
+                            Founder
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <a href="#contact"
+                   class="project-link">
+
+                    Explore the Vision
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </a>
 
             </article>
 
 
+            <!-- PROJECT 2 -->
+
             <article class="project-card">
 
+                <div class="project-number">
+                    02
+                </div>
+
                 <div class="project-icon">
-                    <i class="fas fa-users"></i>
+
+                    <i class="fas fa-file-lines"></i>
+
                 </div>
 
                 <h3>
-                    Administration & Coordination
+                    Research & Documentation
                 </h3>
 
                 <p>
-                    Organisational support, coordination,
-                    documentation and professional communication.
+
+                    Development of structured research,
+                    documentation and information-management
+                    approaches.
+
                 </p>
+
+                <div class="project-tags">
+
+                    <span>
+                        Research
+                    </span>
+
+                    <span>
+                        Documentation
+                    </span>
+
+                    <span>
+                        Analysis
+                    </span>
+
+                </div>
 
             </article>
 
 
-            <article class="project-card">
-
-                <div class="project-icon">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-
-                <h3>
-                    Communication
-                </h3>
-
-                <p>
-                    Professional communication, presentations,
-                    writing and stakeholder engagement.
-                </p>
-
-            </article>
-
+            <!-- PROJECT 3 -->
 
             <article class="project-card">
 
+                <div class="project-number">
+                    03
+                </div>
+
                 <div class="project-icon">
-                    <i class="fas fa-scale-balanced"></i>
+
+                    <i class="fas fa-globe"></i>
+
                 </div>
 
                 <h3>
-                    Legal & Institutional Environments
+                    International Experience Portfolio
                 </h3>
 
                 <p>
-                    Interest in legal administration,
-                    institutional processes and professional
-                    support roles.
+
+                    A professional record of international
+                    academic, community and intercultural
+                    experiences across Africa.
+
                 </p>
+
+                <div class="project-tags">
+
+                    <span>
+                        International
+                    </span>
+
+                    <span>
+                        Communication
+                    </span>
+
+                    <span>
+                        Community
+                    </span>
+
+                </div>
 
             </article>
 
@@ -908,123 +1385,70 @@
 </section>
 
 
+<!-- =====================================================
+     CV SECTION
+===================================================== -->
 
-<!-- =========================================================
-     PROFESSIONAL VALUES
-========================================================= -->
-
-<section class="section">
+<section class="section cv-section"
+         id="cv">
 
     <div class="container">
 
-        <div class="section-heading">
 
-            <p class="eyebrow">
-                WHAT GUIDES MY WORK
-            </p>
-
-            <h2>
-                Professional Values
-            </h2>
-
-        </div>
+        <div class="cv-box">
 
 
-        <div class="values-grid">
+            <div class="cv-icon">
 
-
-            <div class="value">
-
-                <i class="fas fa-shield-halved"></i>
-
-                <h3>
-                    Integrity
-                </h3>
-
-                <p>
-                    Professional honesty, responsibility and
-                    ethical conduct.
-                </p>
+                <i class="fas fa-file-pdf"></i>
 
             </div>
 
 
-            <div class="value">
+            <div class="cv-content">
 
-                <i class="fas fa-star"></i>
+                <span class="section-label">
+                    CURRICULUM VITAE
+                </span>
 
-                <h3>
-                    Excellence
-                </h3>
+                <h2>
+                    My Professional CV
+                </h2>
 
-                <p>
-                    Commitment to quality and continuous
-                    professional development.
+                <p id="cvStatus">
+
+                    My current professional CV will be
+                    available here for viewing and download.
+
                 </p>
 
-            </div>
+
+                <div class="cv-buttons">
 
 
-            <div class="value">
+                    <a href="#"
+                       id="viewCv"
+                       class="btn btn-primary disabled">
 
-                <i class="fas fa-lightbulb"></i>
+                        <i class="fas fa-eye"></i>
 
-                <h3>
-                    Innovation
-                </h3>
+                        View CV
 
-                <p>
-                    Openness to new ideas and better ways
-                    of solving problems.
-                </p>
-
-            </div>
+                    </a>
 
 
-            <div class="value">
+                    <a href="#"
+                       id="downloadCv"
+                       class="btn btn-cv disabled"
+                       download>
 
-                <i class="fas fa-scale-balanced"></i>
+                        <i class="fas fa-download"></i>
 
-                <h3>
-                    Objectivity
-                </h3>
+                        Download CV (PDF)
 
-                <p>
-                    Evidence-based thinking and balanced
-                    judgement.
-                </p>
+                    </a>
 
-            </div>
-
-
-            <div class="value">
-
-                <i class="fas fa-handshake"></i>
-
-                <h3>
-                    Collaboration
-                </h3>
-
-                <p>
-                    Respectful teamwork and constructive
-                    engagement with others.
-                </p>
-
-            </div>
-
-
-            <div class="value">
-
-                <i class="fas fa-bullseye"></i>
-
-                <h3>
-                    Impact
-                </h3>
-
-                <p>
-                    Focus on meaningful results and
-                    positive contribution.
-                </p>
+                </div>
 
             </div>
 
@@ -1035,101 +1459,52 @@
 </section>
 
 
-
-<!-- =========================================================
+<!-- =====================================================
      PICTORIAL
-========================================================= -->
+===================================================== -->
 
-<section id="pictorial" class="section section-alt">
+<section class="section pictorial-section"
+         id="pictorial">
 
     <div class="container">
 
+
         <div class="section-heading">
 
-            <p class="eyebrow">
-                VISUAL JOURNEY
-            </p>
+            <span class="section-label">
+                PICTORIAL
+            </span>
 
             <h2>
-                Pictorial
+                A glimpse of my journey
             </h2>
 
             <p>
-                Selected photographs from my academic,
-                professional, international and community
-                experiences.
+                Selected moments from my academic, international,
+                community and professional experiences.
             </p>
 
         </div>
 
 
-        <div class="gallery">
+        <div class="pictorial-grid"
+             id="pictorialGrid">
 
 
-            <!-- PHOTO 01 -->
+            <div class="pictorial-placeholder-card">
 
-            <figure class="gallery-item">
+                <i class="fas fa-images"></i>
 
-                <img src="assets/images/photo-01.jpg"
-                     alt="Edwin Kuchio Okello — photograph 1"
-                     loading="lazy">
+                <h3>
+                    Your gallery will appear here
+                </h3>
 
-            </figure>
+                <p>
+                    Upload photographs using the management
+                    panel below.
+                </p>
 
-
-            <!-- PHOTO 02 -->
-
-            <figure class="gallery-item">
-
-                <img src="assets/images/photo-02.jpg"
-                     alt="Edwin Kuchio Okello — photograph 2"
-                     loading="lazy">
-
-            </figure>
-
-
-            <!-- PHOTO 03 -->
-
-            <figure class="gallery-item">
-
-                <img src="assets/images/photo-03.jpg"
-                     alt="Edwin Kuchio Okello — photograph 3"
-                     loading="lazy">
-
-            </figure>
-
-
-            <!-- PHOTO 04 -->
-
-            <figure class="gallery-item">
-
-                <img src="assets/images/photo-04.jpg"
-                     alt="Edwin Kuchio Okello — photograph 4"
-                     loading="lazy">
-
-            </figure>
-
-
-            <!-- PHOTO 05 -->
-
-            <figure class="gallery-item">
-
-                <img src="assets/images/photo-05.jpg"
-                     alt="Edwin Kuchio Okello — photograph 5"
-                     loading="lazy">
-
-            </figure>
-
-
-            <!-- PHOTO 06 -->
-
-            <figure class="gallery-item">
-
-                <img src="assets/images/photo-06.jpg"
-                     alt="Edwin Kuchio Okello — photograph 6"
-                     loading="lazy">
-
-            </figure>
+            </div>
 
         </div>
 
@@ -1138,60 +1513,344 @@
 </section>
 
 
+<!-- =====================================================
+     ADMIN / FILE MANAGEMENT
+===================================================== -->
 
-<!-- =========================================================
-     CV / PROFESSIONAL DOCUMENTS
-========================================================= -->
-
-<section class="section">
+<section class="section admin-section"
+         id="admin">
 
     <div class="container">
 
+
         <div class="section-heading">
 
-            <p class="eyebrow">
-                PROFESSIONAL DOCUMENTS
-            </p>
+            <span class="section-label">
+                WEBSITE MANAGEMENT
+            </span>
 
             <h2>
-                Curriculum Vitae
+                Manage your portfolio files
             </h2>
 
             <p>
-                For a complete overview of my academic background,
-                professional experience and qualifications, please
-                view my curriculum vitae.
+                Select your profile photograph, CV and
+                pictorial images from your device.
             </p>
 
         </div>
 
 
-        <div class="document-card">
+        <div class="admin-warning">
 
-            <i class="fas fa-file-pdf"></i>
+            <i class="fas fa-circle-info"></i>
 
             <div>
 
-                <h3>
-                    Edwin Kuchio Okello — CV
-                </h3>
+                <strong>
+                    Important
+                </strong>
 
                 <p>
-                    Professional Curriculum Vitae
+
+                    Files selected here are stored in this
+                    browser. For permanent public availability
+                    on your GitHub website, the files should
+                    eventually be uploaded to your repository's
+                    assets folder.
+
                 </p>
 
             </div>
 
+        </div>
 
-            <!-- THIS IS THE CORRECT CV LINK -->
 
-            <a href="Kuchio%20Edwin%20Okello%2C%20cv.pdf"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn">
+        <div class="upload-grid">
 
-                <i class="fas fa-eye"></i>
-                View CV
+
+            <!-- PROFILE -->
+
+            <div class="upload-card">
+
+                <div class="upload-icon">
+
+                    <i class="fas fa-user"></i>
+
+                </div>
+
+                <h3>
+                    Profile Photo
+                </h3>
+
+                <p>
+                    Upload a professional JPG, JPEG or PNG photo.
+                </p>
+
+                <label for="profileUpload"
+                       class="upload-button">
+
+                    <i class="fas fa-upload"></i>
+
+                    Choose Photo
+
+                </label>
+
+                <input type="file"
+                       id="profileUpload"
+                       accept="image/jpeg,image/png,image/webp"
+                       hidden>
+
+                <span class="file-name"
+                      id="profileFileName">
+                    No photo selected
+                </span>
+
+            </div>
+
+
+            <!-- CV -->
+
+            <div class="upload-card">
+
+                <div class="upload-icon">
+
+                    <i class="fas fa-file-pdf"></i>
+
+                </div>
+
+                <h3>
+                    Curriculum Vitae
+                </h3>
+
+                <p>
+                    Upload your professional CV in PDF format.
+                </p>
+
+                <label for="cvUpload"
+                       class="upload-button">
+
+                    <i class="fas fa-upload"></i>
+
+                    Choose CV PDF
+
+                </label>
+
+                <input type="file"
+                       id="cvUpload"
+                       accept="application/pdf"
+                       hidden>
+
+                <span class="file-name"
+                      id="cvFileName">
+                    No CV selected
+                </span>
+
+            </div>
+
+
+            <!-- PICTORIAL -->
+
+            <div class="upload-card">
+
+                <div class="upload-icon">
+
+                    <i class="fas fa-images"></i>
+
+                </div>
+
+                <h3>
+                    Pictorial Gallery
+                </h3>
+
+                <p>
+                    Select multiple JPG, PNG or WEBP photographs.
+                </p>
+
+                <label for="pictorialUpload"
+                       class="upload-button">
+
+                    <i class="fas fa-upload"></i>
+
+                    Choose Photos
+
+                </label>
+
+                <input type="file"
+                       id="pictorialUpload"
+                       accept="image/jpeg,image/png,image/webp"
+                       multiple
+                       hidden>
+
+                <span class="file-name"
+                      id="pictorialFileName">
+                    No photos selected
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section class="section contact-section"
+         id="contact">
+
+    <div class="container contact-wrapper">
+
+
+        <div class="contact-content">
+
+            <span class="section-label">
+                CONTACT
+            </span>
+
+            <h2>
+                Let's connect professionally.
+            </h2>
+
+            <p>
+
+                I am open to professional opportunities,
+                collaborations, internships, research projects
+                and meaningful initiatives.
+
+            </p>
+
+
+            <div class="contact-details">
+
+
+                <a href="mailto:edwinokello24@gmail.com"
+                   class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong>
+                            edwinokello24@gmail.com
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+                <a href="tel:+254143947048"
+                   class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Phone
+                        </span>
+
+                        <strong>
+                            +254 143 947 048
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+                <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            LinkedIn
+                        </span>
+
+                        <strong>
+                            Edwin Kuchio Okello
+                        </strong>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <div class="contact-card-top">
+
+                <span>
+                    PROFESSIONAL CONNECTION
+                </span>
+
+                <h3>
+                    What I can bring
+                </h3>
+
+            </div>
+
+
+            <ul>
+
+                <li>
+                    <i class="fas fa-check"></i>
+                    Research and analytical thinking
+                </li>
+
+                <li>
+                    <i class="fas fa-check"></i>
+                    Professional communication
+                </li>
+
+                <li>
+                    <i class="fas fa-check"></i>
+                    Administrative organization
+                </li>
+
+                <li>
+                    <i class="fas fa-check"></i>
+                    International perspective
+                </li>
+
+                <li>
+                    <i class="fas fa-check"></i>
+                    Adaptability and teamwork
+                </li>
+
+            </ul>
+
+
+            <a href="mailto:edwinokello24@gmail.com"
+               class="btn contact-btn">
+
+                Start a Conversation
+
+                <i class="fas fa-arrow-right"></i>
 
             </a>
 
@@ -1202,91 +1861,44 @@
 </section>
 
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
-<!-- =========================================================
-     CONTACT
-========================================================= -->
+<footer class="footer">
 
-<section id="contact" class="section section-dark">
+    <div class="container footer-content">
 
-    <div class="container">
 
-        <div class="section-heading">
+        <div>
 
-            <p class="eyebrow">
-                GET IN TOUCH
-            </p>
+            <a href="#home"
+               class="logo">
 
-            <h2>
-                Contact Me
-            </h2>
+                <span>E</span>KO
+
+            </a>
 
             <p>
-                I welcome opportunities for professional
-                collaboration, internships, administration,
-                communication, research and related roles.
+                Professional Portfolio — Edwin Kuchio Okello
             </p>
 
         </div>
 
 
-        <div class="contact-grid">
-
-
-            <!-- PHONE -->
-
-            <a href="tel:+254143947048"
-               class="contact-card">
-
-                <i class="fas fa-phone"></i>
-
-                <h3>
-                    Phone
-                </h3>
-
-                <p>
-                    +254 143 947 048
-                </p>
-
-            </a>
-
-
-
-            <!-- EMAIL -->
-
-            <a href="mailto:edwinokello24@gmail.com"
-               class="contact-card">
-
-                <i class="fas fa-envelope"></i>
-
-                <h3>
-                    Email
-                </h3>
-
-                <p>
-                    edwinokello24@gmail.com
-                </p>
-
-            </a>
-
-
-
-            <!-- LINKEDIN -->
+        <div class="footer-socials">
 
             <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
                target="_blank"
-               rel="noopener noreferrer"
-               class="contact-card">
+               rel="noopener noreferrer">
 
-                <i class="fab fa-linkedin"></i>
+                <i class="fab fa-linkedin-in"></i>
 
-                <h3>
-                    LinkedIn
-                </h3>
+            </a>
 
-                <p>
-                    Professional Profile
-                </p>
+            <a href="mailto:edwinokello24@gmail.com">
+
+                <i class="fas fa-envelope"></i>
 
             </a>
 
@@ -1294,70 +1906,13 @@
 
     </div>
 
-</section>
 
+    <div class="footer-bottom">
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-    <div class="container">
-
-        <div class="footer-content">
-
-            <div>
-
-                <h3>
-                    Edwin Kuchio Okello
-                </h3>
-
-                <p>
-                    Professional Portfolio
-                </p>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#about">
-                    About
-                </a>
-
-                <a href="#experience">
-                    Experience
-                </a>
-
-                <a href="#projects">
-                    Projects
-                </a>
-
-                <a href="#pictorial">
-                    Pictorial
-                </a>
-
-                <a href="#contact">
-                    Contact
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
+        <div class="container">
 
             <p>
-                © <span id="currentYear"></span>
-                Edwin Kuchio Okello.
-                All Rights Reserved.
+                © 2026 Edwin Kuchio Okello. All rights reserved.
             </p>
 
         </div>
@@ -1367,82 +1922,21 @@
 </footer>
 
 
+<!-- BACK TO TOP -->
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
+<button class="back-to-top"
+        id="backToTop"
+        aria-label="Back to top">
 
-<script>
+    <i class="fas fa-arrow-up"></i>
 
-    /* Mobile navigation */
-
-    const menuToggle =
-        document.getElementById("menuToggle");
-
-    const mainNav =
-        document.getElementById("mainNav");
+</button>
 
 
-    if (menuToggle && mainNav) {
+<!-- JAVASCRIPT -->
 
-        menuToggle.addEventListener("click", function () {
-
-            mainNav.classList.toggle("active");
-
-        });
-
-
-        mainNav.querySelectorAll("a").forEach(function (link) {
-
-            link.addEventListener("click", function () {
-
-                mainNav.classList.remove("active");
-
-            });
-
-        });
-
-    }
-
-
-    /* Current year */
-
-    const year =
-        document.getElementById("currentYear");
-
-    if (year) {
-
-        year.textContent =
-            new Date().getFullYear();
-
-    }
-
-
-    /* Smooth scrolling */
-
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-
-        anchor.addEventListener("click", function (event) {
-
-            const target =
-                document.querySelector(this.getAttribute("href"));
-
-            if (target) {
-
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-            }
-
-        });
-
-    });
-
-</script>
-
+<script src="script.js"></script>
 
 </body>
+
 </html>
