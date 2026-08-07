@@ -1,46 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="description"
+          content="Professional portfolio of Edwin Kuchio Okello — Research, Administration, Communication, Data & Analytics.">
+
+    <meta name="author" content="Edwin Kuchio Okello">
+
     <title>Edwin Kuchio Okello | Professional Portfolio</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+<!-- =========================
+     HEADER / NAVIGATION
+========================= -->
 
-    <nav>
+<header class="header" id="header">
+
+    <nav class="navbar container">
 
         <a href="#home" class="logo">
-            EKO<span>.</span>
+            <span>E</span>KO
         </a>
 
-        <button
-            class="menu-toggle"
-            id="menuToggle">
-            ☰
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation">
+            <i class="fas fa-bars"></i>
         </button>
 
-        <div class="nav-links" id="navLinks">
+        <ul class="nav-menu" id="nav-menu">
 
-            <a href="#about">About</a>
+            <li>
+                <a href="#home" class="nav-link active">Home</a>
+            </li>
 
-            <a href="#expertise">Expertise</a>
+            <li>
+                <a href="#about" class="nav-link">About</a>
+            </li>
 
-            <a href="#experience">Experience</a>
+            <li>
+                <a href="#experience" class="nav-link">Experience</a>
+            </li>
 
-            <a href="#education">Education</a>
+            <li>
+                <a href="#education" class="nav-link">Education</a>
+            </li>
 
-            <a href="#projects">Projects</a>
+            <li>
+                <a href="#skills" class="nav-link">Skills</a>
+            </li>
 
-            <a href="#contact">Contact</a>
+            <li>
+                <a href="#projects" class="nav-link">Projects</a>
+            </li>
 
-        </div>
+            <li>
+                <a href="#contact" class="nav-link">Contact</a>
+            </li>
+
+        </ul>
+
+        <a href="#contact" class="nav-button">
+            Let's Connect
+        </a>
 
     </nav>
 
@@ -48,51 +86,71 @@
 
 
 <!-- =========================
-     HERO
+     HERO SECTION
 ========================= -->
+
+<main>
 
 <section class="hero" id="home">
 
-    <div class="hero-container">
+    <div class="hero-background"></div>
+
+    <div class="container hero-container">
 
         <div class="hero-content">
 
-            <p class="eyebrow">
-                PROFESSIONAL PORTFOLIO
+            <div class="hero-badge">
+                <span></span>
+                Available for Professional Opportunities
+            </div>
+
+            <p class="hero-intro">
+                HELLO, I'M
             </p>
 
             <h1>
-                Edwin Kuchio
-                <span>Okello</span>
+                Edwin <span>Kuchio</span> Okello
             </h1>
 
             <h2>
-                Research • Administration • Communication •
-                Institutional Support
+                Research • Administration • Communication • Data & Analytics
             </h2>
 
             <p class="hero-description">
-
-                A versatile professional with an interdisciplinary
-                academic background, international experience across
-                Africa, and a strong commitment to research,
-                communication, administration and meaningful
-                professional service.
-
+                A multidisciplinary professional with experience in research,
+                administration, communication, community engagement and
+                international formation across Africa.
             </p>
 
             <div class="hero-buttons">
 
-                <a href="#about">
-                    Explore My Profile
+                <a href="#experience" class="btn btn-primary">
+                    Explore My Experience
+                    <i class="fas fa-arrow-right"></i>
                 </a>
 
-                <a href="#contact">
+                <a href="#contact" class="btn btn-outline">
                     Contact Me
                 </a>
 
-                <a href="documents/Edwin_Kuchio_Okello_CV.pdf">
-                    View CV
+            </div>
+
+            <div class="hero-socials">
+
+                <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="LinkedIn">
+
+                    <i class="fab fa-linkedin-in"></i>
+
+                </a>
+
+                <a href="mailto:edwinokello24@gmail.com"
+                   aria-label="Email">
+
+                    <i class="fas fa-envelope"></i>
+
                 </a>
 
             </div>
@@ -100,32 +158,167 @@
         </div>
 
 
-        <div class="hero-profile">
+        <div class="hero-visual">
 
-            <div class="profile-border">
+            <div class="profile-card">
 
-                <div class="profile-inner">
+                <div class="profile-placeholder">
+                    <i class="fas fa-user-tie"></i>
+                </div>
 
-                    <div class="profile-monogram">
-                        EKO
+                <div class="profile-info">
+
+                    <h3>Edwin Kuchio Okello</h3>
+
+                    <p>
+                        Multidisciplinary Professional
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="floating-card card-one">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <strong>Research</strong>
+                    <small>& Analysis</small>
+                </div>
+            </div>
+
+            <div class="floating-card card-two">
+                <i class="fas fa-globe-africa"></i>
+                <div>
+                    <strong>International</strong>
+                    <small>Experience</small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-indicator">
+
+        <span>Scroll to explore</span>
+
+        <i class="fas fa-chevron-down"></i>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT SECTION
+========================= -->
+
+<section class="section about-section" id="about">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                ABOUT ME
+            </span>
+
+            <h2>
+                A multidisciplinary perspective.
+            </h2>
+
+            <p>
+                Combining academic formation, international experience,
+                research, communication and community engagement.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-text">
+
+                <p class="lead">
+                    I am a multidisciplinary professional with academic
+                    backgrounds in Philosophy and Theology, complemented
+                    by experience in research, administration,
+                    communication, community service and intercultural
+                    engagement.
+                </p>
+
+                <p>
+                    My professional and academic journey has taken me
+                    through different countries and cultural environments
+                    across Africa. This experience has strengthened my
+                    adaptability, communication skills, critical thinking,
+                    teamwork and ability to work effectively in diverse
+                    environments.
+                </p>
+
+                <p>
+                    I am particularly interested in opportunities where
+                    research, administration, communication, analysis,
+                    social impact and organizational development come
+                    together.
+                </p>
+
+                <a href="#contact" class="text-link">
+                    Let's work together
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="about-highlights">
+
+                <div class="highlight-card">
+
+                    <div class="highlight-icon">
+                        <i class="fas fa-globe"></i>
                     </div>
 
-                    <div class="profile-line"></div>
+                    <div>
+                        <h3>International Exposure</h3>
+                        <p>
+                            Experience across multiple African countries
+                            and cultural environments.
+                        </p>
+                    </div>
 
-                    <p>RESEARCH</p>
+                </div>
 
-                    <p>ADMINISTRATION</p>
 
-                    <p>COMMUNICATION</p>
+                <div class="highlight-card">
 
-                    <p>INSTITUTIONAL SUPPORT</p>
+                    <div class="highlight-icon">
+                        <i class="fas fa-magnifying-glass-chart"></i>
+                    </div>
 
-                    <div class="profile-footer">
+                    <div>
+                        <h3>Research Mindset</h3>
+                        <p>
+                            Strong interest in research, information
+                            analysis and evidence-based thinking.
+                        </p>
+                    </div>
 
-                        <span>NAIROBI</span>
+                </div>
 
-                        <span>KENYA</span>
 
+                <div class="highlight-card">
+
+                    <div class="highlight-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+
+                    <div>
+                        <h3>People & Community</h3>
+                        <p>
+                            Experience working with people from diverse
+                            backgrounds and communities.
+                        </p>
                     </div>
 
                 </div>
@@ -140,647 +333,567 @@
 
 
 <!-- =========================
-     ABOUT
+     EXPERIENCE SECTION
 ========================= -->
 
-<section id="about">
+<section class="section experience-section" id="experience">
 
-    <p class="eyebrow">
-        01 / ABOUT
-    </p>
+    <div class="container">
 
-    <h2>
-        A multidisciplinary professional perspective.
-    </h2>
+        <div class="section-heading">
 
-    <p>
-        I am an adaptable and service-oriented professional
-        with academic training in Philosophy and Theology and
-        extensive cross-cultural experience.
-    </p>
+            <span class="section-label">
+                EXPERIENCE
+            </span>
 
-    <p>
-        My journey has developed strong abilities in research,
-        communication, documentation, administration,
-        collaboration and working in diverse environments.
-    </p>
-
-
-    <div class="professional-statement">
-
-        <h3>
-            My Professional Approach
-        </h3>
-
-        <p>
-            I approach professional work with curiosity,
-            integrity, adaptability and a commitment to
-            continuous learning. My interdisciplinary background
-            allows me to look at challenges from different
-            perspectives while remaining focused on practical
-            solutions and meaningful results.
-        </p>
-
-    </div>
-
-
-    <div class="strengths">
-
-        <div>
-
-            <span>01</span>
-
-            <h3>
-                Adaptability
-            </h3>
+            <h2>
+                My professional journey
+            </h2>
 
             <p>
-                Comfortable working in diverse environments
-                and adapting to new responsibilities.
+                A journey shaped by service, international formation,
+                learning and cross-cultural experience.
             </p>
 
         </div>
 
 
-        <div>
+        <div class="timeline">
 
-            <span>02</span>
 
-            <h3>
-                Critical Thinking
-            </h3>
+            <!-- Experience 1 -->
 
-            <p>
-                Able to examine information carefully,
-                identify relevant issues and develop
-                reasoned conclusions.
-            </p>
+            <article class="timeline-item">
 
-        </div>
+                <div class="timeline-marker">
+                    <span></span>
+                </div>
 
+                <div class="timeline-content">
 
-        <div>
-
-            <span>03</span>
-
-            <h3>
-                Communication
-            </h3>
-
-            <p>
-                Strong interest in clear, professional
-                and purposeful communication.
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <span>04</span>
-
-            <h3>
-                Teamwork
-            </h3>
-
-            <p>
-                Experienced in multicultural environments
-                that require cooperation and respect for
-                different perspectives.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     EXPERTISE
-========================= -->
-
-<section id="expertise">
-
-    <p class="eyebrow">
-        02 / EXPERTISE
-    </p>
-
-    <h2>
-        Where I can add value.
-    </h2>
-
-
-    <div class="cards">
-
-        <div class="card">
-
-            <h3>
-                Research & Analysis
-            </h3>
-
-            <p>
-                Research, information gathering, critical
-                thinking, synthesis and evidence-informed
-                problem solving.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Administration
-            </h3>
-
-            <p>
-                Organization, documentation, coordination,
-                records and professional administrative
-                support.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Communication
-            </h3>
-
-            <p>
-                Professional writing, interpersonal
-                communication, presentation and
-                cross-cultural engagement.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Institutional Support
-            </h3>
-
-            <p>
-                Reliable support for programmes, offices,
-                teams and institutional processes.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Legal & Policy Support
-            </h3>
-
-            <p>
-                Interest in structured documentation,
-                policy-oriented research and institutional
-                environments.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Project Support
-            </h3>
-
-            <p>
-                Coordination, teamwork, follow-through
-                and practical support for shared objectives.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     PROFESSIONAL EXPERIENCE
-========================= -->
-
-<section id="experience">
-
-    <p class="eyebrow">
-        03 / PROFESSIONAL EXPERIENCE
-    </p>
-
-    <h2>
-        Experience shaped by service, research and international engagement.
-    </h2>
-
-    <p class="experience-intro">
-        My professional development has been shaped by community service,
-        international academic experience and work in multicultural
-        environments across Africa. These experiences have strengthened
-        my ability to communicate, organize, research, collaborate and
-        adapt to different institutional and professional settings.
-    </p>
-
-
-    <div class="professional-timeline">
-
-
-        <!-- EXPERIENCE 01 -->
-
-        <div class="professional-role">
-
-            <div class="role-date">
-                2015
-            </div>
-
-            <div class="role-content">
-
-                <div class="role-header">
-
-                    <div>
-
-                        <h3>
-                            Kwetu Home of Peace
-                        </h3>
-
-                        <p class="role-organization">
-                            Rehabilitation Centre for Street-Connected
-                            Children — Nairobi, Kenya
-                        </p>
-
+                    <div class="timeline-date">
+                        2015
                     </div>
 
-                    <span class="role-type">
+                    <h3>
                         Volunteer
-                    </span>
+                    </h3>
 
-                </div>
+                    <h4>
+                        Kwetu Home of Peace Rehabilitation Centre
+                    </h4>
 
+                    <p class="location">
+                        <i class="fas fa-location-dot"></i>
+                        Nairobi, Kenya
+                    </p>
 
-                <p class="role-description">
-                    Contributed to a community-based rehabilitation
-                    environment supporting children and young people
-                    experiencing difficult circumstances.
-                </p>
+                    <p>
+                        Participated in community and rehabilitation
+                        activities supporting vulnerable children.
+                        The experience strengthened my communication,
+                        teamwork, responsibility and community engagement
+                        skills.
+                    </p>
 
-
-                <ul>
-
-                    <li>
-                        Supported activities within a structured
-                        rehabilitation and community environment.
-                    </li>
-
-                    <li>
-                        Developed practical experience in service,
-                        teamwork, responsibility and interpersonal
-                        communication.
-                    </li>
-
-                    <li>
-                        Worked sensitively with individuals from
-                        different backgrounds and circumstances.
-                    </li>
-
-                </ul>
-
-
-                <div class="role-skills">
-
-                    <span>Community Engagement</span>
-
-                    <span>Communication</span>
-
-                    <span>Teamwork</span>
-
-                    <span>Service</span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- EXPERIENCE 02 -->
-
-        <div class="professional-role">
-
-            <div class="role-date">
-                2016–2022
-            </div>
-
-            <div class="role-content">
-
-                <div class="role-header">
-
-                    <div>
-
-                        <h3>
-                            International Academic & Cross-Cultural Experience
-                        </h3>
-
-                        <p class="role-organization">
-                            Tanzania • Uganda • Congo • Zambia •
-                            Burkina Faso • Togo
-                        </p>
-
+                    <div class="tag-list">
+                        <span>Community Service</span>
+                        <span>Communication</span>
+                        <span>Teamwork</span>
                     </div>
 
-                    <span class="role-type">
-                        International Experience
-                    </span>
-
                 </div>
 
-
-                <p class="role-description">
-                    Extended experience across Eastern, Central and
-                    West Africa, involving academic study, pastoral
-                    engagement, community interaction and life in
-                    multicultural environments.
-                </p>
+            </article>
 
 
-                <ul>
+            <!-- Experience 2 -->
 
-                    <li>
-                        Studied and worked within diverse cultural
-                        environments, developing strong adaptability
-                        and intercultural communication skills.
-                    </li>
+            <article class="timeline-item">
 
-                    <li>
-                        Undertook academic research, writing,
-                        presentations and structured study requiring
-                        critical thinking and organization.
-                    </li>
-
-                    <li>
-                        Participated in collaborative activities
-                        requiring teamwork, responsibility and
-                        effective communication.
-                    </li>
-
-                    <li>
-                        Developed French-language skills through
-                        extended immersion in Francophone Africa.
-                    </li>
-
-                </ul>
-
-
-                <div class="role-skills">
-
-                    <span>Research</span>
-
-                    <span>Critical Thinking</span>
-
-                    <span>Communication</span>
-
-                    <span>Adaptability</span>
-
-                    <span>French</span>
-
+                <div class="timeline-marker">
+                    <span></span>
                 </div>
 
-            </div>
+                <div class="timeline-content">
 
-        </div>
-
-
-        <!-- EXPERIENCE 03 -->
-
-        <div class="professional-role">
-
-            <div class="role-date">
-                2022–2026
-            </div>
-
-            <div class="role-content">
-
-                <div class="role-header">
-
-                    <div>
-
-                        <h3>
-                            St. Joseph's Theological Institute
-                        </h3>
-
-                        <p class="role-organization">
-                            South Africa
-                        </p>
-
+                    <div class="timeline-date">
+                        2016 – 2019
                     </div>
 
-                    <span class="role-type">
-                        Academic Experience
-                    </span>
+                    <h3>
+                        Philosophy Formation & International Experience
+                    </h3>
+
+                    <h4>
+                        Tanzania & Uganda
+                    </h4>
+
+                    <p>
+                        Undertook academic and personal formation while
+                        developing experience in intercultural
+                        communication, community life, research,
+                        critical thinking and pastoral engagement.
+                    </p>
+
+                    <div class="tag-list">
+                        <span>Philosophy</span>
+                        <span>Research</span>
+                        <span>Intercultural Communication</span>
+                    </div>
 
                 </div>
 
-
-                <p class="role-description">
-                    Completed advanced theological studies within an
-                    international academic environment, developing
-                    transferable skills applicable to research,
-                    administration, communication and institutional
-                    work.
-                </p>
+            </article>
 
 
-                <ul>
+            <!-- Experience 3 -->
 
-                    <li>
-                        Conducted academic research and produced
-                        structured written work requiring analysis,
-                        synthesis and attention to detail.
-                    </li>
+            <article class="timeline-item">
 
-                    <li>
-                        Developed presentation and communication
-                        skills through academic discussions and
-                        collaborative learning.
-                    </li>
+                <div class="timeline-marker">
+                    <span></span>
+                </div>
 
-                    <li>
-                        Worked alongside an international student
-                        community, strengthening teamwork and
-                        cross-cultural collaboration.
-                    </li>
+                <div class="timeline-content">
 
-                    <li>
-                        Developed disciplined approaches to research,
-                        documentation, deadlines and independent
-                        study.
-                    </li>
+                    <div class="timeline-date">
+                        2019 – 2020
+                    </div>
 
-                </ul>
+                    <h3>
+                        International Formation
+                    </h3>
 
+                    <h4>
+                        Congo & Zambia
+                    </h4>
 
-                <div class="role-skills">
+                    <p>
+                        Continued international formation and community
+                        experience while developing adaptability,
+                        interpersonal skills and the ability to operate
+                        within multicultural environments.
+                    </p>
 
-                    <span>Academic Research</span>
-
-                    <span>Writing</span>
-
-                    <span>Analysis</span>
-
-                    <span>Presentation</span>
-
-                    <span>Collaboration</span>
+                    <div class="tag-list">
+                        <span>Leadership</span>
+                        <span>Adaptability</span>
+                        <span>Teamwork</span>
+                    </div>
 
                 </div>
 
-            </div>
-
-        </div>
+            </article>
 
 
-    </div>
+            <!-- Experience 4 -->
+
+            <article class="timeline-item">
+
+                <div class="timeline-marker">
+                    <span></span>
+                </div>
+
+                <div class="timeline-content">
+
+                    <div class="timeline-date">
+                        2020 – 2022
+                    </div>
+
+                    <h3>
+                        French Immersion & Pastoral Experience
+                    </h3>
+
+                    <h4>
+                        Burkina Faso & Togo
+                    </h4>
+
+                    <p>
+                        Developed French language proficiency and gained
+                        further experience working within diverse
+                        cultural, social and organizational environments.
+                    </p>
+
+                    <div class="tag-list">
+                        <span>French</span>
+                        <span>Communication</span>
+                        <span>Cross-cultural Experience</span>
+                    </div>
+
+                </div>
+
+            </article>
 
 
-    <!-- PROFESSIONAL VALUE -->
+            <!-- Experience 5 -->
 
-    <div class="experience-value">
+            <article class="timeline-item">
 
-        <div>
+                <div class="timeline-marker">
+                    <span></span>
+                </div>
 
-            <p class="eyebrow">
-                TRANSFERABLE VALUE
-            </p>
+                <div class="timeline-content">
 
-            <h3>
-                What this experience brings to the workplace.
-            </h3>
+                    <div class="timeline-date">
+                        2022 – 2026
+                    </div>
 
-        </div>
+                    <h3>
+                        Theology Studies & International Formation
+                    </h3>
 
+                    <h4>
+                        South Africa
+                    </h4>
 
-        <div class="value-grid">
+                    <p>
+                        Completed advanced theological studies while
+                        engaging in academic research, community life,
+                        intercultural interaction and pastoral activities.
+                    </p>
 
-            <div>
+                    <div class="tag-list">
+                        <span>Theology</span>
+                        <span>Research</span>
+                        <span>Academic Writing</span>
+                        <span>Public Speaking</span>
+                    </div>
 
-                <strong>
-                    Adaptability
-                </strong>
+                </div>
 
-                <p>
-                    Comfortable navigating new environments,
-                    responsibilities and cultures.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Research
-                </strong>
-
-                <p>
-                    Able to gather, examine and communicate
-                    information in a structured manner.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Communication
-                </strong>
-
-                <p>
-                    Experienced in multicultural and
-                    interpersonal communication.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Professional Discipline
-                </strong>
-
-                <p>
-                    Strong orientation toward responsibility,
-                    organization and continuous learning.
-                </p>
-
-            </div>
+            </article>
 
         </div>
 
     </div>
 
 </section>
-
 
 
 <!-- =========================
      EDUCATION
 ========================= -->
 
-<section id="education">
+<section class="section education-section" id="education">
 
-    <p class="eyebrow">
-        04 / EDUCATION
-    </p>
+    <div class="container">
 
-    <h2>
-        Academic foundation.
-    </h2>
+        <div class="section-heading">
 
-
-    <div class="education">
-
-
-        <div class="education-card">
-
-            <h3>
-                BA Philosophy
-            </h3>
-
-            <p>
-                Urbaniana University
-            </p>
-
-            <span>
-                Critical Thinking • Logic • Ethics • Research
+            <span class="section-label">
+                EDUCATION
             </span>
+
+            <h2>
+                Academic foundation
+            </h2>
 
         </div>
 
 
-        <div class="education-card">
+        <div class="education-grid">
 
-            <h3>
-                BA Theology
-            </h3>
+            <article class="education-card featured">
 
-            <p>
-                St. Joseph's Theological Institute,
-                South Africa
-            </p>
+                <div class="education-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
 
-            <span>
-                Research • Communication •
-                Interdisciplinary Study
-            </span>
+                <span class="education-year">
+                    Academic Degree
+                </span>
+
+                <h3>
+                    Bachelor of Theology
+                </h3>
+
+                <h4>
+                    St. Joseph’s Theological Institute
+                </h4>
+
+                <p>
+                    South Africa
+                </p>
+
+                <div class="education-line"></div>
+
+                <span>
+                    Theology • Research • Academic Writing
+                </span>
+
+            </article>
+
+
+            <article class="education-card">
+
+                <div class="education-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+
+                <span class="education-year">
+                    Academic Degree
+                </span>
+
+                <h3>
+                    Bachelor of Philosophy
+                </h3>
+
+                <h4>
+                    Urbaniana University
+                </h4>
+
+                <p>
+                    Philosophy • Critical Thinking • Research
+                </p>
+
+                <div class="education-line"></div>
+
+                <span>
+                    Analytical & Research Foundation
+                </span>
+
+            </article>
 
         </div>
 
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section class="section skills-section" id="skills">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                PROFESSIONAL SKILLS
+            </span>
+
+            <h2>
+                What I bring to an organization
+            </h2>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    <i class="fas fa-chart-column"></i>
+                </div>
+
+                <h3>
+                    Research & Analysis
+                </h3>
+
+                <p>
+                    Research, information gathering, critical thinking,
+                    qualitative analysis and report preparation.
+                </p>
+
+                <div class="skill-bar">
+                    <span style="width: 90%;"></span>
+                </div>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+
+                <h3>
+                    Administration
+                </h3>
+
+                <p>
+                    Documentation, organization, coordination,
+                    record management and administrative support.
+                </p>
+
+                <div class="skill-bar">
+                    <span style="width: 88%;"></span>
+                </div>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+
+                <h3>
+                    Communication
+                </h3>
+
+                <p>
+                    Written communication, public speaking,
+                    interpersonal communication and community engagement.
+                </p>
+
+                <div class="skill-bar">
+                    <span style="width: 92%;"></span>
+                </div>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    <i class="fas fa-people-arrows"></i>
+                </div>
+
+                <h3>
+                    Intercultural Skills
+                </h3>
+
+                <p>
+                    Ability to work effectively with people from
+                    different cultures and professional environments.
+                </p>
+
+                <div class="skill-bar">
+                    <span style="width: 95%;"></span>
+                </div>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    <i class="fas fa-language"></i>
+                </div>
+
+                <h3>
+                    Languages
+                </h3>
+
+                <p>
+                    English and French, with extensive experience
+                    interacting across multilingual environments.
+                </p>
+
+                <div class="skill-bar">
+                    <span style="width: 85%;"></span>
+                </div>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+
+                <h3>
+                    Digital Skills
+                </h3>
+
+                <p>
+                    Digital research, Microsoft Office, online tools,
+                    data-oriented workflows and web technologies.
+                </p>
+
+                <div class="skill-bar">
+                    <span style="width: 82%;"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INTERNATIONAL EXPERIENCE
+========================= -->
+
+<section class="section international-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                INTERNATIONAL EXPERIENCE
+            </span>
+
+            <h2>
+                Experience beyond borders
+            </h2>
+
+            <p>
+                My journey across Africa has shaped my ability to adapt,
+                communicate and collaborate across cultures.
+            </p>
+
+        </div>
+
+
+        <div class="countries">
+
+            <div class="country">
+                <strong>KE</strong>
+                <span>Kenya</span>
+            </div>
+
+            <div class="country">
+                <strong>TZ</strong>
+                <span>Tanzania</span>
+            </div>
+
+            <div class="country">
+                <strong>UG</strong>
+                <span>Uganda</span>
+            </div>
+
+            <div class="country">
+                <strong>CD</strong>
+                <span>Congo</span>
+            </div>
+
+            <div class="country">
+                <strong>ZM</strong>
+                <span>Zambia</span>
+            </div>
+
+            <div class="country">
+                <strong>BF</strong>
+                <span>Burkina Faso</span>
+            </div>
+
+            <div class="country">
+                <strong>TG</strong>
+                <span>Togo</span>
+            </div>
+
+            <div class="country">
+                <strong>ZA</strong>
+                <span>South Africa</span>
+            </div>
+
+        </div>
 
     </div>
 
@@ -791,66 +904,199 @@
      PROJECTS
 ========================= -->
 
-<section id="projects">
+<section class="section projects-section" id="projects">
 
-    <p class="eyebrow">
-        05 / PROJECTS & INTERESTS
-    </p>
+    <div class="container">
 
-    <h2>
-        Building toward meaningful work.
-    </h2>
+        <div class="section-heading">
 
+            <span class="section-label">
+                PROJECTS
+            </span>
 
-    <div class="projects">
-
-
-        <div class="project">
-
-            <h3>
-                EKO Analytics & Research
-            </h3>
+            <h2>
+                Selected work & initiatives
+            </h2>
 
             <p>
-                A developing professional consultancy
-                concept focused on research, analysis,
-                insight and practical support for
-                organizations and individuals.
+                A growing collection of professional, research and
+                analytical projects.
             </p>
 
         </div>
 
 
-        <div class="project">
+        <div class="projects-grid">
 
-            <h3>
-                Professional Development
-            </h3>
 
-            <p>
-                Continued development of research,
-                administrative, communication and
-                analytical capabilities.
-            </p>
+            <article class="project-card">
+
+                <div class="project-number">
+                    01
+                </div>
+
+                <div class="project-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+
+                <h3>
+                    EKO Analytics & Research
+                </h3>
+
+                <p>
+                    A developing independent consultancy concept focused
+                    on research, data insights, analytical thinking and
+                    evidence-based decision support.
+                </p>
+
+                <div class="project-tags">
+                    <span>Research</span>
+                    <span>Analytics</span>
+                    <span>Consulting</span>
+                </div>
+
+                <a href="#contact" class="project-link">
+                    Learn More
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </article>
+
+
+            <article class="project-card">
+
+                <div class="project-number">
+                    02
+                </div>
+
+                <div class="project-icon">
+                    <i class="fas fa-file-lines"></i>
+                </div>
+
+                <h3>
+                    Research & Academic Work
+                </h3>
+
+                <p>
+                    Academic research and writing developed through
+                    philosophy and theology studies, with emphasis on
+                    structured analysis and clear communication.
+                </p>
+
+                <div class="project-tags">
+                    <span>Research</span>
+                    <span>Writing</span>
+                    <span>Analysis</span>
+                </div>
+
+                <a href="#contact" class="project-link">
+                    Discuss Project
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </article>
+
+
+            <article class="project-card">
+
+                <div class="project-number">
+                    03
+                </div>
+
+                <div class="project-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+
+                <h3>
+                    Community Engagement
+                </h3>
+
+                <p>
+                    Community-focused experience developed through
+                    volunteer service and pastoral engagement in different
+                    African contexts.
+                </p>
+
+                <div class="project-tags">
+                    <span>Community</span>
+                    <span>Service</span>
+                    <span>Communication</span>
+                </div>
+
+                <a href="#contact" class="project-link">
+                    Learn More
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     VALUES
+========================= -->
+
+<section class="section values-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                PROFESSIONAL VALUES
+            </span>
+
+            <h2>
+                Principles that guide my work
+            </h2>
 
         </div>
 
 
-        <div class="project">
+        <div class="values-grid">
 
-            <h3>
-                International & Community Engagement
-            </h3>
+            <div class="value">
+                <i class="fas fa-scale-balanced"></i>
+                <h3>Integrity</h3>
+                <p>Honesty, responsibility and professionalism.</p>
+            </div>
 
-            <p>
-                Experience across multiple African contexts
-                has shaped an enduring interest in service,
-                intercultural collaboration and
-                institutional work.
-            </p>
+            <div class="value">
+                <i class="fas fa-star"></i>
+                <h3>Excellence</h3>
+                <p>Commitment to quality and continuous improvement.</p>
+            </div>
+
+            <div class="value">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Innovation</h3>
+                <p>Curiosity, creativity and openness to new approaches.</p>
+            </div>
+
+            <div class="value">
+                <i class="fas fa-eye"></i>
+                <h3>Objectivity</h3>
+                <p>Evidence-based thinking and balanced analysis.</p>
+            </div>
+
+            <div class="value">
+                <i class="fas fa-handshake"></i>
+                <h3>Collaboration</h3>
+                <p>Building effective relationships and teams.</p>
+            </div>
+
+            <div class="value">
+                <i class="fas fa-bullseye"></i>
+                <h3>Impact</h3>
+                <p>Focusing effort on meaningful results.</p>
+            </div>
 
         </div>
-
 
     </div>
 
@@ -861,81 +1107,209 @@
      CONTACT
 ========================= -->
 
-<section id="contact">
+<section class="section contact-section" id="contact">
 
-    <p class="eyebrow">
-        06 / CONTACT
-    </p>
+    <div class="container">
 
-    <h2>
-        Let's start a conversation.
-    </h2>
+        <div class="contact-wrapper">
 
-    <p>
-        I am open to meaningful professional opportunities,
-        collaborations, research and institutional work.
-    </p>
+            <div class="contact-content">
 
+                <span class="section-label">
+                    GET IN TOUCH
+                </span>
 
-    <p>
+                <h2>
+                    Let's start a conversation.
+                </h2>
 
-        <strong>
-            Phone:
-        </strong>
-
-        +254 143 947 048
-
-    </p>
+                <p>
+                    Whether you're looking for research support,
+                    administrative assistance, communication expertise,
+                    analytical thinking or a multidisciplinary
+                    professional, I'd be glad to connect.
+                </p>
 
 
-    <p>
+                <div class="contact-details">
 
-        <strong>
-            LinkedIn:
-        </strong>
+                    <a href="mailto:edwinokello24@gmail.com"
+                       class="contact-item">
 
-        <a
-            href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
-            target="_blank">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
 
-            View my LinkedIn profile →
+                        <div>
+                            <span>Email</span>
+                            <strong>edwinokello24@gmail.com</strong>
+                        </div>
 
-        </a>
-
-    </p>
+                    </a>
 
 
-    <p>
+                    <a href="tel:+254143947048"
+                       class="contact-item">
 
-        <strong>
-            Email:
-        </strong>
-        
-<a href="mailto:edwinokello24@gmail.com">
-    edwinokello24@gmail.com 
-</a>
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
 
-    </p>
+                        <div>
+                            <span>Phone</span>
+                            <strong>+254 143 947 048</strong>
+                        </div>
+
+                    </a>
+
+
+                    <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="contact-item">
+
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+
+                        <div>
+                            <span>LinkedIn</span>
+                            <strong>Edwin Kuchio Okello</strong>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <div class="contact-card-top">
+
+                    <span>AVAILABLE FOR</span>
+
+                    <h3>
+                        Professional Opportunities
+                    </h3>
+
+                </div>
+
+                <ul>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Research & Analysis
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Administration
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Communication
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        NGO & Development Work
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Legal / Organizational Support
+                    </li>
+
+                </ul>
+
+                <a href="mailto:edwinokello24@gmail.com"
+                   class="btn btn-primary contact-btn">
+
+                    Send Me an Email
+                    <i class="fas fa-paper-plane"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
+
+</main>
 
 
 <!-- =========================
      FOOTER
 ========================= -->
 
-<footer>
+<footer class="footer">
 
-    <p>
-        © 2026 Edwin Kuchio Okello.
-        All rights reserved.
-    </p>
+    <div class="container footer-content">
+
+        <div>
+
+            <a href="#home" class="logo">
+                <span>E</span>KO
+            </a>
+
+            <p>
+                Research • Administration • Communication • Analytics
+            </p>
+
+        </div>
+
+
+        <div class="footer-socials">
+
+            <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <i class="fab fa-linkedin-in"></i>
+
+            </a>
+
+            <a href="mailto:edwinokello24@gmail.com">
+
+                <i class="fas fa-envelope"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © <span id="year"></span> Edwin Kuchio Okello.
+            All rights reserved.
+        </p>
+
+    </div>
 
 </footer>
 
 
+<!-- Back to top -->
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+
+    <i class="fas fa-arrow-up"></i>
+
+</button>
+
+
+<!-- JavaScript -->
+
 <script src="script.js"></script>
 
 </body>
-
 </html>
