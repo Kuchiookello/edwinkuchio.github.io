@@ -34,6 +34,12 @@
 
 <header class="header" id="header">
 
+    <!-- THREE-DOT MENU — EXTREME TOP LEFT -->
+    <button class="corner-menu" id="corner-menu" aria-label="Open menu">
+        <i class="fas fa-ellipsis-vertical"></i>
+    </button>
+
+
     <nav class="navbar container">
 
         <a href="#home" class="logo">
@@ -71,6 +77,10 @@
             </li>
 
             <li>
+                <a href="#pictorial" class="nav-link">Pictorial</a>
+            </li>
+
+            <li>
                 <a href="#contact" class="nav-link">Contact</a>
             </li>
 
@@ -83,13 +93,10 @@
     </nav>
 
 </header>
-
-
-<!-- =========================
+    
+ <!-- =========================
      HERO SECTION
 ========================= -->
-
-<main>
 
 <section class="hero" id="home">
 
@@ -117,23 +124,48 @@
             </h2>
 
             <p class="hero-description">
-                A multidisciplinary professional with experience in research,
-                administration, communication, community engagement and
-                international formation across Africa.
+                A multidisciplinary professional with experience in
+                research, administration, communication, community
+                engagement and international experience across Africa.
             </p>
+
+
+            <!-- =========================
+                 HERO ACTION BUTTONS
+            ========================= -->
 
             <div class="hero-buttons">
 
                 <a href="#experience" class="btn btn-primary">
+                    <i class="fas fa-briefcase"></i>
                     Explore My Experience
-                    <i class="fas fa-arrow-right"></i>
                 </a>
 
                 <a href="#contact" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i>
                     Contact Me
                 </a>
 
+                <a href="assets/Edwin-Kuchio-Okello-CV.pdf"
+                   target="_blank"
+                   class="btn btn-cv">
+
+                    <i class="fas fa-file-pdf"></i>
+                    My CV
+
+                </a>
+
+                <a href="#pictorial" class="btn btn-pictorial">
+
+                    <i class="fas fa-images"></i>
+                    Pictorial
+
+                </a>
+
             </div>
+
+
+            <!-- SOCIAL LINKS -->
 
             <div class="hero-socials">
 
@@ -158,17 +190,47 @@
         </div>
 
 
+        <!-- =========================
+             PROFESSIONAL PHOTO AREA
+        ========================= -->
+
         <div class="hero-visual">
 
             <div class="profile-card">
 
-                <div class="profile-placeholder">
-                    <i class="fas fa-user-tie"></i>
+                <!--
+                    PHOTO PLACEHOLDER
+
+                    Later, place your photo here:
+                    assets/images/edwin-profile.jpg
+                -->
+
+                <div class="profile-photo">
+
+                    <img
+                        src="assets/images/edwin-profile.jpg"
+                        alt="Edwin Kuchio Okello"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+
+                    <div class="photo-placeholder">
+
+                        <i class="fas fa-user-tie"></i>
+
+                        <span>
+                            Professional Photo
+                        </span>
+
+                    </div>
+
                 </div>
+
 
                 <div class="profile-info">
 
-                    <h3>Edwin Kuchio Okello</h3>
+                    <h3>
+                        Edwin Kuchio Okello
+                    </h3>
 
                     <p>
                         Multidisciplinary Professional
@@ -178,25 +240,34 @@
 
             </div>
 
+
             <div class="floating-card card-one">
+
                 <i class="fas fa-chart-line"></i>
+
                 <div>
                     <strong>Research</strong>
                     <small>& Analysis</small>
                 </div>
+
             </div>
 
+
             <div class="floating-card card-two">
+
                 <i class="fas fa-globe-africa"></i>
+
                 <div>
                     <strong>International</strong>
                     <small>Experience</small>
                 </div>
+
             </div>
 
         </div>
 
     </div>
+
 
     <div class="scroll-indicator">
 
@@ -206,9 +277,7 @@
 
     </div>
 
-</section>
-
-
+</section>            
 <!-- =========================
      ABOUT SECTION
 ========================= -->
@@ -1102,7 +1171,81 @@
 
 </section>
 
+<!-- =========================
+     PICTORIAL SECTION
+========================= -->
 
+<section class="section pictorial-section" id="pictorial">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                PICTORIAL
+            </span>
+
+            <h2>
+                A glimpse of my journey
+            </h2>
+
+            <p>
+                Selected moments from my academic, professional,
+                international and community experiences.
+            </p>
+
+        </div>
+
+
+        <div class="pictorial-grid">
+
+            <div class="pictorial-item">
+                <div class="pictorial-placeholder">
+                    <i class="fas fa-image"></i>
+                    <span>Photo Coming Soon</span>
+                </div>
+            </div>
+
+            <div class="pictorial-item">
+                <div class="pictorial-placeholder">
+                    <i class="fas fa-image"></i>
+                    <span>Photo Coming Soon</span>
+                </div>
+            </div>
+
+            <div class="pictorial-item">
+                <div class="pictorial-placeholder">
+                    <i class="fas fa-image"></i>
+                    <span>Photo Coming Soon</span>
+                </div>
+            </div>
+
+            <div class="pictorial-item">
+                <div class="pictorial-placeholder">
+                    <i class="fas fa-image"></i>
+                    <span>Photo Coming Soon</span>
+                </div>
+            </div>
+
+            <div class="pictorial-item">
+                <div class="pictorial-placeholder">
+                    <i class="fas fa-image"></i>
+                    <span>Photo Coming Soon</span>
+                </div>
+            </div>
+
+            <div class="pictorial-item">
+                <div class="pictorial-placeholder">
+                    <i class="fas fa-image"></i>
+                    <span>Photo Coming Soon</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 <!-- =========================
      CONTACT
 ========================= -->
