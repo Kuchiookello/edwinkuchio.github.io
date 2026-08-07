@@ -1,78 +1,22 @@
 /* =========================================================
    EDWIN KUCHIO OKELLO
-   PORTFOLIO JAVASCRIPT
-   ========================================================= */
+   PROFESSIONAL PORTFOLIO
+   COMPLETE JAVASCRIPT
+========================================================= */
 
 
-/* =========================
-   MOBILE NAVIGATION
-========================= */
-
-const menuToggle =
-    document.getElementById("menu-toggle");
-
-const navMenu =
-    document.getElementById("nav-menu");
-
-const navLinks =
-    document.querySelectorAll(".nav-link");
-
-
-menuToggle.addEventListener("click", () => {
-
-    navMenu.classList.toggle("open");
-
-    const icon =
-        menuToggle.querySelector("i");
-
-    if (navMenu.classList.contains("open")) {
-
-        icon.classList.remove("fa-bars");
-
-        icon.classList.add("fa-xmark");
-
-    } else {
-
-        icon.classList.remove("fa-xmark");
-
-        icon.classList.add("fa-bars");
-    }
-
-});
-
-
-/* Close mobile menu after clicking */
-
-navLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        navMenu.classList.remove("open");
-
-        const icon =
-            menuToggle.querySelector("i");
-
-        icon.classList.remove("fa-xmark");
-
-        icon.classList.add("fa-bars");
-
-    });
-
-});
-
-
-/* =========================
-   QUICK THREE-DOT MENU
-========================= */
+/* =========================================================
+   QUICK MENU
+========================================================= */
 
 const cornerMenu =
-    document.getElementById("corner-menu");
+    document.getElementById("cornerMenu");
 
 const quickMenu =
-    document.getElementById("quick-menu");
+    document.getElementById("quickMenu");
 
 const closeQuickMenu =
-    document.getElementById("close-quick-menu");
+    document.getElementById("closeQuickMenu");
 
 
 cornerMenu.addEventListener("click", () => {
@@ -89,8 +33,6 @@ closeQuickMenu.addEventListener("click", () => {
 });
 
 
-/* Close when clicking outside */
-
 document.addEventListener("click", (event) => {
 
     if (
@@ -105,9 +47,10 @@ document.addEventListener("click", (event) => {
 });
 
 
-/* Close quick menu after selecting link */
+/* Close menu after selecting an item */
 
-quickMenu.querySelectorAll("a")
+document
+    .querySelectorAll(".quick-menu a")
     .forEach(link => {
 
         link.addEventListener("click", () => {
@@ -119,88 +62,285 @@ quickMenu.querySelectorAll("a")
     });
 
 
-/* =========================
-   ACTIVE NAVIGATION
-========================= */
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
 
-const sections =
-    document.querySelectorAll("section[id]");
+const menuToggle =
+    document.getElementById("menuToggle");
 
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop =
-            section.offsetTop - 130;
-
-        const sectionHeight =
-            section.offsetHeight;
-
-        if (
-            window.scrollY >= sectionTop &&
-            window.scrollY <
-            sectionTop + sectionHeight
-        ) {
-
-            current =
-                section.getAttribute("id");
-
-        }
-
-    });
+const navMenu =
+    document.getElementById("navMenu");
 
 
-    navLinks.forEach(link => {
+menuToggle.addEventListener("click", () => {
 
-        link.classList.remove("active");
-
-        if (
-            link.getAttribute("href") ===
-            "#" + current
-        ) {
-
-            link.classList.add("active");
-
-        }
-
-    });
+    navMenu.classList.toggle("open");
 
 });
 
 
-/* =========================
-   HEADER SHADOW
-========================= */
+document
+    .querySelectorAll(".nav-link")
+    .forEach(link => {
 
-const header =
-    document.getElementById("header");
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("open");
+
+        });
+
+    });
 
 
-window.addEventListener("scroll", () => {
+/* =========================================================
+   PROFILE PHOTO UPLOAD
+========================================================= */
 
-    if (window.scrollY > 50) {
+const profileUpload =
+    document.getElementById("profileUpload");
 
-        header.style.boxShadow =
-            "0 8px 30px rgba(11,31,58,.08)";
+const profileImage =
+    document.getElementById("profileImage");
 
-    } else {
+const photoPlaceholder =
+    document.getElementById("photoPlaceholder");
 
-        header.style.boxShadow = "none";
+const profileFileName =
+    document.getElementById("profileFileName");
+
+
+profileUpload.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+
+    if (!file.type.startsWith("image/")) {
+
+        alert("Please select an image file.");
+
+        this.value = "";
+
+        return;
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function (event) {
+
+        profileImage.src =
+            event.target.result;
+
+        profileImage.style.display =
+            "block";
+
+        photoPlaceholder.style.display =
+            "none";
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+
+    profileFileName.textContent =
+        file.name;
+
+
+    /* Save photo in browser */
+
+    localStorage.setItem(
+        "profilePhoto",
+        profileFileName.textContent
+    );
+
+});
+
+
+/* =========================================================
+   CV UPLOAD
+========================================================= */
+
+const cvUpload =
+    document.getElementById("cvUpload");
+
+const cvFileName =
+    document.getElementById("cvFileName");
+
+const viewCv =
+    document.getElementById("viewCv");
+
+const downloadCv =
+    document.getElementById("downloadCv");
+
+const cvStatus =
+    document.getElementById("cvStatus");
+
+
+let currentCvUrl = null;
+
+
+cvUpload.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+
+    if (file.type !== "application/pdf") {
+
+        alert("Please select a PDF CV.");
+
+        this.value = "";
+
+        return;
+    }
+
+
+    if (currentCvUrl) {
+
+        URL.revokeObjectURL(currentCvUrl);
 
     }
 
+
+    currentCvUrl =
+        URL.createObjectURL(file);
+
+
+    cvFileName.textContent =
+        file.name;
+
+
+    cvStatus.textContent =
+        "Your CV is ready to view and download as a PDF.";
+
+
+    viewCv.href =
+        currentCvUrl;
+
+    viewCv.target =
+        "_blank";
+
+    viewCv.classList.remove("disabled");
+
+
+    downloadCv.href =
+        currentCvUrl;
+
+    downloadCv.download =
+        "Edwin-Kuchio-Okello-CV.pdf";
+
+    downloadCv.classList.remove("disabled");
+
+
+    /* Store file name */
+
+    localStorage.setItem(
+        "cvFileName",
+        file.name
+    );
+
 });
 
 
-/* =========================
+/* =========================================================
+   PICTORIAL UPLOAD
+========================================================= */
+
+const pictorialUpload =
+    document.getElementById("pictorialUpload");
+
+const pictorialGrid =
+    document.getElementById("pictorialGrid");
+
+const pictorialFileName =
+    document.getElementById("pictorialFileName");
+
+
+pictorialUpload.addEventListener("change", function () {
+
+    const files =
+        Array.from(this.files);
+
+
+    if (!files.length) return;
+
+
+    pictorialGrid.innerHTML = "";
+
+
+    let validFiles = 0;
+
+
+    files.forEach(file => {
+
+        if (!file.type.startsWith("image/")) {
+
+            return;
+        }
+
+
+        validFiles++;
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload = function (event) {
+
+
+            const item =
+                document.createElement("div");
+
+
+            item.className =
+                "pictorial-item";
+
+
+            const image =
+                document.createElement("img");
+
+
+            image.src =
+                event.target.result;
+
+
+            image.alt =
+                "Portfolio photograph";
+
+
+            item.appendChild(image);
+
+
+            pictorialGrid.appendChild(item);
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    });
+
+
+    pictorialFileName.textContent =
+        `${validFiles} photo(s) selected`;
+
+});
+
+
+/* =========================================================
    BACK TO TOP
-========================= */
+========================================================= */
 
 const backToTop =
-    document.getElementById("back-to-top");
+    document.getElementById("backToTop");
 
 
 window.addEventListener("scroll", () => {
@@ -231,90 +371,89 @@ backToTop.addEventListener("click", () => {
 });
 
 
-/* =========================
-   SCROLL REVEAL
-========================= */
+/* =========================================================
+   ACTIVE NAVIGATION
+========================================================= */
 
-const revealElements =
-    document.querySelectorAll(".reveal");
+const sections =
+    document.querySelectorAll("section[id]");
+
+const navLinks =
+    document.querySelectorAll(".nav-link");
 
 
-const revealObserver =
-    new IntersectionObserver(
+window.addEventListener("scroll", () => {
 
-        entries => {
+    let current = "";
 
-            entries.forEach(entry => {
 
-                if (entry.isIntersecting) {
+    sections.forEach(section => {
 
-                    entry.target.classList.add("visible");
+        const sectionTop =
+            section.offsetTop - 150;
 
-                    revealObserver.unobserve(
-                        entry.target
-                    );
+        const sectionHeight =
+            section.offsetHeight;
 
-                }
+        if (
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+        ) {
 
-            });
+            current =
+                section.getAttribute("id");
 
-        },
-
-        {
-            threshold: 0.12
         }
-
-    );
-
-
-revealElements.forEach(element => {
-
-    revealObserver.observe(element);
-
-});
-
-
-/* =========================
-   PICTORIAL IMAGE FALLBACK
-========================= */
-
-document
-    .querySelectorAll(".pictorial-item img")
-    .forEach(image => {
-
-        image.addEventListener(
-            "error",
-            () => {
-
-                image.style.display = "none";
-
-                const placeholder =
-                    image.nextElementSibling;
-
-                if (placeholder) {
-
-                    placeholder.style.display =
-                        "flex";
-
-                }
-
-            }
-        );
 
     });
 
 
-/* =========================
-   ESCAPE KEY
-========================= */
+    navLinks.forEach(link => {
 
-document.addEventListener("keydown", event => {
+        link.classList.remove("active");
 
-    if (event.key === "Escape") {
 
-        quickMenu.classList.remove("open");
+        if (
+            link.getAttribute("href") ===
+            `#${current}`
+        ) {
 
-        navMenu.classList.remove("open");
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   RESTORE BASIC SETTINGS
+========================================================= */
+
+window.addEventListener("DOMContentLoaded", () => {
+
+
+    const savedPhoto =
+        localStorage.getItem("profilePhoto");
+
+
+    if (savedPhoto) {
+
+        profileFileName.textContent =
+            savedPhoto;
+
+    }
+
+
+    const savedCv =
+        localStorage.getItem("cvFileName");
+
+
+    if (savedCv) {
+
+        cvFileName.textContent =
+            savedCv;
 
     }
 
