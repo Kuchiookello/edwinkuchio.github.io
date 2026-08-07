@@ -1,367 +1,321 @@
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+/* =========================================================
+   EDWIN KUCHIO OKELLO
+   PORTFOLIO JAVASCRIPT
+   ========================================================= */
 
-menuToggle.addEventListener("click", function () {
-    navLinks.classList.toggle("active");
+
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+const menuToggle =
+    document.getElementById("menu-toggle");
+
+const navMenu =
+    document.getElementById("nav-menu");
+
+const navLinks =
+    document.querySelectorAll(".nav-link");
+
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("open");
+
+    const icon =
+        menuToggle.querySelector("i");
+
+    if (navMenu.classList.contains("open")) {
+
+        icon.classList.remove("fa-bars");
+
+        icon.classList.add("fa-xmark");
+
+    } else {
+
+        icon.classList.remove("fa-xmark");
+
+        icon.classList.add("fa-bars");
+    }
+
 });
 
-const links = document.querySelectorAll(".nav-links a");
 
-links.forEach(function (link) {
-    link.addEventListener("click", function () {
-        navLinks.classList.remove("active");
+/* Close mobile menu after clicking */
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navMenu.classList.remove("open");
+
+        const icon =
+            menuToggle.querySelector("i");
+
+        icon.classList.remove("fa-xmark");
+
+        icon.classList.add("fa-bars");
+
     });
+
 });
-/* =========================
-   PROFESSIONAL EXPERIENCE
-========================= */
-
-.experience-intro {
-    max-width: 800px !important;
-    margin-bottom: 55px !important;
-}
-
-.professional-timeline {
-    position: relative;
-
-    margin-top: 40px;
-
-    padding-left: 55px;
-}
-
-.professional-timeline::before {
-    content: "";
-
-    position: absolute;
-
-    left: 12px;
-
-    top: 5px;
-
-    bottom: 5px;
-
-    width: 2px;
-
-    background: #dfe5e8;
-}
-
-.professional-role {
-    position: relative;
-
-    display: grid;
-
-    grid-template-columns: 110px 1fr;
-
-    gap: 35px;
-
-    margin-bottom: 65px;
-}
-
-.professional-role::before {
-    content: "";
-
-    position: absolute;
-
-    left: -49px;
-
-    top: 6px;
-
-    width: 12px;
-
-    height: 12px;
-
-    border-radius: 50%;
-
-    background: var(--gold);
-
-    border: 4px solid white;
-
-    box-shadow:
-        0 0 0 1px var(--gold);
-}
-
-.role-date {
-    color: var(--emerald);
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    padding-top: 3px;
-}
-
-.role-content {
-    border: 1px solid #e1e6e8;
-
-    padding: 32px;
-
-    background: white;
-
-    transition: 0.25s ease;
-}
-
-.role-content:hover {
-    border-color: var(--gold);
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 30px
-        rgba(7,27,51,0.07);
-}
-
-.role-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    gap: 20px;
-
-    margin-bottom: 18px;
-}
-
-.role-header h3 {
-    font-family: Georgia, serif;
-
-    color: var(--navy);
-
-    font-size: 25px;
-
-    line-height: 1.2;
-
-    margin-bottom: 7px;
-}
-
-.role-organization {
-    color: var(--muted);
-
-    font-size: 13px;
-
-    margin: 0 !important;
-}
-
-.role-type {
-    flex-shrink: 0;
-
-    padding: 6px 10px;
-
-    background: var(--light);
-
-    color: var(--emerald);
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-}
-
-.role-description {
-    color: var(--muted);
-
-    font-size: 14px;
-
-    margin-bottom: 18px;
-}
-
-.role-content ul {
-    padding-left: 18px;
-
-    margin-bottom: 22px;
-}
-
-.role-content li {
-    color: var(--muted);
-
-    font-size: 13px;
-
-    margin-bottom: 8px;
-
-    padding-left: 5px;
-}
-
-.role-content li::marker {
-    color: var(--gold);
-}
-
-.role-skills {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 7px;
-
-    padding-top: 18px;
-
-    border-top: 1px solid #edf0f1;
-}
-
-.role-skills span {
-    padding: 5px 9px;
-
-    background: #f4f7f6;
-
-    color: var(--emerald);
-
-    font-size: 10px;
-
-    font-weight: bold;
-}
 
 
 /* =========================
-   EXPERIENCE VALUE
+   QUICK THREE-DOT MENU
 ========================= */
 
-.experience-value {
-    margin-top: 20px;
+const cornerMenu =
+    document.getElementById("corner-menu");
 
-    padding: 40px;
+const quickMenu =
+    document.getElementById("quick-menu");
 
-    background: var(--navy);
+const closeQuickMenu =
+    document.getElementById("close-quick-menu");
 
-    color: white;
 
-    display: grid;
+cornerMenu.addEventListener("click", () => {
 
-    grid-template-columns: 0.8fr 1.2fr;
+    quickMenu.classList.toggle("open");
 
-    gap: 50px;
+});
 
-    align-items: center;
-}
 
-.experience-value h3 {
-    font-family: Georgia, serif;
+closeQuickMenu.addEventListener("click", () => {
 
-    color: white;
+    quickMenu.classList.remove("open");
 
-    font-size: 28px;
+});
 
-    line-height: 1.25;
-}
 
-.experience-value .eyebrow {
-    color: var(--gold);
-}
+/* Close when clicking outside */
 
-.value-grid {
-    display: grid;
+document.addEventListener("click", (event) => {
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    if (
+        !quickMenu.contains(event.target) &&
+        !cornerMenu.contains(event.target)
+    ) {
 
-    gap: 25px;
-}
+        quickMenu.classList.remove("open");
 
-.value-grid > div {
-    border-top:
-        1px solid
-        rgba(255,255,255,0.18);
+    }
 
-    padding-top: 12px;
-}
+});
 
-.value-grid strong {
-    color: var(--gold);
 
-    font-family: Georgia, serif;
+/* Close quick menu after selecting link */
 
-    font-size: 18px;
-}
+quickMenu.querySelectorAll("a")
+    .forEach(link => {
 
-.value-grid p {
-    color: #b8c6d0;
+        link.addEventListener("click", () => {
 
-    font-size: 12px;
+            quickMenu.classList.remove("open");
 
-    line-height: 1.6;
+        });
 
-    margin-top: 5px;
-}
+    });
 
 
 /* =========================
-   EXPERIENCE MOBILE
+   ACTIVE NAVIGATION
 ========================= */
 
-@media (max-width: 800px) {
+const sections =
+    document.querySelectorAll("section[id]");
 
-    .professional-timeline {
-        padding-left: 30px;
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop =
+            section.offsetTop - 130;
+
+        const sectionHeight =
+            section.offsetHeight;
+
+        if (
+            window.scrollY >= sectionTop &&
+            window.scrollY <
+            sectionTop + sectionHeight
+        ) {
+
+            current =
+                section.getAttribute("id");
+
+        }
+
+    });
+
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (
+            link.getAttribute("href") ===
+            "#" + current
+        ) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
+
+
+/* =========================
+   HEADER SHADOW
+========================= */
+
+const header =
+    document.getElementById("header");
+
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+
+        header.style.boxShadow =
+            "0 8px 30px rgba(11,31,58,.08)";
+
+    } else {
+
+        header.style.boxShadow = "none";
+
     }
 
-    .professional-timeline::before {
-        left: 4px;
+});
+
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+const backToTop =
+    document.getElementById("back-to-top");
+
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 500) {
+
+        backToTop.classList.add("show");
+
+    } else {
+
+        backToTop.classList.remove("show");
+
     }
 
-    .professional-role {
-        grid-template-columns: 1fr;
+});
 
-        gap: 8px;
 
-        margin-bottom: 45px;
+backToTop.addEventListener("click", () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    revealObserver.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================
+   PICTORIAL IMAGE FALLBACK
+========================= */
+
+document
+    .querySelectorAll(".pictorial-item img")
+    .forEach(image => {
+
+        image.addEventListener(
+            "error",
+            () => {
+
+                image.style.display = "none";
+
+                const placeholder =
+                    image.nextElementSibling;
+
+                if (placeholder) {
+
+                    placeholder.style.display =
+                        "flex";
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+
+        quickMenu.classList.remove("open");
+
+        navMenu.classList.remove("open");
+
     }
 
-    .professional-role::before {
-        left: -32px;
-    }
-
-    .role-date {
-        margin-bottom: 5px;
-    }
-
-    .role-header {
-        flex-direction: column;
-
-        gap: 12px;
-    }
-
-    .role-type {
-        align-self: flex-start;
-    }
-
-    .experience-value {
-        grid-template-columns: 1fr;
-
-        gap: 30px;
-
-        padding: 30px 25px;
-    }
-
-}
-
-
-@media (max-width: 520px) {
-
-    .professional-timeline {
-        padding-left: 22px;
-    }
-
-    .professional-timeline::before {
-        left: 0;
-    }
-
-    .professional-role::before {
-        left: -28px;
-    }
-
-    .role-content {
-        padding: 25px 20px;
-    }
-
-    .role-header h3 {
-        font-size: 22px;
-    }
-
-    .value-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
+});
