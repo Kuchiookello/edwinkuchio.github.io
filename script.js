@@ -493,7 +493,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "edwinokello24@gmail.com";
 
     const ADMIN_PASSWORD =
-        "CHANGE_THIS_PASSWORD";
+        "Kuchio2011";
 
 
     function showAdminDashboard(email) {
