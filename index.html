@@ -2,54 +2,37 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="Professional portfolio of Edwin Kuchio Okello">
+        content="Professional portfolio of Edwin Kuchio Okello — research, administration, communication, international experience and EKO Analytics & Research.">
 
-    <meta name="author"
-          content="Edwin Kuchio Okello">
+    <meta name="author" content="Edwin Kuchio Okello">
 
     <title>Edwin Kuchio Okello | Professional Portfolio</title>
 
-
     <!-- GOOGLE FONTS -->
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap"
-          rel="stylesheet">
-
+        rel="stylesheet">
 
     <!-- FONT AWESOME -->
-
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
-    <!-- CSS -->
-
-    <link rel="stylesheet"
-          href="style.css">
-
+    <!-- WEBSITE CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
 
-
-<!-- =====================================================
-     TOP LEFT THREE-DOT MENU
-===================================================== -->
+<!-- =========================================================
+     THREE-DOT MENU — EXTREME TOP LEFT
+========================================================= -->
 
 <button class="corner-menu"
         id="cornerMenu"
@@ -60,19 +43,21 @@
 </button>
 
 
-<!-- =====================================================
+<!-- =========================================================
      QUICK MENU
-===================================================== -->
+========================================================= -->
 
-<div class="quick-menu"
-     id="quickMenu">
+<div class="quick-menu" id="quickMenu">
 
     <div class="quick-menu-header">
 
         <strong>Quick Access</strong>
 
-        <button id="closeQuickMenu">
+        <button id="closeQuickMenu"
+                aria-label="Close menu">
+
             <i class="fas fa-xmark"></i>
+
         </button>
 
     </div>
@@ -83,52 +68,85 @@
         Home
     </a>
 
+
+    <a href="#about">
+        <i class="fas fa-user"></i>
+        About
+    </a>
+
+
     <a href="#experience">
         <i class="fas fa-briefcase"></i>
         Experience
     </a>
+
 
     <a href="#projects">
         <i class="fas fa-diagram-project"></i>
         Projects
     </a>
 
+
+    <a href="#cv">
+        <i class="fas fa-file-pdf"></i>
+        My CV
+    </a>
+
+
     <a href="#pictorial">
         <i class="fas fa-images"></i>
         Pictorial
     </a>
+
+
+    <a href="#research">
+        <i class="fas fa-microscope"></i>
+        Research Works
+    </a>
+
+
+    <a href="#international">
+        <i class="fas fa-globe-africa"></i>
+        International Portfolio
+    </a>
+
 
     <a href="#contact">
         <i class="fas fa-envelope"></i>
         Contact
     </a>
 
-    <a href="#admin">
-        <i class="fas fa-cloud-arrow-up"></i>
-        Manage Files
-    </a>
+
+    <!-- ADMIN LOGIN -->
+    <button class="admin-menu-link"
+            id="openAdminLogin">
+
+        <i class="fas fa-lock"></i>
+        Admin Login
+
+    </button>
 
 </div>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
-<header class="header"
-        id="header">
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header" id="header">
 
     <nav class="navbar container">
 
 
         <!-- LOGO -->
 
-        <a href="#home"
-           class="logo">
+        <a href="#home" class="logo">
 
             <span>E</span>KO
 
         </a>
+
 
 
         <!-- MOBILE MENU -->
@@ -142,80 +160,71 @@
         </button>
 
 
+
         <!-- NAVIGATION -->
 
-        <ul class="nav-menu"
-            id="navMenu">
+        <ul class="nav-menu" id="navMenu">
 
             <li>
                 <a href="#home"
                    class="nav-link active">
-
                     Home
-
                 </a>
             </li>
+
 
             <li>
                 <a href="#about"
                    class="nav-link">
-
                     About
-
                 </a>
             </li>
+
 
             <li>
                 <a href="#experience"
                    class="nav-link">
-
                     Experience
-
                 </a>
             </li>
+
 
             <li>
                 <a href="#education"
                    class="nav-link">
-
                     Education
-
                 </a>
             </li>
+
 
             <li>
                 <a href="#skills"
                    class="nav-link">
-
                     Skills
-
                 </a>
             </li>
+
 
             <li>
                 <a href="#projects"
                    class="nav-link">
-
                     Projects
-
                 </a>
             </li>
+
 
             <li>
                 <a href="#pictorial"
                    class="nav-link">
-
                     Pictorial
-
                 </a>
             </li>
+
 
             <li>
                 <a href="#contact"
                    class="nav-link">
-
                     Contact
-
                 </a>
             </li>
 
@@ -234,12 +243,12 @@
 </header>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
 
-<section class="hero"
-         id="home">
+<!-- =========================================================
+     HERO / HOME
+========================================================= -->
+
+<section class="hero" id="home">
 
     <div class="hero-decoration"></div>
 
@@ -250,6 +259,7 @@
         <!-- HERO CONTENT -->
 
         <div class="hero-content">
+
 
             <div class="hero-badge">
 
@@ -266,15 +276,19 @@
 
 
             <h1>
+
                 Edwin
                 <span>Kuchio</span>
                 Okello
+
             </h1>
 
 
             <h2>
+
                 Research • Administration • Communication •
                 Data & Analytics
+
             </h2>
 
 
@@ -286,6 +300,7 @@
                 analytical thinking and cross-cultural experience.
 
             </p>
+
 
 
             <!-- MAIN ACTIONS -->
@@ -335,9 +350,11 @@
             </div>
 
 
+
             <!-- SOCIAL -->
 
             <div class="hero-socials">
+
 
                 <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
                    target="_blank"
@@ -361,6 +378,7 @@
         </div>
 
 
+
         <!-- PROFILE PHOTO -->
 
         <div class="hero-visual">
@@ -372,7 +390,9 @@
 
                     <img id="profileImage"
                          src=""
-                         alt="Edwin Kuchio Okello">
+                         alt="Edwin Kuchio Okello"
+                         hidden>
+
 
                     <div class="photo-placeholder"
                          id="photoPlaceholder">
@@ -384,7 +404,7 @@
                         </strong>
 
                         <small>
-                            Upload your photo below
+                            Your profile photo will appear here
                         </small>
 
                     </div>
@@ -407,6 +427,7 @@
             </div>
 
 
+
             <div class="floating-card card-one">
 
                 <i class="fas fa-chart-line"></i>
@@ -424,6 +445,7 @@
                 </div>
 
             </div>
+
 
 
             <div class="floating-card card-two">
@@ -449,6 +471,7 @@
     </div>
 
 
+
     <div class="scroll-indicator">
 
         <span>
@@ -462,12 +485,12 @@
 </section>
 
 
-<!-- =====================================================
-     ABOUT
-===================================================== -->
 
-<section class="section"
-         id="about">
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="section" id="about">
 
     <div class="container">
 
@@ -488,6 +511,7 @@
             </p>
 
         </div>
+
 
 
         <div class="about-grid">
@@ -529,13 +553,16 @@
             </div>
 
 
+
             <div class="about-highlights">
 
 
                 <div class="highlight-card">
 
                     <div class="highlight-icon">
+
                         <i class="fas fa-magnifying-glass-chart"></i>
+
                     </div>
 
                     <div>
@@ -555,10 +582,13 @@
                 </div>
 
 
+
                 <div class="highlight-card">
 
                     <div class="highlight-icon">
+
                         <i class="fas fa-comments"></i>
+
                     </div>
 
                     <div>
@@ -578,10 +608,13 @@
                 </div>
 
 
+
                 <div class="highlight-card">
 
                     <div class="highlight-icon">
+
                         <i class="fas fa-folder-open"></i>
+
                     </div>
 
                     <div>
@@ -609,9 +642,10 @@
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      EXPERIENCE
-===================================================== -->
+========================================================= -->
 
 <section class="section experience-section"
          id="experience">
@@ -637,6 +671,7 @@
         </div>
 
 
+
         <div class="timeline">
 
 
@@ -659,8 +694,11 @@
                     </h4>
 
                     <p class="location">
+
                         <i class="fas fa-location-dot"></i>
+
                         Nairobi, Kenya
+
                     </p>
 
                     <p>
@@ -694,6 +732,7 @@
             </div>
 
 
+
             <div class="timeline-item">
 
                 <div class="timeline-marker"></div>
@@ -713,8 +752,11 @@
                     </h4>
 
                     <p class="location">
+
                         <i class="fas fa-globe-africa"></i>
+
                         Tanzania • Uganda • Congo
+
                     </p>
 
                     <p>
@@ -729,6 +771,7 @@
                 </div>
 
             </div>
+
 
 
             <div class="timeline-item">
@@ -750,8 +793,11 @@
                     </h4>
 
                     <p class="location">
+
                         <i class="fas fa-globe-africa"></i>
+
                         Zambia • Burkina Faso
+
                     </p>
 
                     <p>
@@ -765,6 +811,7 @@
                 </div>
 
             </div>
+
 
 
             <div class="timeline-item">
@@ -786,8 +833,11 @@
                     </h4>
 
                     <p class="location">
+
                         <i class="fas fa-location-dot"></i>
+
                         Togo
+
                     </p>
 
                     <p>
@@ -801,6 +851,7 @@
                 </div>
 
             </div>
+
 
 
             <div class="timeline-item">
@@ -822,8 +873,11 @@
                     </h4>
 
                     <p class="location">
+
                         <i class="fas fa-location-dot"></i>
+
                         South Africa
+
                     </p>
 
                     <p>
@@ -846,12 +900,12 @@
 </section>
 
 
-<!-- =====================================================
-     EDUCATION
-===================================================== -->
 
-<section class="section"
-         id="education">
+<!-- =========================================================
+     EDUCATION
+========================================================= -->
+
+<section class="section" id="education">
 
     <div class="container">
 
@@ -867,6 +921,7 @@
             </h2>
 
         </div>
+
 
 
         <div class="education-grid">
@@ -899,6 +954,7 @@
                 </p>
 
             </div>
+
 
 
             <div class="education-card">
@@ -936,9 +992,10 @@
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      SKILLS
-===================================================== -->
+========================================================= -->
 
 <section class="section skills-section"
          id="skills">
@@ -957,6 +1014,7 @@
             </h2>
 
         </div>
+
 
 
         <div class="skills-grid">
@@ -980,6 +1038,7 @@
             </div>
 
 
+
             <div class="skill-card">
 
                 <div class="skill-icon">
@@ -996,6 +1055,7 @@
                 </p>
 
             </div>
+
 
 
             <div class="skill-card">
@@ -1016,6 +1076,7 @@
             </div>
 
 
+
             <div class="skill-card">
 
                 <div class="skill-icon">
@@ -1034,6 +1095,7 @@
             </div>
 
 
+
             <div class="skill-card">
 
                 <div class="skill-icon">
@@ -1050,6 +1112,7 @@
                 </p>
 
             </div>
+
 
 
             <div class="skill-card">
@@ -1076,11 +1139,13 @@
 </section>
 
 
-<!-- =====================================================
-     INTERNATIONAL EXPERIENCE
-===================================================== -->
 
-<section class="section international-section">
+<!-- =========================================================
+     INTERNATIONAL EXPOSURE
+========================================================= -->
+
+<section class="section international-section"
+         id="international">
 
     <div class="container">
 
@@ -1103,6 +1168,7 @@
         </div>
 
 
+
         <div class="countries">
 
 
@@ -1111,35 +1177,42 @@
                 <span>Tanzania</span>
             </div>
 
+
             <div class="country">
                 <strong>UG</strong>
                 <span>Uganda</span>
             </div>
+
 
             <div class="country">
                 <strong>CD</strong>
                 <span>Congo</span>
             </div>
 
+
             <div class="country">
                 <strong>ZM</strong>
                 <span>Zambia</span>
             </div>
+
 
             <div class="country">
                 <strong>BF</strong>
                 <span>Burkina Faso</span>
             </div>
 
+
             <div class="country">
                 <strong>TG</strong>
                 <span>Togo</span>
             </div>
 
+
             <div class="country">
                 <strong>ZA</strong>
                 <span>South Africa</span>
             </div>
+
 
             <div class="country">
                 <strong>KE</strong>
@@ -1153,9 +1226,10 @@
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      PROJECTS
-===================================================== -->
+========================================================= -->
 
 <section class="section"
          id="projects">
@@ -1179,6 +1253,7 @@
             </p>
 
         </div>
+
 
 
         <div class="projects-grid">
@@ -1221,39 +1296,33 @@
 
                 <p>
 
-                    EKO Analytics & Research is a startup company
-                    currently in development, founded by Edwin
-                    Kuchio Okello.
+                    <strong>
+                        EKO Analytics & Research
+                    </strong>
+                    is a startup company project currently
+                    in the making, founded by
+                    <strong>
+                        Edwin Kuchio Okello
+                    </strong>.
 
                 </p>
 
 
                 <p>
 
-                    The venture is being developed around research,
-                    data analytics, information management and
-                    evidence-based insights.
+                    The venture is being developed around
+                    research, data analytics, information
+                    management and evidence-based insights.
 
                 </p>
 
 
                 <div class="project-tags">
 
-                    <span>
-                        Startup
-                    </span>
-
-                    <span>
-                        Research
-                    </span>
-
-                    <span>
-                        Data Analytics
-                    </span>
-
-                    <span>
-                        Consulting
-                    </span>
+                    <span>Startup</span>
+                    <span>Research</span>
+                    <span>Data Analytics</span>
+                    <span>Consulting</span>
 
                 </div>
 
@@ -1289,6 +1358,7 @@
             </article>
 
 
+
             <!-- PROJECT 2 -->
 
             <article class="project-card">
@@ -1317,21 +1387,14 @@
 
                 <div class="project-tags">
 
-                    <span>
-                        Research
-                    </span>
-
-                    <span>
-                        Documentation
-                    </span>
-
-                    <span>
-                        Analysis
-                    </span>
+                    <span>Research</span>
+                    <span>Documentation</span>
+                    <span>Analysis</span>
 
                 </div>
 
             </article>
+
 
 
             <!-- PROJECT 3 -->
@@ -1362,17 +1425,9 @@
 
                 <div class="project-tags">
 
-                    <span>
-                        International
-                    </span>
-
-                    <span>
-                        Communication
-                    </span>
-
-                    <span>
-                        Community
-                    </span>
+                    <span>International</span>
+                    <span>Communication</span>
+                    <span>Community</span>
 
                 </div>
 
@@ -1385,9 +1440,241 @@
 </section>
 
 
-<!-- =====================================================
-     CV SECTION
-===================================================== -->
+
+<!-- =========================================================
+     RESEARCH WORKS
+========================================================= -->
+
+<section class="section research-section"
+         id="research">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                RESEARCH WORKS
+            </span>
+
+            <h2>
+                Research, publications & professional materials
+            </h2>
+
+            <p>
+
+                Selected research works, reports, papers and
+                professional materials will be made available
+                here as the portfolio develops.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="resource-grid"
+             id="researchGrid">
+
+
+            <article class="resource-card">
+
+                <div class="resource-icon">
+
+                    <i class="fas fa-file-lines"></i>
+
+                </div>
+
+                <h3>
+                    Research Papers
+                </h3>
+
+                <p>
+                    Selected research papers and academic works.
+                </p>
+
+                <span class="resource-status">
+                    Coming Soon
+                </span>
+
+            </article>
+
+
+
+            <article class="resource-card">
+
+                <div class="resource-icon">
+
+                    <i class="fas fa-chart-pie"></i>
+
+                </div>
+
+                <h3>
+                    Reports & Analysis
+                </h3>
+
+                <p>
+                    Research reports, analytical documents and
+                    evidence-based materials.
+                </p>
+
+                <span class="resource-status">
+                    Coming Soon
+                </span>
+
+            </article>
+
+
+
+            <article class="resource-card">
+
+                <div class="resource-icon">
+
+                    <i class="fas fa-book"></i>
+
+                </div>
+
+                <h3>
+                    Publications
+                </h3>
+
+                <p>
+                    Professional and academic publications
+                    selected for public access.
+                </p>
+
+                <span class="resource-status">
+                    Coming Soon
+                </span>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     INTERNATIONAL PORTFOLIO
+========================================================= -->
+
+<section class="section portfolio-section"
+         id="international-portfolio">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                INTERNATIONAL PORTFOLIO
+            </span>
+
+            <h2>
+                International academic & professional journey
+            </h2>
+
+            <p>
+
+                A growing collection of documents and materials
+                reflecting international academic, professional,
+                community and intercultural experience.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="resource-grid">
+
+
+            <article class="resource-card">
+
+                <div class="resource-icon">
+
+                    <i class="fas fa-folder-open"></i>
+
+                </div>
+
+                <h3>
+                    Portfolio Documents
+                </h3>
+
+                <p>
+                    Selected professional portfolio documents.
+                </p>
+
+                <span class="resource-status">
+                    Coming Soon
+                </span>
+
+            </article>
+
+
+
+            <article class="resource-card">
+
+                <div class="resource-icon">
+
+                    <i class="fas fa-certificate"></i>
+
+                </div>
+
+                <h3>
+                    Certificates & Credentials
+                </h3>
+
+                <p>
+                    Selected certificates and professional
+                    credentials intended for public viewing.
+                </p>
+
+                <span class="resource-status">
+                    Coming Soon
+                </span>
+
+            </article>
+
+
+
+            <article class="resource-card">
+
+                <div class="resource-icon">
+
+                    <i class="fas fa-globe-africa"></i>
+
+                </div>
+
+                <h3>
+                    International Experience
+                </h3>
+
+                <p>
+                    Documentation reflecting international
+                    academic and intercultural experiences.
+                </p>
+
+                <span class="resource-status">
+                    Coming Soon
+                </span>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CV
+========================================================= -->
 
 <section class="section cv-section"
          id="cv">
@@ -1407,20 +1694,25 @@
 
             <div class="cv-content">
 
+
                 <span class="section-label">
                     CURRICULUM VITAE
                 </span>
+
 
                 <h2>
                     My Professional CV
                 </h2>
 
+
                 <p id="cvStatus">
 
-                    My current professional CV will be
-                    available here for viewing and download.
+                    My current professional CV will appear
+                    here after it has been uploaded through
+                    the secure administrator dashboard.
 
                 </p>
+
 
 
                 <div class="cv-buttons">
@@ -1459,9 +1751,10 @@
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      PICTORIAL
-===================================================== -->
+========================================================= -->
 
 <section class="section pictorial-section"
          id="pictorial">
@@ -1480,18 +1773,23 @@
             </h2>
 
             <p>
-                Selected moments from my academic, international,
-                community and professional experiences.
+
+                Selected moments from my academic,
+                international, community and professional
+                experiences.
+
             </p>
 
         </div>
+
 
 
         <div class="pictorial-grid"
              id="pictorialGrid">
 
 
-            <div class="pictorial-placeholder-card">
+            <div class="pictorial-placeholder-card"
+                 id="pictorialPlaceholder">
 
                 <i class="fas fa-images"></i>
 
@@ -1500,8 +1798,11 @@
                 </h3>
 
                 <p>
-                    Upload photographs using the management
-                    panel below.
+
+                    Photographs uploaded through the secure
+                    administrator dashboard will automatically
+                    appear here.
+
                 </p>
 
             </div>
@@ -1513,12 +1814,112 @@
 </section>
 
 
-<!-- =====================================================
-     ADMIN / FILE MANAGEMENT
-===================================================== -->
+
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
+
+<div class="admin-modal"
+     id="adminLoginModal"
+     aria-hidden="true">
+
+
+    <div class="admin-modal-content">
+
+
+        <button class="admin-modal-close"
+                id="closeAdminLogin"
+                aria-label="Close">
+
+            <i class="fas fa-xmark"></i>
+
+        </button>
+
+
+        <div class="admin-login-icon">
+
+            <i class="fas fa-lock"></i>
+
+        </div>
+
+
+        <span class="section-label">
+            ADMINISTRATOR
+        </span>
+
+
+        <h2>
+            Portfolio Management
+        </h2>
+
+
+        <p>
+
+            Administrator access is required to upload or
+            replace your CV, profile photograph and pictorial.
+
+        </p>
+
+
+        <form id="adminLoginForm">
+
+
+            <div class="form-group">
+
+                <label for="adminEmail">
+                    Email
+                </label>
+
+                <input type="email"
+                       id="adminEmail"
+                       placeholder="Administrator email"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="adminPassword">
+                    Password
+                </label>
+
+                <input type="password"
+                       id="adminPassword"
+                       placeholder="Password"
+                       required>
+
+            </div>
+
+
+            <button type="submit"
+                    class="btn btn-primary admin-login-button">
+
+                <i class="fas fa-right-to-bracket"></i>
+
+                Sign In
+
+            </button>
+
+
+            <p class="admin-login-status"
+               id="adminLoginStatus"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     ADMIN DASHBOARD
+========================================================= -->
 
 <section class="section admin-section"
-         id="admin">
+         id="adminDashboard"
+         hidden>
 
     <div class="container">
 
@@ -1526,50 +1927,56 @@
         <div class="section-heading">
 
             <span class="section-label">
-                WEBSITE MANAGEMENT
+                ADMINISTRATOR
             </span>
 
             <h2>
-                Manage your portfolio files
+                Portfolio Management
             </h2>
 
             <p>
-                Select your profile photograph, CV and
-                pictorial images from your device.
+
+                Manage your CV, profile photograph and
+                pictorial gallery.
+
             </p>
 
         </div>
 
 
-        <div class="admin-warning">
 
-            <i class="fas fa-circle-info"></i>
+        <div class="admin-dashboard-header">
 
             <div>
 
+                <i class="fas fa-shield-halved"></i>
+
                 <strong>
-                    Important
+                    Administrator Mode
                 </strong>
 
-                <p>
-
-                    Files selected here are stored in this
-                    browser. For permanent public availability
-                    on your GitHub website, the files should
-                    eventually be uploaded to your repository's
-                    assets folder.
-
-                </p>
+                <span id="adminUserEmail"></span>
 
             </div>
 
+
+            <button class="btn btn-outline"
+                    id="adminLogout">
+
+                <i class="fas fa-right-from-bracket"></i>
+
+                Sign Out
+
+            </button>
+
         </div>
+
 
 
         <div class="upload-grid">
 
 
-            <!-- PROFILE -->
+            <!-- PROFILE PHOTO -->
 
             <div class="upload-card">
 
@@ -1579,13 +1986,19 @@
 
                 </div>
 
+
                 <h3>
                     Profile Photo
                 </h3>
 
+
                 <p>
-                    Upload a professional JPG, JPEG or PNG photo.
+
+                    Upload or replace the professional
+                    photograph displayed on the homepage.
+
                 </p>
+
 
                 <label for="profileUpload"
                        class="upload-button">
@@ -1596,17 +2009,37 @@
 
                 </label>
 
+
                 <input type="file"
                        id="profileUpload"
                        accept="image/jpeg,image/png,image/webp"
                        hidden>
 
+
                 <span class="file-name"
                       id="profileFileName">
+
                     No photo selected
+
                 </span>
 
+
+                <button type="button"
+                        id="uploadProfileButton"
+                        class="btn btn-primary upload-submit">
+
+                    <i class="fas fa-cloud-arrow-up"></i>
+
+                    Upload & Save
+
+                </button>
+
+
+                <div id="profileUploadStatus"
+                     class="upload-status"></div>
+
             </div>
+
 
 
             <!-- CV -->
@@ -1619,13 +2052,19 @@
 
                 </div>
 
+
                 <h3>
                     Curriculum Vitae
                 </h3>
 
+
                 <p>
-                    Upload your professional CV in PDF format.
+
+                    Upload or replace your current professional
+                    CV in PDF format.
+
                 </p>
+
 
                 <label for="cvUpload"
                        class="upload-button">
@@ -1636,17 +2075,37 @@
 
                 </label>
 
+
                 <input type="file"
                        id="cvUpload"
                        accept="application/pdf"
                        hidden>
 
+
                 <span class="file-name"
                       id="cvFileName">
+
                     No CV selected
+
                 </span>
 
+
+                <button type="button"
+                        id="uploadCvButton"
+                        class="btn btn-primary upload-submit">
+
+                    <i class="fas fa-cloud-arrow-up"></i>
+
+                    Upload & Publish
+
+                </button>
+
+
+                <div id="cvUploadStatus"
+                     class="upload-status"></div>
+
             </div>
+
 
 
             <!-- PICTORIAL -->
@@ -1659,13 +2118,19 @@
 
                 </div>
 
+
                 <h3>
                     Pictorial Gallery
                 </h3>
 
+
                 <p>
-                    Select multiple JPG, PNG or WEBP photographs.
+
+                    Select multiple photographs for your
+                    public gallery.
+
                 </p>
+
 
                 <label for="pictorialUpload"
                        class="upload-button">
@@ -1676,18 +2141,54 @@
 
                 </label>
 
+
                 <input type="file"
                        id="pictorialUpload"
                        accept="image/jpeg,image/png,image/webp"
                        multiple
                        hidden>
 
+
                 <span class="file-name"
                       id="pictorialFileName">
+
                     No photos selected
+
                 </span>
 
+
+                <button type="button"
+                        id="uploadPictorialButton"
+                        class="btn btn-primary upload-submit">
+
+                    <i class="fas fa-cloud-arrow-up"></i>
+
+                    Upload & Publish
+
+                </button>
+
+
+                <div id="pictorialUploadStatus"
+                     class="upload-status"></div>
+
             </div>
+
+        </div>
+
+
+
+        <div class="admin-note">
+
+            <i class="fas fa-shield-halved"></i>
+
+            <p>
+
+                Only the authenticated administrator can
+                upload, replace or manage portfolio files.
+                Public visitors will only be able to view
+                published content.
+
+            </p>
 
         </div>
 
@@ -1696,9 +2197,10 @@
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      CONTACT
-===================================================== -->
+========================================================= -->
 
 <section class="section contact-section"
          id="contact">
@@ -1708,13 +2210,16 @@
 
         <div class="contact-content">
 
+
             <span class="section-label">
                 CONTACT
             </span>
 
+
             <h2>
                 Let's connect professionally.
             </h2>
+
 
             <p>
 
@@ -1725,6 +2230,7 @@
             </p>
 
 
+
             <div class="contact-details">
 
 
@@ -1732,7 +2238,9 @@
                    class="contact-item">
 
                     <div class="contact-icon">
+
                         <i class="fas fa-envelope"></i>
+
                     </div>
 
                     <div>
@@ -1750,11 +2258,14 @@
                 </a>
 
 
+
                 <a href="tel:+254143947048"
                    class="contact-item">
 
                     <div class="contact-icon">
+
                         <i class="fas fa-phone"></i>
+
                     </div>
 
                     <div>
@@ -1772,13 +2283,16 @@
                 </a>
 
 
+
                 <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="contact-item">
 
                     <div class="contact-icon">
+
                         <i class="fab fa-linkedin-in"></i>
+
                     </div>
 
                     <div>
@@ -1800,7 +2314,9 @@
         </div>
 
 
+
         <div class="contact-card">
+
 
             <div class="contact-card-top">
 
@@ -1822,20 +2338,24 @@
                     Research and analytical thinking
                 </li>
 
+
                 <li>
                     <i class="fas fa-check"></i>
                     Professional communication
                 </li>
+
 
                 <li>
                     <i class="fas fa-check"></i>
                     Administrative organization
                 </li>
 
+
                 <li>
                     <i class="fas fa-check"></i>
                     International perspective
                 </li>
+
 
                 <li>
                     <i class="fas fa-check"></i>
@@ -1861,9 +2381,10 @@
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer class="footer">
 
@@ -1879,14 +2400,18 @@
 
             </a>
 
+
             <p>
-                Professional Portfolio — Edwin Kuchio Okello
+                Professional Portfolio —
+                Edwin Kuchio Okello
             </p>
 
         </div>
 
 
+
         <div class="footer-socials">
+
 
             <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6"
                target="_blank"
@@ -1895,6 +2420,7 @@
                 <i class="fab fa-linkedin-in"></i>
 
             </a>
+
 
             <a href="mailto:edwinokello24@gmail.com">
 
@@ -1907,12 +2433,14 @@
     </div>
 
 
+
     <div class="footer-bottom">
 
         <div class="container">
 
             <p>
-                © 2026 Edwin Kuchio Okello. All rights reserved.
+                © 2026 Edwin Kuchio Okello.
+                All rights reserved.
             </p>
 
         </div>
@@ -1922,7 +2450,10 @@
 </footer>
 
 
-<!-- BACK TO TOP -->
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
 
 <button class="back-to-top"
         id="backToTop"
@@ -1933,7 +2464,10 @@
 </button>
 
 
-<!-- JAVASCRIPT -->
+
+<!-- =========================================================
+     WEBSITE JAVASCRIPT
+========================================================= -->
 
 <script src="script.js"></script>
 
