@@ -6,1745 +6,26 @@
 
 <title>Edwin Kuchio Okello | Professional Portfolio</title>
 
-<meta name="description"
-content="Professional portfolio of Edwin Kuchio Okello featuring academic formation, international experience, research, professional skills, projects and curriculum vitae.">
+<meta name="description" content="Professional portfolio of Edwin Kuchio Okello featuring academic formation, international experience, research, professional skills, projects and curriculum vitae.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-
-/* =========================================================
-   ROOT
-========================================================= */
-
-:root {
-    --navy: #07152f;
-    --navy-light: #102b55;
-    --navy-soft: #183b68;
-
-    --gold: #d5a514;
-    --gold-light: #f5c84b;
-
-    --green: #26734d;
-    --green-light: #eaf5ee;
-
-    --white: #ffffff;
-    --light: #f5f7fa;
-    --light-blue: #edf3f9;
-
-    --text: #263246;
-    --muted: #6c7788;
-
-    --border: #e1e6ed;
-
-    --shadow: 0 15px 45px rgba(7,21,47,.10);
-    --shadow-heavy: 0 25px 70px rgba(7,21,47,.18);
-
-    --radius: 20px;
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Inter", sans-serif;
-    background: var(--light);
-    color: var(--text);
-    line-height: 1.7;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-button,
-input {
-    font-family: inherit;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-section {
-    scroll-margin-top: 85px;
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 5000;
-
-    background: rgba(7,21,47,.97);
-
-    box-shadow: 0 6px 25px rgba(0,0,0,.18);
-}
-
-.nav-container {
-    max-width: 1250px;
-    margin: auto;
-
-    padding: 13px 25px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    color: white;
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.05;
-}
-
-.logo span {
-    display: block;
-    color: var(--gold-light);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.nav-links a {
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: .25s;
-}
-
-.nav-links a:hover {
-    color: var(--gold-light);
-}
-
-.menu-toggle {
-    display: none;
-
-    border: none;
-    background: none;
-
-    color: white;
-    font-size: 25px;
-
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-    min-height: 90vh;
-
-    background:
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(40,92,150,.45),
-            transparent 32%
-        ),
-        linear-gradient(
-            135deg,
-            #050f24,
-            #0a1d3b 60%,
-            #07152f
-        );
-
-    color: white;
-
-    display: flex;
-    align-items: center;
-
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 500px;
-    height: 500px;
-
-    border: 1px solid rgba(245,200,75,.15);
-    border-radius: 50%;
-
-    right: -180px;
-    bottom: -200px;
-}
-
-.hero-container {
-    width: 100%;
-    max-width: 1200px;
-
-    margin: auto;
-    padding: 90px 25px;
-
-    display: grid;
-    grid-template-columns: 1.35fr .65fr;
-
-    gap: 70px;
-
-    align-items: center;
-
-    position: relative;
-    z-index: 2;
-}
-
-.hero h1 {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(44px, 6vw, 74px);
-
-    line-height: 1.08;
-
-    margin-bottom: 20px;
-}
-
-.hero h1 span {
-    display: block;
-    color: var(--gold-light);
-}
-
-.hero-subtitle {
-    font-size: 20px;
-
-    color: #dbe4ef;
-
-    margin-bottom: 22px;
-
-    letter-spacing: .3px;
-}
-
-.hero-description {
-    max-width: 720px;
-
-    color: #b9c7d8;
-
-    margin-bottom: 32px;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-}
-
-.btn {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 9px;
-
-    padding: 13px 22px;
-
-    border-radius: 9px;
-
-    font-weight: 700;
-
-    border: 1px solid transparent;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.btn-primary {
-    background: var(--gold-light);
-    color: var(--navy);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    background: white;
-}
-
-.btn-outline {
-    color: white;
-    border-color: rgba(255,255,255,.65);
-}
-
-.btn-outline:hover {
-    background: white;
-    color: var(--navy);
-}
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-.hero-profile {
-    display: flex;
-    justify-content: center;
-}
-
-.profile-frame {
-    width: 290px;
-    height: 355px;
-
-    border-radius: 24px;
-
-    border: 5px solid rgba(245,200,75,.8);
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            #142d51,
-            #091a35
-        );
-
-    box-shadow: var(--shadow-heavy);
-}
-
-.profile-frame img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
-
-.profile-placeholder {
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    color: #a8b5c6;
-}
-
-.profile-placeholder i {
-    font-size: 75px;
-
-    color: var(--gold);
-
-    margin-bottom: 15px;
-}
-
-
-/* =========================================================
-   GENERAL SECTIONS
-========================================================= */
-
-.section {
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 95px 25px;
-}
-
-.section-heading {
-    text-align: center;
-
-    margin-bottom: 55px;
-}
-
-.section-heading h2 {
-    font-family: "Playfair Display", serif;
-
-    color: var(--navy);
-
-    font-size: 44px;
-
-    line-height: 1.2;
-
-    margin-bottom: 10px;
-}
-
-.section-heading p {
-    color: var(--muted);
-
-    font-size: 16px;
-}
-
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-.about-grid {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 30px;
-}
-
-.info-card {
-    background: white;
-
-    padding: 38px;
-
-    border-radius: var(--radius);
-
-    box-shadow: var(--shadow);
-
-    border-top: 4px solid var(--gold);
-}
-
-.info-card h3 {
-    color: var(--navy);
-
-    font-size: 25px;
-
-    margin-bottom: 15px;
-}
-
-.info-card p {
-    color: var(--muted);
-}
-
-
-/* =========================================================
-   EXPERIENCE
-========================================================= */
-
-.experience-section {
-    background: white;
-}
-
-.experience-intro {
-    max-width: 850px;
-
-    margin: -20px auto 55px;
-
-    text-align: center;
-
-    color: var(--muted);
-}
-
-
-/* Main experience card */
-
-.experience-main {
-    max-width: 1050px;
-
-    margin: auto;
-
-    background:
-        linear-gradient(
-            135deg,
-            #07152f,
-            #102d55
-        );
-
-    color: white;
-
-    border-radius: 25px;
-
-    padding: 45px;
-
-    box-shadow: var(--shadow-heavy);
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-.experience-main::after {
-    content: "";
-
-    position: absolute;
-
-    width: 280px;
-    height: 280px;
-
-    border: 1px solid rgba(245,200,75,.18);
-
-    border-radius: 50%;
-
-    right: -100px;
-    top: -100px;
-}
-
-.experience-main-top {
-    display: flex;
-
-    gap: 25px;
-
-    align-items: flex-start;
-
-    position: relative;
-
-    z-index: 2;
-}
-
-.experience-icon {
-    min-width: 65px;
-    height: 65px;
-
-    border-radius: 17px;
-
-    background: rgba(245,200,75,.12);
-
-    border: 1px solid rgba(245,200,75,.35);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: var(--gold-light);
-
-    font-size: 28px;
-}
-
-.experience-main h3 {
-    font-size: 27px;
-
-    margin-bottom: 5px;
-}
-
-.experience-date {
-    color: var(--gold-light);
-
-    font-weight: 700;
-
-    font-size: 14px;
-}
-
-.experience-main-description {
-    color: #c4d0df;
-
-    margin-top: 22px;
-
-    position: relative;
-    z-index: 2;
-}
-
-.experience-highlights {
-    display: grid;
-
-    grid-template-columns: repeat(2,1fr);
-
-    gap: 12px;
-
-    margin-top: 28px;
-
-    position: relative;
-    z-index: 2;
-}
-
-.experience-highlight {
-    background: rgba(255,255,255,.06);
-
-    border: 1px solid rgba(255,255,255,.09);
-
-    border-radius: 12px;
-
-    padding: 13px 15px;
-
-    color: #dce5ef;
-
-    font-size: 14px;
-}
-
-.experience-highlight i {
-    color: var(--gold-light);
-
-    margin-right: 8px;
-}
-
-
-/* Formation journey */
-
-.journey-title {
-    text-align: center;
-
-    margin: 75px 0 45px;
-}
-
-.journey-title h3 {
-    font-family: "Playfair Display", serif;
-
-    color: var(--navy);
-
-    font-size: 34px;
-
-    margin-bottom: 8px;
-}
-
-.journey-title p {
-    color: var(--muted);
-}
-
-
-/* timeline */
-
-.journey {
-    max-width: 950px;
-
-    margin: auto;
-
-    position: relative;
-}
-
-.journey::before {
-    content: "";
-
-    position: absolute;
-
-    left: 25px;
-    top: 0;
-    bottom: 0;
-
-    width: 2px;
-
-    background:
-        linear-gradient(
-            var(--gold),
-            #cbd5e1
-        );
-}
-
-.journey-item {
-    position: relative;
-
-    padding-left: 70px;
-
-    margin-bottom: 30px;
-}
-
-.journey-dot {
-    position: absolute;
-
-    left: 13px;
-    top: 5px;
-
-    width: 25px;
-    height: 25px;
-
-    background: white;
-
-    border: 5px solid var(--gold);
-
-    border-radius: 50%;
-
-    z-index: 2;
-}
-
-.journey-card {
-    background: var(--light);
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    padding: 22px 25px;
-
-    transition: .25s;
-}
-
-.journey-card:hover {
-    transform: translateX(5px);
-
-    box-shadow: var(--shadow);
-}
-
-.journey-card h4 {
-    color: var(--navy);
-
-    font-size: 19px;
-
-    margin-bottom: 3px;
-}
-
-.journey-card .journey-date {
-    color: var(--green);
-
-    font-weight: 700;
-
-    font-size: 13px;
-
-    margin-bottom: 7px;
-}
-
-.journey-card p {
-    color: var(--muted);
-
-    font-size: 14px;
-}
-
-
-/* Kwetu */
-
-.k w e t u {}
-
-
-/* service card */
-
-.service-experience {
-    max-width: 950px;
-
-    margin: 50px auto 0;
-
-    background: white;
-
-    border-radius: 20px;
-
-    padding: 30px;
-
-    border: 1px solid var(--border);
-
-    box-shadow: var(--shadow);
-
-    display: grid;
-
-    grid-template-columns: auto 1fr;
-
-    gap: 25px;
-
-    align-items: start;
-}
-
-.service-icon {
-    width: 60px;
-    height: 60px;
-
-    border-radius: 15px;
-
-    background: var(--green-light);
-
-    color: var(--green);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
-}
-
-.service-experience h3 {
-    color: var(--navy);
-
-    margin-bottom: 4px;
-}
-
-.service-date {
-    color: var(--gold);
-
-    font-weight: 700;
-
-    font-size: 14px;
-
-    margin-bottom: 10px;
-}
-
-.service-experience p {
-    color: var(--muted);
-}
-
-
-/* =========================================================
-   EDUCATION
-========================================================= */
-
-.education-section {
-    background: var(--light);
-}
-
-.education-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2,1fr);
-
-    gap: 30px;
-}
-
-.education-card {
-    background: white;
-
-    padding: 35px;
-
-    border-radius: var(--radius);
-
-    box-shadow: var(--shadow);
-
-    border-left: 5px solid var(--gold);
-
-    position: relative;
-}
-
-.education-year {
-    display: inline-block;
-
-    background: var(--navy);
-
-    color: var(--gold-light);
-
-    padding: 5px 12px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    margin-bottom: 18px;
-}
-
-.education-card i {
-    display: block;
-
-    font-size: 30px;
-
-    color: var(--gold);
-
-    margin-bottom: 12px;
-}
-
-.education-card h3 {
-    color: var(--navy);
-
-    font-size: 23px;
-
-    margin-bottom: 7px;
-}
-
-.education-card p {
-    color: var(--muted);
-}
-
-
-/* =========================================================
-   SKILLS
-========================================================= */
-
-.skills-container {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-    gap: 12px;
-}
-
-.skill {
-    background: white;
-
-    border: 1px solid var(--border);
-
-    padding: 11px 17px;
-
-    border-radius: 30px;
-
-    color: var(--green);
-
-    font-weight: 600;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,.04);
-
-    transition: .2s;
-}
-
-.skill:hover {
-    transform: translateY(-3px);
-
-    border-color: var(--gold);
-}
-
-
-/* =========================================================
-   PROJECTS
-========================================================= */
-
-.projects-section {
-    background: white;
-}
-
-.projects-grid {
-    max-width: 1100px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns: repeat(2,1fr);
-
-    gap: 30px;
-}
-
-.project-card {
-    background: white;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    box-shadow: var(--shadow);
-
-    border: 1px solid var(--border);
-
-    transition: .3s;
-}
-
-.project-card:hover {
-    transform: translateY(-7px);
-
-    box-shadow: var(--shadow-heavy);
-}
-
-.project-header {
-    background:
-        linear-gradient(
-            135deg,
-            var(--navy),
-            var(--navy-light)
-        );
-
-    color: white;
-
-    padding: 30px;
-}
-
-.project-icon {
-    color: var(--gold-light);
-
-    font-size: 34px;
-
-    margin-bottom: 12px;
-}
-
-.project-header h3 {
-    font-size: 24px;
-}
-
-.project-body {
-    padding: 30px;
-}
-
-.project-body p {
-    color: var(--muted);
-
-    margin-bottom: 20px;
-}
-
-.project-tags {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 8px;
-
-    margin-bottom: 25px;
-}
-
-.project-tags span {
-    background: var(--green-light);
-
-    color: var(--green);
-
-    padding: 6px 12px;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-
-    font-weight: 800;
-}
-
-.project-button {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    border: none;
-
-    background: var(--navy);
-
-    color: white;
-
-    padding: 12px 20px;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-weight: 700;
-}
-
-.project-button:hover {
-    background: var(--gold-light);
-
-    color: var(--navy);
-}
-
-
-/* =========================================================
-   ACADEMIC WORK
-========================================================= */
-
-.research-heading {
-    text-align: center;
-
-    margin: 80px auto 35px;
-}
-
-.research-heading h2 {
-    font-family: "Playfair Display", serif;
-
-    color: var(--navy);
-
-    font-size: 38px;
-
-    margin-bottom: 8px;
-}
-
-.research-heading p {
-    color: var(--muted);
-}
-
-.research-box {
-    max-width: 850px;
-
-    margin: auto;
-
-    background: var(--light);
-
-    border: 2px dashed #ccd5e1;
-
-    border-radius: 20px;
-
-    padding: 45px 30px;
-
-    text-align: center;
-}
-
-.research-box i {
-    color: var(--gold);
-
-    font-size: 45px;
-
-    margin-bottom: 15px;
-}
-
-.research-box h3 {
-    color: var(--navy);
-
-    margin-bottom: 8px;
-}
-
-.research-box p {
-    color: var(--muted);
-}
-
-
-/* =========================================================
-   CV
-========================================================= */
-
-.cv-section {
-    background:
-        linear-gradient(
-            135deg,
-            #07152f,
-            #102c54
-        );
-
-    color: white;
-
-    text-align: center;
-
-    padding: 90px 25px;
-}
-
-.cv-section h2 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 44px;
-
-    margin-bottom: 10px;
-}
-
-.cv-section p {
-    color: #c8d3e1;
-
-    margin-bottom: 27px;
-}
-
-.cv-buttons {
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 15px;
-}
-
-.cv-status {
-    margin-top: 15px;
-
-    color: #aebdd0;
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   PICTORIAL
-========================================================= */
-
-.gallery {
-    display: grid;
-
-    grid-template-columns: repeat(3,1fr);
-
-    gap: 18px;
-}
-
-.gallery-item {
-    background: white;
-
-    border-radius: 16px;
-
-    overflow: hidden;
-
-    box-shadow: var(--shadow);
-
-    min-height: 230px;
-}
-
-.gallery-item img {
-    width: 100%;
-
-    height: 250px;
-
-    object-fit: cover;
-
-    transition: .3s;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.04);
-}
-
-.gallery-placeholder {
-    min-height: 230px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    color: var(--muted);
-
-    text-align: center;
-}
-
-.gallery-placeholder i {
-    color: var(--gold);
-
-    font-size: 42px;
-
-    margin-bottom: 10px;
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact-box {
-    max-width: 850px;
-
-    margin: auto;
-
-    background: white;
-
-    padding: 42px;
-
-    border-radius: var(--radius);
-
-    box-shadow: var(--shadow);
-
-    text-align: center;
-}
-
-.contact-box h3 {
-    color: var(--navy);
-
-    font-size: 28px;
-
-    margin-bottom: 22px;
-}
-
-.contact-details {
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 20px;
-}
-
-.contact-details a {
-    color: var(--green);
-
-    font-weight: 600;
-}
-
-.contact-details i {
-    color: var(--gold);
-
-    margin-right: 6px;
-}
-
-
-/* =========================================================
-   MODALS
-========================================================= */
-
-.project-modal {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 9000;
-
-    background: rgba(0,0,0,.78);
-
-    padding: 25px;
-
-    overflow-y: auto;
-}
-
-.project-modal.active {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-.modal-content {
-    width: 100%;
-
-    max-width: 720px;
-
-    background: white;
-
-    border-radius: 20px;
-
-    padding: 45px;
-
-    position: relative;
-
-    box-shadow: var(--shadow-heavy);
-}
-
-.modal-close {
-    position: absolute;
-
-    right: 18px;
-
-    top: 10px;
-
-    border: none;
-
-    background: none;
-
-    font-size: 35px;
-
-    color: var(--navy);
-
-    cursor: pointer;
-}
-
-.modal-icon {
-    color: var(--gold);
-
-    font-size: 43px;
-
-    margin-bottom: 10px;
-}
-
-.modal-content h2 {
-    color: var(--navy);
-
-    font-size: 32px;
-
-    margin-bottom: 15px;
-}
-
-.modal-content p {
-    color: var(--muted);
-
-    margin-bottom: 15px;
-}
-
-.modal-content h3 {
-    color: var(--navy);
-
-    margin-top: 25px;
-}
-
-.modal-list {
-    list-style: none;
-
-    margin-top: 12px;
-}
-
-.modal-list li {
-    color: var(--muted);
-
-    padding: 7px 0;
-}
-
-.modal-list i {
-    color: var(--gold);
-
-    margin-right: 8px;
-}
-
-
-/* =========================================================
-   ADMIN LOCK
-========================================================= */
-
-.admin-lock {
-    position: fixed;
-
-    bottom: 14px;
-    left: 14px;
-
-    width: 36px;
-    height: 36px;
-
-    border-radius: 50%;
-
-    background: rgba(7,21,47,.96);
-
-    color: var(--gold-light);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    cursor: pointer;
-
-    z-index: 8000;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,.25);
-
-    transition: .2s;
-}
-
-.admin-lock:hover {
-    transform: scale(1.1);
-}
-
-
-/* =========================================================
-   ADMIN PANEL
-========================================================= */
-
-.admin-panel {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 10000;
-
-    background: rgba(0,0,0,.78);
-
-    padding: 20px;
-
-    overflow-y: auto;
-}
-
-.admin-panel.active {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-.admin-box {
-    width: 100%;
-
-    max-width: 700px;
-
-    background: white;
-
-    border-radius: 20px;
-
-    padding: 35px;
-
-    position: relative;
-}
-
-.admin-box h2 {
-    color: var(--navy);
-
-    margin-bottom: 7px;
-}
-
-.admin-box p {
-    color: var(--muted);
-}
-
-.admin-close {
-    position: absolute;
-
-    right: 18px;
-
-    top: 10px;
-
-    border: none;
-
-    background: none;
-
-    font-size: 30px;
-
-    cursor: pointer;
-
-    color: var(--navy);
-}
-
-.admin-form {
-    margin-top: 25px;
-}
-
-.form-group {
-    margin-bottom: 17px;
-}
-
-.form-group label {
-    display: block;
-
-    color: var(--navy);
-
-    font-weight: 700;
-
-    margin-bottom: 7px;
-}
-
-.form-group input {
-    width: 100%;
-
-    padding: 12px 14px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 8px;
-
-    outline: none;
-}
-
-.admin-section {
-    margin-top: 30px;
-
-    padding-top: 25px;
-
-    border-top: 1px solid var(--border);
-}
-
-.admin-section h3 {
-    color: var(--navy);
-
-    margin-bottom: 15px;
-}
-
-.upload-row {
-    display: grid;
-
-    grid-template-columns: 1fr auto;
-
-    gap: 10px;
-
-    align-items: center;
-}
-
-.upload-row input {
-    width: 100%;
-}
-
-.admin-message {
-    margin-top: 15px;
-
-    padding: 10px;
-
-    border-radius: 8px;
-
-    display: none;
-}
-
-.admin-message.show {
-    display: block;
-}
-
-.admin-message.success {
-    background: var(--green-light);
-
-    color: var(--green);
-}
-
-.admin-message.error {
-    background: #ffe8e8;
-
-    color: #a11b1b;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    background: #040d1e;
-
-    color: #aeb8c6;
-
-    text-align: center;
-
-    padding: 27px 20px;
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   BACK TO TOP
-========================================================= */
-
-.back-to-top {
-    position: fixed;
-
-    right: 18px;
-
-    bottom: 18px;
-
-    width: 43px;
-
-    height: 43px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: var(--gold-light);
-
-    color: var(--navy);
-
-    cursor: pointer;
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: center;
-
-    z-index: 7000;
-
-    box-shadow: 0 5px 18px rgba(0,0,0,.25);
-}
-
-.back-to-top.show {
-    display: flex;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 850px) {
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-
-        position: absolute;
-
-        top: 65px;
-        left: 0;
-        right: 0;
-
-        background: var(--navy);
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        padding: 22px 25px;
-
-        gap: 18px;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .hero-container {
-        grid-template-columns: 1fr;
-
-        text-align: center;
-
-        gap: 45px;
-    }
-
-    .hero-profile {
-        order: -1;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .about-grid,
-    .education-grid,
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .experience-highlights {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(2,1fr);
-    }
-}
-
-
-@media (max-width: 550px) {
-
-    .section {
-        padding: 70px 18px;
-    }
-
-    .section-heading h2 {
-        font-size: 35px;
-    }
-
-    .hero {
-        min-height: auto;
-    }
-
-    .hero-container {
-        padding: 70px 18px;
-    }
-
-    .hero h1 {
-        font-size: 45px;
-    }
-
-    .profile-frame {
-        width: 235px;
-        height: 290px;
-    }
-
-    .experience-main {
-        padding: 30px 23px;
-    }
-
-    .experience-main-top {
-        flex-direction: column;
-    }
-
-    .journey::before {
-        left: 18px;
-    }
-
-    .journey-item {
-        padding-left: 50px;
-    }
-
-    .journey-dot {
-        left: 6px;
-    }
-
-    .service-experience {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .modal-content {
-        padding: 30px 22px;
-    }
-
-    .upload-row {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-</style>
 </head>
-
 
 <body>
 
-
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
+<!-- ================= NAVIGATION ================= -->
 
 <nav class="navbar">
-
     <div class="nav-container">
 
         <a href="#home" class="logo">
@@ -1757,7 +38,6 @@ footer {
         </button>
 
         <div class="nav-links" id="navLinks">
-
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
@@ -1767,44 +47,44 @@ footer {
             <a href="#cv">CV</a>
             <a href="#pictorial">Pictorial</a>
             <a href="#contact">Contact</a>
-
         </div>
 
     </div>
-
 </nav>
 
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+<!-- ================= HERO ================= -->
 
 <section id="home" class="hero">
 
     <div class="hero-container">
 
-        <div>
+        <div class="hero-content">
+
+            <div class="hero-kicker">
+                PROFESSIONAL PORTFOLIO
+            </div>
 
             <h1>
                 Edwin
                 <span>Kuchio Okello</span>
             </h1>
 
-            <div class="hero-subtitle">
+            <h2>
                 Research • Analysis • Writing • Communication
-            </div>
+            </h2>
 
-            <p class="hero-description">
-                Welcome to my professional portfolio — a space bringing
-                together my academic formation, international experience,
-                professional skills, research interests and developing
-                projects.
+            <p>
+                A multidisciplinary professional with academic formation
+                in philosophy and theology, international and cross-cultural
+                experience, and developing interests in research, analysis,
+                professional writing and information-based services.
             </p>
 
             <div class="hero-buttons">
 
                 <a href="#experience" class="btn btn-primary">
-                    <i class="fas fa-briefcase"></i>
+                    <i class="fas fa-arrow-down"></i>
                     Explore My Experience
                 </a>
 
@@ -1823,13 +103,8 @@ footer {
             <div class="profile-frame" id="profileFrame">
 
                 <div class="profile-placeholder">
-
                     <i class="fas fa-user"></i>
-
-                    <span>
-                        Profile photograph
-                    </span>
-
+                    <span>Profile Photograph</span>
                 </div>
 
             </div>
@@ -1841,18 +116,19 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     ABOUT
-========================================================= -->
+<!-- ================= ABOUT ================= -->
 
 <section id="about" class="section">
 
     <div class="section-heading">
 
+        <span class="section-label">PROFILE</span>
+
         <h2>About Me</h2>
 
         <p>
-            Academic formation, international exposure and professional direction.
+            A multidisciplinary background shaped by academic formation,
+            service, research and international experience.
         </p>
 
     </div>
@@ -1860,24 +136,26 @@ footer {
 
     <div class="about-grid">
 
-        <div class="info-card">
+        <div class="info-card featured-card">
+
+            <div class="card-icon">
+                <i class="fas fa-user-tie"></i>
+            </div>
 
             <h3>Professional Profile</h3>
 
             <p>
-                I am a multidisciplinary professional with academic formation
-                in philosophy and theology and a developing professional
-                interest in research, analysis, writing, communication and
-                information-based services.
+                I am a multidisciplinary professional with academic
+                formation in philosophy and theology and a developing
+                professional interest in research, analysis, writing,
+                communication and information-based work.
             </p>
 
-            <br>
-
             <p>
-                My interests include legal research, legal writing and
-                drafting, research and report writing, critical and analytical
-                thinking, confidentiality and professional ethics,
-                cross-cultural communication, teamwork and collaboration.
+                My formation and experiences across different cultural
+                environments have strengthened my ability to listen,
+                analyse information, communicate across cultures and work
+                collaboratively with people from diverse backgrounds.
             </p>
 
         </div>
@@ -1885,21 +163,42 @@ footer {
 
         <div class="info-card">
 
+            <div class="card-icon green-icon">
+                <i class="fas fa-compass"></i>
+            </div>
+
             <h3>Professional Direction</h3>
 
             <p>
-                I am interested in opportunities where research, writing,
-                analysis, communication, organisation and problem-solving
-                can be applied in meaningful professional environments.
+                I am interested in opportunities where research,
+                analytical thinking, professional writing, communication,
+                organisation and problem-solving can contribute to
+                meaningful professional outcomes.
             </p>
 
-            <br>
+            <div class="mini-list">
 
-            <p>
-                My international formation has also developed my appreciation
-                for diversity, adaptability and effective collaboration across
-                cultural and linguistic boundaries.
-            </p>
+                <div>
+                    <i class="fas fa-check"></i>
+                    Research & Analysis
+                </div>
+
+                <div>
+                    <i class="fas fa-check"></i>
+                    Legal Research & Writing
+                </div>
+
+                <div>
+                    <i class="fas fa-check"></i>
+                    Administration & Communication
+                </div>
+
+                <div>
+                    <i class="fas fa-check"></i>
+                    Cross-Cultural Collaboration
+                </div>
+
+            </div>
 
         </div>
 
@@ -1908,346 +207,429 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     EXPERIENCE
-========================================================= -->
+<!-- ================= EXPERIENCE ================= -->
 
 <section id="experience" class="section experience-section">
 
     <div class="section-heading">
 
+        <span class="section-label">PROFESSIONAL JOURNEY</span>
+
         <h2>Experience</h2>
 
         <p>
             A journey shaped by service, international formation,
-            academic development and cross-cultural engagement.
+            academic development and extensive cross-cultural exposure.
         </p>
 
     </div>
 
 
-    <p class="experience-intro">
+    <div class="experience-intro">
 
-        My experience has developed through a combination of community
-        service, academic formation and almost a decade of international
-        exposure across different African countries. Living and studying
-        in diverse environments has strengthened my adaptability,
-        communication, independence, teamwork and ability to engage
-        respectfully with people from different cultural backgrounds.
-
-    </p>
-
-
-    <!-- MAIN EXPERIENCE -->
-
-    <div class="experience-main">
-
-        <div class="experience-main-top">
-
-            <div class="experience-icon">
-                <i class="fas fa-globe-africa"></i>
-            </div>
-
-            <div>
-
-                <h3>
-                    International & Cross-Cultural Formation
-                </h3>
-
-                <div class="experience-date">
-                    2016 – 2026
-                </div>
-
-            </div>
-
+        <div class="experience-intro-icon">
+            <i class="fas fa-earth-africa"></i>
         </div>
-
-
-        <p class="experience-main-description">
-
-            A decade of formation and experience across different regions
-            of Africa, involving academic study, community life, pastoral
-            exposure, language immersion and interaction with people from
-            diverse cultural and social backgrounds.
-
-            <br><br>
-
-            The experience required continual adaptation to new environments,
-            languages, communities and expectations. It provided an
-            opportunity to develop a broad perspective on African cultures
-            while strengthening interpersonal and professional competencies
-            that are valuable in multicultural workplaces.
-
-        </p>
-
-
-        <div class="experience-highlights">
-
-            <div class="experience-highlight">
-                <i class="fas fa-comments"></i>
-                Cross-cultural communication
-            </div>
-
-            <div class="experience-highlight">
-                <i class="fas fa-users"></i>
-                Teamwork and collaboration
-            </div>
-
-            <div class="experience-highlight">
-                <i class="fas fa-language"></i>
-                French-language exposure
-            </div>
-
-            <div class="experience-highlight">
-                <i class="fas fa-arrows-rotate"></i>
-                Adaptability and resilience
-            </div>
-
-            <div class="experience-highlight">
-                <i class="fas fa-people-group"></i>
-                Multicultural community life
-            </div>
-
-            <div class="experience-highlight">
-                <i class="fas fa-lightbulb"></i>
-                Critical and analytical development
-            </div>
-
-            <div class="experience-highlight">
-                <i class="fas fa-pen-nib"></i>
-                Academic research and writing
-            </div>
-
-            <div class="experience-highlight">
-                <i class="fas fa-handshake"></i>
-                Interpersonal engagement
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- INTERNATIONAL JOURNEY -->
-
-    <div class="journey-title">
-
-        <h3>
-            International Formation Journey
-        </h3>
-
-        <p>
-            Selected stages of academic, linguistic, pastoral and
-            cross-cultural formation.
-        </p>
-
-    </div>
-
-
-    <div class="journey">
-
-
-        <div class="journey-item">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-card">
-
-                <h4>
-                    Tanzania
-                </h4>
-
-                <div class="journey-date">
-                    January – June 2016
-                </div>
-
-                <p>
-                    Initial stage of international formation and exposure
-                    to a new cultural and community environment.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="journey-item">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-card">
-
-                <h4>
-                    Uganda — Jinja
-                </h4>
-
-                <div class="journey-date">
-                    2016 – 2018
-                </div>
-
-                <p>
-                    Philosophy studies combined with community life and
-                    interaction within a multicultural formation environment.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="journey-item">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-card">
-
-                <h4>
-                    Democratic Republic of Congo
-                </h4>
-
-                <div class="journey-date">
-                    April – August 2019
-                </div>
-
-                <p>
-                    Formation experience in a different linguistic and
-                    cultural context, strengthening adaptability and
-                    intercultural awareness.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="journey-item">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-card">
-
-                <h4>
-                    Zambia
-                </h4>
-
-                <div class="journey-date">
-                    2019 – July 2020
-                </div>
-
-                <p>
-                    Spiritual and community formation within a new
-                    cultural environment.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="journey-item">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-card">
-
-                <h4>
-                    Burkina Faso
-                </h4>
-
-                <div class="journey-date">
-                    July – December 2020
-                </div>
-
-                <p>
-                    French immersion and cross-cultural experience,
-                    strengthening language and intercultural communication.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="journey-item">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-card">
-
-                <h4>
-                    Togo
-                </h4>
-
-                <div class="journey-date">
-                    2021 – 2022
-                </div>
-
-                <p>
-                    Pastoral and community experience within a different
-                    West African cultural context.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="journey-item">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-card">
-
-                <h4>
-                    South Africa
-                </h4>
-
-                <div class="journey-date">
-                    2022 – 2026
-                </div>
-
-                <p>
-                    Theology studies and extended multicultural academic
-                    experience at St. Joseph's Theological Institute.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- KWETU -->
-
-    <div class="service-experience">
-
-        <div class="service-icon">
-
-            <i class="fas fa-hands-helping"></i>
-
-        </div>
-
 
         <div>
 
             <h3>
-                Community Service — Kwetu Home of Peace
+                International & Cross-Cultural Formation
             </h3>
 
-            <div class="service-date">
-                2015 • Nairobi, Kenya
-            </div>
-
             <p>
-                Volunteered at Kwetu Home of Peace, a rehabilitation centre
-                serving street-connected children. The experience provided
-                an early opportunity for community service and strengthened
-                interpersonal engagement, responsibility, teamwork,
-                compassion and commitment to working with people from
-                different backgrounds.
+                My experience extends across several African countries,
+                providing sustained exposure to different languages,
+                cultures, communities, educational environments and
+                pastoral contexts. This international journey has helped
+                develop adaptability, cultural sensitivity, interpersonal
+                communication, collaboration and the ability to work
+                respectfully with people from diverse backgrounds.
             </p>
 
+        </div>
+
+    </div>
+
+
+    <div class="experience-timeline">
+
+
+        <!-- 2015 -->
+
+        <div class="experience-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-hands-helping"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    2015
+                </div>
+
+                <h3>
+                    Volunteer Experience
+                </h3>
+
+                <h4>
+                    Kwetu Home of Peace Rehabilitation Centre — Nairobi
+                </h4>
+
+                <p>
+                    Volunteered at Kwetu Home of Peace, a rehabilitation
+                    centre serving street-connected children in Nairobi.
+                    The experience provided an opportunity for service,
+                    interpersonal engagement and participation in a
+                    community-oriented environment.
+                </p>
+
+                <div class="experience-tags">
+                    <span>Community Service</span>
+                    <span>Interpersonal Engagement</span>
+                    <span>Service</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 2016 -->
+
+        <div class="experience-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-globe-africa"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    January – June 2016
+                </div>
+
+                <h3>
+                    International Formation — Tanzania
+                </h3>
+
+                <p>
+                    Began an international formation journey in Tanzania,
+                    marking the beginning of an extended period of living,
+                    studying and interacting within multicultural
+                    environments outside my home country.
+                </p>
+
+                <div class="experience-tags">
+                    <span>International Exposure</span>
+                    <span>Adaptability</span>
+                    <span>Cross-Cultural Experience</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Uganda -->
+
+        <div class="experience-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    2016 – 2018
+                </div>
+
+                <h3>
+                    Philosophical Formation — Uganda
+                </h3>
+
+                <h4>
+                    Philosophy Centre, Jinja
+                </h4>
+
+                <p>
+                    Pursued philosophical studies and continued formation
+                    in Jinja, Uganda. Living and studying within an
+                    international community strengthened intellectual
+                    discipline, communication, critical reflection and
+                    engagement with people from different cultural
+                    backgrounds.
+                </p>
+
+                <div class="experience-tags">
+                    <span>Philosophy</span>
+                    <span>Critical Thinking</span>
+                    <span>Academic Formation</span>
+                    <span>Cross-Cultural Communication</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Congo -->
+
+        <div class="experience-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-people-group"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    April – August 2019
+                </div>
+
+                <h3>
+                    Cross-Cultural Formation — Congo
+                </h3>
+
+                <p>
+                    Continued formation within a different linguistic and
+                    cultural setting in Congo. The experience contributed
+                    to greater cultural awareness, adaptability and
+                    appreciation of different social and community
+                    contexts.
+                </p>
+
+                <div class="experience-tags">
+                    <span>French</span>
+                    <span>Culture</span>
+                    <span>Adaptability</span>
+                    <span>Community Life</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Zambia -->
+
+        <div class="experience-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-book-open"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    2019 – July 2020
+                </div>
+
+                <h3>
+                    Spiritual & Personal Formation — Zambia
+                </h3>
+
+                <p>
+                    Undertook an extended period of formation in Zambia,
+                    developing greater personal responsibility,
+                    self-awareness, community engagement and the ability
+                    to function effectively within an international
+                    environment.
+                </p>
+
+                <div class="experience-tags">
+                    <span>Personal Development</span>
+                    <span>Community</span>
+                    <span>International Formation</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Burkina -->
+
+        <div class="experience-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-language"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    July – December 2020
+                </div>
+
+                <h3>
+                    French Language & Cultural Immersion — Burkina Faso
+                </h3>
+
+                <p>
+                    Undertook French immersion in Burkina Faso. The
+                    experience deepened linguistic ability and provided
+                    direct exposure to a different West African cultural
+                    context, strengthening communication and cultural
+                    sensitivity.
+                </p>
+
+                <div class="experience-tags">
+                    <span>French</span>
+                    <span>Language Immersion</span>
+                    <span>West Africa</span>
+                    <span>Cross-Cultural Communication</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Togo -->
+
+        <div class="experience-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-people-arrows"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    2021 – 2022
+                </div>
+
+                <h3>
+                    Pastoral & Community Experience — Togo
+                </h3>
+
+                <p>
+                    Participated in pastoral and community experiences in
+                    Togo, further developing interpersonal skills,
+                    communication, cultural awareness and the ability to
+                    engage with communities in a different social and
+                    linguistic environment.
+                </p>
+
+                <div class="experience-tags">
+                    <span>Pastoral Experience</span>
+                    <span>Community Engagement</span>
+                    <span>French</span>
+                    <span>Communication</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- South Africa -->
+
+        <div class="experience-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-university"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    2022 – 2026
+                </div>
+
+                <h3>
+                    Theological & International Academic Formation
+                </h3>
+
+                <h4>
+                    St. Joseph's Theological Institute — South Africa
+                </h4>
+
+                <p>
+                    Undertook theological studies and continued professional
+                    and personal formation in South Africa. Studying within
+                    an international academic community brought together
+                    students and experiences from different cultural and
+                    geographical backgrounds.
+                </p>
+
+                <p>
+                    The experience strengthened academic research,
+                    reading, writing, critical thinking, communication,
+                    collaboration and the ability to engage respectfully
+                    with diverse perspectives.
+                </p>
+
+                <div class="experience-tags">
+                    <span>Theology</span>
+                    <span>Research</span>
+                    <span>Academic Writing</span>
+                    <span>Critical Thinking</span>
+                    <span>International Community</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Current -->
+
+        <div class="experience-item current-item">
+
+            <div class="experience-marker">
+                <i class="fas fa-chart-line"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <div class="experience-date">
+                    Ongoing
+                </div>
+
+                <h3>
+                    Research, Writing & Professional Development
+                </h3>
+
+                <p>
+                    Continuing to develop practical professional skills
+                    in research, analytical thinking, professional writing,
+                    report preparation, communication, information
+                    management and multidisciplinary professional work.
+                </p>
+
+                <div class="experience-tags">
+                    <span>Research</span>
+                    <span>Analysis</span>
+                    <span>Writing</span>
+                    <span>Professional Development</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="experience-summary">
+
+        <div>
+            <strong>7+</strong>
+            <span>Countries / Contexts</span>
+        </div>
+
+        <div>
+            <strong>10+</strong>
+            <span>Years of Formation & Experience</span>
+        </div>
+
+        <div>
+            <strong>Multi</strong>
+            <span>Cultural Environments</span>
         </div>
 
     </div>
@@ -2255,18 +637,19 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     EDUCATION
-========================================================= -->
+<!-- ================= EDUCATION ================= -->
 
 <section id="education" class="section education-section">
 
     <div class="section-heading">
 
+        <span class="section-label">ACADEMIC FORMATION</span>
+
         <h2>Education</h2>
 
         <p>
-            Academic qualifications and higher education.
+            Academic studies supporting my multidisciplinary professional
+            interests.
         </p>
 
     </div>
@@ -2274,62 +657,78 @@ footer {
 
     <div class="education-grid">
 
+        <article class="education-card">
 
-        <div class="education-card">
-
-            <span class="education-year">
-                2022 – 2026
-            </span>
-
-            <i class="fas fa-graduation-cap"></i>
-
-            <h3>
-                BA in Theology
-            </h3>
-
-            <p>
-                St. Joseph's Theological Institute,
-                South Africa
-            </p>
-
-        </div>
-
-
-        <div class="education-card">
-
-            <span class="education-year">
+            <div class="education-year">
                 2016 – 2018
-            </span>
+            </div>
 
-            <i class="fas fa-graduation-cap"></i>
+            <div class="education-icon">
+                <i class="fas fa-brain"></i>
+            </div>
 
             <h3>
-                BA in Philosophy
+                Bachelor of Arts in Philosophy
             </h3>
 
-            <p>
+            <h4>
                 Pontifical Urbaniana University
+            </h4>
+
+            <p>
+                Academic formation in philosophy with emphasis on critical
+                reflection, structured reasoning, intellectual inquiry and
+                analytical thinking.
             </p>
 
-        </div>
+        </article>
+
+
+        <article class="education-card">
+
+            <div class="education-year">
+                2022 – 2026
+            </div>
+
+            <div class="education-icon">
+                <i class="fas fa-book-bible"></i>
+            </div>
+
+            <h3>
+                Bachelor of Arts in Theology
+            </h3>
+
+            <h4>
+                St. Joseph's Theological Institute, South Africa
+            </h4>
+
+            <p>
+                Theological and academic formation within an international
+                learning environment, involving extensive reading,
+                research, writing, critical reflection and engagement with
+                diverse perspectives.
+            </p>
+
+        </article>
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     SKILLS
-========================================================= -->
+<!-- ================= SKILLS ================= -->
 
 <section id="skills" class="section">
 
     <div class="section-heading">
 
+        <span class="section-label">CORE COMPETENCIES</span>
+
         <h2>Professional Skills</h2>
 
         <p>
-            Core competencies developed through academic and international experience.
+            Skills developed through academic formation, international
+            experience and professional development.
         </p>
 
     </div>
@@ -2338,25 +737,16 @@ footer {
     <div class="skills-container">
 
         <span class="skill">Legal Research</span>
-
         <span class="skill">Legal Writing & Drafting</span>
-
         <span class="skill">Research & Report Writing</span>
-
         <span class="skill">Critical & Analytical Thinking</span>
-
         <span class="skill">Confidentiality & Professional Ethics</span>
-
         <span class="skill">Cross-Cultural Communication</span>
-
         <span class="skill">Teamwork & Collaboration</span>
-
         <span class="skill">Professional Writing</span>
-
         <span class="skill">Research</span>
-
         <span class="skill">Analysis</span>
-
+        <span class="skill">Information Management</span>
         <span class="skill">French</span>
 
     </div>
@@ -2364,18 +754,19 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     PROJECTS
-========================================================= -->
+<!-- ================= PROJECTS ================= -->
 
 <section id="projects" class="section projects-section">
 
     <div class="section-heading">
 
+        <span class="section-label">SELECTED WORK</span>
+
         <h2>Projects</h2>
 
         <p>
-            Professional initiatives and selected areas of academic work.
+            Professional initiatives, digital work and selected academic
+            writing.
         </p>
 
     </div>
@@ -2388,49 +779,35 @@ footer {
 
         <article class="project-card">
 
-            <div class="project-header">
-
+            <div class="project-top">
                 <div class="project-icon">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-compass-drafting"></i>
                 </div>
 
-                <h3>
-                    EKO Analytics & Research
-                </h3>
-
+                <span class="project-number">01</span>
             </div>
 
+            <h3>
+                EKO Analytics & Research
+            </h3>
 
-            <div class="project-body">
+            <p>
+                A startup project in development, founded by Edwin Kuchio
+                Okello, with an intended focus on research, analysis,
+                reporting and information-based professional services.
+            </p>
 
-                <p>
-                    A startup project in the making, founded by Edwin
-                    Kuchio Okello, focused on developing research,
-                    analytical and information-based professional services.
-                </p>
+            <div class="project-tags">
+                <span>Research</span>
+                <span>Analysis</span>
+                <span>Reporting</span>
+            </div>
 
-
-                <div class="project-tags">
-
-                    <span>Research</span>
-                    <span>Analysis</span>
-                    <span>Reporting</span>
-                    <span>Professional Services</span>
-
-                </div>
-
-
-                <button
-                    class="project-button"
+            <button class="project-button"
                     onclick="openProjectModal('ekoModal')">
-
-                    <i class="fas fa-eye"></i>
-
-                    Explore Project
-
-                </button>
-
-            </div>
+                Explore Project
+                <i class="fas fa-arrow-right"></i>
+            </button>
 
         </article>
 
@@ -2439,48 +816,35 @@ footer {
 
         <article class="project-card">
 
-            <div class="project-header">
-
+            <div class="project-top">
                 <div class="project-icon">
                     <i class="fas fa-laptop-code"></i>
                 </div>
 
-                <h3>
-                    Professional Portfolio
-                </h3>
-
+                <span class="project-number">02</span>
             </div>
 
+            <h3>
+                Professional Portfolio
+            </h3>
 
-            <div class="project-body">
+            <p>
+                A digital professional platform bringing together academic
+                formation, experience, skills, projects, curriculum vitae
+                and selected visual material.
+            </p>
 
-                <p>
-                    A digital professional platform bringing together
-                    academic formation, experience, professional skills,
-                    projects, CV and selected visual material.
-                </p>
+            <div class="project-tags">
+                <span>Digital Portfolio</span>
+                <span>Professional Branding</span>
+                <span>Web</span>
+            </div>
 
-
-                <div class="project-tags">
-
-                    <span>Digital Portfolio</span>
-                    <span>Professional Branding</span>
-                    <span>Research</span>
-
-                </div>
-
-
-                <button
-                    class="project-button"
+            <button class="project-button"
                     onclick="openProjectModal('portfolioModal')">
-
-                    <i class="fas fa-eye"></i>
-
-                    Explore Portfolio
-
-                </button>
-
-            </div>
+                Explore Project
+                <i class="fas fa-arrow-right"></i>
+            </button>
 
         </article>
 
@@ -2489,56 +853,73 @@ footer {
 
     <!-- ACADEMIC WORK -->
 
-    <div class="research-heading">
+    <div class="academic-work">
 
-        <h2>
-            Academic Essays & Research
-        </h2>
+        <div class="academic-heading">
 
-        <p>
-            A dedicated space for selected academic essays,
-            research papers and written work.
-        </p>
+            <div>
+                <span class="section-label">WRITTEN WORK</span>
 
-    </div>
+                <h2>
+                    Academic Essays & Research
+                </h2>
+
+                <p>
+                    Selected academic essays, research papers and written
+                    work. Published documents can be opened and read
+                    directly from this portfolio.
+                </p>
+            </div>
+
+            <div class="academic-icon">
+                <i class="fas fa-book-open-reader"></i>
+            </div>
+
+        </div>
 
 
-    <div class="research-box">
+        <div id="academicDocuments" class="academic-documents">
 
-        <i class="fas fa-book-open"></i>
+            <div class="academic-empty">
 
-        <h3>
-            Selected Academic Work
-        </h3>
+                <i class="fas fa-file-lines"></i>
 
-        <p>
-            Academic essays and research papers will be displayed here
-            as they are added through the administrator area. Visitors
-            will be able to open and read available documents.
-        </p>
+                <h3>
+                    Academic work will appear here
+                </h3>
+
+                <p>
+                    Academic papers can be added through the administrator
+                    area when they are ready for publication.
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     EKO MODAL
-========================================================= -->
+<!-- ================= EKO MODAL ================= -->
 
-<div id="ekoModal" class="project-modal">
+<div id="ekoModal" class="modal">
 
-    <div class="modal-content">
+    <div class="modal-box">
 
-        <button
-            class="modal-close"
-            onclick="closeProjectModal('ekoModal')">
+        <button class="modal-close"
+                onclick="closeProjectModal('ekoModal')">
             &times;
         </button>
 
-        <div class="modal-icon">
-            <i class="fas fa-chart-line"></i>
+        <div class="modal-large-icon">
+            <i class="fas fa-compass-drafting"></i>
         </div>
+
+        <span class="section-label">
+            PROJECT 01
+        </span>
 
         <h2>
             EKO Analytics & Research
@@ -2560,32 +941,11 @@ footer {
         </h3>
 
         <ul class="modal-list">
-
-            <li>
-                <i class="fas fa-check"></i>
-                Research
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Analysis
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Research and Report Writing
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Information-based Services
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Professional Research Support
-            </li>
-
+            <li><i class="fas fa-check"></i> Research</li>
+            <li><i class="fas fa-check"></i> Analysis</li>
+            <li><i class="fas fa-check"></i> Research and Report Writing</li>
+            <li><i class="fas fa-check"></i> Information-Based Services</li>
+            <li><i class="fas fa-check"></i> Professional Research Support</li>
         </ul>
 
     </div>
@@ -2593,33 +953,33 @@ footer {
 </div>
 
 
-<!-- =========================================================
-     PORTFOLIO MODAL
-========================================================= -->
+<!-- ================= PORTFOLIO MODAL ================= -->
 
-<div id="portfolioModal" class="project-modal">
+<div id="portfolioModal" class="modal">
 
-    <div class="modal-content">
+    <div class="modal-box">
 
-        <button
-            class="modal-close"
-            onclick="closeProjectModal('portfolioModal')">
+        <button class="modal-close"
+                onclick="closeProjectModal('portfolioModal')">
             &times;
         </button>
 
-        <div class="modal-icon">
+        <div class="modal-large-icon">
             <i class="fas fa-laptop-code"></i>
         </div>
+
+        <span class="section-label">
+            PROJECT 02
+        </span>
 
         <h2>
             Professional Portfolio
         </h2>
 
         <p>
-            This portfolio provides a central professional platform
-            for presenting academic formation, international experience,
-            professional skills, projects, curriculum vitae and
-            selected visual material.
+            This website is a central professional platform designed to
+            present academic formation, professional skills, experience,
+            projects, curriculum vitae and selected visual material.
         </p>
 
         <h3>
@@ -2627,47 +987,14 @@ footer {
         </h3>
 
         <ul class="modal-list">
-
-            <li>
-                <i class="fas fa-check"></i>
-                Professional profile
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                International experience
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Academic qualifications
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Professional skills
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                EKO Analytics & Research
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Academic essays and research
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Curriculum Vitae
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Pictorial section
-            </li>
-
+            <li><i class="fas fa-check"></i> Professional Profile</li>
+            <li><i class="fas fa-check"></i> Experience</li>
+            <li><i class="fas fa-check"></i> Academic Formation</li>
+            <li><i class="fas fa-check"></i> Professional Skills</li>
+            <li><i class="fas fa-check"></i> EKO Analytics & Research</li>
+            <li><i class="fas fa-check"></i> Academic Essays & Research</li>
+            <li><i class="fas fa-check"></i> Curriculum Vitae</li>
+            <li><i class="fas fa-check"></i> Pictorial</li>
         </ul>
 
     </div>
@@ -2675,67 +1002,66 @@ footer {
 </div>
 
 
-<!-- =========================================================
-     CV
-========================================================= -->
+<!-- ================= CV ================= -->
 
 <section id="cv" class="cv-section">
 
-    <h2>
-        My Curriculum Vitae
-    </h2>
+    <div class="cv-inner">
 
-    <p>
-        View or download my current professional curriculum vitae.
-    </p>
+        <div class="cv-icon">
+            <i class="fas fa-file-pdf"></i>
+        </div>
 
+        <span class="section-label">
+            PROFESSIONAL DOCUMENT
+        </span>
 
-    <div class="cv-buttons">
+        <h2>
+            Curriculum Vitae
+        </h2>
 
-        <a
-            id="viewCV"
-            href="#"
-            target="_blank"
-            class="btn btn-primary">
+        <p>
+            View or download my current curriculum vitae.
+        </p>
 
-            <i class="fas fa-eye"></i>
-            View My CV
+        <div class="cv-buttons">
 
-        </a>
+            <a id="viewCV"
+               href="#"
+               target="_blank"
+               class="btn btn-primary">
+                <i class="fas fa-eye"></i>
+                View CV
+            </a>
 
+            <a id="downloadCV"
+               href="#"
+               download
+               class="btn btn-outline">
+                <i class="fas fa-download"></i>
+                Download CV
+            </a>
 
-        <a
-            id="downloadCV"
-            href="#"
-            download
-            class="btn btn-outline">
+        </div>
 
-            <i class="fas fa-download"></i>
-            Download CV
+        <div id="cvStatus" class="cv-status">
+            Loading CV...
+        </div>
 
-        </a>
-
-    </div>
-
-
-    <div id="cvStatus" class="cv-status">
-        Loading CV...
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     PICTORIAL
-========================================================= -->
+<!-- ================= PICTORIAL ================= -->
 
 <section id="pictorial" class="section">
 
     <div class="section-heading">
 
-        <h2>
-            Pictorial
-        </h2>
+        <span class="section-label">VISUAL JOURNEY</span>
+
+        <h2>Pictorial</h2>
 
         <p>
             Selected photographs and visual memories.
@@ -2746,17 +1072,17 @@ footer {
 
     <div id="gallery" class="gallery">
 
-        <div class="gallery-item">
+        <div class="gallery-empty">
 
-            <div class="gallery-placeholder">
+            <i class="fas fa-images"></i>
 
-                <i class="fas fa-images"></i>
+            <h3>
+                Pictorial content will appear here
+            </h3>
 
-                <span>
-                    Pictorial content will appear here.
-                </span>
-
-            </div>
+            <p>
+                Photographs can be added through the administrator area.
+            </p>
 
         </div>
 
@@ -2765,20 +1091,19 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     CONTACT
-========================================================= -->
+<!-- ================= CONTACT ================= -->
 
-<section id="contact" class="section">
+<section id="contact" class="section contact-section">
 
     <div class="section-heading">
 
-        <h2>
-            Contact Me
-        </h2>
+        <span class="section-label">GET IN TOUCH</span>
+
+        <h2>Contact Me</h2>
 
         <p>
-            I welcome professional and research-related enquiries.
+            I welcome professional, research and collaboration-related
+            enquiries.
         </p>
 
     </div>
@@ -2786,37 +1111,45 @@ footer {
 
     <div class="contact-box">
 
-        <h3>
-            Let's Connect
-        </h3>
+        <div class="contact-item">
+
+            <i class="fas fa-envelope"></i>
+
+            <div>
+                <span>Email</span>
+                <a href="mailto:edwinokello24@gmail.com">
+                    edwinokello24@gmail.com
+                </a>
+            </div>
+
+        </div>
 
 
-        <div class="contact-details">
+        <div class="contact-item">
 
-            <a href="mailto:edwinokello24@gmail.com">
+            <i class="fas fa-phone"></i>
 
-                <i class="fas fa-envelope"></i>
-                Email Me
+            <div>
+                <span>Phone</span>
+                <a href="tel:+254143947048">
+                    +254 143 947 048
+                </a>
+            </div>
 
-            </a>
-
-
-            <a href="tel:+254143947048">
-
-                <i class="fas fa-phone"></i>
-                +254 143 947 048
-
-            </a>
+        </div>
 
 
-            <a
-                href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
-                target="_blank">
+        <div class="contact-item">
 
-                <i class="fab fa-linkedin"></i>
-                LinkedIn
+            <i class="fab fa-linkedin"></i>
 
-            </a>
+            <div>
+                <span>LinkedIn</span>
+                <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
+                   target="_blank">
+                    LinkedIn Profile
+                </a>
+            </div>
 
         </div>
 
@@ -2825,15 +1158,12 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
     <p>
-        &copy;
-        <span id="year"></span>
+        &copy; <span id="year"></span>
         Edwin Kuchio Okello.
         All Rights Reserved.
     </p>
@@ -2841,201 +1171,180 @@ footer {
 </footer>
 
 
-<!-- =========================================================
-     SECRET ADMIN LOCK
-========================================================= -->
+<!-- ================= ADMIN LOCK ================= -->
 
-<div
-    class="admin-lock"
-    title="Administrator">
+<button class="admin-lock"
+        id="adminLock"
+        title="Administrator">
 
     <i class="fas fa-lock"></i>
 
-</div>
+</button>
 
 
-<!-- =========================================================
-     ADMIN PANEL
-========================================================= -->
+<!-- ================= ADMIN PANEL ================= -->
 
 <div id="adminPanel" class="admin-panel">
 
     <div class="admin-box">
 
-        <button
-            class="admin-close"
-            onclick="closeAdmin()">
+        <button class="admin-close"
+                onclick="closeAdmin()">
             &times;
         </button>
 
+        <div class="admin-heading">
 
-        <h2>
-            Administrator
-        </h2>
+            <div class="admin-icon">
+                <i class="fas fa-lock"></i>
+            </div>
 
-        <p>
-            This area is restricted to the portfolio administrator.
-        </p>
+            <div>
+                <span class="section-label">RESTRICTED AREA</span>
+                <h2>Administrator</h2>
+            </div>
 
+        </div>
+
+
+        <!-- LOGIN -->
 
         <div id="loginArea">
 
-            <div class="admin-form">
+            <p class="admin-description">
+                Administrator access is restricted.
+            </p>
 
-                <div class="form-group">
+            <div class="form-group">
 
-                    <label>
-                        Administrator Email
-                    </label>
+                <label for="adminEmail">
+                    Email
+                </label>
 
-                    <input
-                        type="email"
-                        id="adminEmail"
-                        placeholder="Enter administrator email">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="adminPassword"
-                        placeholder="Enter password">
-
-                </div>
-
-
-                <button
-                    class="btn btn-primary"
-                    onclick="adminLogin()">
-
-                    <i class="fas fa-sign-in-alt"></i>
-                    Sign In
-
-                </button>
+                <input type="email"
+                       id="adminEmail"
+                       placeholder="Administrator email">
 
             </div>
 
+
+            <div class="form-group">
+
+                <label for="adminPassword">
+                    Password
+                </label>
+
+                <input type="password"
+                       id="adminPassword"
+                       placeholder="Password">
+
+            </div>
+
+
+            <button class="btn btn-primary"
+                    onclick="adminLogin()">
+
+                <i class="fas fa-sign-in-alt"></i>
+                Sign In
+
+            </button>
+
         </div>
 
+
+        <!-- DASHBOARD -->
 
         <div id="adminDashboard" style="display:none;">
 
-
-            <!-- CV -->
-
-            <div class="admin-section">
+            <div class="admin-upload">
 
                 <h3>
-                    Upload CV
+                    <i class="fas fa-file-pdf"></i>
+                    Curriculum Vitae
                 </h3>
 
-                <div class="upload-row">
+                <input type="file"
+                       id="cvFile"
+                       accept=".pdf">
 
-                    <input
-                        type="file"
-                        id="cvFile"
-                        accept=".pdf">
-
-                    <button
-                        class="project-button"
+                <button class="project-button"
                         onclick="uploadCV()">
-
-                        Upload CV
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- PROFILE -->
-
-            <div class="admin-section">
-
-                <h3>
-                    Upload Profile Picture
-                </h3>
-
-                <div class="upload-row">
-
-                    <input
-                        type="file"
-                        id="profileFile"
-                        accept="image/*">
-
-                    <button
-                        class="project-button"
-                        onclick="uploadProfile()">
-
-                        Upload Picture
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- PICTORIAL -->
-
-            <div class="admin-section">
-
-                <h3>
-                    Upload Pictorial Image
-                </h3>
-
-                <div class="upload-row">
-
-                    <input
-                        type="file"
-                        id="pictorialFile"
-                        accept="image/*">
-
-                    <button
-                        class="project-button"
-                        onclick="uploadPictorial()">
-
-                        Upload Image
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- LOGOUT -->
-
-            <div class="admin-section">
-
-                <h3>
-                    Administrator Session
-                </h3>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="adminLogout()">
-
-                    <i class="fas fa-sign-out-alt"></i>
-                    Sign Out
-
+                    Upload / Replace CV
                 </button>
 
             </div>
 
+
+            <div class="admin-upload">
+
+                <h3>
+                    <i class="fas fa-user"></i>
+                    Profile Picture
+                </h3>
+
+                <input type="file"
+                       id="profileFile"
+                       accept="image/*">
+
+                <button class="project-button"
+                        onclick="uploadProfile()">
+                    Upload / Replace Picture
+                </button>
+
+            </div>
+
+
+            <div class="admin-upload">
+
+                <h3>
+                    <i class="fas fa-images"></i>
+                    Pictorial
+                </h3>
+
+                <input type="file"
+                       id="pictorialFile"
+                       accept="image/*">
+
+                <button class="project-button"
+                        onclick="uploadPictorial()">
+                    Add Pictorial Image
+                </button>
+
+            </div>
+
+
+            <div class="admin-upload">
+
+                <h3>
+                    <i class="fas fa-file-lines"></i>
+                    Academic Essays & Research
+                </h3>
+
+                <input type="file"
+                       id="academicFile"
+                       accept=".pdf">
+
+                <button class="project-button"
+                        onclick="uploadAcademicDocument()">
+                    Add Academic Paper
+                </button>
+
+            </div>
+
+
+            <button class="btn btn-dark"
+                    onclick="adminLogout()">
+
+                <i class="fas fa-sign-out-alt"></i>
+                Sign Out
+
+            </button>
+
         </div>
 
 
-        <div
-            id="adminMessage"
-            class="admin-message">
+        <div id="adminMessage"
+             class="admin-message">
         </div>
 
     </div>
@@ -3043,14 +1352,11 @@ footer {
 </div>
 
 
-<!-- =========================================================
-     BACK TO TOP
-========================================================= -->
+<!-- ================= BACK TO TOP ================= -->
 
-<button
-    id="backToTop"
-    class="back-to-top"
-    title="Back to top">
+<button id="backToTop"
+        class="back-to-top"
+        title="Back to top">
 
     <i class="fas fa-arrow-up"></i>
 
@@ -3064,21 +1370,26 @@ footer {
 ========================================================= */
 
 const SUPABASE_URL =
-    "https://cueajmzcmawvcbpwuyhi.supabase.co";
+"https://cueajmzcmawvcbpwuyhi.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
+"sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
 
 const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
+
+/* =========================================================
+   BUCKETS
+========================================================= */
 
 const CV_BUCKET = "CV";
 const PROFILE_BUCKET = "Profile";
 const PICTORIAL_BUCKET = "Pictorial";
+const ACADEMIC_BUCKET = "Academic";
 
 
 /* =========================================================
@@ -3086,27 +1397,20 @@ const PICTORIAL_BUCKET = "Pictorial";
 ========================================================= */
 
 const menuToggle =
-    document.getElementById("menuToggle");
+document.getElementById("menuToggle");
 
 const navLinks =
-    document.getElementById("navLinks");
+document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", function() {
-
+menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("active");
-
 });
 
-
 document.querySelectorAll(".nav-links a")
-.forEach(function(link) {
-
-    link.addEventListener("click", function() {
-
+.forEach(link => {
+    link.addEventListener("click", () => {
         navLinks.classList.remove("active");
-
     });
-
 });
 
 
@@ -3115,57 +1419,7 @@ document.querySelectorAll(".nav-links a")
 ========================================================= */
 
 document.getElementById("year").textContent =
-    new Date().getFullYear();
-
-
-/* =========================================================
-   PROJECT MODALS
-========================================================= */
-
-function openProjectModal(id) {
-
-    const modal =
-        document.getElementById(id);
-
-    if (!modal) return;
-
-    modal.classList.add("active");
-
-    document.body.style.overflow = "hidden";
-
-}
-
-
-function closeProjectModal(id) {
-
-    const modal =
-        document.getElementById(id);
-
-    if (!modal) return;
-
-    modal.classList.remove("active");
-
-    document.body.style.overflow = "";
-
-}
-
-
-document.querySelectorAll(".project-modal")
-.forEach(function(modal) {
-
-    modal.addEventListener("click", function(event) {
-
-        if (event.target === modal) {
-
-            modal.classList.remove("active");
-
-            document.body.style.overflow = "";
-
-        }
-
-    });
-
-});
+new Date().getFullYear();
 
 
 /* =========================================================
@@ -3173,24 +1427,19 @@ document.querySelectorAll(".project-modal")
 ========================================================= */
 
 const backToTop =
-    document.getElementById("backToTop");
+document.getElementById("backToTop");
 
-window.addEventListener("scroll", function() {
+window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 400) {
-
+    if (window.scrollY > 450) {
         backToTop.classList.add("show");
-
     } else {
-
         backToTop.classList.remove("show");
-
     }
 
 });
 
-
-backToTop.addEventListener("click", function() {
+backToTop.addEventListener("click", () => {
 
     window.scrollTo({
         top: 0,
@@ -3201,17 +1450,61 @@ backToTop.addEventListener("click", function() {
 
 
 /* =========================================================
+   MODALS
+========================================================= */
+
+function openProjectModal(id) {
+
+    const modal =
+    document.getElementById(id);
+
+    if (!modal) return;
+
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+function closeProjectModal(id) {
+
+    const modal =
+    document.getElementById(id);
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow = "";
+}
+
+
+document.querySelectorAll(".modal")
+.forEach(modal => {
+
+    modal.addEventListener("click", event => {
+
+        if (event.target === modal) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+    });
+
+});
+
+
+/* =========================================================
    ADMIN
 ========================================================= */
 
 const adminLock =
-    document.querySelector(".admin-lock");
+document.getElementById("adminLock");
 
 const adminPanel =
-    document.getElementById("adminPanel");
+document.getElementById("adminPanel");
 
-
-adminLock.addEventListener("click", function() {
+adminLock.addEventListener("click", () => {
 
     adminPanel.classList.add("active");
 
@@ -3225,46 +1518,28 @@ function closeAdmin() {
 }
 
 
-adminPanel.addEventListener("click", function(event) {
+adminPanel.addEventListener("click", event => {
 
     if (event.target === adminPanel) {
-
         closeAdmin();
-
     }
 
 });
 
 
 /* =========================================================
-   ADMIN MESSAGE
-========================================================= */
-
-function showAdminMessage(message, type) {
-
-    const box =
-        document.getElementById("adminMessage");
-
-    box.textContent = message;
-
-    box.className =
-        "admin-message show " + type;
-
-}
-
-
-/* =========================================================
-   LOGIN
+   ADMIN LOGIN
 ========================================================= */
 
 async function adminLogin() {
 
     const email =
-        document.getElementById("adminEmail").value.trim();
+    document.getElementById("adminEmail")
+    .value.trim();
 
     const password =
-        document.getElementById("adminPassword").value;
-
+    document.getElementById("adminPassword")
+    .value;
 
     if (!email || !password) {
 
@@ -3274,24 +1549,18 @@ async function adminLogin() {
         );
 
         return;
-
     }
-
 
     showAdminMessage(
         "Signing in...",
         "success"
     );
 
-
     const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
-
-            email: email,
-            password: password
-
-        });
-
+    await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
 
     if (error) {
 
@@ -3301,17 +1570,15 @@ async function adminLogin() {
         );
 
         return;
-
     }
-
 
     if (data.session) {
 
         document.getElementById("loginArea")
-            .style.display = "none";
+        .style.display = "none";
 
         document.getElementById("adminDashboard")
-            .style.display = "block";
+        .style.display = "block";
 
         showAdminMessage(
             "Administrator signed in successfully.",
@@ -3324,22 +1591,21 @@ async function adminLogin() {
 
 
 /* =========================================================
-   CHECK SESSION
+   SESSION
 ========================================================= */
 
 async function checkAdminSession() {
 
     const { data } =
-        await supabaseClient.auth.getSession();
-
+    await supabaseClient.auth.getSession();
 
     if (data.session) {
 
         document.getElementById("loginArea")
-            .style.display = "none";
+        .style.display = "none";
 
         document.getElementById("adminDashboard")
-            .style.display = "block";
+        .style.display = "block";
 
     }
 
@@ -3357,15 +1623,32 @@ async function adminLogout() {
     await supabaseClient.auth.signOut();
 
     document.getElementById("loginArea")
-        .style.display = "block";
+    .style.display = "block";
 
     document.getElementById("adminDashboard")
-        .style.display = "none";
+    .style.display = "none";
 
     showAdminMessage(
         "You have been signed out.",
         "success"
     );
+
+}
+
+
+/* =========================================================
+   ADMIN MESSAGE
+========================================================= */
+
+function showAdminMessage(message, type) {
+
+    const box =
+    document.getElementById("adminMessage");
+
+    box.textContent = message;
+
+    box.className =
+    "admin-message show " + type;
 
 }
 
@@ -3377,55 +1660,47 @@ async function adminLogout() {
 async function uploadCV() {
 
     const file =
-        document.getElementById("cvFile").files[0];
-
+    document.getElementById("cvFile").files[0];
 
     if (!file) {
 
         showAdminMessage(
-            "Please select a PDF CV first.",
+            "Please select your PDF CV.",
             "error"
         );
 
         return;
-
     }
-
 
     if (file.type !== "application/pdf") {
 
         showAdminMessage(
-            "The CV must be a PDF file.",
+            "The CV must be a PDF.",
             "error"
         );
 
         return;
-
     }
-
 
     showAdminMessage(
         "Uploading CV...",
         "success"
     );
 
-
     const fileName =
-        "Edwin-Kuchio-Okello-CV.pdf";
-
+    "Edwin-Kuchio-Okello-CV.pdf";
 
     const { error } =
-        await supabaseClient.storage
-        .from(CV_BUCKET)
-        .upload(
-            fileName,
-            file,
-            {
-                upsert: true,
-                contentType: "application/pdf"
-            }
-        );
-
+    await supabaseClient.storage
+    .from(CV_BUCKET)
+    .upload(
+        fileName,
+        file,
+        {
+            upsert: true,
+            contentType: "application/pdf"
+        }
+    );
 
     if (error) {
 
@@ -3435,15 +1710,12 @@ async function uploadCV() {
         );
 
         return;
-
     }
-
 
     showAdminMessage(
         "CV uploaded successfully.",
         "success"
     );
-
 
     loadCV();
 
@@ -3457,41 +1729,35 @@ async function uploadCV() {
 function loadCV() {
 
     const { data } =
-        supabaseClient.storage
-        .from(CV_BUCKET)
-        .getPublicUrl(
-            "Edwin-Kuchio-Okello-CV.pdf"
-        );
-
+    supabaseClient.storage
+    .from(CV_BUCKET)
+    .getPublicUrl(
+        "Edwin-Kuchio-Okello-CV.pdf"
+    );
 
     if (!data || !data.publicUrl) {
 
         document.getElementById("cvStatus")
-            .textContent =
-            "CV currently unavailable.";
+        .textContent =
+        "CV currently unavailable.";
 
         return;
-
     }
 
-
     const url =
-        data.publicUrl +
-        "?t=" +
-        Date.now();
-
+    data.publicUrl +
+    "?t=" +
+    Date.now();
 
     document.getElementById("viewCV")
-        .href = url;
-
+    .href = url;
 
     document.getElementById("downloadCV")
-        .href = url;
-
+    .href = url;
 
     document.getElementById("cvStatus")
-        .textContent =
-        "CV available for viewing and download.";
+    .textContent =
+    "CV available for viewing and download.";
 
 }
 
@@ -3505,8 +1771,8 @@ loadCV();
 async function uploadProfile() {
 
     const file =
-        document.getElementById("profileFile").files[0];
-
+    document.getElementById("profileFile")
+    .files[0];
 
     if (!file) {
 
@@ -3516,36 +1782,30 @@ async function uploadProfile() {
         );
 
         return;
-
     }
-
 
     showAdminMessage(
         "Uploading profile picture...",
         "success"
     );
 
-
     const extension =
-        file.name.split(".").pop().toLowerCase();
-
+    file.name.split(".").pop().toLowerCase();
 
     const fileName =
-        "profile." + extension;
-
+    "profile." + extension;
 
     const { error } =
-        await supabaseClient.storage
-        .from(PROFILE_BUCKET)
-        .upload(
-            fileName,
-            file,
-            {
-                upsert: true,
-                contentType: file.type
-            }
-        );
-
+    await supabaseClient.storage
+    .from(PROFILE_BUCKET)
+    .upload(
+        fileName,
+        file,
+        {
+            upsert: true,
+            contentType: file.type
+        }
+    );
 
     if (error) {
 
@@ -3556,15 +1816,12 @@ async function uploadProfile() {
         );
 
         return;
-
     }
-
 
     showAdminMessage(
         "Profile picture uploaded successfully.",
         "success"
     );
-
 
     loadProfile();
 
@@ -3575,55 +1832,45 @@ async function uploadProfile() {
    LOAD PROFILE
 ========================================================= */
 
-async function loadProfile() {
+function loadProfile() {
 
-    const extensions = [
-        "jpg",
-        "jpeg",
-        "png",
-        "webp"
-    ];
-
+    const extensions =
+    ["jpg", "jpeg", "png", "webp"];
 
     const frame =
-        document.getElementById("profileFrame");
+    document.getElementById("profileFrame");
 
-
-    for (const extension of extensions) {
+    extensions.forEach(extension => {
 
         const { data } =
-            supabaseClient.storage
-            .from(PROFILE_BUCKET)
-            .getPublicUrl(
-                "profile." + extension
-            );
+        supabaseClient.storage
+        .from(PROFILE_BUCKET)
+        .getPublicUrl(
+            "profile." + extension
+        );
 
-
-        if (!data || !data.publicUrl) continue;
-
+        if (!data || !data.publicUrl) return;
 
         const image =
-            new Image();
+        new Image();
 
-
-        image.onload = function() {
+        image.onload = () => {
 
             frame.innerHTML = "";
 
             image.alt =
-                "Edwin Kuchio Okello";
+            "Edwin Kuchio Okello";
 
             frame.appendChild(image);
 
         };
 
-
         image.src =
-            data.publicUrl +
-            "?t=" +
-            Date.now();
+        data.publicUrl +
+        "?t=" +
+        Date.now();
 
-    }
+    });
 
 }
 
@@ -3637,8 +1884,8 @@ loadProfile();
 async function uploadPictorial() {
 
     const file =
-        document.getElementById("pictorialFile").files[0];
-
+    document.getElementById("pictorialFile")
+    .files[0];
 
     if (!file) {
 
@@ -3648,9 +1895,7 @@ async function uploadPictorial() {
         );
 
         return;
-
     }
-
 
     if (!file.type.startsWith("image/")) {
 
@@ -3660,39 +1905,33 @@ async function uploadPictorial() {
         );
 
         return;
-
     }
-
 
     showAdminMessage(
         "Uploading pictorial image...",
         "success"
     );
 
-
     const extension =
-        file.name.split(".").pop();
-
+    file.name.split(".").pop();
 
     const fileName =
-        "photo-" +
-        Date.now() +
-        "." +
-        extension;
-
+    "photo-" +
+    Date.now() +
+    "." +
+    extension;
 
     const { error } =
-        await supabaseClient.storage
-        .from(PICTORIAL_BUCKET)
-        .upload(
-            fileName,
-            file,
-            {
-                upsert: false,
-                contentType: file.type
-            }
-        );
-
+    await supabaseClient.storage
+    .from(PICTORIAL_BUCKET)
+    .upload(
+        fileName,
+        file,
+        {
+            upsert: false,
+            contentType: file.type
+        }
+    );
 
     if (error) {
 
@@ -3703,15 +1942,12 @@ async function uploadPictorial() {
         );
 
         return;
-
     }
-
 
     showAdminMessage(
         "Pictorial image uploaded successfully.",
         "success"
     );
-
 
     loadGallery();
 
@@ -3719,74 +1955,58 @@ async function uploadPictorial() {
 
 
 /* =========================================================
-   LOAD GALLERY
+   GALLERY
 ========================================================= */
 
 async function loadGallery() {
 
     const gallery =
-        document.getElementById("gallery");
-
+    document.getElementById("gallery");
 
     const { data, error } =
-        await supabaseClient.storage
-        .from(PICTORIAL_BUCKET)
-        .list("", {
-
-            limit: 100,
-
-            sortBy: {
-                column: "created_at",
-                order: "desc"
-            }
-
-        });
-
+    await supabaseClient.storage
+    .from(PICTORIAL_BUCKET)
+    .list("", {
+        limit: 100,
+        sortBy: {
+            column: "created_at",
+            order: "desc"
+        }
+    });
 
     if (error || !data || data.length === 0) {
-
         return;
-
     }
-
 
     gallery.innerHTML = "";
 
-
-    data.forEach(function(file) {
+    data.forEach(file => {
 
         if (!file.name) return;
 
-
         const { data: urlData } =
-            supabaseClient.storage
-            .from(PICTORIAL_BUCKET)
-            .getPublicUrl(file.name);
-
+        supabaseClient.storage
+        .from(PICTORIAL_BUCKET)
+        .getPublicUrl(file.name);
 
         if (!urlData || !urlData.publicUrl) return;
 
-
         const item =
-            document.createElement("div");
+        document.createElement("div");
 
         item.className =
-            "gallery-item";
-
+        "gallery-item";
 
         const image =
-            document.createElement("img");
+        document.createElement("img");
 
         image.src =
-            urlData.publicUrl;
-
+        urlData.publicUrl;
 
         image.alt =
-            "Edwin Kuchio Okello — portfolio photograph";
-
+        "Edwin Kuchio Okello portfolio photograph";
 
         item.appendChild(image);
-
 
         gallery.appendChild(item);
 
@@ -3798,18 +2018,169 @@ loadGallery();
 
 
 /* =========================================================
+   ACADEMIC PAPER UPLOAD
+========================================================= */
+
+async function uploadAcademicDocument() {
+
+    const file =
+    document.getElementById("academicFile")
+    .files[0];
+
+    if (!file) {
+
+        showAdminMessage(
+            "Please select an academic PDF.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (file.type !== "application/pdf") {
+
+        showAdminMessage(
+            "Academic documents must be PDF files.",
+            "error"
+        );
+
+        return;
+    }
+
+    showAdminMessage(
+        "Uploading academic paper...",
+        "success"
+    );
+
+    const safeName =
+    file.name
+    .replace(/\s+/g, "-")
+    .replace(/[^a-zA-Z0-9._-]/g, "");
+
+    const fileName =
+    Date.now() + "-" + safeName;
+
+    const { error } =
+    await supabaseClient.storage
+    .from(ACADEMIC_BUCKET)
+    .upload(
+        fileName,
+        file,
+        {
+            upsert: false,
+            contentType: "application/pdf"
+        }
+    );
+
+    if (error) {
+
+        showAdminMessage(
+            "Academic paper upload failed: " +
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+    showAdminMessage(
+        "Academic paper added successfully.",
+        "success"
+    );
+
+    loadAcademicDocuments();
+
+}
+
+
+/* =========================================================
+   LOAD ACADEMIC PAPERS
+========================================================= */
+
+async function loadAcademicDocuments() {
+
+    const container =
+    document.getElementById("academicDocuments");
+
+    const { data, error } =
+    await supabaseClient.storage
+    .from(ACADEMIC_BUCKET)
+    .list("", {
+        limit: 100,
+        sortBy: {
+            column: "created_at",
+            order: "desc"
+        }
+    });
+
+    if (error || !data || data.length === 0) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    data.forEach(file => {
+
+        if (!file.name) return;
+
+        const { data: urlData } =
+        supabaseClient.storage
+        .from(ACADEMIC_BUCKET)
+        .getPublicUrl(file.name);
+
+        if (!urlData || !urlData.publicUrl) return;
+
+        const card =
+        document.createElement("article");
+
+        card.className =
+        "academic-card";
+
+        card.innerHTML = `
+            <div class="academic-file-icon">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+
+            <div class="academic-card-content">
+
+                <span>ACADEMIC WORK</span>
+
+                <h3>${file.name.replace(/^\d+-/, "").replace(/-/g, " ")}</h3>
+
+                <p>
+                    Selected academic essay or research paper.
+                </p>
+
+                <a href="${urlData.publicUrl}"
+                   target="_blank"
+                   class="academic-read">
+                    <i class="fas fa-book-open"></i>
+                    Read Paper
+                </a>
+
+            </div>
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+loadAcademicDocuments();
+
+
+/* =========================================================
    ESCAPE KEY
 ========================================================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", event => {
 
     if (event.key === "Escape") {
 
-        document.querySelectorAll(".project-modal.active")
-        .forEach(function(modal) {
-
+        document.querySelectorAll(".modal.active")
+        .forEach(modal => {
             modal.classList.remove("active");
-
         });
 
         closeAdmin();
