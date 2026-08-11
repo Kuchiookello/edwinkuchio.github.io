@@ -3,992 +3,1114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Professional Portfolio of Edwin Kuchio Okello">
+
 <title>Edwin Kuchio Okello | Professional Portfolio</title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<meta name="description"
+      content="Professional portfolio of Edwin Kuchio Okello featuring academic formation, professional skills, projects, research and curriculum vitae.">
 
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet">
+
+<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <style>
-:root{
-    --navy:#0b1f3a;
-    --navy2:#12345b;
-    --gold:#d4af37;
-    --green:#16865a;
-    --green2:#21a66d;
-    --white:#fff;
-    --light:#f5f7fa;
-    --text:#202b38;
-    --muted:#667085;
-    --border:#e2e7ed;
-    --shadow:0 10px 30px rgba(11,31,58,.10);
-}
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-html{
-    scroll-behavior:smooth;
-    scroll-padding-top:80px;
+:root {
+    --navy: #07152f;
+    --navy2: #0c2044;
+    --gold: #d6a900;
+    --gold-light: #f5c542;
+    --green: #26734d;
+    --green-light: #e9f5ed;
+    --white: #ffffff;
+    --light: #f5f7fa;
+    --text: #263246;
+    --muted: #697586;
+    --border: #e4e8ee;
+    --shadow: 0 12px 35px rgba(7, 21, 47, .10);
+    --radius: 18px;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    color:var(--text);
-    background:var(--light);
-    line-height:1.7;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+html {
+    scroll-behavior: smooth;
 }
 
-img{
-    max-width:100%;
-    display:block;
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.7;
 }
 
-button,input,textarea{
-    font:inherit;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.container{
-    width:min(1180px,92%);
-    margin:auto;
+button {
+    font-family: inherit;
 }
 
-section{
-    padding:90px 0;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-.section-title{
-    text-align:center;
-    margin-bottom:50px;
+section {
+    scroll-margin-top: 90px;
 }
 
-.section-title h2{
-    color:var(--navy);
-    font-size:40px;
-    margin-bottom:10px;
-}
 
-.section-title p{
-    color:var(--muted);
-    max-width:700px;
-    margin:auto;
-}
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-.line{
-    width:65px;
-    height:4px;
-    background:var(--gold);
-    margin:0 auto 15px;
-    border-radius:5px;
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 5000;
+    background: var(--navy);
+    box-shadow: 0 5px 20px rgba(0,0,0,.15);
 }
 
+.nav-container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 12px 25px;
 
-/* ================= NAVIGATION ================= */
-
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:5000;
-    background:rgba(11,31,58,.97);
-    box-shadow:0 4px 20px rgba(0,0,0,.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.navbar{
-    min-height:76px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: white;
 }
 
-.logo{
-    color:white;
-    font-weight:bold;
-    font-size:20px;
+.logo span {
+    display: block;
+    color: var(--gold-light);
 }
 
-.logo span{
-    color:var(--gold);
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
 }
 
-.nav-links{
-    list-style:none;
-    display:flex;
-    gap:27px;
-    align-items:center;
+.nav-links a {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .25s;
 }
 
-.nav-links a{
-    color:white;
-    font-size:14px;
-    font-weight:bold;
+.nav-links a:hover {
+    color: var(--gold-light);
 }
 
-.nav-links a:hover{
-    color:var(--gold);
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
 }
 
-.menu-toggle{
-    display:none;
-    background:none;
-    border:0;
-    color:white;
-    font-size:25px;
-}
 
+/* =========================================================
+   HERO
+========================================================= */
 
-/* ================= HERO ================= */
+.hero {
+    min-height: 88vh;
+    background:
+        linear-gradient(rgba(7,21,47,.92), rgba(7,21,47,.96)),
+        radial-gradient(circle at top right, #244a82, transparent 45%);
 
-.hero{
-    min-height:100vh;
-    padding-top:120px;
-    display:flex;
-    align-items:center;
-    background:linear-gradient(135deg,var(--navy),var(--navy2));
-    color:white;
-}
+    color: white;
 
-.hero-grid{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:70px;
-    align-items:center;
+    display: flex;
+    align-items: center;
 }
 
-.hero h1{
-    font-size:clamp(40px,6vw,68px);
-    line-height:1.1;
-    margin-bottom:18px;
-}
+.hero-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding: 80px 25px;
 
-.hero h1 span{
-    color:var(--gold);
+    display: grid;
+    grid-template-columns: 1.4fr .8fr;
+    gap: 70px;
+    align-items: center;
 }
 
-.hero h3{
-    font-size:22px;
-    font-weight:500;
-    color:#d9e2ee;
-    margin-bottom:20px;
+.hero h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.1;
+    margin-bottom: 20px;
 }
 
-.hero p{
-    color:#d0d9e5;
-    font-size:17px;
-    max-width:700px;
-    margin-bottom:30px;
+.hero h1 span {
+    color: var(--gold-light);
 }
 
-.hero-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:13px;
+.hero-subtitle {
+    font-size: 21px;
+    color: #d9e1ed;
+    margin-bottom: 25px;
+    max-width: 700px;
 }
 
-.btn{
-    border:2px solid transparent;
-    padding:12px 20px;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    transition:.3s;
+.hero-description {
+    color: #b9c5d5;
+    max-width: 720px;
+    margin-bottom: 35px;
 }
 
-.btn-primary{
-    background:var(--gold);
-    color:var(--navy);
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
 }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
 
-.btn-primary:hover{
-    transform:translateY(-2px);
+    padding: 13px 22px;
+    border-radius: 8px;
+
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+    border: 1px solid transparent;
 }
 
-.btn-outline{
-    border-color:rgba(255,255,255,.5);
-    color:white;
-    background:transparent;
+.btn-primary {
+    background: var(--gold-light);
+    color: var(--navy);
 }
 
-.btn-outline:hover{
-    background:white;
-    color:var(--navy);
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background: white;
 }
 
-.btn-green{
-    background:var(--green);
-    color:white;
+.btn-outline {
+    border-color: white;
+    color: white;
+    background: transparent;
 }
 
-.btn-green:hover{
-    background:var(--green2);
+.btn-outline:hover {
+    background: white;
+    color: var(--navy);
 }
 
 
-/* ================= PROFILE ================= */
+/* =========================================================
+   PROFILE
+========================================================= */
 
-.hero-photo{
-    display:flex;
-    justify-content:center;
+.hero-profile {
+    display: flex;
+    justify-content: center;
 }
 
-.profile-frame{
-    width:310px;
-    height:310px;
-    border-radius:50%;
-    padding:8px;
-    background:linear-gradient(135deg,var(--gold),var(--green));
-    box-shadow:0 20px 50px rgba(0,0,0,.3);
-}
+.profile-frame {
+    width: 290px;
+    height: 350px;
 
-.profile-frame img{
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    object-fit:cover;
-    background:#e9eef4;
-}
+    border: 5px solid rgba(245,197,66,.8);
+    border-radius: 22px;
+
+    overflow: hidden;
+    background: #102445;
 
-.profile-placeholder{
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    background:#e9eef4;
-    color:var(--navy);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
 }
 
-.profile-placeholder i{
-    font-size:65px;
-    margin-bottom:10px;
+.profile-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
+.profile-placeholder {
+    width: 100%;
+    height: 100%;
 
-/* ================= ABOUT ================= */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-.about{
-    background:white;
+    color: #9eacc0;
+    text-align: center;
 }
 
-.about-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
+.profile-placeholder i {
+    font-size: 70px;
+    margin-bottom: 15px;
+    color: var(--gold);
 }
 
-.about-card{
-    background:white;
-    padding:35px;
-    border-radius:16px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 90px 25px;
 }
 
-.about-card h3{
-    color:var(--navy);
-    font-size:25px;
-    margin-bottom:15px;
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.about-card p{
-    color:var(--muted);
-    margin-bottom:15px;
+.section-heading h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--navy);
+    font-size: 43px;
+    margin-bottom: 10px;
 }
 
-.quick-facts{
-    display:grid;
-    gap:15px;
+.section-heading p {
+    color: var(--muted);
+    font-size: 17px;
 }
+
 
-.fact{
-    display:flex;
-    gap:15px;
-    padding:18px;
-    background:var(--light);
-    border-left:4px solid var(--gold);
-    border-radius:9px;
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
 }
 
-.fact i{
-    color:var(--green);
-    margin-top:5px;
+.info-card {
+    background: white;
+    padding: 35px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
-.fact strong{
-    color:var(--navy);
-    display:block;
+.info-card h3 {
+    color: var(--navy);
+    margin-bottom: 15px;
+    font-size: 24px;
 }
 
-.fact span{
-    color:var(--muted);
+.info-card p {
+    color: var(--muted);
 }
 
 
-/* ================= EXPERIENCE ================= */
+/* =========================================================
+   EXPERIENCE
+========================================================= */
 
-.timeline{
-    max-width:950px;
-    margin:auto;
-    position:relative;
+.timeline {
+    max-width: 900px;
+    margin: auto;
 }
 
-.timeline:before{
-    content:"";
-    position:absolute;
-    left:22px;
-    top:0;
-    bottom:0;
-    width:2px;
-    background:var(--gold);
+.timeline-item {
+    position: relative;
+    padding: 0 0 35px 35px;
+    border-left: 2px solid #d8dee8;
 }
 
-.timeline-item{
-    position:relative;
-    padding-left:65px;
-    margin-bottom:35px;
+.timeline-item:last-child {
+    border-left-color: transparent;
 }
 
-.timeline-dot{
-    position:absolute;
-    left:10px;
-    top:5px;
-    width:25px;
-    height:25px;
-    border-radius:50%;
-    background:var(--navy);
-    border:5px solid var(--gold);
-}
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 0;
+
+    width: 14px;
+    height: 14px;
 
-.timeline-card{
-    background:white;
-    padding:28px;
-    border-radius:15px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
+    background: var(--gold-light);
+    border-radius: 50%;
 }
 
-.timeline-card h3{
-    color:var(--navy);
+.timeline-item h3 {
+    color: var(--navy);
+    margin-bottom: 5px;
 }
 
-.period{
-    color:var(--green);
-    font-weight:bold;
-    margin:4px 0 10px;
+.timeline-item .date {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 14px;
 }
 
-.timeline-card p{
-    color:var(--muted);
+.timeline-item p {
+    color: var(--muted);
+    margin-top: 8px;
 }
 
 
-/* ================= EDUCATION ================= */
+/* =========================================================
+   EDUCATION
+========================================================= */
 
-.education{
-    background:white;
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
 }
 
-.education-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
+.education-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
-.education-card{
-    background:var(--light);
-    padding:30px;
-    border:1px solid var(--border);
-    border-radius:15px;
+.education-card i {
+    font-size: 30px;
+    color: var(--gold);
+    margin-bottom: 15px;
 }
 
-.education-icon{
-    width:55px;
-    height:55px;
-    border-radius:12px;
-    background:var(--navy);
-    color:var(--gold);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    margin-bottom:18px;
+.education-card h3 {
+    color: var(--navy);
 }
 
-.education-card h3{
-    color:var(--navy);
-    margin-bottom:8px;
+.education-card p {
+    color: var(--muted);
 }
 
-.education-card p{
-    color:var(--muted);
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
 }
 
+.skill {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 11px 17px;
+    border-radius: 25px;
 
-/* ================= SKILLS ================= */
+    color: var(--green);
+    font-weight: 600;
 
-.skills-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.04);
 }
 
-.skill{
-    background:white;
-    padding:23px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    box-shadow:0 5px 18px rgba(11,31,58,.05);
-    display:flex;
-    gap:13px;
-}
 
-.skill i{
-    color:var(--green);
-    margin-top:5px;
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.projects-section {
+    background: var(--light);
 }
+
+.projects-grid {
+    max-width: 1100px;
+    margin: auto;
 
-.skill strong{
-    color:var(--navy);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 35px;
 }
 
+.project-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
 
-/* ================= PROJECTS ================= */
+    box-shadow: var(--shadow);
 
-.projects{
-    background:white;
+    transition: .3s;
 }
 
-.projects-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:30px;
+.project-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 20px 45px rgba(7,21,47,.16);
 }
 
-.project-card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
+.project-header {
+    background: var(--navy);
+    color: white;
+    padding: 28px 30px;
 }
 
-.project-header{
-    background:var(--navy);
-    color:white;
-    padding:28px;
+.project-icon {
+    color: var(--gold-light);
+    font-size: 34px;
+    margin-bottom: 12px;
 }
 
-.project-header i{
-    color:var(--gold);
-    font-size:30px;
-    margin-bottom:12px;
+.project-header h3 {
+    font-size: 25px;
 }
 
-.project-header h3{
-    font-size:23px;
+.project-body {
+    padding: 30px;
 }
 
-.project-body{
-    padding:28px;
+.project-body p {
+    color: var(--muted);
+    margin-bottom: 20px;
 }
 
-.project-body p{
-    color:var(--muted);
-    margin-bottom:18px;
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
 }
+
+.project-tags span {
+    background: var(--green-light);
+    color: var(--green);
+
+    padding: 6px 12px;
+    border-radius: 20px;
 
-.tag{
-    display:inline-block;
-    padding:5px 10px;
-    border-radius:20px;
-    background:rgba(22,134,90,.1);
-    color:var(--green);
-    font-size:12px;
-    font-weight:bold;
-    margin:3px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
+.project-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-/* ================= CV ================= */
+    border: none;
+    background: var(--navy);
+    color: white;
 
-.cv-section{
-    background:linear-gradient(135deg,var(--navy),var(--navy2));
-    color:white;
+    padding: 12px 20px;
+    border-radius: 8px;
+
+    cursor: pointer;
+    font-weight: 700;
+    transition: .25s;
 }
 
-.cv-box{
-    max-width:850px;
-    margin:auto;
-    text-align:center;
+.project-button:hover {
+    background: var(--gold-light);
+    color: var(--navy);
 }
+
+
+/* =========================================================
+   ACADEMIC RESEARCH
+========================================================= */
 
-.cv-box h2{
-    font-size:40px;
-    margin-bottom:15px;
+.research-heading {
+    text-align: center;
+    margin: 80px auto 35px;
 }
 
-.cv-box p{
-    color:#d4ddea;
-    margin-bottom:25px;
+.research-heading h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--navy);
+    font-size: 38px;
 }
 
-.cv-buttons{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
+.research-heading p {
+    color: var(--muted);
 }
+
+.research-empty {
+    max-width: 800px;
+    margin: auto;
+
+    text-align: center;
+
+    background: white;
+    border: 2px dashed #d8dee8;
 
-#cvStatus{
-    margin-top:18px;
-    font-size:14px;
+    border-radius: var(--radius);
+    padding: 45px 25px;
 }
 
+.research-empty i {
+    font-size: 42px;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
 
-/* ================= PICTORIAL ================= */
+.research-empty h3 {
+    color: var(--navy);
+    margin-bottom: 10px;
+}
 
-.pictorial{
-    background:var(--light);
+.research-empty p {
+    color: var(--muted);
 }
+
 
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+/* =========================================================
+   CV
+========================================================= */
+
+.cv-section {
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    padding: 85px 25px;
 }
 
-.gallery-item{
-    background:white;
-    border-radius:14px;
-    overflow:hidden;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
+.cv-section h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 43px;
+    margin-bottom: 10px;
 }
 
-.gallery-item img{
-    width:100%;
-    height:260px;
-    object-fit:cover;
+.cv-section p {
+    color: #c9d2df;
+    margin-bottom: 25px;
 }
 
-.gallery-caption{
-    padding:13px;
-    color:var(--muted);
-    font-size:14px;
+.cv-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.empty-gallery{
-    grid-column:1/-1;
-    text-align:center;
-    padding:50px;
-    color:var(--muted);
+.cv-status {
+    margin-top: 15px;
+    color: #aebdce;
+    font-size: 14px;
 }
 
 
-/* ================= CONTACT ================= */
+/* =========================================================
+   PICTORIAL
+========================================================= */
 
-.contact{
-    background:white;
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
 }
 
-.contact-grid{
-    display:grid;
-    grid-template-columns:.9fr 1.1fr;
-    gap:40px;
+.gallery-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-height: 230px;
 }
 
-.contact-info{
-    background:var(--navy);
-    color:white;
-    padding:35px;
-    border-radius:15px;
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
+
+.gallery-placeholder {
+    min-height: 230px;
 
-.contact-info h3{
-    color:var(--gold);
-    font-size:26px;
-    margin-bottom:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #8b96a6;
 }
 
-.contact-item{
-    display:flex;
-    gap:15px;
-    margin:20px 0;
+.gallery-placeholder i {
+    color: var(--gold);
+    font-size: 42px;
+    margin-bottom: 10px;
 }
+
 
-.contact-item i{
-    color:var(--gold);
-    width:22px;
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-box {
+    max-width: 800px;
+    margin: auto;
+
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+
+    padding: 40px;
+    text-align: center;
 }
 
-.contact-item span{
-    color:#d6deea;
+.contact-box h3 {
+    color: var(--navy);
+    font-size: 27px;
+    margin-bottom: 20px;
 }
 
-.contact-form{
-    padding:35px;
-    border:1px solid var(--border);
-    border-radius:15px;
-    box-shadow:var(--shadow);
+.contact-details {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.form-group{
-    margin-bottom:18px;
+.contact-details a {
+    color: var(--green);
+    font-weight: 600;
 }
 
-.form-group label{
-    display:block;
-    color:var(--navy);
-    font-weight:bold;
-    margin-bottom:6px;
+.contact-details i {
+    color: var(--gold);
+    margin-right: 6px;
 }
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.project-modal {
+    display: none;
 
-.form-group input,
-.form-group textarea{
-    width:100%;
-    padding:13px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    outline:none;
+    position: fixed;
+    z-index: 9000;
+    inset: 0;
+
+    background: rgba(0,0,0,.78);
+
+    padding: 25px;
+
+    overflow-y: auto;
 }
 
-.form-group textarea{
-    min-height:130px;
-    resize:vertical;
+.project-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.modal-content {
+    position: relative;
 
-/* ================= SECRET ADMIN ================= */
+    width: 100%;
+    max-width: 720px;
 
-.admin-modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.75);
-    z-index:15000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
+    background: white;
+    border-radius: 20px;
+
+    padding: 45px;
 
-.admin-modal.show{
-    display:flex;
+    box-shadow: 0 30px 80px rgba(0,0,0,.35);
 }
+
+.modal-close {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+
+    background: none;
+    border: none;
 
-.admin-window{
-    width:min(850px,100%);
-    max-height:90vh;
-    overflow:auto;
-    background:white;
-    border-radius:16px;
-    padding:35px;
-    position:relative;
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    font-size: 35px;
+    color: var(--navy);
+
+    cursor: pointer;
 }
 
-.admin-close{
-    position:absolute;
-    right:18px;
-    top:15px;
-    width:38px;
-    height:38px;
-    border:0;
-    border-radius:50%;
-    background:var(--navy);
-    color:white;
-    cursor:pointer;
+.modal-icon {
+    color: var(--gold);
+    font-size: 45px;
+    margin-bottom: 10px;
 }
 
-.admin-window h2{
-    color:var(--navy);
-    margin-bottom:8px;
+.modal-content h2 {
+    color: var(--navy);
+    font-size: 32px;
+    margin-bottom: 15px;
 }
 
-.admin-window > p{
-    color:var(--muted);
-    margin-bottom:25px;
+.modal-content h3 {
+    color: var(--navy);
+    margin-top: 25px;
 }
 
-.admin-panel{
-    display:none;
+.modal-content p {
+    color: var(--muted);
+    margin-bottom: 15px;
 }
 
-.admin-panel.show{
-    display:block;
+.modal-list {
+    list-style: none;
+    margin-top: 15px;
 }
 
-.upload-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    margin-top:25px;
+.modal-list li {
+    color: var(--muted);
+    padding: 7px 0;
 }
 
-.upload-card{
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:20px;
-    background:var(--light);
+.modal-list i {
+    color: var(--gold);
+    margin-right: 8px;
 }
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-lock {
+    position: fixed;
+    bottom: 14px;
+    left: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
 
-.upload-card h4{
-    color:var(--navy);
-    margin-bottom:8px;
+    background: rgba(7,21,47,.95);
+    color: var(--gold-light);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 8000;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.25);
 }
 
-.upload-card p{
-    font-size:13px;
-    color:var(--muted);
-    margin-bottom:12px;
+.admin-lock:hover {
+    transform: scale(1.08);
 }
+
+.admin-panel {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 10000;
 
-.upload-card input{
-    width:100%;
-    margin-bottom:12px;
+    background: rgba(0,0,0,.78);
+
+    padding: 20px;
+
+    overflow-y: auto;
 }
 
-.admin-status{
-    margin-top:18px;
-    color:var(--green);
-    font-weight:bold;
+.admin-panel.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.admin-box {
+    width: 100%;
+    max-width: 700px;
 
+    background: white;
 
-/* ================= SECRET PADLOCK ================= */
+    border-radius: 18px;
+
+    padding: 35px;
+
+    position: relative;
+}
 
-#adminLock{
-    position:fixed;
-    left:18px;
-    bottom:18px;
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.2);
-    background:rgba(7,22,40,.92);
-    color:var(--gold);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    z-index:12000;
-    opacity:.55;
-    transition:.3s;
+.admin-box h2 {
+    color: var(--navy);
+    margin-bottom: 10px;
 }
 
-#adminLock:hover{
-    opacity:1;
-    transform:scale(1.08);
+.admin-box p {
+    color: var(--muted);
 }
 
+.admin-close {
+    position: absolute;
+    right: 18px;
+    top: 12px;
 
-/* ================= BACK TO TOP ================= */
+    border: none;
+    background: none;
 
-#backToTop{
-    position:fixed;
-    right:20px;
-    bottom:18px;
-    width:48px;
-    height:48px;
-    border:0;
-    border-radius:50%;
-    background:var(--navy);
-    color:var(--gold);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    z-index:12000;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(15px);
-    transition:.3s;
-    box-shadow:0 7px 22px rgba(0,0,0,.25);
+    font-size: 30px;
+    cursor: pointer;
+
+    color: var(--navy);
+}
+
+.admin-form {
+    margin-top: 25px;
 }
 
-#backToTop.show{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
+.form-group {
+    margin-bottom: 17px;
 }
+
+.form-group label {
+    display: block;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
 
-#backToTop:hover{
-    background:var(--green);
-    color:white;
+    font-family: inherit;
 }
 
+.admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
 
-/* ================= TOAST ================= */
+.admin-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid var(--border);
+}
 
-#toast{
-    position:fixed;
-    top:90px;
-    right:20px;
-    max-width:330px;
-    padding:14px 18px;
-    border-radius:8px;
-    background:var(--navy);
-    color:white;
-    z-index:20000;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(-10px);
-    transition:.3s;
+.admin-section h3 {
+    color: var(--navy);
+    margin-bottom: 15px;
 }
 
-#toast.show{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
+.upload-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
 }
 
+.upload-row input {
+    width: 100%;
+}
 
-/* ================= FOOTER ================= */
+.admin-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    display: none;
+}
 
-footer{
-    background:#071628;
-    color:#b9c5d3;
-    padding:35px 0;
+.admin-message.show {
+    display: block;
 }
 
-.footer-content{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
+.admin-message.success {
+    background: var(--green-light);
+    color: var(--green);
 }
 
-.footer-content strong{
-    color:white;
+.admin-message.error {
+    background: #ffe9e9;
+    color: #a11b1b;
 }
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
-.social-links{
-    display:flex;
-    gap:10px;
+footer {
+    background: #040d1e;
+    color: #aeb8c6;
+    text-align: center;
+    padding: 25px;
+    font-size: 14px;
 }
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.back-to-top {
+    position: fixed;
+
+    right: 18px;
+    bottom: 18px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--gold-light);
+    color: var(--navy);
 
-.social-links a{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(255,255,255,.08);
-    color:white;
+    cursor: pointer;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 7000;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,.25);
 }
 
-.social-links a:hover{
-    background:var(--gold);
-    color:var(--navy);
+.back-to-top.show {
+    display: flex;
 }
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+
+        background: var(--navy);
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 20px 25px;
+
+        gap: 18px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
 
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 
-/* ================= RESPONSIVE ================= */
+    .hero-buttons {
+        justify-content: center;
+    }
 
-@media(max-width:950px){
+    .hero-profile {
+        order: -1;
+    }
 
-    .hero-grid,
     .about-grid,
-    .contact-grid{
-        grid-template-columns:1fr;
+    .education-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
 
-    .hero-photo{
-        order:-1;
-    }
-
-    .skills-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .gallery{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .upload-grid{
-        grid-template-columns:1fr;
+    .gallery {
+        grid-template-columns: repeat(2,1fr);
     }
 }
 
-@media(max-width:760px){
 
-    section{
-        padding:70px 0;
+@media (max-width: 550px) {
+
+    .section {
+        padding: 65px 18px;
     }
 
-    .menu-toggle{
-        display:block;
+    .section-heading h2,
+    .cv-section h2 {
+        font-size: 34px;
     }
 
-    .nav-links{
-        position:absolute;
-        top:76px;
-        left:0;
-        width:100%;
-        background:var(--navy);
-        flex-direction:column;
-        gap:0;
-        max-height:0;
-        overflow:hidden;
-        transition:.3s;
+    .hero {
+        min-height: auto;
     }
 
-    .nav-links.active{
-        max-height:600px;
+    .hero-container {
+        padding: 70px 18px;
     }
 
-    .nav-links li{
-        width:100%;
-        border-top:1px solid rgba(255,255,255,.08);
+    .hero h1 {
+        font-size: 45px;
     }
 
-    .nav-links a{
-        display:block;
-        padding:14px 5%;
+    .profile-frame {
+        width: 240px;
+        height: 290px;
     }
 
-    .education-grid,
-    .projects-grid,
-    .skills-grid,
-    .gallery{
-        grid-template-columns:1fr;
+    .gallery {
+        grid-template-columns: 1fr;
     }
 
-    .profile-frame{
-        width:250px;
-        height:250px;
+    .modal-content {
+        padding: 30px 22px;
     }
 
-    .footer-content{
-        flex-direction:column;
-        text-align:center;
+    .upload-row {
+        grid-template-columns: 1fr;
     }
-
-    .section-title h2{
-        font-size:32px;
-    }
-
-    .hero h1{
-        font-size:42px;
-    }
-
 }
 
 </style>
@@ -998,1077 +1120,1086 @@ footer{
 <body>
 
 
-<!-- ================= NAVIGATION ================= -->
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-<header>
+<nav class="navbar">
 
-<div class="container navbar">
+    <div class="nav-container">
 
-<a href="#home" class="logo">
-Edwin <span>Okello</span>
-</a>
+        <a href="#home" class="logo">
+            Edwin
+            <span>Okello</span>
+        </a>
 
-<button class="menu-toggle" id="menuToggle">
-<i class="fas fa-bars"></i>
-</button>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
 
-<ul class="nav-links" id="navLinks">
+        <div class="nav-links" id="navLinks">
 
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#experience">Experience</a></li>
-<li><a href="#education">Education</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#cv">CV</a></li>
-<li><a href="#pictorial">Pictorial</a></li>
-<li><a href="#contact">Contact</a></li>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#cv">CV</a>
+            <a href="#pictorial">Pictorial</a>
+            <a href="#contact">Contact</a>
 
-</ul>
+        </div>
 
-</div>
+    </div>
 
-</header>
-
-
-<!-- ================= HERO ================= -->
-
-<section class="hero" id="home">
-
-<div class="container hero-grid">
-
-<div>
-
-<h1>
-Edwin Kuchio <span>Okello</span>
-</h1>
-
-<h3>
-Multidisciplinary Professional | Researcher | Writer | Analyst
-</h3>
-
-<p>
-A multidisciplinary professional with a background in philosophy,
-theology, research, legal research and writing, critical thinking,
-cross-cultural communication and professional collaboration.
-</p>
-
-<div class="hero-buttons">
-
-<a href="#experience" class="btn btn-primary">
-<i class="fas fa-briefcase"></i>
-Explore My Experience
-</a>
-
-<a href="#cv" class="btn btn-outline">
-<i class="fas fa-file-pdf"></i>
-My CV
-</a>
-
-<a href="#contact" class="btn btn-outline">
-<i class="fas fa-envelope"></i>
-Contact Me
-</a>
-
-</div>
-
-</div>
+</nav>
 
 
-<div class="hero-photo">
+<!-- =========================================================
+     HOME
+========================================================= -->
 
-<div class="profile-frame">
+<section id="home" class="hero">
 
-<div class="profile-placeholder" id="profilePlaceholder">
+    <div class="hero-container">
 
-<i class="fas fa-user"></i>
+        <div>
 
-<strong>Profile Photo</strong>
+            <h1>
+                Edwin
+                <span>Kuchio Okello</span>
+            </h1>
 
-<small>Photo will appear here</small>
+            <div class="hero-subtitle">
+                Research • Analysis • Writing • Professional Development
+            </div>
 
-</div>
+            <p class="hero-description">
+                Welcome to my professional portfolio — a space bringing
+                together my academic formation, professional skills,
+                research interests, projects and selected work.
+            </p>
 
-<img id="profileImage"
-style="display:none"
-alt="Edwin Kuchio Okello">
+            <div class="hero-buttons">
 
-</div>
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-folder-open"></i>
+                    Explore My Work
+                </a>
 
-</div>
+                <a href="#contact" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i>
+                    Contact Me
+                </a>
 
-</div>
+            </div>
+
+        </div>
+
+
+        <div class="hero-profile">
+
+            <div class="profile-frame" id="profileFrame">
+
+                <div class="profile-placeholder">
+
+                    <i class="fas fa-user"></i>
+
+                    <span>
+                        Profile photograph
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= ABOUT ================= -->
+<!-- =========================================================
+     ABOUT
+========================================================= -->
 
-<section class="about" id="about">
+<section id="about" class="section">
 
-<div class="container">
+    <div class="section-heading">
 
-<div class="section-title">
+        <h2>About Me</h2>
 
-<div class="line"></div>
+        <p>
+            Academic formation, research interests and professional direction.
+        </p>
 
-<h2>About Me</h2>
-
-<p>
-A broad academic and intercultural formation informing research,
-communication, analysis and professional work.
-</p>
-
-</div>
+    </div>
 
 
-<div class="about-grid">
+    <div class="about-grid">
 
-<div class="about-card">
+        <div class="info-card">
 
-<h3>Multidisciplinary Perspective</h3>
+            <h3>Professional Profile</h3>
 
-<p>
-My academic and formation journey has exposed me to diverse cultures,
-educational environments and professional contexts across Africa.
-</p>
+            <p>
+                I am a multidisciplinary professional with academic formation
+                in philosophy and theology and a developing interest in
+                research, analytical work, writing and information-based
+                professional services.
+            </p>
 
-<p>
-I bring together research, writing, critical thinking, communication
-and analytical skills in approaching complex tasks and professional
-responsibilities.
-</p>
+            <br>
 
-<p>
-I am interested in opportunities where careful research, clear
-communication, ethical professionalism and collaboration can create
-meaningful results.
-</p>
+            <p>
+                My interests include legal research, legal writing and
+                drafting, research and report writing, critical and analytical
+                thinking, cross-cultural communication, teamwork and
+                professional ethics.
+            </p>
 
-</div>
+        </div>
 
 
-<div class="quick-facts">
+        <div class="info-card">
 
-<div class="fact">
-<i class="fas fa-search"></i>
-<div>
-<strong>Research</strong>
-<span>Legal research, research and report writing.</span>
-</div>
-</div>
+            <h3>Professional Interests</h3>
 
-<div class="fact">
-<i class="fas fa-pen-nib"></i>
-<div>
-<strong>Writing and Drafting</strong>
-<span>Legal writing, drafting and professional writing.</span>
-</div>
-</div>
+            <p>
+                I am particularly interested in opportunities that allow me
+                to apply research, writing, analysis, communication and
+                problem-solving skills in meaningful professional settings.
+            </p>
 
-<div class="fact">
-<i class="fas fa-lightbulb"></i>
-<div>
-<strong>Critical and Analytical Thinking</strong>
-<span>Structured analysis and problem solving.</span>
-</div>
-</div>
+            <br>
 
-<div class="fact">
-<i class="fas fa-globe-africa"></i>
-<div>
-<strong>Cross-Cultural Communication</strong>
-<span>Experience across diverse cultural environments.</span>
-</div>
-</div>
+            <p>
+                This portfolio also serves as a developing record of selected
+                academic and professional work.
+            </p>
 
-</div>
+        </div>
 
-</div>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- ================= EXPERIENCE ================= -->
+<!-- =========================================================
+     EXPERIENCE
+========================================================= -->
 
-<section id="experience">
+<section id="experience" class="section">
 
-<div class="container">
+    <div class="section-heading">
 
-<div class="section-title">
+        <h2>Experience</h2>
 
-<div class="line"></div>
+        <p>
+            Selected formation, volunteer and professional-development
+            experiences.
+        </p>
 
-<h2>Experience & Formation</h2>
+    </div>
 
-<p>
-A journey shaped by academic formation, service, intercultural
-experience and professional development.
-</p>
 
-</div>
+    <div class="timeline">
 
+        <div class="timeline-item">
 
-<div class="timeline">
+            <h3>Research, Writing & Professional Development</h3>
 
+            <div class="date">
+                Ongoing
+            </div>
 
-<div class="timeline-item">
+            <p>
+                Developing practical skills in research, analytical thinking,
+                professional writing, report preparation and information
+                management.
+            </p>
 
-<div class="timeline-dot"></div>
+        </div>
 
-<div class="timeline-card">
 
-<h3>Research, Writing & Professional Development</h3>
+        <div class="timeline-item">
 
-<div class="period">Current Professional Focus</div>
+            <h3>Volunteer Experience — Kwetu Home of Peace</h3>
 
-<p>
-Developing professional competencies in legal research, legal writing
-and drafting, research and report writing, critical and analytical
-thinking, confidentiality, professional ethics, cross-cultural
-communication, teamwork and collaboration.
-</p>
+            <div class="date">
+                2015
+            </div>
 
-</div>
+            <p>
+                Volunteered at a rehabilitation centre serving street
+                children in Nairobi, gaining experience in service,
+                interpersonal engagement and community-oriented work.
+            </p>
 
-</div>
+        </div>
 
 
-<div class="timeline-item">
+        <div class="timeline-item">
 
-<div class="timeline-dot"></div>
+            <h3>International Formation & Cross-Cultural Experience</h3>
 
-<div class="timeline-card">
+            <div class="date">
+                2016 – 2026
+            </div>
 
-<h3>Theology Studies</h3>
+            <p>
+                Academic and formation experiences across different African
+                countries provided extensive exposure to multicultural
+                environments, languages, community life and pastoral settings.
+            </p>
 
-<div class="period">South Africa | 2022 – 2026</div>
+        </div>
 
-<p>
-Studied theology at St. Joseph's Theological Institute, South Africa,
-within a multicultural academic environment.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>Pastoral Experience</h3>
-
-<div class="period">Togo | 2021 – 2022</div>
-
-<p>
-Participated in pastoral and community activities within a
-cross-cultural African environment.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>French Immersion</h3>
-
-<div class="period">Burkina Faso | July – December 2020</div>
-
-<p>
-Undertook French language immersion and intercultural experience.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>Formation</h3>
-
-<div class="period">Zambia | 2019 – July 2020</div>
-
-<p>
-Continued formation and community experience in Zambia.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>Philosophy Studies</h3>
-
-<div class="period">Uganda | 2016 – 2019</div>
-
-<p>
-Studied philosophy at Philosophy Centre Jinja, developing foundations
-in critical thinking, argumentation and intellectual analysis.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>Volunteer Service</h3>
-
-<div class="period">Kwetu Home of Peace | Nairobi | 2015</div>
-
-<p>
-Volunteered at Kwetu Home of Peace rehabilitation centre for
-street-connected children in Nairobi.
-</p>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- ================= EDUCATION ================= -->
+<!-- =========================================================
+     EDUCATION
+========================================================= -->
 
-<section class="education" id="education">
+<section id="education" class="section">
 
-<div class="container">
+    <div class="section-heading">
 
-<div class="section-title">
+        <h2>Education</h2>
 
-<div class="line"></div>
+        <p>
+            Academic formation and higher education.
+        </p>
 
-<h2>Education</h2>
-
-<p>Academic formation in philosophy and theology.</p>
-
-</div>
-
-
-<div class="education-grid">
-
-<div class="education-card">
-
-<div class="education-icon">
-<i class="fas fa-graduation-cap"></i>
-</div>
-
-<h3>Bachelor of Arts in Theology</h3>
-
-<p>
-St. Joseph's Theological Institute, South Africa.
-</p>
-
-</div>
+    </div>
 
 
-<div class="education-card">
+    <div class="education-grid">
 
-<div class="education-icon">
-<i class="fas fa-brain"></i>
-</div>
+        <div class="education-card">
 
-<h3>Bachelor of Arts in Philosophy</h3>
+            <i class="fas fa-graduation-cap"></i>
 
-<p>
-Urbaniana University.
-</p>
+            <h3>BA in Philosophy</h3>
 
-</div>
+            <p>
+                Pontifical Urbaniana University
+            </p>
 
-</div>
+        </div>
 
-</div>
+
+        <div class="education-card">
+
+            <i class="fas fa-graduation-cap"></i>
+
+            <h3>BA in Theology</h3>
+
+            <p>
+                St. Joseph's Theological Institute, South Africa
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= SKILLS ================= -->
+<!-- =========================================================
+     SKILLS
+========================================================= -->
 
-<section id="skills">
+<section id="skills" class="section">
 
-<div class="container">
+    <div class="section-heading">
 
-<div class="section-title">
+        <h2>Professional Skills</h2>
 
-<div class="line"></div>
+        <p>
+            Core competencies and professional strengths.
+        </p>
 
-<h2>Professional Skills</h2>
-
-<p>Core competencies and professional strengths.</p>
-
-</div>
+    </div>
 
 
-<div class="skills-grid">
+    <div class="skills-container">
 
-<div class="skill">
-<i class="fas fa-scale-balanced"></i>
-<strong>Legal Research</strong>
-</div>
+        <span class="skill">Legal Research</span>
 
-<div class="skill">
-<i class="fas fa-file-pen"></i>
-<strong>Legal Writing and Drafting</strong>
-</div>
+        <span class="skill">Legal Writing & Drafting</span>
 
-<div class="skill">
-<i class="fas fa-file-lines"></i>
-<strong>Research and Report Writing</strong>
-</div>
+        <span class="skill">Research & Report Writing</span>
 
-<div class="skill">
-<i class="fas fa-lightbulb"></i>
-<strong>Critical and Analytical Thinking</strong>
-</div>
+        <span class="skill">Critical & Analytical Thinking</span>
 
-<div class="skill">
-<i class="fas fa-lock"></i>
-<strong>Confidentiality and Professional Ethics</strong>
-</div>
+        <span class="skill">Confidentiality & Professional Ethics</span>
 
-<div class="skill">
-<i class="fas fa-comments"></i>
-<strong>Cross-Cultural Communication</strong>
-</div>
+        <span class="skill">Cross-Cultural Communication</span>
 
-<div class="skill">
-<i class="fas fa-people-group"></i>
-<strong>Teamwork and Collaboration</strong>
-</div>
+        <span class="skill">Teamwork & Collaboration</span>
 
-<div class="skill">
-<i class="fas fa-language"></i>
-<strong>French Language</strong>
-</div>
+        <span class="skill">Research</span>
 
-<div class="skill">
-<i class="fas fa-magnifying-glass-chart"></i>
-<strong>Research and Analysis</strong>
-</div>
+        <span class="skill">Analysis</span>
 
-</div>
+        <span class="skill">Professional Writing</span>
 
-</div>
+        <span class="skill">French</span>
+
+    </div>
 
 </section>
 
 
-<!-- ================= PROJECTS ================= -->
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
 
-<section class="projects" id="projects">
+<section id="projects" class="section projects-section">
 
-<div class="container">
+    <div class="section-heading">
 
-<div class="section-title">
+        <h2>Projects</h2>
 
-<div class="line"></div>
+        <p>
+            Current and developing professional initiatives.
+        </p>
 
-<h2>Projects</h2>
-
-<p>Current and developing professional initiatives.</p>
-
-</div>
-
-
-<div class="projects-grid">
+    </div>
 
 
-<div class="project-card">
-
-<div class="project-header">
-
-<i class="fas fa-compass-drafting"></i>
-
-<h3>EKO Analytics & Research</h3>
-
-</div>
-
-<div class="project-body">
-
-<p>
-A startup project in the making, founded by Edwin Kuchio Okello,
-focused on developing research, analytical and information-based
-professional services.
-</p>
-
-<span class="tag">Research</span>
-<span class="tag">Analysis</span>
-<span class="tag">Reporting</span>
-<span class="tag">Professional Services</span>
-
-</div>
-
-</div>
+    <div class="projects-grid">
 
 
-<div class="project-card">
+        <!-- EKO ANALYTICS -->
 
-<div class="project-header">
+        <article class="project-card">
 
-<i class="fas fa-globe"></i>
+            <div class="project-header">
 
-<h3>Professional Portfolio</h3>
+                <div class="project-icon">
+                    <i class="fas fa-drafting-compass"></i>
+                </div>
 
-</div>
+                <h3>
+                    EKO Analytics &amp; Research
+                </h3>
 
-<div class="project-body">
-
-<p>
-A digital professional portfolio designed to present academic
-formation, professional skills, projects, CV and selected pictorial
-content in one accessible platform.
-</p>
-
-<span class="tag">Digital Portfolio</span>
-<span class="tag">Professional Branding</span>
-<span class="tag">Research</span>
-
-</div>
-
-</div>
+            </div>
 
 
-</div>
+            <div class="project-body">
 
-</div>
+                <p>
+                    A startup project in the making, founded by Edwin Kuchio
+                    Okello, focused on developing research, analytical and
+                    information-based professional services.
+                </p>
+
+
+                <div class="project-tags">
+
+                    <span>Research</span>
+                    <span>Analysis</span>
+                    <span>Reporting</span>
+                    <span>Professional Services</span>
+
+                </div>
+
+
+                <button
+                    class="project-button"
+                    onclick="openProjectModal('ekoModal')">
+
+                    <i class="fas fa-eye"></i>
+
+                    View Project
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PROFESSIONAL PORTFOLIO -->
+
+        <article class="project-card">
+
+            <div class="project-header">
+
+                <div class="project-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+
+                <h3>
+                    Professional Portfolio
+                </h3>
+
+            </div>
+
+
+            <div class="project-body">
+
+                <p>
+                    A digital professional portfolio designed to present
+                    academic formation, professional skills, projects, CV
+                    and selected pictorial content in one accessible platform.
+                </p>
+
+
+                <div class="project-tags">
+
+                    <span>Digital Portfolio</span>
+                    <span>Professional Branding</span>
+                    <span>Research</span>
+
+                </div>
+
+
+                <button
+                    class="project-button"
+                    onclick="openProjectModal('portfolioModal')">
+
+                    <i class="fas fa-eye"></i>
+
+                    View Portfolio
+
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+
+    <!-- ACADEMIC WORK -->
+
+    <div class="research-heading">
+
+        <h2>
+            Academic Essays &amp; Research
+        </h2>
+
+        <p>
+            Selected academic essays, research papers and scholarly work.
+        </p>
+
+    </div>
+
+
+    <div class="research-empty">
+
+        <i class="fas fa-book-open"></i>
+
+        <h3>
+            Academic Work
+        </h3>
+
+        <p>
+            This section is reserved for selected academic essays,
+            research papers and other written work. Documents can be
+            added through the administrator area when they are ready
+            for publication.
+        </p>
+
+    </div>
 
 </section>
 
 
-<!-- ================= CV ================= -->
+<!-- =========================================================
+     EKO MODAL
+========================================================= -->
 
-<section class="cv-section" id="cv">
+<div id="ekoModal" class="project-modal">
 
-<div class="container">
+    <div class="modal-content">
 
-<div class="cv-box">
+        <button
+            class="modal-close"
+            onclick="closeProjectModal('ekoModal')">
 
-<h2>My Curriculum Vitae</h2>
+            &times;
 
-<p>
-View or download my current professional curriculum vitae.
-</p>
+        </button>
 
-<div class="cv-buttons">
 
-<a id="viewCV"
-href="#"
-target="_blank"
-class="btn btn-primary">
+        <div class="modal-icon">
 
-<i class="fas fa-eye"></i>
-View My CV
+            <i class="fas fa-drafting-compass"></i>
 
-</a>
+        </div>
 
-<button id="downloadCV"
-class="btn btn-outline">
 
-<i class="fas fa-download"></i>
-Download CV
+        <h2>
+            EKO Analytics &amp; Research
+        </h2>
 
-</button>
+
+        <p>
+            EKO Analytics &amp; Research is a developing startup project
+            founded by Edwin Kuchio Okello.
+        </p>
+
+
+        <p>
+            The initiative is intended to develop research, analytical,
+            information and professional services for individuals,
+            organisations and other potential clients.
+        </p>
+
+
+        <h3>
+            Areas of Interest
+        </h3>
+
+
+        <ul class="modal-list">
+
+            <li>
+                <i class="fas fa-check"></i>
+                Research
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Analysis
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Research and Report Writing
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Information-based Services
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Professional Research Support
+            </li>
+
+        </ul>
+
+    </div>
 
 </div>
 
-<p id="cvStatus">
-Connecting to CV storage...
-</p>
+
+<!-- =========================================================
+     PORTFOLIO MODAL
+========================================================= -->
+
+<div id="portfolioModal" class="project-modal">
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeProjectModal('portfolioModal')">
+
+            &times;
+
+        </button>
+
+
+        <div class="modal-icon">
+
+            <i class="fas fa-globe"></i>
+
+        </div>
+
+
+        <h2>
+            Professional Portfolio
+        </h2>
+
+
+        <p>
+            This portfolio is designed as a central professional platform
+            bringing together academic formation, professional skills,
+            experience, projects, curriculum vitae and selected pictorial
+            material.
+        </p>
+
+
+        <h3>
+            Portfolio Contents
+        </h3>
+
+
+        <ul class="modal-list">
+
+            <li>
+                <i class="fas fa-check"></i>
+                About and professional profile
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Academic formation
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Professional skills
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                EKO Analytics &amp; Research
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Academic essays and research
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Curriculum Vitae
+            </li>
+
+            <li>
+                <i class="fas fa-check"></i>
+                Pictorial section
+            </li>
+
+        </ul>
+
+    </div>
 
 </div>
 
-</div>
+
+<!-- =========================================================
+     CV
+========================================================= -->
+
+<section id="cv" class="cv-section">
+
+    <h2>
+        My Curriculum Vitae
+    </h2>
+
+    <p>
+        View or download my current professional curriculum vitae.
+    </p>
+
+
+    <div class="cv-buttons">
+
+        <a
+            id="viewCV"
+            href="#"
+            target="_blank"
+            class="btn btn-primary">
+
+            <i class="fas fa-eye"></i>
+
+            View My CV
+
+        </a>
+
+
+        <a
+            id="downloadCV"
+            href="#"
+            download
+            class="btn btn-outline">
+
+            <i class="fas fa-download"></i>
+
+            Download CV
+
+        </a>
+
+    </div>
+
+
+    <div id="cvStatus" class="cv-status">
+
+        Loading CV...
+
+    </div>
 
 </section>
 
 
-<!-- ================= PICTORIAL ================= -->
+<!-- =========================================================
+     PICTORIAL
+========================================================= -->
 
-<section class="pictorial" id="pictorial">
+<section id="pictorial" class="section">
 
-<div class="container">
+    <div class="section-heading">
 
-<div class="section-title">
+        <h2>
+            Pictorial
+        </h2>
 
-<div class="line"></div>
+        <p>
+            Selected photographs and visual memories.
+        </p>
 
-<h2>Pictorial</h2>
+    </div>
 
-<p>
-Selected photographs and moments from my journey.
-</p>
 
-</div>
+    <div id="gallery" class="gallery">
 
-<div class="gallery" id="gallery">
+        <div class="gallery-item">
 
-<div class="empty-gallery">
-<i class="fas fa-images"
-style="font-size:45px;color:#0b1f3a;margin-bottom:15px;">
-</i>
+            <div class="gallery-placeholder">
 
-<p>Photographs will appear here.</p>
-</div>
+                <i class="fas fa-images"></i>
 
-</div>
+                <span>
+                    Pictorial content will appear here.
+                </span>
 
-</div>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= CONTACT ================= -->
+<!-- =========================================================
+     CONTACT
+========================================================= -->
 
-<section class="contact" id="contact">
+<section id="contact" class="section">
 
-<div class="container">
+    <div class="section-heading">
 
-<div class="section-title">
+        <h2>
+            Contact Me
+        </h2>
 
-<div class="line"></div>
+        <p>
+            I welcome professional and research-related enquiries.
+        </p>
 
-<h2>Contact Me</h2>
-
-<p>
-I welcome professional opportunities, collaborations and meaningful
-conversations.
-</p>
-
-</div>
-
-
-<div class="contact-grid">
+    </div>
 
 
-<div class="contact-info">
+    <div class="contact-box">
 
-<h3>Get In Touch</h3>
-
-<div class="contact-item">
-
-<i class="fas fa-envelope"></i>
-
-<span>
-edwinokello24@gmail.com
-</span>
-
-</div>
+        <h3>
+            Let's Connect
+        </h3>
 
 
-<div class="contact-item">
+        <div class="contact-details">
 
-<i class="fas fa-phone"></i>
+            <a href="mailto:edwinokello24@gmail.com">
 
-<span>
-+254 143 947 048
-</span>
+                <i class="fas fa-envelope"></i>
 
-</div>
+                Email Me
 
-
-<div class="contact-item">
-
-<i class="fab fa-linkedin"></i>
-
-<span>
-LinkedIn Professional Profile
-</span>
-
-</div>
+            </a>
 
 
-<div class="contact-item">
+            <a href="tel:+254143947048">
 
-<i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-phone"></i>
 
-<span>
-Kenya
-</span>
+                +254 143 947 048
 
-</div>
-
-</div>
+            </a>
 
 
-<form class="contact-form" id="contactForm">
+            <a
+                href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
+                target="_blank">
 
-<div class="form-group">
+                <i class="fab fa-linkedin"></i>
 
-<label>Name</label>
+                LinkedIn
 
-<input id="name"
-type="text"
-required
-placeholder="Your name">
+            </a>
 
-</div>
+        </div>
 
-
-<div class="form-group">
-
-<label>Email</label>
-
-<input id="email"
-type="email"
-required
-placeholder="Your email">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Message</label>
-
-<textarea id="message"
-required
-placeholder="Your message"></textarea>
-
-</div>
-
-
-<button class="btn btn-primary"
-type="submit">
-
-<i class="fas fa-paper-plane"></i>
-Send Message
-
-</button>
-
-</form>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
 <footer>
 
-<div class="container footer-content">
-
-<div>
-
-© <span id="year"></span>
-
-<strong>
-Edwin Kuchio Okello
-</strong>
-
-— All Rights Reserved.
-
-</div>
-
-
-<div class="social-links">
-
-<a href="mailto:edwinokello24@gmail.com">
-<i class="fas fa-envelope"></i>
-</a>
-
-<a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
-target="_blank"
-rel="noopener">
-
-<i class="fab fa-linkedin-in"></i>
-
-</a>
-
-</div>
-
-</div>
+    <p>
+        &copy; <span id="year"></span>
+        Edwin Kuchio Okello.
+        All Rights Reserved.
+    </p>
 
 </footer>
 
 
-<!-- ================= SECRET ADMIN PADLOCK ================= -->
+<!-- =========================================================
+     HIDDEN ADMIN LOCK
+========================================================= -->
 
-<button id="adminLock"
-title="Administrator">
+<div
+    class="admin-lock"
+    title="Administrator">
 
-<i class="fas fa-lock"></i>
+    <i class="fas fa-lock"></i>
+
+</div>
+
+
+<!-- =========================================================
+     ADMIN PANEL
+========================================================= -->
+
+<div id="adminPanel" class="admin-panel">
+
+    <div class="admin-box">
+
+        <button
+            class="admin-close"
+            onclick="closeAdmin()">
+
+            &times;
+
+        </button>
+
+
+        <h2>
+            Administrator
+        </h2>
+
+        <p>
+            This area is restricted to the portfolio administrator.
+        </p>
+
+
+        <!-- LOGIN -->
+
+        <div id="loginArea">
+
+            <div class="admin-form">
+
+                <div class="form-group">
+
+                    <label>
+                        Administrator Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        placeholder="Enter administrator email">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter password">
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="adminLogin()">
+
+                    <i class="fas fa-sign-in-alt"></i>
+
+                    Sign In
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN DASHBOARD -->
+
+        <div id="adminDashboard" style="display:none;">
+
+            <div class="admin-section">
+
+                <h3>
+                    Upload CV
+                </h3>
+
+                <div class="upload-row">
+
+                    <input
+                        type="file"
+                        id="cvFile"
+                        accept=".pdf">
+
+                    <button
+                        class="project-button"
+                        onclick="uploadCV()">
+
+                        Upload CV
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-section">
+
+                <h3>
+                    Upload Profile Picture
+                </h3>
+
+                <div class="upload-row">
+
+                    <input
+                        type="file"
+                        id="profileFile"
+                        accept="image/*">
+
+                    <button
+                        class="project-button"
+                        onclick="uploadProfile()">
+
+                        Upload Picture
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-section">
+
+                <h3>
+                    Upload Pictorial Image
+                </h3>
+
+                <div class="upload-row">
+
+                    <input
+                        type="file"
+                        id="pictorialFile"
+                        accept="image/*">
+
+                    <button
+                        class="project-button"
+                        onclick="uploadPictorial()">
+
+                        Upload Image
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-section">
+
+                <h3>
+                    Administrator Session
+                </h3>
+
+                <button
+                    class="btn btn-outline"
+                    style="background:var(--navy);"
+                    onclick="adminLogout()">
+
+                    <i class="fas fa-sign-out-alt"></i>
+
+                    Sign Out
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="adminMessage"
+            class="admin-message">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button
+    id="backToTop"
+    class="back-to-top"
+    title="Back to top">
+
+    <i class="fas fa-arrow-up"></i>
 
 </button>
 
-
-<!-- ================= BACK TO TOP ================= -->
-
-<button id="backToTop"
-title="Back to top">
-
-<i class="fas fa-arrow-up"></i>
-
-</button>
-
-
-<!-- ================= ADMIN MODAL ================= -->
-
-<div class="admin-modal"
-id="adminModal">
-
-<div class="admin-window">
-
-<button class="admin-close"
-id="adminClose">
-
-<i class="fas fa-xmark"></i>
-
-</button>
-
-
-<h2>
-<i class="fas fa-lock"></i>
-Administrator
-</h2>
-
-<p>
-Private portfolio administration.
-</p>
-
-
-<!-- LOGIN -->
-
-<div id="adminLogin">
-
-<div class="form-group">
-
-<label>Email</label>
-
-<input id="adminEmail"
-type="email"
-placeholder="Administrator email">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Password</label>
-
-<input id="adminPassword"
-type="password"
-placeholder="Password">
-
-</div>
-
-
-<button class="btn btn-primary"
-id="loginBtn">
-
-<i class="fas fa-right-to-bracket"></i>
-Login
-
-</button>
-
-</div>
-
-
-<!-- ADMIN PANEL -->
-
-<div class="admin-panel"
-id="adminPanel">
-
-<p>
-<strong>
-Administrator access granted.
-</strong>
-</p>
-
-
-<div class="upload-grid">
-
-
-<div class="upload-card">
-
-<h4>
-<i class="fas fa-file-pdf"></i>
-CV
-</h4>
-
-<p>
-Upload or replace your CV.
-</p>
-
-<input id="cvUpload"
-type="file"
-accept=".pdf,application/pdf">
-
-<button class="btn btn-green"
-id="uploadCVBtn">
-
-Upload CV
-
-</button>
-
-</div>
-
-
-<div class="upload-card">
-
-<h4>
-<i class="fas fa-user"></i>
-Profile Picture
-</h4>
-
-<p>
-Upload your homepage profile photograph.
-</p>
-
-<input id="profileUpload"
-type="file"
-accept="image/*">
-
-<button class="btn btn-green"
-id="uploadProfileBtn">
-
-Upload Photo
-
-</button>
-
-</div>
-
-
-<div class="upload-card">
-
-<h4>
-<i class="fas fa-images"></i>
-Pictorial
-</h4>
-
-<p>
-Upload one or more gallery photographs.
-</p>
-
-<input id="pictorialUpload"
-type="file"
-accept="image/*"
-multiple>
-
-<button class="btn btn-green"
-id="uploadPictorialBtn">
-
-Upload Photos
-
-</button>
-
-</div>
-
-
-</div>
-
-
-<p class="admin-status"
-id="adminStatus">
-</p>
-
-
-<br>
-
-<button class="btn btn-primary"
-id="logoutBtn">
-
-<i class="fas fa-right-from-bracket"></i>
-Logout
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= TOAST ================= -->
-
-<div id="toast"></div>
 
 
 <script>
 
 /* =========================================================
-   SUPABASE
+   SUPABASE CONFIGURATION
 ========================================================= */
 
 const SUPABASE_URL =
-"https://cueajmzcmawvcbpwuyhi.supabase.co";
+    "https://cueajmzcmawvcbpwuyhi.supabase.co";
 
-const SUPABASE_ANON_KEY =
-"sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
+
 
 const supabaseClient =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_ANON_KEY
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
 
 
 /* =========================================================
-   STORAGE BUCKETS
+   BUCKET NAMES
 ========================================================= */
 
 const CV_BUCKET = "CV";
 const PROFILE_BUCKET = "Profile";
 const PICTORIAL_BUCKET = "Pictorial";
-
-let currentCVUrl = null;
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-function toast(message){
-
-const box =
-document.getElementById("toast");
-
-box.textContent = message;
-
-box.classList.add("show");
-
-setTimeout(()=>{
-box.classList.remove("show");
-},4000);
-
-}
 
 
 /* =========================================================
@@ -2076,42 +2207,103 @@ box.classList.remove("show");
 ========================================================= */
 
 const menuToggle =
-document.getElementById("menuToggle");
+    document.getElementById("menuToggle");
 
 const navLinks =
-document.getElementById("navLinks");
+    document.getElementById("navLinks");
 
-menuToggle.addEventListener("click",()=>{
 
-navLinks.classList.toggle("active");
+menuToggle.addEventListener("click", function() {
 
-const icon =
-menuToggle.querySelector("i");
-
-if(navLinks.classList.contains("active")){
-
-icon.className="fas fa-xmark";
-
-}else{
-
-icon.className="fas fa-bars";
-
-}
+    navLinks.classList.toggle("active");
 
 });
 
 
 document.querySelectorAll(".nav-links a")
-.forEach(link=>{
+.forEach(function(link) {
 
-link.addEventListener("click",()=>{
+    link.addEventListener("click", function() {
 
-navLinks.classList.remove("active");
+        navLinks.classList.remove("active");
 
-menuToggle.querySelector("i")
-.className="fas fa-bars";
+    });
 
 });
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* =========================================================
+   PROJECT MODALS
+========================================================= */
+
+function openProjectModal(id) {
+
+    const modal =
+        document.getElementById(id);
+
+    if (!modal) return;
+
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+function closeProjectModal(id) {
+
+    const modal =
+        document.getElementById(id);
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+document.querySelectorAll(".project-modal")
+.forEach(function(modal) {
+
+    modal.addEventListener("click", function(event) {
+
+        if (event.target === modal) {
+
+            modal.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+    });
+
+});
+
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        document.querySelectorAll(".project-modal.active")
+        .forEach(function(modal) {
+
+            modal.classList.remove("active");
+
+        });
+
+        document.body.style.overflow = "";
+
+    }
 
 });
 
@@ -2121,364 +2313,66 @@ menuToggle.querySelector("i")
 ========================================================= */
 
 const backToTop =
-document.getElementById("backToTop");
+    document.getElementById("backToTop");
 
-window.addEventListener("scroll",()=>{
 
-if(window.scrollY>350){
+window.addEventListener("scroll", function() {
 
-backToTop.classList.add("show");
+    if (window.scrollY > 400) {
 
-}else{
+        backToTop.classList.add("show");
 
-backToTop.classList.remove("show");
+    } else {
 
-}
+        backToTop.classList.remove("show");
 
-});
-
-backToTop.addEventListener("click",()=>{
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+    }
 
 });
 
 
-/* =========================================================
-   YEAR
-========================================================= */
-
-document.getElementById("year")
-.textContent=new Date().getFullYear();
-
-
-/* =========================================================
-   LOAD PROFILE
-========================================================= */
-
-async function loadProfile(){
-
-try{
-
-const {data,error} =
-await supabaseClient
-.storage
-.from(PROFILE_BUCKET)
-.list("",{
-limit:100,
-sortBy:{
-column:"created_at",
-order:"desc"
-}
-});
-
-if(error)throw error;
-
-if(!data || data.length===0)return;
-
-const image =
-data.find(file =>
-/\.(jpg|jpeg|png|webp|gif)$/i
-.test(file.name)
-);
-
-if(!image)return;
-
-const {data:publicData} =
-supabaseClient
-.storage
-.from(PROFILE_BUCKET)
-.getPublicUrl(image.name);
-
-const img =
-document.getElementById("profileImage");
-
-const placeholder =
-document.getElementById("profilePlaceholder");
-
-img.src =
-publicData.publicUrl;
-
-img.style.display="block";
-
-placeholder.style.display="none";
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-/* =========================================================
-   LOAD CV
-========================================================= */
-
-async function loadCV(){
-
-const status =
-document.getElementById("cvStatus");
-
-try{
-
-const {data,error} =
-await supabaseClient
-.storage
-.from(CV_BUCKET)
-.list("",{
-limit:100,
-sortBy:{
-column:"created_at",
-order:"desc"
-}
-});
-
-if(error)throw error;
-
-if(!data || data.length===0){
-
-status.textContent="CV will be available soon.";
-
-return;
-
-}
-
-const pdf =
-data.find(file =>
-/\.pdf$/i.test(file.name)
-);
-
-if(!pdf){
-
-status.textContent="No CV available.";
-
-return;
-
-}
-
-const {data:publicData} =
-supabaseClient
-.storage
-.from(CV_BUCKET)
-.getPublicUrl(pdf.name);
-
-currentCVUrl =
-publicData.publicUrl;
-
-document.getElementById("viewCV")
-.href=currentCVUrl;
-
-status.textContent=
-"CV available for viewing and download.";
-
-}catch(error){
-
-console.error(error);
-
-status.textContent=
-"Unable to connect to CV storage.";
-
-}
-
-}
-
-
-/* =========================================================
-   DOWNLOAD CV
-========================================================= */
-
-document.getElementById("downloadCV")
-.addEventListener("click",async()=>{
-
-if(!currentCVUrl){
-
-await loadCV();
-
-}
-
-if(!currentCVUrl){
-
-toast("CV is not currently available.");
-
-return;
-
-}
-
-try{
-
-const response =
-await fetch(currentCVUrl);
-
-const blob =
-await response.blob();
-
-const url =
-window.URL.createObjectURL(blob);
-
-const link =
-document.createElement("a");
-
-link.href=url;
-
-link.download=
-"Edwin-Kuchio-Okello-CV.pdf";
-
-document.body.appendChild(link);
-
-link.click();
-
-link.remove();
-
-window.URL.revokeObjectURL(url);
-
-}catch(error){
-
-window.open(
-currentCVUrl,
-"_blank"
-);
-
-}
+backToTop.addEventListener("click", function() {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 });
 
 
 /* =========================================================
-   LOAD GALLERY
-========================================================= */
-
-async function loadGallery(){
-
-const gallery =
-document.getElementById("gallery");
-
-try{
-
-const {data,error} =
-await supabaseClient
-.storage
-.from(PICTORIAL_BUCKET)
-.list("",{
-limit:100,
-sortBy:{
-column:"created_at",
-order:"desc"
-}
-});
-
-if(error)throw error;
-
-const images =
-(data||[]).filter(file =>
-/\.(jpg|jpeg|png|webp|gif)$/i
-.test(file.name)
-);
-
-if(images.length===0){
-
-gallery.innerHTML=`
-<div class="empty-gallery">
-
-<i class="fas fa-images"
-style="font-size:45px;color:#0b1f3a;">
-</i>
-
-<p>Photographs will appear here.</p>
-
-</div>
-`;
-
-return;
-
-}
-
-gallery.innerHTML="";
-
-images.forEach((file,index)=>{
-
-const {data:publicData} =
-supabaseClient
-.storage
-.from(PICTORIAL_BUCKET)
-.getPublicUrl(file.name);
-
-const item =
-document.createElement("div");
-
-item.className="gallery-item";
-
-item.innerHTML=`
-
-<img
-src="${publicData.publicUrl}"
-alt="Portfolio photograph ${index+1}"
-loading="lazy">
-
-<div class="gallery-caption">
-Professional Portfolio
-</div>
-
-`;
-
-gallery.appendChild(item);
-
-});
-
-}catch(error){
-
-console.error(error);
-
-gallery.innerHTML=`
-<div class="empty-gallery">
-Unable to load photographs.
-</div>
-`;
-
-}
-
-}
-
-
-/* =========================================================
-   ADMIN MODAL
+   ADMIN PANEL
 ========================================================= */
 
 const adminLock =
-document.getElementById("adminLock");
+    document.querySelector(".admin-lock");
 
-const adminModal =
-document.getElementById("adminModal");
-
-const adminClose =
-document.getElementById("adminClose");
+const adminPanel =
+    document.getElementById("adminPanel");
 
 
-adminLock.addEventListener("click",()=>{
+adminLock.addEventListener("click", function() {
 
-adminModal.classList.add("show");
+    adminPanel.classList.add("active");
 
 });
 
 
-adminClose.addEventListener("click",()=>{
+function closeAdmin() {
 
-adminModal.classList.remove("show");
-
-});
-
-
-adminModal.addEventListener("click",(event)=>{
-
-if(event.target===adminModal){
-
-adminModal.classList.remove("show");
+    adminPanel.classList.remove("active");
 
 }
+
+
+adminPanel.addEventListener("click", function(event) {
+
+    if (event.target === adminPanel) {
+
+        closeAdmin();
+
+    }
 
 });
 
@@ -2487,494 +2381,580 @@ adminModal.classList.remove("show");
    ADMIN LOGIN
 ========================================================= */
 
-const adminLogin =
-document.getElementById("adminLogin");
+async function adminLogin() {
 
-const adminPanel =
-document.getElementById("adminPanel");
+    const email =
+        document.getElementById("adminEmail").value.trim();
 
-
-function showAdminPanel(){
-
-adminLogin.style.display="none";
-
-adminPanel.classList.add("show");
-
-}
+    const password =
+        document.getElementById("adminPassword").value;
 
 
-function showAdminLogin(){
+    if (!email || !password) {
 
-adminLogin.style.display="block";
+        showAdminMessage(
+            "Please enter your email and password.",
+            "error"
+        );
 
-adminPanel.classList.remove("show");
+        return;
 
-}
+    }
 
 
-async function checkSession(){
+    showAdminMessage(
+        "Signing in...",
+        "success"
+    );
 
-const {data} =
-await supabaseClient
-.auth
-.getSession();
 
-if(data.session){
+    const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
 
-showAdminPanel();
+            email: email,
+            password: password
 
-}else{
+        });
 
-showAdminLogin();
 
-}
+    if (error) {
+
+        showAdminMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (data.session) {
+
+        document.getElementById("loginArea")
+            .style.display = "none";
+
+        document.getElementById("adminDashboard")
+            .style.display = "block";
+
+
+        showAdminMessage(
+            "Administrator signed in successfully.",
+            "success"
+        );
+
+    }
 
 }
 
 
 /* =========================================================
-   LOGIN
+   CHECK EXISTING SESSION
 ========================================================= */
 
-document.getElementById("loginBtn")
-.addEventListener("click",async()=>{
+async function checkAdminSession() {
 
-const email =
-document.getElementById("adminEmail")
-.value.trim();
-
-const password =
-document.getElementById("adminPassword")
-.value;
-
-if(!email || !password){
-
-toast("Enter your administrator email and password.");
-
-return;
-
-}
-
-const button =
-document.getElementById("loginBtn");
-
-button.disabled=true;
-
-button.innerHTML=
-'<i class="fas fa-spinner fa-spin"></i> Logging in...';
+    const { data } =
+        await supabaseClient.auth.getSession();
 
 
-const {data,error} =
-await supabaseClient
-.auth
-.signInWithPassword({
-email,
-password
-});
+    if (data.session) {
 
+        document.getElementById("loginArea")
+            .style.display = "none";
 
-button.disabled=false;
+        document.getElementById("adminDashboard")
+            .style.display = "block";
 
-button.innerHTML=
-'<i class="fas fa-right-to-bracket"></i> Login';
-
-
-if(error){
-
-console.error(error);
-
-toast("Login failed. Check your Supabase credentials.");
-
-return;
+    }
 
 }
 
-if(data.session){
 
-showAdminPanel();
-
-toast("Administrator access granted.");
-
-}
-
-});
+checkAdminSession();
 
 
 /* =========================================================
    LOGOUT
 ========================================================= */
 
-document.getElementById("logoutBtn")
-.addEventListener("click",async()=>{
+async function adminLogout() {
 
-await supabaseClient
-.auth
-.signOut();
+    await supabaseClient.auth.signOut();
 
-showAdminLogin();
+    document.getElementById("loginArea")
+        .style.display = "block";
 
-toast("Administrator logged out.");
+    document.getElementById("adminDashboard")
+        .style.display = "none";
 
-});
+    showAdminMessage(
+        "You have been signed out.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN MESSAGE
+========================================================= */
+
+function showAdminMessage(message, type) {
+
+    const box =
+        document.getElementById("adminMessage");
+
+    box.textContent = message;
+
+    box.className =
+        "admin-message show " + type;
+
+}
 
 
 /* =========================================================
    UPLOAD CV
 ========================================================= */
 
-document.getElementById("uploadCVBtn")
-.addEventListener("click",async()=>{
+async function uploadCV() {
 
-const input =
-document.getElementById("cvUpload");
+    const file =
+        document.getElementById("cvFile").files[0];
 
-const file =
-input.files[0];
 
-if(!file){
+    if (!file) {
 
-toast("Select your CV first.");
+        showAdminMessage(
+            "Please select a PDF CV first.",
+            "error"
+        );
 
-return;
+        return;
+
+    }
+
+
+    if (file.type !== "application/pdf") {
+
+        showAdminMessage(
+            "The CV must be a PDF file.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Uploading CV...",
+        "success"
+    );
+
+
+    const fileName =
+        "Edwin-Kuchio-Okello-CV.pdf";
+
+
+    const { error } =
+        await supabaseClient.storage
+        .from(CV_BUCKET)
+        .upload(
+            fileName,
+            file,
+            {
+                upsert: true,
+                contentType: "application/pdf"
+            }
+        );
+
+
+    if (error) {
+
+        showAdminMessage(
+            "CV upload failed: " + error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "CV uploaded successfully.",
+        "success"
+    );
+
+
+    loadCV();
 
 }
 
-if(file.type!=="application/pdf"){
 
-toast("CV must be a PDF file.");
+/* =========================================================
+   LOAD CV
+========================================================= */
 
-return;
+async function loadCV() {
 
-}
-
-const button =
-document.getElementById("uploadCVBtn");
-
-button.disabled=true;
-
-button.textContent="Uploading...";
-
-
-try{
-
-const {data:sessionData} =
-await supabaseClient
-.auth
-.getSession();
-
-if(!sessionData.session)
-throw new Error("Not authenticated.");
+    const { data } =
+        supabaseClient.storage
+        .from(CV_BUCKET)
+        .getPublicUrl(
+            "Edwin-Kuchio-Okello-CV.pdf"
+        );
 
 
-const {error} =
-await supabaseClient
-.storage
-.from(CV_BUCKET)
-.upload(
-"Cv.pdf",
-file,
-{
-upsert:true,
-contentType:"application/pdf",
-cacheControl:"3600"
-}
-);
+    if (!data || !data.publicUrl) {
 
-if(error)throw error;
+        document.getElementById("cvStatus")
+            .textContent =
+            "CV currently unavailable.";
 
-input.value="";
+        return;
 
-await loadCV();
+    }
 
-toast("CV uploaded successfully.");
 
-}catch(error){
+    const url =
+        data.publicUrl +
+        "?t=" +
+        Date.now();
 
-console.error(error);
 
-toast(
-"CV upload failed: "+error.message
-);
+    document.getElementById("viewCV")
+        .href = url;
+
+
+    document.getElementById("downloadCV")
+        .href = url;
+
+
+    document.getElementById("cvStatus")
+        .textContent =
+        "CV available for viewing and download.";
 
 }
 
-button.disabled=false;
 
-button.textContent="Upload CV";
-
-});
+loadCV();
 
 
 /* =========================================================
    UPLOAD PROFILE
 ========================================================= */
 
-document.getElementById("uploadProfileBtn")
-.addEventListener("click",async()=>{
+async function uploadProfile() {
 
-const input =
-document.getElementById("profileUpload");
-
-const file =
-input.files[0];
-
-if(!file){
-
-toast("Select a profile picture first.");
-
-return;
-
-}
-
-if(!file.type.startsWith("image/")){
-
-toast("Please select an image.");
-
-return;
-
-}
-
-const button =
-document.getElementById("uploadProfileBtn");
-
-button.disabled=true;
-
-button.textContent="Uploading...";
+    const file =
+        document.getElementById("profileFile").files[0];
 
 
-try{
+    if (!file) {
 
-const {data:sessionData} =
-await supabaseClient
-.auth
-.getSession();
+        showAdminMessage(
+            "Please select a profile picture.",
+            "error"
+        );
 
-if(!sessionData.session)
-throw new Error("Not authenticated.");
+        return;
 
-
-const extension =
-file.name.split(".").pop().toLowerCase();
-
-const fileName =
-"profile."+extension;
+    }
 
 
-const {error} =
-await supabaseClient
-.storage
-.from(PROFILE_BUCKET)
-.upload(
-fileName,
-file,
-{
-upsert:true,
-contentType:file.type,
-cacheControl:"3600"
-}
-);
+    showAdminMessage(
+        "Uploading profile picture...",
+        "success"
+    );
 
-if(error)throw error;
 
-input.value="";
+    const extension =
+        file.name.split(".").pop();
 
-await loadProfile();
 
-toast("Profile picture uploaded successfully.");
+    const fileName =
+        "profile." + extension;
 
-}catch(error){
 
-console.error(error);
+    const { error } =
+        await supabaseClient.storage
+        .from(PROFILE_BUCKET)
+        .upload(
+            fileName,
+            file,
+            {
+                upsert: true,
+                contentType: file.type
+            }
+        );
 
-toast(
-"Profile upload failed: "+error.message
-);
+
+    if (error) {
+
+        showAdminMessage(
+            "Profile upload failed: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Profile picture uploaded successfully.",
+        "success"
+    );
+
+
+    loadProfile();
 
 }
 
-button.disabled=false;
 
-button.textContent="Upload Photo";
+/* =========================================================
+   LOAD PROFILE
+========================================================= */
 
-});
+async function loadProfile() {
+
+    const extensions = [
+        "jpg",
+        "jpeg",
+        "png",
+        "webp"
+    ];
+
+
+    const frame =
+        document.getElementById("profileFrame");
+
+
+    for (const extension of extensions) {
+
+        const { data } =
+            supabaseClient.storage
+            .from(PROFILE_BUCKET)
+            .getPublicUrl(
+                "profile." + extension
+            );
+
+
+        if (!data || !data.publicUrl) continue;
+
+
+        const testImage =
+            new Image();
+
+
+        testImage.onload = function() {
+
+            frame.innerHTML = "";
+
+            testImage.alt =
+                "Edwin Kuchio Okello";
+
+            frame.appendChild(testImage);
+
+        };
+
+
+        testImage.src =
+            data.publicUrl +
+            "?t=" +
+            Date.now();
+
+    }
+
+}
+
+
+loadProfile();
 
 
 /* =========================================================
    UPLOAD PICTORIAL
 ========================================================= */
 
-document.getElementById("uploadPictorialBtn")
-.addEventListener("click",async()=>{
+async function uploadPictorial() {
 
-const input =
-document.getElementById("pictorialUpload");
-
-const files =
-Array.from(input.files);
-
-if(files.length===0){
-
-toast("Select photographs first.");
-
-return;
-
-}
-
-const button =
-document.getElementById("uploadPictorialBtn");
-
-button.disabled=true;
-
-button.textContent="Uploading...";
+    const file =
+        document.getElementById("pictorialFile").files[0];
 
 
-try{
+    if (!file) {
 
-const {data:sessionData} =
-await supabaseClient
-.auth
-.getSession();
+        showAdminMessage(
+            "Please select an image.",
+            "error"
+        );
 
-if(!sessionData.session)
-throw new Error("Not authenticated.");
+        return;
 
-
-for(const file of files){
-
-if(!file.type.startsWith("image/"))
-continue;
-
-const extension =
-file.name.split(".").pop().toLowerCase();
-
-const cleanName =
-file.name
-.replace(/\.[^/.]+$/,"")
-.replace(/[^a-zA-Z0-9-_]/g,"-");
-
-const fileName =
-Date.now()+"-"+cleanName+"."+extension;
+    }
 
 
-const {error} =
-await supabaseClient
-.storage
-.from(PICTORIAL_BUCKET)
-.upload(
-fileName,
-file,
-{
-upsert:false,
-contentType:file.type,
-cacheControl:"3600"
-}
-);
+    if (!file.type.startsWith("image/")) {
 
-if(error)throw error;
+        showAdminMessage(
+            "Please select an image file.",
+            "error"
+        );
 
-}
+        return;
 
-input.value="";
+    }
 
-await loadGallery();
 
-toast("Photographs uploaded successfully.");
+    showAdminMessage(
+        "Uploading pictorial image...",
+        "success"
+    );
 
-}catch(error){
 
-console.error(error);
+    const extension =
+        file.name.split(".").pop();
 
-toast(
-"Photo upload failed: "+error.message
-);
+
+    const uniqueName =
+        "photo-" +
+        Date.now() +
+        "." +
+        extension;
+
+
+    const { error } =
+        await supabaseClient.storage
+        .from(PICTORIAL_BUCKET)
+        .upload(
+            uniqueName,
+            file,
+            {
+                upsert: false,
+                contentType: file.type
+            }
+        );
+
+
+    if (error) {
+
+        showAdminMessage(
+            "Pictorial upload failed: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Pictorial image uploaded successfully.",
+        "success"
+    );
+
+
+    loadGallery();
 
 }
-
-button.disabled=false;
-
-button.textContent="Upload Photos";
-
-});
 
 
 /* =========================================================
-   AUTH STATE
+   LOAD PICTORIAL GALLERY
 ========================================================= */
 
-supabaseClient.auth
-.onAuthStateChange((event,session)=>{
+async function loadGallery() {
 
-if(session){
+    const gallery =
+        document.getElementById("gallery");
 
-showAdminPanel();
 
-}else{
+    const { data, error } =
+        await supabaseClient.storage
+        .from(PICTORIAL_BUCKET)
+        .list("", {
 
-showAdminLogin();
+            limit: 100,
+            sortBy: {
+                column: "created_at",
+                order: "desc"
+            }
+
+        });
+
+
+    if (error || !data || data.length === 0) {
+
+        return;
+
+    }
+
+
+    gallery.innerHTML = "";
+
+
+    data.forEach(function(file) {
+
+        if (!file.name) return;
+
+
+        const { data: urlData } =
+            supabaseClient.storage
+            .from(PICTORIAL_BUCKET)
+            .getPublicUrl(file.name);
+
+
+        if (!urlData || !urlData.publicUrl) return;
+
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "gallery-item";
+
+
+        const image =
+            document.createElement("img");
+
+        image.src =
+            urlData.publicUrl;
+
+
+        image.alt =
+            "Portfolio photograph";
+
+
+        item.appendChild(image);
+
+
+        gallery.appendChild(item);
+
+    });
 
 }
 
-});
+
+loadGallery();
 
 
 /* =========================================================
-   CONTACT FORM
+   ADMIN KEYBOARD ESCAPE
 ========================================================= */
 
-document.getElementById("contactForm")
-.addEventListener("submit",(event)=>{
+document.addEventListener("keydown", function(event) {
 
-event.preventDefault();
+    if (event.key === "Escape") {
 
-const name =
-document.getElementById("name")
-.value.trim();
+        closeAdmin();
 
-const email =
-document.getElementById("email")
-.value.trim();
-
-const message =
-document.getElementById("message")
-.value.trim();
-
-const subject =
-encodeURIComponent(
-"Professional enquiry from "+name
-);
-
-const body =
-encodeURIComponent(
-"Name: "+name+
-"\nEmail: "+email+
-"\n\nMessage:\n"+message
-);
-
-window.location.href =
-"mailto:edwinokello24@gmail.com"+
-"?subject="+subject+
-"&body="+body;
+    }
 
 });
-
-
-/* =========================================================
-   START
-========================================================= */
-
-async function start(){
-
-await loadProfile();
-
-await loadCV();
-
-await loadGallery();
-
-await checkSession();
-
-}
-
-start();
 
 </script>
 
