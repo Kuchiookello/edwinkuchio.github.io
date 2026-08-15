@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,21 +9,17 @@
     <meta name="description"
           content="Professional portfolio of Edwin Kuchio Okello — research, analysis, writing, academic formation, international experience and professional development.">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
           rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -137,8 +133,6 @@
 
         </div>
 
-
-        <!-- PROFILE -->
 
         <div class="hero-profile">
 
@@ -317,9 +311,6 @@
 
     <div class="experience-timeline">
 
-
-        <!-- KWETU -->
-
         <article class="experience-item">
 
             <div class="experience-marker">
@@ -369,8 +360,6 @@
         </article>
 
 
-        <!-- TANZANIA -->
-
         <article class="experience-item">
 
             <div class="experience-marker">
@@ -417,8 +406,6 @@
 
         </article>
 
-
-        <!-- UGANDA -->
 
         <article class="experience-item">
 
@@ -471,8 +458,6 @@
         </article>
 
 
-        <!-- CONGO -->
-
         <article class="experience-item">
 
             <div class="experience-marker">
@@ -520,8 +505,6 @@
 
         </article>
 
-
-        <!-- ZAMBIA -->
 
         <article class="experience-item">
 
@@ -572,8 +555,6 @@
         </article>
 
 
-        <!-- BURKINA -->
-
         <article class="experience-item">
 
             <div class="experience-marker">
@@ -623,8 +604,6 @@
         </article>
 
 
-        <!-- TOGO -->
-
         <article class="experience-item">
 
             <div class="experience-marker">
@@ -673,8 +652,6 @@
         </article>
 
 
-        <!-- SOUTH AFRICA -->
-
         <article class="experience-item">
 
             <div class="experience-marker">
@@ -713,11 +690,10 @@
                 </p>
 
                 <p>
-                    Over the years of formation, exposure to Eastern, Central,
-                    Western and Southern Africa provided a broad cross-cultural
-                    perspective and strengthened adaptability, communication,
-                    teamwork, respect for diversity and the capacity to operate
-                    within multicultural environments.
+                    Exposure to Eastern, Central, Western and Southern Africa
+                    provided a broad cross-cultural perspective and strengthened
+                    adaptability, communication, teamwork, respect for diversity
+                    and the capacity to operate within multicultural environments.
                 </p>
 
                 <div class="experience-tags">
@@ -734,52 +710,29 @@
 
         </article>
 
-
     </div>
 
-
-    <!-- EXPERIENCE SUMMARY -->
 
     <div class="experience-summary">
 
         <div class="summary-item">
-
             <strong>10+</strong>
-
-            <span>
-                Years of formation &amp; international exposure
-            </span>
-
+            <span>Years of formation &amp; international exposure</span>
         </div>
 
         <div class="summary-item">
-
             <strong>7+</strong>
-
-            <span>
-                African countries experienced through study, formation or service
-            </span>
-
+            <span>African countries experienced through study, formation or service</span>
         </div>
 
         <div class="summary-item">
-
             <strong>4</strong>
-
-            <span>
-                Major African regions encountered
-            </span>
-
+            <span>Major African regions encountered</span>
         </div>
 
         <div class="summary-item">
-
             <strong>French</strong>
-
-            <span>
-                Language exposure and immersion
-            </span>
-
+            <span>Language exposure and immersion</span>
         </div>
 
     </div>
@@ -812,7 +765,6 @@
 
 
     <div class="education-timeline">
-
 
         <article class="education-card">
 
@@ -937,7 +889,7 @@
         <div class="skill-card">
             <i class="fas fa-shield-halved"></i>
             <h3>Confidentiality &amp; Professional Ethics</h3>
-            <p>Commitment to responsible handling of information and professional conduct.</p>
+            <p>Responsible handling of information and professional conduct.</p>
         </div>
 
         <div class="skill-card">
@@ -980,7 +932,8 @@
         </h2>
 
         <p>
-            Professional initiatives and selected academic work.
+            Professional initiatives, research projects and selected academic
+            work.
         </p>
 
     </div>
@@ -989,9 +942,11 @@
     <div class="projects-grid">
 
 
-        <!-- EKO -->
+        <!-- =================================================
+             EKO ANALYTICS
+        ================================================== -->
 
-        <article class="project-card">
+        <article class="project-card eko-project-card">
 
             <div class="project-visual eko-visual">
 
@@ -1016,21 +971,23 @@
                 </h3>
 
                 <p>
-                    A startup project in the making, founded by Edwin Kuchio
-                    Okello, focused on research, analysis, reporting and
-                    information-based professional services.
+                    A startup project founded by Edwin Kuchio Okello,
+                    focused on research, data analysis, report writing,
+                    information management and evidence-based professional
+                    services.
                 </p>
 
                 <div class="project-tags">
 
                     <span>Research</span>
-                    <span>Analysis</span>
+                    <span>Analytics</span>
                     <span>Reporting</span>
+                    <span>Data</span>
 
                 </div>
 
                 <button class="project-button"
-                        onclick="openModal('ekoModal')">
+                        onclick="openEKOProjects()">
 
                     Explore Project
                     <i class="fas fa-arrow-right"></i>
@@ -1153,68 +1110,124 @@
 
 
 <!-- =========================================================
-     EKO MODAL
+     EKO PROJECTS MODAL
 ========================================================= -->
 
-<div class="modal" id="ekoModal">
+<div class="modal" id="ekoProjectsModal">
+
+    <div class="modal-box eko-projects-modal">
+
+        <button class="modal-close"
+                onclick="closeModal('ekoProjectsModal')">
+            &times;
+        </button>
+
+
+        <div class="eko-header">
+
+            <div class="modal-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+
+            <div>
+
+                <span class="modal-label">
+                    EKO ANALYTICS &amp; RESEARCH
+                </span>
+
+                <h2>
+                    Projects
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <p class="eko-description">
+
+            EKO Analytics &amp; Research is a developing initiative founded
+            by Edwin Kuchio Okello. This space presents research,
+            analytical and information-based projects developed under
+            the EKO Analytics identity.
+
+        </p>
+
+
+        <div class="eko-project-summary">
+
+            <div>
+                <strong id="ekoProjectCount">0</strong>
+                <span>Projects</span>
+            </div>
+
+            <div>
+                <strong>Research</strong>
+                <span>Focus Area</span>
+            </div>
+
+            <div>
+                <strong>Analytics</strong>
+                <span>Professional Direction</span>
+            </div>
+
+        </div>
+
+
+        <div id="ekoProjectsContainer"
+             class="eko-projects-container">
+
+            <!-- Projects are loaded here -->
+
+            <div class="eko-empty">
+
+                <div class="eko-empty-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+
+                <h3>
+                    EKO projects are coming soon
+                </h3>
+
+                <p>
+                    Projects added through the administrator area
+                    will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button class="project-button eko-back-button"
+                onclick="closeModal('ekoProjectsModal')">
+
+            <i class="fas fa-arrow-left"></i>
+            Back to Portfolio Projects
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     INDIVIDUAL EKO PROJECT MODAL
+========================================================= -->
+
+<div class="modal" id="ekoIndividualModal">
 
     <div class="modal-box">
 
         <button class="modal-close"
-                onclick="closeModal('ekoModal')">
+                onclick="closeModal('ekoIndividualModal')">
             &times;
         </button>
 
-        <div class="modal-icon">
-            <i class="fas fa-chart-line"></i>
+        <div id="ekoIndividualContent">
+
         </div>
-
-        <span class="modal-label">
-            DEVELOPING PROJECT
-        </span>
-
-        <h2>
-            EKO Analytics &amp; Research
-        </h2>
-
-        <p>
-            EKO Analytics &amp; Research is a startup project in the making,
-            founded by Edwin Kuchio Okello.
-        </p>
-
-        <p>
-            The initiative is envisioned as a platform for research,
-            analytical work, report writing and information-based
-            professional services.
-        </p>
-
-        <h3>
-            Areas of Interest
-        </h3>
-
-        <ul class="modal-list">
-
-            <li>
-                <i class="fas fa-check"></i>
-                Research and analysis
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Research and report writing
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Information-based professional services
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Analytical and research support
-            </li>
-
-        </ul>
 
     </div>
 
@@ -1313,45 +1326,14 @@
 
         <ul class="modal-list">
 
-            <li>
-                <i class="fas fa-check"></i>
-                Professional profile
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                International and cross-cultural experience
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Academic formation
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Professional skills
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                EKO Analytics &amp; Research
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Academic essays and research
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Curriculum Vitae
-            </li>
-
-            <li>
-                <i class="fas fa-check"></i>
-                Pictorial section
-            </li>
+            <li><i class="fas fa-check"></i> Professional profile</li>
+            <li><i class="fas fa-check"></i> International and cross-cultural experience</li>
+            <li><i class="fas fa-check"></i> Academic formation</li>
+            <li><i class="fas fa-check"></i> Professional skills</li>
+            <li><i class="fas fa-check"></i> EKO Analytics &amp; Research</li>
+            <li><i class="fas fa-check"></i> Academic essays and research</li>
+            <li><i class="fas fa-check"></i> Curriculum Vitae</li>
+            <li><i class="fas fa-check"></i> Pictorial section</li>
 
         </ul>
 
@@ -1494,9 +1476,7 @@
 
             <div>
 
-                <span>
-                    Email
-                </span>
+                <span>Email</span>
 
                 <a href="mailto:edwinokello24@gmail.com">
                     edwinokello24@gmail.com
@@ -1515,9 +1495,7 @@
 
             <div>
 
-                <span>
-                    Phone
-                </span>
+                <span>Phone</span>
 
                 <a href="tel:+254143947048">
                     +254 143 947 048
@@ -1536,9 +1514,7 @@
 
             <div>
 
-                <span>
-                    LinkedIn
-                </span>
+                <span>LinkedIn</span>
 
                 <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
                    target="_blank"
@@ -1588,7 +1564,7 @@
 
 
 <!-- =========================================================
-     SECRET ADMIN LOCK
+     ADMIN LOCK
 ========================================================= -->
 
 <button class="admin-lock"
@@ -1612,6 +1588,7 @@
                 onclick="closeAdmin()">
             &times;
         </button>
+
 
         <div class="admin-heading">
 
@@ -1677,10 +1654,13 @@
         </div>
 
 
-        <!-- DASHBOARD -->
+        <!-- =================================================
+             ADMIN DASHBOARD
+        ================================================== -->
 
         <div id="adminDashboard"
              style="display:none;">
+
 
             <div class="admin-welcome">
 
@@ -1701,9 +1681,7 @@
 
                     <div>
 
-                        <h3>
-                            Curriculum Vitae
-                        </h3>
+                        <h3>Curriculum Vitae</h3>
 
                         <p>
                             Upload or replace your public CV.
@@ -1738,9 +1716,7 @@
 
                     <div>
 
-                        <h3>
-                            Profile Picture
-                        </h3>
+                        <h3>Profile Picture</h3>
 
                         <p>
                             Upload your profile photograph.
@@ -1775,9 +1751,7 @@
 
                     <div>
 
-                        <h3>
-                            Pictorial
-                        </h3>
+                        <h3>Pictorial</h3>
 
                         <p>
                             Add photographs to your public gallery.
@@ -1798,6 +1772,127 @@
                     Upload Image
 
                 </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 EKO PROJECT UPLOAD
+            ================================================== -->
+
+            <div class="admin-section eko-admin-section">
+
+                <div class="admin-section-title">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    <div>
+
+                        <h3>
+                            EKO Analytics Projects
+                        </h3>
+
+                        <p>
+                            Add projects that will appear under
+                            EKO Analytics &amp; Research.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="ekoTitle">
+                        Project Title
+                    </label>
+
+                    <input type="text"
+                           id="ekoTitle"
+                           placeholder="e.g. Kenya Youth Employment Analysis">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="ekoCategory">
+                        Project Category
+                    </label>
+
+                    <input type="text"
+                           id="ekoCategory"
+                           placeholder="e.g. Data Analysis">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="ekoDescription">
+                        Project Description
+                    </label>
+
+                    <textarea id="ekoDescription"
+                              rows="4"
+                              placeholder="Describe the project..."></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="ekoTools">
+                        Tools / Methods
+                    </label>
+
+                    <input type="text"
+                           id="ekoTools"
+                           placeholder="e.g. Excel, Research, Data Analysis">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="ekoProjectFile">
+                        Project Document
+                    </label>
+
+                    <input type="file"
+                           id="ekoProjectFile"
+                           accept=".pdf,.doc,.docx,.xlsx,.xls,.csv">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="ekoProjectImage">
+                        Project Image — Optional
+                    </label>
+
+                    <input type="file"
+                           id="ekoProjectImage"
+                           accept="image/*">
+
+                </div>
+
+
+                <button class="admin-action"
+                        onclick="uploadEKOProject()">
+
+                    <i class="fas fa-plus-circle"></i>
+                    Add EKO Project
+
+                </button>
+
+
+                <div id="ekoAdminProjects"
+                     class="eko-admin-projects">
+
+                </div>
 
             </div>
 
@@ -1861,12 +1956,33 @@ const supabaseClient =
 
 
 /* =========================================================
-   BUCKETS
+   STORAGE BUCKETS
 ========================================================= */
 
 const CV_BUCKET = "CV";
 const PROFILE_BUCKET = "Profile";
 const PICTORIAL_BUCKET = "Pictorial";
+
+/*
+    IMPORTANT:
+
+    Create this bucket in Supabase:
+
+    EKO-Projects
+
+    Make the bucket PUBLIC if visitors should be able
+    to open/download the project documents.
+*/
+
+const EKO_BUCKET = "EKO-Projects";
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
 
 
 /* =========================================================
@@ -1895,14 +2011,6 @@ document.querySelectorAll(".nav-links a")
     });
 
 });
-
-
-/* =========================================================
-   YEAR
-========================================================= */
-
-document.getElementById("year").textContent =
-    new Date().getFullYear();
 
 
 /* =========================================================
@@ -1976,38 +2084,20 @@ document.addEventListener("keydown", function(event) {
 
 
 /* =========================================================
-   BACK TO TOP
+   EKO PROJECT WINDOW
 ========================================================= */
 
-const backToTop =
-    document.getElementById("backToTop");
+function openEKOProjects() {
 
-window.addEventListener("scroll", function() {
+    openModal("ekoProjectsModal");
 
-    if (window.scrollY > 450) {
+    loadEKOProjects();
 
-        backToTop.classList.add("show");
-
-    } else {
-
-        backToTop.classList.remove("show");
-
-    }
-
-});
-
-backToTop.addEventListener("click", function() {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-});
+}
 
 
 /* =========================================================
-   ADMIN
+   ADMIN PANEL
 ========================================================= */
 
 const adminLock =
@@ -2111,6 +2201,8 @@ async function adminLogin() {
             "success"
         );
 
+        loadEKOAdminProjects();
+
     }
 
 }
@@ -2133,6 +2225,8 @@ async function checkAdminSession() {
 
         document.getElementById("adminDashboard")
             .style.display = "block";
+
+        loadEKOAdminProjects();
 
     }
 
@@ -2621,7 +2715,6 @@ async function loadGallery() {
 
         item.appendChild(image);
 
-
         gallery.appendChild(item);
 
     });
@@ -2630,7 +2723,886 @@ async function loadGallery() {
 
 loadGallery();
 
+
+/* =========================================================
+   EKO PROJECT UPLOAD
+========================================================= */
+
+async function uploadEKOProject() {
+
+    const title =
+        document.getElementById("ekoTitle")
+        .value
+        .trim();
+
+    const category =
+        document.getElementById("ekoCategory")
+        .value
+        .trim();
+
+    const description =
+        document.getElementById("ekoDescription")
+        .value
+        .trim();
+
+    const tools =
+        document.getElementById("ekoTools")
+        .value
+        .trim();
+
+    const projectFile =
+        document.getElementById("ekoProjectFile")
+        .files[0];
+
+    const projectImage =
+        document.getElementById("ekoProjectImage")
+        .files[0];
+
+
+    if (!title || !description) {
+
+        showAdminMessage(
+            "Please enter the project title and description.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!projectFile) {
+
+        showAdminMessage(
+            "Please select the project document.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Uploading EKO project...",
+        "success"
+    );
+
+
+    const timestamp =
+        Date.now();
+
+    const safeTitle =
+        title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+
+
+    const documentName =
+        "documents/" +
+        timestamp +
+        "-" +
+        safeTitle +
+        "-" +
+        projectFile.name;
+
+
+    const { error: documentError } =
+        await supabaseClient.storage
+        .from(EKO_BUCKET)
+        .upload(
+            documentName,
+            projectFile,
+            {
+                upsert: false,
+                contentType: projectFile.type
+            }
+        );
+
+
+    if (documentError) {
+
+        showAdminMessage(
+            "Project document upload failed: " +
+            documentError.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    let imageName = "";
+
+
+    if (projectImage) {
+
+        imageName =
+            "images/" +
+            timestamp +
+            "-" +
+            safeTitle +
+            "-" +
+            projectImage.name;
+
+
+        const { error: imageError } =
+            await supabaseClient.storage
+            .from(EKO_BUCKET)
+            .upload(
+                imageName,
+                projectImage,
+                {
+                    upsert: false,
+                    contentType: projectImage.type
+                }
+            );
+
+
+        if (imageError) {
+
+            showAdminMessage(
+                "Project document uploaded, but image upload failed.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    /*
+        Store the project information in a JSON file.
+
+        This means you do not need another database table
+        just to manage the project list.
+    */
+
+    const project = {
+
+        id: timestamp,
+
+        title: title,
+
+        category: category || "Research & Analytics",
+
+        description: description,
+
+        tools: tools,
+
+        document: documentName,
+
+        image: imageName,
+
+        created_at: new Date().toISOString()
+
+    };
+
+
+    const existingProjects =
+        await getEKOProjectData();
+
+
+    existingProjects.unshift(project);
+
+
+    const jsonFile =
+        new Blob(
+            [JSON.stringify(existingProjects, null, 2)],
+            {
+                type: "application/json"
+            }
+        );
+
+
+    const { error: jsonError } =
+        await supabaseClient.storage
+        .from(EKO_BUCKET)
+        .upload(
+            "eko-projects.json",
+            jsonFile,
+            {
+                upsert: true,
+                contentType: "application/json"
+            }
+        );
+
+
+    if (jsonError) {
+
+        showAdminMessage(
+            "Project uploaded, but project list could not be updated: " +
+            jsonError.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById("ekoTitle").value = "";
+    document.getElementById("ekoCategory").value = "";
+    document.getElementById("ekoDescription").value = "";
+    document.getElementById("ekoTools").value = "";
+    document.getElementById("ekoProjectFile").value = "";
+    document.getElementById("ekoProjectImage").value = "";
+
+
+    showAdminMessage(
+        "EKO project added successfully.",
+        "success"
+    );
+
+
+    loadEKOAdminProjects();
+
+}
+
+
+/* =========================================================
+   GET EKO PROJECT DATA
+========================================================= */
+
+async function getEKOProjectData() {
+
+    try {
+
+        const { data, error } =
+            await supabaseClient.storage
+            .from(EKO_BUCKET)
+            .download("eko-projects.json");
+
+
+        if (error || !data) {
+
+            return [];
+
+        }
+
+
+        const text =
+            await data.text();
+
+
+        if (!text) {
+
+            return [];
+
+        }
+
+
+        const projects =
+            JSON.parse(text);
+
+
+        if (!Array.isArray(projects)) {
+
+            return [];
+
+        }
+
+
+        return projects;
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD EKO PROJECTS
+========================================================= */
+
+async function loadEKOProjects() {
+
+    const container =
+        document.getElementById("ekoProjectsContainer");
+
+    const count =
+        document.getElementById("ekoProjectCount");
+
+
+    container.innerHTML = `
+        <div class="eko-loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading EKO projects...</p>
+        </div>
+    `;
+
+
+    const projects =
+        await getEKOProjectData();
+
+
+    count.textContent =
+        projects.length;
+
+
+    if (projects.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="eko-empty">
+
+                <div class="eko-empty-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+
+                <h3>
+                    EKO projects are coming soon
+                </h3>
+
+                <p>
+                    Projects added through the administrator area
+                    will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    projects.forEach(function(project) {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "eko-project-item";
+
+
+        let imageHTML = "";
+
+
+        if (project.image) {
+
+            const { data: imageData } =
+                supabaseClient.storage
+                .from(EKO_BUCKET)
+                .getPublicUrl(
+                    project.image
+                );
+
+
+            if (imageData && imageData.publicUrl) {
+
+                imageHTML = `
+
+                    <div class="eko-project-image">
+
+                        <img
+                            src="${imageData.publicUrl}"
+                            alt="${escapeHTML(project.title)}"
+                        >
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        card.innerHTML = `
+
+            ${imageHTML}
+
+            <div class="eko-project-item-content">
+
+                <span class="eko-project-category">
+                    ${escapeHTML(project.category || "RESEARCH & ANALYTICS")}
+                </span>
+
+                <h3>
+                    ${escapeHTML(project.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(project.description)}
+                </p>
+
+                <div class="eko-project-meta">
+
+                    ${
+                        project.tools
+                        ?
+                        `<span>
+                            <i class="fas fa-toolbox"></i>
+                            ${escapeHTML(project.tools)}
+                        </span>`
+                        :
+                        ""
+                    }
+
+                </div>
+
+                <button
+                    class="project-button"
+                    onclick="viewEKOProject(${project.id})">
+
+                    View Project
+                    <i class="fas fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   VIEW INDIVIDUAL EKO PROJECT
+========================================================= */
+
+async function viewEKOProject(id) {
+
+    const projects =
+        await getEKOProjectData();
+
+
+    const project =
+        projects.find(function(item) {
+
+            return Number(item.id) === Number(id);
+
+        });
+
+
+    if (!project) {
+
+        return;
+
+    }
+
+
+    const content =
+        document.getElementById("ekoIndividualContent");
+
+
+    let documentHTML = "";
+
+
+    if (project.document) {
+
+        const { data } =
+            supabaseClient.storage
+            .from(EKO_BUCKET)
+            .getPublicUrl(
+                project.document
+            );
+
+
+        if (data && data.publicUrl) {
+
+            documentHTML = `
+
+                <div class="eko-document-actions">
+
+                    <a
+                        href="${data.publicUrl}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary">
+
+                        <i class="fas fa-eye"></i>
+                        Open Project Document
+
+                    </a>
+
+                    <a
+                        href="${data.publicUrl}"
+                        download
+                        class="btn btn-outline">
+
+                        <i class="fas fa-download"></i>
+                        Download
+
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    let imageHTML = "";
+
+
+    if (project.image) {
+
+        const { data } =
+            supabaseClient.storage
+            .from(EKO_BUCKET)
+            .getPublicUrl(
+                project.image
+            );
+
+
+        if (data && data.publicUrl) {
+
+            imageHTML = `
+
+                <div class="eko-individual-image">
+
+                    <img
+                        src="${data.publicUrl}"
+                        alt="${escapeHTML(project.title)}"
+                    >
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    content.innerHTML = `
+
+        ${imageHTML}
+
+        <div class="modal-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+
+        <span class="modal-label">
+            ${escapeHTML(project.category || "EKO ANALYTICS & RESEARCH")}
+        </span>
+
+        <h2>
+            ${escapeHTML(project.title)}
+        </h2>
+
+        <p>
+            ${escapeHTML(project.description)}
+        </p>
+
+        ${
+            project.tools
+            ?
+            `
+            <h3>
+                Tools / Methods
+            </h3>
+
+            <p>
+                ${escapeHTML(project.tools)}
+            </p>
+            `
+            :
+            ""
+        }
+
+        ${documentHTML}
+
+    `;
+
+
+    closeModal("ekoProjectsModal");
+
+    openModal("ekoIndividualModal");
+
+}
+
+
+/* =========================================================
+   LOAD EKO PROJECTS IN ADMIN
+========================================================= */
+
+async function loadEKOAdminProjects() {
+
+    const container =
+        document.getElementById("ekoAdminProjects");
+
+
+    if (!container) return;
+
+
+    const projects =
+        await getEKOProjectData();
+
+
+    if (projects.length === 0) {
+
+        container.innerHTML = `
+
+            <p class="admin-no-projects">
+                No EKO projects have been added yet.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <h4 class="admin-project-list-title">
+            Published EKO Projects
+        </h4>
+
+    `;
+
+
+    projects.forEach(function(project) {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "admin-eko-project";
+
+
+        item.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${escapeHTML(project.title)}
+                </strong>
+
+                <small>
+                    ${escapeHTML(project.category || "Research")}
+                </small>
+
+            </div>
+
+            <button
+                class="admin-delete-button"
+                onclick="deleteEKOProject(${project.id})">
+
+                <i class="fas fa-trash"></i>
+
+            </button>
+
+        `;
+
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   DELETE EKO PROJECT
+========================================================= */
+
+async function deleteEKOProject(id) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to remove this EKO project?"
+        );
+
+
+    if (!confirmed) return;
+
+
+    const projects =
+        await getEKOProjectData();
+
+
+    const project =
+        projects.find(function(item) {
+
+            return Number(item.id) === Number(id);
+
+        });
+
+
+    if (!project) return;
+
+
+    const filesToRemove = [];
+
+
+    if (project.document) {
+
+        filesToRemove.push(
+            project.document
+        );
+
+    }
+
+
+    if (project.image) {
+
+        filesToRemove.push(
+            project.image
+        );
+
+    }
+
+
+    if (filesToRemove.length > 0) {
+
+        await supabaseClient.storage
+        .from(EKO_BUCKET)
+        .remove(filesToRemove);
+
+    }
+
+
+    const remaining =
+        projects.filter(function(item) {
+
+            return Number(item.id) !== Number(id);
+
+        });
+
+
+    const jsonFile =
+        new Blob(
+            [JSON.stringify(remaining, null, 2)],
+            {
+                type: "application/json"
+            }
+        );
+
+
+    const { error } =
+        await supabaseClient.storage
+        .from(EKO_BUCKET)
+        .upload(
+            "eko-projects.json",
+            jsonFile,
+            {
+                upsert: true,
+                contentType: "application/json"
+            }
+        );
+
+
+    if (error) {
+
+        showAdminMessage(
+            "Project could not be removed: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "EKO project removed successfully.",
+        "success"
+    );
+
+
+    loadEKOAdminProjects();
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+
+        return "";
+
+    }
+
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+const backToTop =
+    document.getElementById("backToTop");
+
+window.addEventListener("scroll", function() {
+
+    if (window.scrollY > 450) {
+
+        backToTop.classList.add("show");
+
+    } else {
+
+        backToTop.classList.remove("show");
+
+    }
+
+});
+
+
+backToTop.addEventListener("click", function() {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+});
+
+
+/* =========================================================
+   INITIAL EKO LOAD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadEKOProjects();
+
+    }
+);
+
 </script>
 
 </body>
-</html>
+</html>         
