@@ -1,1529 +1,1904 @@
+<script>
+
 /* =========================================================
-   EDWIN KUCHIO OKELLO — PORTFOLIO JAVASCRIPT
-   Works with the current index.html structure
+   SUPABASE
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+const SUPABASE_URL =
+    "https://cueajmzcmawvcbpwuyhi.supabase.co";
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
 
-    const cornerMenu = document.getElementById("cornerMenu");
-    const quickMenu = document.getElementById("quickMenu");
-    const closeQuickMenu = document.getElementById("closeQuickMenu");
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
 
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.getElementById("navMenu");
 
-    const navLinks = document.querySelectorAll(".nav-link");
+/* =========================================================
+   STORAGE BUCKETS
+========================================================= */
 
-    const backToTop = document.getElementById("backToTop");
+const CV_BUCKET = "CV";
+const PROFILE_BUCKET = "Profile";
+const PICTORIAL_BUCKET = "Pictorial";
 
-    const adminLoginModal =
-        document.getElementById("adminLoginModal");
+/*
+   IMPORTANT:
+   Create this bucket in Supabase Storage:
 
-    const openAdminLogin =
-        document.getElementById("openAdminLogin");
+   Bucket name:
+   Projects
 
-    const closeAdminLogin =
-        document.getElementById("closeAdminLogin");
+   Make the bucket PUBLIC if you want visitors
+   to open the uploaded projects.
+*/
 
-    const adminLoginForm =
-        document.getElementById("adminLoginForm");
+const PROJECT_BUCKET = "Projects";
 
-    const adminLoginStatus =
-        document.getElementById("adminLoginStatus");
 
-    const adminDashboard =
-        document.getElementById("adminDashboard");
+/* =========================================================
+   PROJECT CATEGORIES
+========================================================= */
 
-    const adminLogout =
-        document.getElementById("adminLogout");
+const PROJECT_CATEGORIES = {
 
-    const adminUserEmail =
-        document.getElementById("adminUserEmail");
+    eko: {
+        name: "EKO Analytics & Research",
+        folder: "eko"
+    },
 
-    const profileUpload =
-        document.getElementById("profileUpload");
+    academic: {
+        name: "Academic Essays & Research",
+        folder: "academic"
+    },
 
-    const profileFileName =
-        document.getElementById("profileFileName");
+    portfolio: {
+        name: "Professional Portfolio",
+        folder: "portfolio"
+    }
 
-    const uploadProfileButton =
-        document.getElementById("uploadProfileButton");
+};
 
-    const profileUploadStatus =
-        document.getElementById("profileUploadStatus");
 
-    const profileImage =
-        document.getElementById("profileImage");
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
-    const photoPlaceholder =
-        document.getElementById("photoPlaceholder");
+const menuToggle =
+    document.getElementById("menuToggle");
 
-    const cvUpload =
-        document.getElementById("cvUpload");
+const navLinks =
+    document.getElementById("navLinks");
 
-    const cvFileName =
-        document.getElementById("cvFileName");
+if (menuToggle && navLinks) {
 
-    const uploadCvButton =
-        document.getElementById("uploadCvButton");
+    menuToggle.addEventListener("click", function() {
 
-    const cvUploadStatus =
-        document.getElementById("cvUploadStatus");
+        navLinks.classList.toggle("active");
 
-    const viewCv =
-        document.getElementById("viewCv");
+    });
 
-    const downloadCv =
-        document.getElementById("downloadCv");
+}
+
+
+document.querySelectorAll(".nav-links a")
+.forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        if (navLinks) {
+            navLinks.classList.remove("active");
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+const yearElement =
+    document.getElementById("year");
+
+if (yearElement) {
+
+    yearElement.textContent =
+        new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openModal(id) {
+
+    const modal =
+        document.getElementById(id);
+
+    if (!modal) return;
+
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+    /*
+       Automatically refresh project lists
+       whenever a project modal is opened.
+    */
+
+    if (id === "ekoModal") {
+
+        loadProjects("eko");
+
+    }
+
+    if (id === "academicModal") {
+
+        loadProjects("academic");
+
+    }
+
+    if (id === "portfolioModal") {
+
+        loadProjects("portfolio");
+
+    }
+
+}
+
+
+function closeModal(id) {
+
+    const modal =
+        document.getElementById(id);
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+document.querySelectorAll(".modal")
+.forEach(function(modal) {
+
+    modal.addEventListener("click", function(event) {
+
+        if (event.target === modal) {
+
+            modal.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+    });
+
+});
+
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        document.querySelectorAll(".modal.active")
+        .forEach(function(modal) {
+
+            modal.classList.remove("active");
+
+        });
+
+        closeAdmin();
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+const backToTop =
+    document.getElementById("backToTop");
+
+if (backToTop) {
+
+    window.addEventListener("scroll", function() {
+
+        if (window.scrollY > 450) {
+
+            backToTop.classList.add("show");
+
+        } else {
+
+            backToTop.classList.remove("show");
+
+        }
+
+    });
+
+
+    backToTop.addEventListener("click", function() {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   ADMIN PANEL
+========================================================= */
+
+const adminLock =
+    document.getElementById("adminLock");
+
+const adminPanel =
+    document.getElementById("adminPanel");
+
+
+if (adminLock) {
+
+    adminLock.addEventListener("click", function() {
+
+        adminPanel.classList.add("active");
+
+    });
+
+}
+
+
+function closeAdmin() {
+
+    if (adminPanel) {
+
+        adminPanel.classList.remove("active");
+
+    }
+
+}
+
+
+if (adminPanel) {
+
+    adminPanel.addEventListener("click", function(event) {
+
+        if (event.target === adminPanel) {
+
+            closeAdmin();
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+async function adminLogin() {
+
+    const email =
+        document.getElementById("adminEmail")
+        .value
+        .trim();
+
+    const password =
+        document.getElementById("adminPassword")
+        .value;
+
+
+    if (!email || !password) {
+
+        showAdminMessage(
+            "Please enter your email and password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Signing in...",
+        "success"
+    );
+
+
+    const { data, error } =
+        await supabaseClient.auth
+        .signInWithPassword({
+
+            email: email,
+
+            password: password
+
+        });
+
+
+    if (error) {
+
+        showAdminMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (data.session) {
+
+        document.getElementById("loginArea")
+            .style.display = "none";
+
+        document.getElementById("adminDashboard")
+            .style.display = "block";
+
+        showAdminMessage(
+            "Administrator signed in successfully.",
+            "success"
+        );
+
+        loadAllProjects();
+
+    }
+
+}
+
+
+/* =========================================================
+   CHECK ADMIN SESSION
+========================================================= */
+
+async function checkAdminSession() {
+
+    const { data } =
+        await supabaseClient.auth.getSession();
+
+
+    if (data.session) {
+
+        document.getElementById("loginArea")
+            .style.display = "none";
+
+        document.getElementById("adminDashboard")
+            .style.display = "block";
+
+        loadAllProjects();
+
+    }
+
+}
+
+checkAdminSession();
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+async function adminLogout() {
+
+    await supabaseClient.auth.signOut();
+
+
+    document.getElementById("loginArea")
+        .style.display = "block";
+
+
+    document.getElementById("adminDashboard")
+        .style.display = "none";
+
+
+    showAdminMessage(
+        "You have been signed out.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN MESSAGE
+========================================================= */
+
+function showAdminMessage(message, type) {
+
+    const box =
+        document.getElementById("adminMessage");
+
+    if (!box) return;
+
+    box.textContent = message;
+
+    box.className =
+        "admin-message show " + type;
+
+}
+
+
+/* =========================================================
+   CV UPLOAD
+========================================================= */
+
+async function uploadCV() {
+
+    const file =
+        document.getElementById("cvFile")
+        .files[0];
+
+
+    if (!file) {
+
+        showAdminMessage(
+            "Please select your PDF CV first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (file.type !== "application/pdf") {
+
+        showAdminMessage(
+            "The CV must be a PDF file.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Uploading CV...",
+        "success"
+    );
+
+
+    const fileName =
+        "Edwin-Kuchio-Okello-CV.pdf";
+
+
+    const { error } =
+        await supabaseClient.storage
+        .from(CV_BUCKET)
+        .upload(
+
+            fileName,
+
+            file,
+
+            {
+
+                upsert: true,
+
+                contentType: "application/pdf"
+
+            }
+
+        );
+
+
+    if (error) {
+
+        showAdminMessage(
+            "CV upload failed: " + error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "CV uploaded successfully.",
+        "success"
+    );
+
+
+    loadCV();
+
+}
+
+
+/* =========================================================
+   LOAD CV
+========================================================= */
+
+async function loadCV() {
+
+    const { data } =
+        supabaseClient.storage
+        .from(CV_BUCKET)
+        .getPublicUrl(
+            "Edwin-Kuchio-Okello-CV.pdf"
+        );
+
+
+    if (!data || !data.publicUrl) {
+
+        const status =
+            document.getElementById("cvStatus");
+
+        if (status) {
+
+            status.textContent =
+                "CV currently unavailable.";
+
+        }
+
+        return;
+
+    }
+
+
+    const url =
+        data.publicUrl +
+        "?t=" +
+        Date.now();
+
+
+    const viewCV =
+        document.getElementById("viewCV");
+
+    const downloadCV =
+        document.getElementById("downloadCV");
 
     const cvStatus =
         document.getElementById("cvStatus");
 
-    const pictorialUpload =
-        document.getElementById("pictorialUpload");
 
-    const pictorialFileName =
-        document.getElementById("pictorialFileName");
+    if (viewCV) {
 
-    const uploadPictorialButton =
-        document.getElementById("uploadPictorialButton");
-
-    const pictorialUploadStatus =
-        document.getElementById("pictorialUploadStatus");
-
-    const pictorialGrid =
-        document.getElementById("pictorialGrid");
-
-    const pictorialPlaceholder =
-        document.getElementById("pictorialPlaceholder");
-
-
-    /* =====================================================
-       QUICK MENU
-    ===================================================== */
-
-    if (cornerMenu && quickMenu) {
-
-        cornerMenu.addEventListener("click", () => {
-
-            quickMenu.classList.toggle("show");
-
-        });
+        viewCV.href = url;
 
     }
 
 
-    if (closeQuickMenu && quickMenu) {
+    if (downloadCV) {
 
-        closeQuickMenu.addEventListener("click", () => {
-
-            quickMenu.classList.remove("show");
-
-        });
+        downloadCV.href = url;
 
     }
 
 
-    /* Close quick menu when clicking outside */
+    if (cvStatus) {
 
-    document.addEventListener("click", (event) => {
+        cvStatus.textContent =
+            "CV available for viewing and download.";
 
-        if (
-            quickMenu &&
-            cornerMenu &&
-            !quickMenu.contains(event.target) &&
-            !cornerMenu.contains(event.target)
-        ) {
+    }
 
-            quickMenu.classList.remove("show");
+}
+
+loadCV();
+
+
+/* =========================================================
+   PROFILE UPLOAD
+========================================================= */
+
+async function uploadProfile() {
+
+    const file =
+        document.getElementById("profileFile")
+        .files[0];
+
+
+    if (!file) {
+
+        showAdminMessage(
+            "Please select a profile picture.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!file.type.startsWith("image/")) {
+
+        showAdminMessage(
+            "Please select an image file.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Uploading profile picture...",
+        "success"
+    );
+
+
+    const extension =
+        file.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+
+
+    const fileName =
+        "profile." + extension;
+
+
+    const { error } =
+        await supabaseClient.storage
+        .from(PROFILE_BUCKET)
+        .upload(
+
+            fileName,
+
+            file,
+
+            {
+
+                upsert: true,
+
+                contentType: file.type
+
+            }
+
+        );
+
+
+    if (error) {
+
+        showAdminMessage(
+            "Profile upload failed: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Profile picture uploaded successfully.",
+        "success"
+    );
+
+
+    loadProfile();
+
+}
+
+
+/* =========================================================
+   LOAD PROFILE
+========================================================= */
+
+async function loadProfile() {
+
+    const extensions = [
+
+        "jpg",
+        "jpeg",
+        "png",
+        "webp"
+
+    ];
+
+
+    const frame =
+        document.getElementById("profileFrame");
+
+
+    if (!frame) return;
+
+
+    for (const extension of extensions) {
+
+        const { data } =
+            supabaseClient.storage
+            .from(PROFILE_BUCKET)
+            .getPublicUrl(
+                "profile." + extension
+            );
+
+
+        if (!data || !data.publicUrl) {
+
+            continue;
 
         }
 
-    });
+
+        const testImage =
+            new Image();
 
 
-    /* Close quick menu when selecting a link */
+        testImage.onload = function() {
 
-    if (quickMenu) {
+            frame.innerHTML = "";
 
-        quickMenu.querySelectorAll("a").forEach(link => {
+            testImage.alt =
+                "Edwin Kuchio Okello";
 
-            link.addEventListener("click", () => {
+            frame.appendChild(testImage);
 
-                quickMenu.classList.remove("show");
+        };
 
-            });
 
-        });
+        testImage.src =
+            data.publicUrl +
+            "?t=" +
+            Date.now();
+
+    }
+
+}
+
+loadProfile();
+
+
+/* =========================================================
+   PICTORIAL UPLOAD
+========================================================= */
+
+async function uploadPictorial() {
+
+    const file =
+        document.getElementById("pictorialFile")
+        .files[0];
+
+
+    if (!file) {
+
+        showAdminMessage(
+            "Please select an image.",
+            "error"
+        );
+
+        return;
 
     }
 
 
-    /* =====================================================
-       MOBILE NAVIGATION
-    ===================================================== */
+    if (!file.type.startsWith("image/")) {
 
-    if (menuToggle && navMenu) {
+        showAdminMessage(
+            "Please select an image file.",
+            "error"
+        );
 
-        menuToggle.addEventListener("click", () => {
-
-            navMenu.classList.toggle("show");
-
-            const icon =
-                menuToggle.querySelector("i");
-
-            if (navMenu.classList.contains("show")) {
-
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-
-            } else {
-
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-
-            }
-
-        });
+        return;
 
     }
 
 
-    /* Close mobile navigation after selecting link */
+    showAdminMessage(
+        "Uploading pictorial image...",
+        "success"
+    );
 
-    navLinks.forEach(link => {
 
-        link.addEventListener("click", () => {
+    const extension =
+        file.name
+        .split(".")
+        .pop()
+        .toLowerCase();
 
-            if (navMenu) {
 
-                navMenu.classList.remove("show");
+    const uniqueName =
+        "photo-" +
+        Date.now() +
+        "." +
+        extension;
+
+
+    const { error } =
+        await supabaseClient.storage
+        .from(PICTORIAL_BUCKET)
+        .upload(
+
+            uniqueName,
+
+            file,
+
+            {
+
+                upsert: false,
+
+                contentType: file.type
 
             }
 
-            if (menuToggle) {
+        );
 
-                const icon =
-                    menuToggle.querySelector("i");
 
-                if (icon) {
+    if (error) {
 
-                    icon.classList.remove("fa-xmark");
-                    icon.classList.add("fa-bars");
+        showAdminMessage(
+            "Pictorial upload failed: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Pictorial image uploaded successfully.",
+        "success"
+    );
+
+
+    document.getElementById("pictorialFile").value = "";
+
+    loadGallery();
+
+}
+
+
+/* =========================================================
+   LOAD GALLERY
+========================================================= */
+
+async function loadGallery() {
+
+    const gallery =
+        document.getElementById("gallery");
+
+
+    if (!gallery) return;
+
+
+    const { data, error } =
+        await supabaseClient.storage
+        .from(PICTORIAL_BUCKET)
+        .list(
+
+            "",
+
+            {
+
+                limit: 100,
+
+                sortBy: {
+
+                    column: "created_at",
+
+                    order: "desc"
 
                 }
 
             }
 
-        });
+        );
+
+
+    if (error || !data || data.length === 0) {
+
+        return;
+
+    }
+
+
+    gallery.innerHTML = "";
+
+
+    data.forEach(function(file) {
+
+        if (!file.name) return;
+
+
+        const { data: urlData } =
+            supabaseClient.storage
+            .from(PICTORIAL_BUCKET)
+            .getPublicUrl(
+                file.name
+            );
+
+
+        if (!urlData || !urlData.publicUrl) {
+
+            return;
+
+        }
+
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "gallery-item";
+
+
+        const image =
+            document.createElement("img");
+
+        image.src =
+            urlData.publicUrl;
+
+        image.alt =
+            "Edwin Kuchio Okello — portfolio photograph";
+
+
+        item.appendChild(image);
+
+        gallery.appendChild(item);
 
     });
 
+}
 
-    /* =====================================================
-       SMOOTH SCROLLING
-    ===================================================== */
+loadGallery();
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-        anchor.addEventListener("click", function (event) {
+/* =========================================================
+   =========================================================
+   PROJECT MANAGEMENT
+   =========================================================
+========================================================= */
 
-            const targetId =
-                this.getAttribute("href");
 
-            if (
-                !targetId ||
-                targetId === "#" ||
-                targetId === "#!"
-            ) {
+/*
+   The project information is stored in Supabase Storage.
 
-                return;
+   Every uploaded project gets:
 
-            }
+   Category
+   Title
+   Description
+   File
+   Date
 
-            const target =
-                document.querySelector(targetId);
+   The file itself is stored in:
 
-            if (!target) return;
+   Projects/eko/
+   Projects/academic/
+   Projects/portfolio/
+*/
 
-            event.preventDefault();
 
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+/* =========================================================
+   CREATE PROJECT UPLOAD INTERFACE
+========================================================= */
 
-        });
-
-    });
-
-
-    /* =====================================================
-       ACTIVE NAVIGATION LINK
-    ===================================================== */
-
-    const sections =
-        document.querySelectorAll("section[id]");
-
-    function updateActiveNav() {
-
-        let currentSection = "";
-
-        sections.forEach(section => {
-
-            const sectionTop =
-                section.offsetTop - 180;
-
-            const sectionHeight =
-                section.offsetHeight;
-
-            if (
-                window.scrollY >= sectionTop &&
-                window.scrollY < sectionTop + sectionHeight
-            ) {
-
-                currentSection =
-                    section.getAttribute("id");
-
-            }
-
-        });
-
-
-        navLinks.forEach(link => {
-
-            link.classList.remove("active");
-
-            const href =
-                link.getAttribute("href");
-
-            if (href === "#" + currentSection) {
-
-                link.classList.add("active");
-
-            }
-
-        });
-
-    }
-
-    window.addEventListener(
-        "scroll",
-        updateActiveNav
-    );
-
-    updateActiveNav();
-
-
-    /* =====================================================
-       HEADER SCROLL EFFECT
-    ===================================================== */
-
-    const header =
-        document.getElementById("header");
-
-    function updateHeader() {
-
-        if (!header) return;
-
-        if (window.scrollY > 50) {
-
-            header.classList.add("scrolled");
-
-        } else {
-
-            header.classList.remove("scrolled");
-
-        }
-
-    }
-
-    window.addEventListener(
-        "scroll",
-        updateHeader
-    );
-
-    updateHeader();
-
-
-    /* =====================================================
-       BACK TO TOP
-    ===================================================== */
-
-    if (backToTop) {
-
-        window.addEventListener("scroll", () => {
-
-            if (window.scrollY > 500) {
-
-                backToTop.classList.add("show");
-
-            } else {
-
-                backToTop.classList.remove("show");
-
-            }
-
-        });
-
-
-        backToTop.addEventListener("click", () => {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        });
-
-    }
-
-
-    /* =====================================================
-       ADMIN LOGIN MODAL
-    ===================================================== */
-
-    function openLoginModal() {
-
-        if (!adminLoginModal) return;
-
-        adminLoginModal.classList.add("show");
-
-        adminLoginModal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        document.body.classList.add(
-            "modal-open"
-        );
-
-    }
-
-
-    function closeLoginModal() {
-
-        if (!adminLoginModal) return;
-
-        adminLoginModal.classList.remove("show");
-
-        adminLoginModal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        document.body.classList.remove(
-            "modal-open"
-        );
-
-    }
-
-
-    if (openAdminLogin) {
-
-        openAdminLogin.addEventListener(
-            "click",
-            openLoginModal
-        );
-
-    }
-
-
-    if (closeAdminLogin) {
-
-        closeAdminLogin.addEventListener(
-            "click",
-            closeLoginModal
-        );
-
-    }
-
-
-    /* Close modal by clicking background */
-
-    if (adminLoginModal) {
-
-        adminLoginModal.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target === adminLoginModal
-                ) {
-
-                    closeLoginModal();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* Escape key */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key === "Escape") {
-
-                closeLoginModal();
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       ADMIN AUTHENTICATION
-       
-       IMPORTANT:
-       This is only front-end protection.
-       Real secure authentication requires a backend.
-    ===================================================== */
-
-    const ADMIN_EMAIL =
-        "edwinokello24@gmail.com";
-
-    const ADMIN_PASSWORD =
-        "Kuchio2011";
-
-
-    function showAdminDashboard(email) {
-
-        if (!adminDashboard) return;
-
-        adminDashboard.hidden = false;
-
-        adminDashboard.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-        if (adminUserEmail) {
-
-            adminUserEmail.textContent =
-                email;
-
-        }
-
-    }
-
-
-    if (adminLoginForm) {
-
-        adminLoginForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-                const email =
-                    document.getElementById(
-                        "adminEmail"
-                    ).value.trim();
-
-                const password =
-                    document.getElementById(
-                        "adminPassword"
-                    ).value;
-
-
-                if (
-                    email === ADMIN_EMAIL &&
-                    password === ADMIN_PASSWORD
-                ) {
-
-                    sessionStorage.setItem(
-                        "adminLoggedIn",
-                        "true"
-                    );
-
-                    sessionStorage.setItem(
-                        "adminEmail",
-                        email
-                    );
-
-                    if (adminLoginStatus) {
-
-                        adminLoginStatus.textContent =
-                            "Login successful.";
-
-                        adminLoginStatus.className =
-                            "admin-login-status success";
-
-                    }
-
-                    closeLoginModal();
-
-                    showAdminDashboard(email);
-
-                } else {
-
-                    if (adminLoginStatus) {
-
-                        adminLoginStatus.textContent =
-                            "Incorrect email or password.";
-
-                        adminLoginStatus.className =
-                            "admin-login-status error";
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       RESTORE ADMIN SESSION
-    ===================================================== */
+function createProjectUploadArea() {
 
     if (
-        sessionStorage.getItem(
-            "adminLoggedIn"
-        ) === "true"
-    ) {
-
-        showAdminDashboard(
-            sessionStorage.getItem(
-                "adminEmail"
-            ) || ADMIN_EMAIL
-        );
-
-    }
-
-
-    /* =====================================================
-       ADMIN LOGOUT
-    ===================================================== */
-
-    if (adminLogout) {
-
-        adminLogout.addEventListener(
-            "click",
-            () => {
-
-                sessionStorage.removeItem(
-                    "adminLoggedIn"
-                );
-
-                sessionStorage.removeItem(
-                    "adminEmail"
-                );
-
-                if (adminDashboard) {
-
-                    adminDashboard.hidden = true;
-
-                }
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       PROFILE PHOTO — FILE SELECTION
-    ===================================================== */
-
-    if (profileUpload) {
-
-        profileUpload.addEventListener(
-            "change",
-            () => {
-
-                const file =
-                    profileUpload.files[0];
-
-                if (!file) {
-
-                    if (profileFileName) {
-
-                        profileFileName.textContent =
-                            "No photo selected";
-
-                    }
-
-                    return;
-
-                }
-
-
-                if (!file.type.startsWith("image/")) {
-
-                    alert(
-                        "Please select a valid image file."
-                    );
-
-                    profileUpload.value = "";
-
-                    return;
-
-                }
-
-
-                if (profileFileName) {
-
-                    profileFileName.textContent =
-                        file.name;
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       PROFILE PHOTO — SAVE
-       
-       Uses local browser storage.
-       This allows the photo to remain available
-       on the same browser/device.
-    ===================================================== */
-
-    if (uploadProfileButton) {
-
-        uploadProfileButton.addEventListener(
-            "click",
-            () => {
-
-                const file =
-                    profileUpload.files[0];
-
-                if (!file) {
-
-                    showStatus(
-                        profileUploadStatus,
-                        "Please choose a photo first.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                const reader =
-                    new FileReader();
-
-
-                reader.onload = function(event) {
-
-                    const imageData =
-                        event.target.result;
-
-                    localStorage.setItem(
-                        "profileImage",
-                        imageData
-                    );
-
-
-                    displayProfileImage(
-                        imageData
-                    );
-
-
-                    showStatus(
-                        profileUploadStatus,
-                        "Profile photo saved successfully.",
-                        "success"
-                    );
-
-                };
-
-
-                reader.readAsDataURL(file);
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       DISPLAY PROFILE PHOTO
-    ===================================================== */
-
-    function displayProfileImage(imageData) {
-
-        if (!profileImage) return;
-
-        profileImage.src = imageData;
-
-        profileImage.hidden = false;
-
-        if (photoPlaceholder) {
-
-            photoPlaceholder.style.display =
-                "none";
-
-        }
-
-    }
-
-
-    /* Restore saved profile image */
-
-    const savedProfileImage =
-        localStorage.getItem(
-            "profileImage"
-        );
-
-    if (savedProfileImage) {
-
-        displayProfileImage(
-            savedProfileImage
-        );
-
-    }
-
-
-    /* =====================================================
-       CV FILE SELECTION
-    ===================================================== */
-
-    if (cvUpload) {
-
-        cvUpload.addEventListener(
-            "change",
-            () => {
-
-                const file =
-                    cvUpload.files[0];
-
-                if (!file) {
-
-                    if (cvFileName) {
-
-                        cvFileName.textContent =
-                            "No CV selected";
-
-                    }
-
-                    return;
-
-                }
-
-
-                if (
-                    file.type !==
-                    "application/pdf"
-                ) {
-
-                    alert(
-                        "Please select a PDF file."
-                    );
-
-                    cvUpload.value = "";
-
-                    return;
-
-                }
-
-
-                if (cvFileName) {
-
-                    cvFileName.textContent =
-                        file.name;
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       CV — SAVE
-    ===================================================== */
-
-    if (uploadCvButton) {
-
-        uploadCvButton.addEventListener(
-            "click",
-            () => {
-
-                const file =
-                    cvUpload.files[0];
-
-                if (!file) {
-
-                    showStatus(
-                        cvUploadStatus,
-                        "Please choose your CV PDF first.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                if (
-                    file.type !==
-                    "application/pdf"
-                ) {
-
-                    showStatus(
-                        cvUploadStatus,
-                        "Only PDF files are allowed.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                const reader =
-                    new FileReader();
-
-
-                reader.onload = function(event) {
-
-                    const pdfData =
-                        event.target.result;
-
-
-                    try {
-
-                        localStorage.setItem(
-                            "portfolioCV",
-                            pdfData
-                        );
-
-
-                        localStorage.setItem(
-                            "portfolioCVName",
-                            file.name
-                        );
-
-
-                        setupCV(
-                            pdfData,
-                            file.name
-                        );
-
-
-                        showStatus(
-                            cvUploadStatus,
-                            "CV uploaded and published successfully.",
-                            "success"
-                        );
-
-                    } catch (error) {
-
-                        showStatus(
-                            cvUploadStatus,
-                            "The CV is too large for browser storage. Please use a proper file-hosting/backend service.",
-                            "error"
-                        );
-
-                    }
-
-                };
-
-
-                reader.readAsDataURL(file);
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       SET UP CV
-    ===================================================== */
-
-    function setupCV(
-        pdfData,
-        fileName
-    ) {
-
-        if (viewCv) {
-
-            viewCv.href =
-                pdfData;
-
-            viewCv.target =
-                "_blank";
-
-            viewCv.classList.remove(
-                "disabled"
-            );
-
-        }
-
-
-        if (downloadCv) {
-
-            downloadCv.href =
-                pdfData;
-
-            downloadCv.download =
-                fileName ||
-                "Edwin-Kuchio-Okello-CV.pdf";
-
-            downloadCv.classList.remove(
-                "disabled"
-            );
-
-        }
-
-
-        if (cvStatus) {
-
-            cvStatus.textContent =
-                "My current professional CV is available to view or download below.";
-
-        }
-
-    }
-
-
-    /* Restore CV */
-
-    const savedCV =
-        localStorage.getItem(
-            "portfolioCV"
-        );
-
-    const savedCVName =
-        localStorage.getItem(
-            "portfolioCVName"
-        );
-
-
-    if (savedCV) {
-
-        setupCV(
-            savedCV,
-            savedCVName
-        );
-
-    }
-
-
-    /* =====================================================
-       PICTORIAL — FILE SELECTION
-    ===================================================== */
-
-    if (pictorialUpload) {
-
-        pictorialUpload.addEventListener(
-            "change",
-            () => {
-
-                const files =
-                    Array.from(
-                        pictorialUpload.files
-                    );
-
-
-                if (files.length === 0) {
-
-                    if (pictorialFileName) {
-
-                        pictorialFileName.textContent =
-                            "No photos selected";
-
-                    }
-
-                    return;
-
-                }
-
-
-                if (pictorialFileName) {
-
-                    pictorialFileName.textContent =
-                        files.length +
-                        " photo(s) selected";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       PICTORIAL — SAVE PHOTOS
-    ===================================================== */
-
-    if (uploadPictorialButton) {
-
-        uploadPictorialButton.addEventListener(
-            "click",
-            () => {
-
-                const files =
-                    Array.from(
-                        pictorialUpload.files
-                    );
-
-
-                if (files.length === 0) {
-
-                    showStatus(
-                        pictorialUploadStatus,
-                        "Please choose at least one photo.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                const imagePromises =
-                    files.map(file => {
-
-                        return new Promise(
-                            (resolve, reject) => {
-
-                                if (
-                                    !file.type.startsWith(
-                                        "image/"
-                                    )
-                                ) {
-
-                                    reject(
-                                        new Error(
-                                            "Invalid image file."
-                                        )
-                                    );
-
-                                    return;
-
-                                }
-
-
-                                const reader =
-                                    new FileReader();
-
-
-                                reader.onload =
-                                    event => {
-
-                                        resolve({
-                                            name:
-                                                file.name,
-
-                                            data:
-                                                event.target.result
-                                        });
-
-                                    };
-
-
-                                reader.onerror =
-                                    reject;
-
-
-                                reader.readAsDataURL(
-                                    file
-                                );
-
-                            }
-                        );
-
-                    });
-
-
-                Promise.all(imagePromises)
-                    .then(images => {
-
-                        try {
-
-                            const existing =
-                                JSON.parse(
-                                    localStorage.getItem(
-                                        "pictorialImages"
-                                    )
-                                ) || [];
-
-
-                            const updated =
-                                existing.concat(
-                                    images
-                                );
-
-
-                            localStorage.setItem(
-                                "pictorialImages",
-                                JSON.stringify(
-                                    updated
-                                )
-                            );
-
-
-                            renderGallery(
-                                updated
-                            );
-
-
-                            showStatus(
-                                pictorialUploadStatus,
-                                images.length +
-                                " photo(s) published successfully.",
-                                "success"
-                            );
-
-
-                            pictorialUpload.value = "";
-
-
-                            if (pictorialFileName) {
-
-                                pictorialFileName.textContent =
-                                    "No photos selected";
-
-                            }
-
-                        } catch (error) {
-
-                            showStatus(
-                                pictorialUploadStatus,
-                                "The photos are too large for browser storage. Please use proper image hosting/backend storage.",
-                                "error"
-                            );
-
-                        }
-
-                    })
-                    .catch(() => {
-
-                        showStatus(
-                            pictorialUploadStatus,
-                            "One or more files could not be processed.",
-                            "error"
-                        );
-
-                    });
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       RENDER PICTORIAL GALLERY
-    ===================================================== */
-
-    function renderGallery(images) {
-
-        if (!pictorialGrid) return;
-
-
-        pictorialGrid
-            .querySelectorAll(
-                ".gallery-image-card"
-            )
-            .forEach(card => card.remove());
-
-
-        if (
-            images.length > 0 &&
-            pictorialPlaceholder
-        ) {
-
-            pictorialPlaceholder.style.display =
-                "none";
-
-        }
-
-
-        images.forEach(
-            (image, index) => {
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-                card.className =
-                    "gallery-image-card";
-
-
-                const img =
-                    document.createElement(
-                        "img"
-                    );
-
-                img.src =
-                    image.data;
-
-                img.alt =
-                    image.name ||
-                    "Portfolio photograph";
-
-
-                const caption =
-                    document.createElement(
-                        "div"
-                    );
-
-                caption.className =
-                    "gallery-caption";
-
-
-                caption.textContent =
-                    image.name ||
-                    "Portfolio photograph";
-
-
-                card.appendChild(img);
-
-                card.appendChild(caption);
-
-
-                pictorialGrid.appendChild(
-                    card
-                );
-
-            }
-        );
-
-    }
-
-
-    /* Restore gallery */
-
-    const savedGallery =
-        JSON.parse(
-            localStorage.getItem(
-                "pictorialImages"
-            )
-        ) || [];
-
-
-    if (savedGallery.length > 0) {
-
-        renderGallery(
-            savedGallery
-        );
-
-    }
-
-
-    /* =====================================================
-       STATUS MESSAGE
-    ===================================================== */
-
-    function showStatus(
-        element,
-        message,
-        type
-    ) {
-
-        if (!element) return;
-
-        element.textContent =
-            message;
-
-        element.className =
-            "upload-status " +
-            type;
-
-
-        setTimeout(() => {
-
-            element.textContent = "";
-
-            element.className =
-                "upload-status";
-
-        }, 5000);
-
-    }
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    const revealElements =
-        document.querySelectorAll(
-            ".section-heading, " +
-            ".highlight-card, " +
-            ".timeline-item, " +
-            ".education-card, " +
-            ".skill-card, " +
-            ".country, " +
-            ".project-card, " +
-            ".resource-card, " +
-            ".cv-box, " +
-            ".contact-card, " +
-            ".contact-item"
-        );
-
-
-    revealElements.forEach(
-        element => {
-
-            element.classList.add(
-                "reveal"
-            );
-
-        }
-    );
-
-
-    const revealObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-
-    revealElements.forEach(
-        element => {
-
-            revealObserver.observe(
-                element
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       IMAGE LAZY LOADING
-    ===================================================== */
-
-    document
-        .querySelectorAll("img")
-        .forEach(img => {
-
-            if (
-                !img.hasAttribute(
-                    "loading"
-                )
-            ) {
-
-                img.setAttribute(
-                    "loading",
-                    "lazy"
-                );
-
-            }
-
-        });
-
-
-    /* =====================================================
-       CURRENT YEAR
-    ===================================================== */
-
-    const year =
-        document.querySelector(
-            ".footer-bottom p"
-        );
-
-    if (year) {
-
-        year.innerHTML =
-            `© ${new Date().getFullYear()} Edwin Kuchio Okello. All rights reserved.`;
-
-    }
-
-
-    /* =====================================================
-       DISABLE PLACEHOLDER CV BUTTONS
-    ===================================================== */
-
-    [viewCv, downloadCv].forEach(
-        button => {
-
-            if (!button) return;
-
-            button.addEventListener(
-                "click",
-                event => {
-
-                    if (
-                        button.classList.contains(
-                            "disabled"
-                        )
-                    ) {
-
-                        event.preventDefault();
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       CONTACT / EXTERNAL LINKS
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            'a[target="_blank"]'
+        document.getElementById(
+            "projectUploadArea"
         )
-        .forEach(link => {
+    ) {
 
-            link.setAttribute(
-                "rel",
-                "noopener noreferrer"
-            );
+        return;
+
+    }
+
+
+    const dashboard =
+        document.getElementById(
+            "adminDashboard"
+        );
+
+
+    if (!dashboard) return;
+
+
+    const section =
+        document.createElement("div");
+
+    section.className =
+        "admin-section";
+
+    section.id =
+        "projectUploadArea";
+
+
+    section.innerHTML = `
+
+        <div class="admin-section-title">
+
+            <i class="fas fa-folder-plus"></i>
+
+            <div>
+
+                <h3>
+                    Projects &amp; Written Work
+                </h3>
+
+                <p>
+                    Upload multiple projects,
+                    essays, research papers and
+                    portfolio documents.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="projectCategory">
+                Project Category
+            </label>
+
+            <select id="projectCategory">
+
+                <option value="eko">
+                    EKO Analytics &amp; Research
+                </option>
+
+                <option value="academic">
+                    Academic Essays &amp; Research
+                </option>
+
+                <option value="portfolio">
+                    Professional Portfolio
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="projectTitle">
+                Project Title
+            </label>
+
+            <input
+                type="text"
+                id="projectTitle"
+                placeholder="Enter project title"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="projectDescription">
+                Project Description
+            </label>
+
+            <textarea
+                id="projectDescription"
+                rows="4"
+                placeholder="Briefly describe this project..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="projectFile">
+                Project File
+            </label>
+
+            <input
+                type="file"
+                id="projectFile"
+                accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt"
+            >
+
+        </div>
+
+
+        <button
+            class="admin-action"
+            onclick="uploadProject()"
+        >
+
+            <i class="fas fa-cloud-arrow-up"></i>
+
+            Upload Project
+
+        </button>
+
+
+        <div
+            id="adminProjectList"
+            class="admin-project-list"
+        ></div>
+
+    `;
+
+
+    dashboard.appendChild(section);
+
+}
+
+
+/* =========================================================
+   UPLOAD PROJECT
+========================================================= */
+
+async function uploadProject() {
+
+    const category =
+        document.getElementById(
+            "projectCategory"
+        ).value;
+
+
+    const title =
+        document.getElementById(
+            "projectTitle"
+        ).value.trim();
+
+
+    const description =
+        document.getElementById(
+            "projectDescription"
+        ).value.trim();
+
+
+    const file =
+        document.getElementById(
+            "projectFile"
+        ).files[0];
+
+
+    if (!category) {
+
+        showAdminMessage(
+            "Please select a project category.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!title) {
+
+        showAdminMessage(
+            "Please enter a project title.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!file) {
+
+        showAdminMessage(
+            "Please select a project file.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const categoryInfo =
+        PROJECT_CATEGORIES[category];
+
+
+    if (!categoryInfo) {
+
+        showAdminMessage(
+            "Invalid project category.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Uploading project...",
+        "success"
+    );
+
+
+    /*
+       Create a unique filename.
+    */
+
+    const extension =
+        file.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+
+
+    const safeTitle =
+        title
+        .replace(/[^a-zA-Z0-9-_ ]/g, "")
+        .replace(/\s+/g, "-")
+        .substring(0, 80);
+
+
+    const uniqueName =
+        Date.now() +
+        "-" +
+        safeTitle +
+        "." +
+        extension;
+
+
+    const filePath =
+        categoryInfo.folder +
+        "/" +
+        uniqueName;
+
+
+    /*
+       Upload the actual file.
+    */
+
+    const { error } =
+        await supabaseClient.storage
+        .from(PROJECT_BUCKET)
+        .upload(
+
+            filePath,
+
+            file,
+
+            {
+
+                upsert: false,
+
+                contentType:
+                    file.type ||
+                    "application/octet-stream"
+
+            }
+
+        );
+
+
+    if (error) {
+
+        showAdminMessage(
+            "Project upload failed: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Store project information in
+       browser metadata file.
+
+       NOTE:
+       This requires a Supabase database table
+       called "projects".
+
+       If the table does not yet exist,
+       see the SQL section I provide below.
+    */
+
+    const { error: databaseError } =
+        await supabaseClient
+        .from("projects")
+        .insert({
+
+            title: title,
+
+            description: description,
+
+            category: category,
+
+            file_path: filePath,
+
+            file_name: file.name
 
         });
 
 
-    console.log(
-        "Edwin Kuchio Okello Portfolio loaded successfully."
+    if (databaseError) {
+
+        /*
+           Delete uploaded file if database
+           insertion fails.
+        */
+
+        await supabaseClient.storage
+            .from(PROJECT_BUCKET)
+            .remove([filePath]);
+
+
+        showAdminMessage(
+            "Project information could not be saved: " +
+            databaseError.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Project uploaded successfully.",
+        "success"
     );
 
-});
+
+    /*
+       Clear form.
+    */
+
+    document.getElementById(
+        "projectTitle"
+    ).value = "";
+
+
+    document.getElementById(
+        "projectDescription"
+    ).value = "";
+
+
+    document.getElementById(
+        "projectFile"
+    ).value = "";
+
+
+    /*
+       Refresh administrator project list.
+    */
+
+    loadAdminProjects();
+
+}
+
+
+/* =========================================================
+   GET PROJECT URL
+========================================================= */
+
+function getProjectURL(filePath) {
+
+    const { data } =
+        supabaseClient.storage
+        .from(PROJECT_BUCKET)
+        .getPublicUrl(filePath);
+
+
+    if (!data) {
+
+        return null;
+
+    }
+
+
+    return data.publicUrl;
+
+}
+
+
+/* =========================================================
+   LOAD PROJECTS
+========================================================= */
+
+async function loadProjects(category) {
+
+    const containerId =
+        category === "eko"
+            ? "ekoProjects"
+            : category === "academic"
+                ? "academicDocuments"
+                : "portfolioProjects";
+
+
+    const container =
+        document.getElementById(
+            containerId
+        );
+
+
+    if (!container) return;
+
+
+    container.innerHTML = `
+
+        <div class="document-placeholder">
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            <h3>
+                Loading projects...
+            </h3>
+
+        </div>
+
+    `;
+
+
+    const { data, error } =
+        await supabaseClient
+        .from("projects")
+        .select("*")
+        .eq("category", category)
+        .order(
+            "created_at",
+            {
+                ascending: false
+            }
+        );
+
+
+    if (error) {
+
+        container.innerHTML = `
+
+            <div class="document-placeholder">
+
+                <i class="fas fa-circle-exclamation"></i>
+
+                <h3>
+                    Projects could not be loaded
+                </h3>
+
+                <p>
+                    ${escapeHTML(error.message)}
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+        const categoryName =
+            PROJECT_CATEGORIES[category].name;
+
+
+        container.innerHTML = `
+
+            <div class="document-placeholder">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>
+                    No projects yet
+                </h3>
+
+                <p>
+                    Projects uploaded under
+                    ${escapeHTML(categoryName)}
+                    will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    data.forEach(function(project) {
+
+        const url =
+            getProjectURL(
+                project.file_path
+            );
+
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "uploaded-project-card";
+
+
+        card.innerHTML = `
+
+            <div class="uploaded-project-icon">
+
+                <i class="fas fa-file-lines"></i>
+
+            </div>
+
+
+            <div class="uploaded-project-content">
+
+                <span class="uploaded-project-category">
+
+                    ${escapeHTML(
+                        PROJECT_CATEGORIES[
+                            category
+                        ].name
+                    )}
+
+                </span>
+
+
+                <h3>
+                    ${escapeHTML(
+                        project.title
+                    )}
+                </h3>
+
+
+                <p>
+                    ${escapeHTML(
+                        project.description ||
+                        "No description provided."
+                    )}
+                </p>
+
+
+                <div class="uploaded-project-actions">
+
+                    ${
+                        url
+                        ?
+                        `
+                        <a
+                            href="${url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="project-open-button"
+                        >
+
+                            <i class="fas fa-eye"></i>
+
+                            Open Project
+
+                        </a>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   LOAD ALL PROJECTS
+========================================================= */
+
+function loadAllProjects() {
+
+    loadProjects("eko");
+
+    loadProjects("academic");
+
+    loadProjects("portfolio");
+
+}
+
+
+/* =========================================================
+   ADMIN PROJECT LIST
+========================================================= */
+
+async function loadAdminProjects() {
+
+    const container =
+        document.getElementById(
+            "adminProjectList"
+        );
+
+
+    if (!container) return;
+
+
+    container.innerHTML = `
+
+        <p>
+            Loading uploaded projects...
+        </p>
+
+    `;
+
+
+    const { data, error } =
+        await supabaseClient
+        .from("projects")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending: false
+            }
+        );
+
+
+    if (error) {
+
+        container.innerHTML = `
+
+            <p>
+                Could not load projects:
+                ${escapeHTML(error.message)}
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+        container.innerHTML = `
+
+            <p>
+                No projects uploaded yet.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <h4>
+            Uploaded Projects
+        </h4>
+
+    `;
+
+
+    data.forEach(function(project) {
+
+        const category =
+            PROJECT_CATEGORIES[
+                project.category
+            ];
+
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "admin-project-item";
+
+
+        item.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${escapeHTML(
+                        project.title
+                    )}
+                </strong>
+
+                <small>
+                    ${
+                        category
+                        ?
+                        escapeHTML(category.name)
+                        :
+                        "Project"
+                    }
+                </small>
+
+            </div>
+
+
+            <button
+                class="admin-delete-project"
+                onclick="deleteProject('${project.id}', '${escapeAttribute(project.file_path)}')"
+            >
+
+                <i class="fas fa-trash"></i>
+
+            </button>
+
+        `;
+
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   DELETE PROJECT
+========================================================= */
+
+async function deleteProject(
+    projectId,
+    filePath
+) {
+
+    const confirmed =
+        window.confirm(
+            "Are you sure you want to delete this project?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Deleting project...",
+        "success"
+    );
+
+
+    /*
+       Delete file from storage.
+    */
+
+    const { error: storageError } =
+        await supabaseClient.storage
+        .from(PROJECT_BUCKET)
+        .remove([filePath]);
+
+
+    if (storageError) {
+
+        showAdminMessage(
+            "Could not delete project file: " +
+            storageError.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Delete database record.
+    */
+
+    const { error: databaseError } =
+        await supabaseClient
+        .from("projects")
+        .delete()
+        .eq("id", projectId);
+
+
+    if (databaseError) {
+
+        showAdminMessage(
+            "Could not delete project record: " +
+            databaseError.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+        "Project deleted successfully.",
+        "success"
+    );
+
+
+    loadAdminProjects();
+
+    loadAllProjects();
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    if (value === null ||
+        value === undefined) {
+
+        return "";
+
+    }
+
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   ESCAPE ATTRIBUTE
+========================================================= */
+
+function escapeAttribute(value) {
+
+    if (!value) return "";
+
+    return String(value)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/"/g, "&quot;");
+
+}
+
+
+/* =========================================================
+   INITIALISE PROJECT ADMIN AREA
+========================================================= */
+
+createProjectUploadArea();
+
+
+/*
+   Load existing projects when the page starts.
+*/
+
+loadAllProjects();
+
+
+</script>
