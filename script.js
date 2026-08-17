@@ -1,375 +1,569 @@
- /* ============================================================
-   EDWIN KUCHIO OKELLO
-   PROFESSIONAL PORTFOLIO
-   SCRIPT.JS
-
-   FEATURES
-   ------------------------------------------------------------
-   1. Supabase connection
-   2. Admin authentication
-   3. Admin lock button
-   4. Admin dashboard
-   5. CV upload
-   6. Profile picture upload
-   7. Multiple pictorial uploads
-   8. Multiple EKO project uploads
-   9. EKO Portfolio uploads
-   10. Multiple academic uploads
-   11. Multiple professional portfolio uploads
-   12. Dynamic document libraries
-   13. EKO Project 01
-   14. Modal management
-   15. Back-to-top button
-   16. Mobile navigation
-   17. Automatic copyright year
-   18. Upload status messages
-   ============================================================ */
-
-
-/* ============================================================
+/* =========================================================
    SUPABASE CONFIGURATION
-   ============================================================ */
+========================================================= */
 
-/*
-   IMPORTANT:
-   Replace these two values with the values from:
+const SUPABASE_URL =
+    "https://cueajmzcmawvcbpwuyhi.supabase.co";
 
-   Supabase
-   → Project Settings
-   → API
-
-   Project URL:
-   https://xxxxxxxx.supabase.co
-
-   Anon public key:
-   eyJ...
-*/
-
-const SUPABASE_URL = "YOUR_SUPABASE_URL";
-
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
 
 
-/* Create Supabase client */
+/* =========================================================
+   SUPABASE CLIENT
+========================================================= */
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
+const { createClient } = supabase;
+
+const db = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
 
-/* ============================================================
-   BUCKET NAMES
-   ============================================================
-
-   IMPORTANT:
-   These MUST exactly match the bucket names in Supabase.
-
-   Change them only if your actual bucket names are different.
-   ============================================================ */
+/* =========================================================
+   EXACT STORAGE BUCKETS
+========================================================= */
 
 const BUCKETS = {
 
-    cv: "cv",
+    cv: "CV",
 
-    profile: "profile",
+    profile: "Profile",
 
-    pictorial: "pictorial",
+    pictorial: "Pictorial",
 
     eko: "eko",
 
-    academic: "academic",
+    academic: "Academic Essays and Research",
 
-    portfolio: "portfolio"
+    professional: "Professional Portfolio"
 
 };
 
 
-/* ============================================================
-   DOM READY
-   ============================================================ */
+/* =========================================================
+   GENERAL HELPERS
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+function escapeHTML(value) {
 
-    initializePortfolio();
+    if (value === null || value === undefined) {
+        return "";
+    }
 
-});
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 
-/* ============================================================
-   INITIALIZE PORTFOLIO
-   ============================================================ */
+function slugify(text) {
 
-async function initializePortfolio() {
+    return String(text || "")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .substring(0, 100);
+}
 
-    setupNavigation();
 
-    setupBackToTop();
+function formatFileSize(bytes) {
 
-    setupAdminLock();
+    if (!bytes) {
+        return "";
+    }
 
-    setupModalSystem();
+    const units = [
+        "B",
+        "KB",
+        "MB",
+        "GB"
+    ];
 
-    setupCopyrightYear();
+    let size = bytes;
+    let index = 0;
 
-    await loadProfilePicture();
+    while (size >= 1024 && index < units.length - 1) {
 
-    await loadCV();
+        size /= 1024;
+        index++;
 
-    await loadPictorial();
+    }
+
+    return `${size.toFixed(index === 0 ? 0 : 1)} ${units[index]}`;
 
 }
 
 
-/* ============================================================
-   MOBILE NAVIGATION
-   ============================================================ */
+function getExtension(filename) {
 
-function setupNavigation() {
+    const parts = String(filename).split(".");
 
-    const menuToggle =
-        document.getElementById("menuToggle");
+    if (parts.length < 2) {
+        return "";
+    }
 
-    const navLinks =
-        document.getElementById("navLinks");
+    return parts.pop().toLowerCase();
+
+}
 
 
-    if (!menuToggle || !navLinks) {
+function getFileIcon(filename) {
+
+    const extension = getExtension(filename);
+
+    if (extension === "pdf") {
+        return "fa-file-pdf";
+    }
+
+    if (
+        extension === "doc" ||
+        extension === "docx"
+    ) {
+        return "fa-file-word";
+    }
+
+    if (
+        extension === "xls" ||
+        extension === "xlsx" ||
+        extension === "csv"
+    ) {
+        return "fa-file-excel";
+    }
+
+    if (
+        extension === "ppt" ||
+        extension === "pptx"
+    ) {
+        return "fa-file-powerpoint";
+    }
+
+    if (
+        [
+            "jpg",
+            "jpeg",
+            "png",
+            "gif",
+            "webp"
+        ].includes(extension)
+    ) {
+        return "fa-file-image";
+    }
+
+    if (extension === "txt") {
+        return "fa-file-lines";
+    }
+
+    return "fa-file";
+}
+
+
+function setStatus(elementId, message, type = "") {
+
+    const element = document.getElementById(elementId);
+
+    if (!element) {
         return;
     }
 
+    element.textContent = message;
 
-    menuToggle.addEventListener("click", function () {
+    element.className = "upload-status";
+
+    if (type) {
+        element.classList.add(type);
+    }
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openModal(id) {
+
+    const modal = document.getElementById(id);
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.add("active");
+
+    document.body.classList.add("modal-open");
+
+}
+
+
+function closeModal(id) {
+
+    const modal = document.getElementById(id);
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.remove("active");
+
+    if (
+        !document.querySelector(".modal.active")
+    ) {
+
+        document.body.classList.remove("modal-open");
+
+    }
+
+}
+
+
+function openProject01() {
+
+    closeModal("ekoModal");
+
+    openModal("project01Modal");
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING BACKGROUND
+========================================================= */
+
+document.addEventListener("click", function(event) {
+
+    if (
+        event.target.classList.contains("modal")
+    ) {
+
+        event.target.classList.remove("active");
+
+        if (
+            !document.querySelector(".modal.active")
+        ) {
+            document.body.classList.remove("modal-open");
+        }
+
+    }
+
+});
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key !== "Escape") {
+        return;
+    }
+
+    document
+        .querySelectorAll(".modal.active")
+        .forEach(modal => modal.classList.remove("active"));
+
+    closeAdmin();
+
+    document.body.classList.remove("modal-open");
+
+});
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+if (menuToggle && navLinks) {
+
+    menuToggle.addEventListener("click", function() {
 
         navLinks.classList.toggle("active");
 
         const icon =
             menuToggle.querySelector("i");
 
-
         if (
             navLinks.classList.contains("active")
         ) {
 
-            icon.classList.remove("fa-bars");
-
-            icon.classList.add("fa-xmark");
+            icon.className = "fas fa-times";
 
         } else {
 
-            icon.classList.remove("fa-xmark");
-
-            icon.classList.add("fa-bars");
+            icon.className = "fas fa-bars";
 
         }
 
     });
 
 
-    /* Close mobile menu after clicking a link */
+    navLinks.querySelectorAll("a").forEach(link => {
 
-    navLinks
-        .querySelectorAll("a")
-        .forEach(function (link) {
+        link.addEventListener("click", function() {
 
-            link.addEventListener(
-                "click",
-                function () {
+            navLinks.classList.remove("active");
 
-                    navLinks.classList.remove("active");
+            const icon =
+                menuToggle.querySelector("i");
 
-                    const icon =
-                        menuToggle.querySelector("i");
-
-                    icon.classList.remove("fa-xmark");
-
-                    icon.classList.add("fa-bars");
-
-                }
-            );
+            icon.className = "fas fa-bars";
 
         });
 
+    });
+
 }
 
 
-/* ============================================================
+/* =========================================================
    BACK TO TOP
-   ============================================================ */
+========================================================= */
 
-function setupBackToTop() {
+const backToTop =
+    document.getElementById("backToTop");
 
-    const backToTop =
-        document.getElementById("backToTop");
 
+window.addEventListener("scroll", function() {
 
     if (!backToTop) {
-        console.warn(
-            "Back-to-top button not found."
+        return;
+    }
+
+    if (window.scrollY > 500) {
+
+        backToTop.classList.add("visible");
+
+    } else {
+
+        backToTop.classList.remove("visible");
+
+    }
+
+});
+
+
+if (backToTop) {
+
+    backToTop.addEventListener("click", function() {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+const yearElement =
+    document.getElementById("year");
+
+if (yearElement) {
+
+    yearElement.textContent =
+        new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   ADMIN PANEL
+========================================================= */
+
+const adminLock =
+    document.getElementById("adminLock");
+
+const adminPanel =
+    document.getElementById("adminPanel");
+
+
+if (adminLock) {
+
+    adminLock.addEventListener("click", async function() {
+
+        if (!adminPanel) {
+            return;
+        }
+
+        adminPanel.classList.add("active");
+
+        adminPanel.setAttribute(
+            "aria-hidden",
+            "false"
         );
-        return;
-    }
 
+        document.body.classList.add("admin-open");
 
-    /* Initially hidden */
+        await checkAdminSession();
 
-    backToTop.classList.remove("show");
-
-
-    window.addEventListener(
-        "scroll",
-        function () {
-
-            if (window.scrollY > 400) {
-
-                backToTop.classList.add("show");
-
-            } else {
-
-                backToTop.classList.remove("show");
-
-            }
-
-        }
-    );
-
-
-    backToTop.addEventListener(
-        "click",
-        function () {
-
-            window.scrollTo({
-
-                top: 0,
-
-                behavior: "smooth"
-
-            });
-
-        }
-    );
+    });
 
 }
 
-
-/* ============================================================
-   ADMIN LOCK
-   ============================================================ */
-
-function setupAdminLock() {
-
-    const adminLock =
-        document.getElementById("adminLock");
-
-
-    if (!adminLock) {
-
-        console.warn(
-            "Admin lock button not found."
-        );
-
-        return;
-
-    }
-
-
-    adminLock.addEventListener(
-        "click",
-        function () {
-
-            openAdmin();
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   OPEN ADMIN
-   ============================================================ */
-
-function openAdmin() {
-
-    const adminPanel =
-        document.getElementById("adminPanel");
-
-
-    if (!adminPanel) {
-        return;
-    }
-
-
-    adminPanel.classList.add("active");
-
-    document.body.classList.add(
-        "modal-open"
-    );
-
-
-    checkExistingSession();
-
-}
-
-
-/* ============================================================
-   CLOSE ADMIN
-   ============================================================ */
 
 function closeAdmin() {
 
-    const adminPanel =
-        document.getElementById("adminPanel");
-
-
     if (!adminPanel) {
         return;
     }
 
-
     adminPanel.classList.remove("active");
 
-    document.body.classList.remove(
-        "modal-open"
+    adminPanel.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove("admin-open");
+
+}
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+const adminLoginButton =
+    document.getElementById("adminLoginButton");
+
+
+if (adminLoginButton) {
+
+    adminLoginButton.addEventListener(
+        "click",
+        adminLogin
     );
 
 }
 
 
-/* ============================================================
-   CHECK EXISTING SUPABASE SESSION
-   ============================================================ */
+async function adminLogin() {
 
-async function checkExistingSession() {
+    const email =
+        document.getElementById("adminEmail").value.trim();
 
-    try {
+    const password =
+        document.getElementById("adminPassword").value;
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
+    const message =
+        document.getElementById("adminMessage");
 
+    if (!email || !password) {
 
-        if (error) {
+        if (message) {
 
-            console.error(
-                "Session error:",
-                error
-            );
-
-            return;
+            message.textContent =
+                "Please enter your administrator email and password.";
 
         }
 
+        return;
 
-        if (
-            data &&
-            data.session
-        ) {
+    }
+
+
+    if (message) {
+
+        message.textContent =
+            "Signing in...";
+
+    }
+
+
+    const {
+        data,
+        error
+    } = await db.auth.signInWithPassword({
+
+        email: email,
+
+        password: password
+
+    });
+
+
+    if (error) {
+
+        if (message) {
+
+            message.textContent =
+                error.message;
+
+        }
+
+        return;
+
+    }
+
+
+    if (data && data.user) {
+
+        showAdminDashboard();
+
+        if (message) {
+
+            message.textContent = "";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   SESSION CHECK
+========================================================= */
+
+async function checkAdminSession() {
+
+    const {
+        data
+    } = await db.auth.getSession();
+
+    if (
+        data &&
+        data.session &&
+        data.session.user
+    ) {
+
+        showAdminDashboard();
+
+    } else {
+
+        showLoginArea();
+
+    }
+
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+db.auth.onAuthStateChange(
+    function(event, session) {
+
+        if (session && session.user) {
 
             showAdminDashboard();
 
@@ -379,168 +573,13 @@ async function checkExistingSession() {
 
         }
 
-    } catch (error) {
-
-        console.error(
-            "Session check failed:",
-            error
-        );
-
     }
-
-}
-
-
-/* ============================================================
-   ADMIN LOGIN
-   ============================================================ */
-
-async function adminLogin() {
-
-    const emailInput =
-        document.getElementById("adminEmail");
-
-    const passwordInput =
-        document.getElementById("adminPassword");
-
-    const message =
-        document.getElementById("adminMessage");
+);
 
 
-    if (
-        !emailInput ||
-        !passwordInput
-    ) {
-
-        return;
-
-    }
-
-
-    const email =
-        emailInput.value.trim();
-
-    const password =
-        passwordInput.value;
-
-
-    if (!email || !password) {
-
-        showAdminMessage(
-            "Please enter your administrator email and password.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    showAdminMessage(
-        "Signing in...",
-        "loading"
-    );
-
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .auth
-                .signInWithPassword({
-
-                    email: email,
-
-                    password: password
-
-                });
-
-
-        if (error) {
-
-            console.error(
-                "Login error:",
-                error
-            );
-
-            showAdminMessage(
-                error.message ||
-                "Unable to sign in.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if (data && data.session) {
-
-            showAdminMessage(
-                "Administrator access granted.",
-                "success"
-            );
-
-            showAdminDashboard();
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "Login failed:",
-            error
-        );
-
-        showAdminMessage(
-            "An unexpected login error occurred.",
-            "error"
-        );
-
-    }
-
-}
-
-
-/* ============================================================
-   SHOW LOGIN AREA
-   ============================================================ */
-
-function showLoginArea() {
-
-    const loginArea =
-        document.getElementById("loginArea");
-
-    const dashboard =
-        document.getElementById(
-            "adminDashboard"
-        );
-
-
-    if (loginArea) {
-
-        loginArea.style.display =
-            "block";
-
-    }
-
-
-    if (dashboard) {
-
-        dashboard.style.display =
-            "none";
-
-    }
-
-}
-
-
-/* ============================================================
+/* =========================================================
    SHOW ADMIN DASHBOARD
-   ============================================================ */
+========================================================= */
 
 function showAdminDashboard() {
 
@@ -548,203 +587,127 @@ function showAdminDashboard() {
         document.getElementById("loginArea");
 
     const dashboard =
-        document.getElementById(
-            "adminDashboard"
-        );
-
+        document.getElementById("adminDashboard");
 
     if (loginArea) {
-
-        loginArea.style.display =
-            "none";
-
+        loginArea.style.display = "none";
     }
 
-
     if (dashboard) {
-
-        dashboard.style.display =
-            "block";
-
+        dashboard.style.display = "block";
     }
 
 }
 
 
-/* ============================================================
-   ADMIN LOGOUT
-   ============================================================ */
+/* =========================================================
+   SHOW LOGIN
+========================================================= */
+
+function showLoginArea() {
+
+    const loginArea =
+        document.getElementById("loginArea");
+
+    const dashboard =
+        document.getElementById("adminDashboard");
+
+    if (loginArea) {
+        loginArea.style.display = "block";
+    }
+
+    if (dashboard) {
+        dashboard.style.display = "none";
+    }
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 async function adminLogout() {
 
-    try {
+    await db.auth.signOut();
 
-        const {
-            error
-        } =
-            await supabaseClient
-                .auth
-                .signOut();
-
-
-        if (error) {
-
-            console.error(
-                "Logout error:",
-                error
-            );
-
-            showAdminMessage(
-                "Unable to sign out.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        showLoginArea();
-
-
-        showAdminMessage(
-            "You have been signed out.",
-            "success"
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Logout failed:",
-            error
-        );
-
-    }
-
-}
-
-
-/* ============================================================
-   ADMIN MESSAGE
-   ============================================================ */
-
-function showAdminMessage(
-    text,
-    type = "info"
-) {
+    showLoginArea();
 
     const message =
-        document.getElementById(
-            "adminMessage"
-        );
+        document.getElementById("adminMessage");
 
+    if (message) {
 
-    if (!message) {
-        return;
+        message.textContent =
+            "You have been signed out.";
+
     }
-
-
-    message.textContent = text;
-
-    message.className =
-        "admin-message " + type;
-
-
-    clearTimeout(
-        window.adminMessageTimer
-    );
-
-
-    window.adminMessageTimer =
-        setTimeout(
-            function () {
-
-                message.textContent =
-                    "";
-
-                message.className =
-                    "admin-message";
-
-            },
-            6000
-        );
 
 }
 
 
-/* ============================================================
-   GENERIC UPLOAD FUNCTION
-   ============================================================ */
+/* =========================================================
+   VERIFY ADMIN SESSION BEFORE UPLOAD
+========================================================= */
 
-async function uploadFileToBucket(
-    file,
-    bucketName,
-    folder = ""
-) {
-
-    if (!file) {
-
-        throw new Error(
-            "No file selected."
-        );
-
-    }
-
-
-    const safeName =
-        sanitizeFileName(
-            file.name
-        );
-
-
-    const uniqueName =
-        Date.now() +
-        "_" +
-        Math.random()
-            .toString(36)
-            .substring(2, 9) +
-        "_" +
-        safeName;
-
-
-    let filePath =
-        uniqueName;
-
-
-    if (folder) {
-
-        filePath =
-            folder.replace(
-                /^\/|\/$/g,
-                ""
-            ) +
-            "/" +
-            uniqueName;
-
-    }
-
+async function requireAuthenticatedUser() {
 
     const {
         data,
         error
-    } =
-        await supabaseClient
-            .storage
-            .from(bucketName)
-            .upload(
-                filePath,
-                file,
-                {
+    } = await db.auth.getUser();
 
-                    cacheControl:
-                        "3600",
+    if (
+        error ||
+        !data ||
+        !data.user
+    ) {
 
-                    upsert:
-                        false
+        openAdmin();
 
-                }
-            );
+        throw new Error(
+            "Administrator authentication is required."
+        );
+
+    }
+
+    return data.user;
+
+}
+
+
+/* =========================================================
+   GENERIC UPLOAD
+========================================================= */
+
+async function uploadFile(
+    bucket,
+    path,
+    file,
+    options = {}
+) {
+
+    await requireAuthenticatedUser();
+
+    const {
+        upsert = false
+    } = options;
+
+
+    const {
+        error
+    } = await db.storage
+        .from(bucket)
+        .upload(path, file, {
+
+            cacheControl: "3600",
+
+            upsert: upsert,
+
+            contentType:
+                file.type || undefined
+
+        });
 
 
     if (error) {
@@ -754,86 +717,165 @@ async function uploadFileToBucket(
     }
 
 
-    return {
-
-        path: data.path,
-
-        file: file
-
-    };
+    return getPublicUrl(bucket, path);
 
 }
 
 
-/* ============================================================
-   SANITIZE FILE NAME
-   ============================================================ */
+/* =========================================================
+   PUBLIC URL
+========================================================= */
 
-function sanitizeFileName(
-    fileName
-) {
-
-    return fileName
-        .normalize("NFKD")
-        .replace(
-            /[^\w.\- ]+/g,
-            ""
-        )
-        .replace(
-            /\s+/g,
-            "-"
-        )
-        .toLowerCase();
-
-}
-
-
-/* ============================================================
-   PUBLIC FILE URL
-   ============================================================ */
-
-function getPublicFileUrl(
-    bucketName,
-    filePath
-) {
+function getPublicUrl(bucket, path) {
 
     const {
         data
-    } =
-        supabaseClient
-            .storage
-            .from(bucketName)
-            .getPublicUrl(
-                filePath
-            );
-
+    } = db.storage
+        .from(bucket)
+        .getPublicUrl(path);
 
     return data.publicUrl;
 
 }
 
 
-/* ============================================================
+/* =========================================================
    CV UPLOAD
-   ============================================================ */
+========================================================= */
 
 async function uploadCV() {
 
     const input =
-        document.getElementById(
-            "cvFile"
-        );
-
+        document.getElementById("cvFile");
 
     if (
         !input ||
         !input.files.length
     ) {
 
-        showAdminMessage(
-            "Please select a PDF CV.",
+        setStatus(
+            "cvUploadStatus",
+            "Please select a PDF file.",
             "error"
         );
+
+        return;
+
+    }
+
+
+    const file = input.files[0];
+
+    const safeName =
+        `CV-${Date.now()}.pdf`;
+
+
+    try {
+
+        setStatus(
+            "cvUploadStatus",
+            "Uploading CV..."
+        );
+
+
+        const url =
+            await uploadFile(
+                BUCKETS.cv,
+                safeName,
+                file,
+                {
+                    upsert: true
+                }
+            );
+
+
+        setStatus(
+            "cvUploadStatus",
+            "CV uploaded successfully.",
+            "success"
+        );
+
+
+        await loadCV();
+
+        input.value = "";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        setStatus(
+            "cvUploadStatus",
+            `CV upload failed: ${error.message}`,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD CV
+========================================================= */
+
+async function loadCV() {
+
+    const {
+        data,
+        error
+    } = await db.storage
+        .from(BUCKETS.cv)
+        .list("", {
+
+            limit: 100,
+
+            sortBy: {
+                column: "created_at",
+                order: "desc"
+            }
+
+        });
+
+
+    const status =
+        document.getElementById("cvStatus");
+
+    const view =
+        document.getElementById("viewCV");
+
+    const download =
+        document.getElementById("downloadCV");
+
+
+    if (error) {
+
+        console.error(error);
+
+        if (status) {
+
+            status.textContent =
+                "Unable to load CV.";
+
+        }
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        if (status) {
+
+            status.textContent =
+                "No CV has been uploaded yet.";
+
+        }
 
         return;
 
@@ -841,248 +883,29 @@ async function uploadCV() {
 
 
     const file =
-        input.files[0];
-
-
-    if (
-        file.type !==
-        "application/pdf"
-    ) {
-
-        showAdminMessage(
-            "The CV must be a PDF file.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    showAdminMessage(
-        "Uploading CV...",
-        "loading"
-    );
-
-
-    try {
-
-        /*
-           Remove previous CV files
-           so only the current CV remains.
-        */
-
-        const {
-            data: existingFiles
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.cv
-                )
-                .list();
-
-
-        if (
-            existingFiles &&
-            existingFiles.length
-        ) {
-
-            const oldFiles =
-                existingFiles.map(
-                    file =>
-                        file.name
-                );
-
-
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.cv
-                )
-                .remove(
-                    oldFiles
-                );
-
-        }
-
-
-        const result =
-            await uploadFileToBucket(
-                file,
-                BUCKETS.cv
-            );
-
-
-        const publicUrl =
-            getPublicFileUrl(
-                BUCKETS.cv,
-                result.path
-            );
-
-
-        localStorage.setItem(
-            "currentCVPath",
-            result.path
-        );
-
-
-        localStorage.setItem(
-            "currentCVUrl",
-            publicUrl
-        );
-
-
-        setCVLinks(
-            publicUrl
-        );
-
-
-        showAdminMessage(
-            "CV uploaded successfully.",
-            "success"
-        );
-
-
-        input.value = "";
-
-
-    } catch (error) {
-
-        console.error(
-            "CV upload error:",
-            error
-        );
-
-
-        showAdminMessage(
-            getFriendlyStorageError(
-                error
-            ),
-            "error"
-        );
-
-    }
-
-}
-
-
-/* ============================================================
-   LOAD CV
-   ============================================================ */
-
-async function loadCV() {
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.cv
-                )
-                .list(
-                    "",
-                    {
-
-                        limit: 100,
-
-                        sortBy: {
-                            column:
-                                "created_at",
-
-                            order:
-                                "desc"
-
-                        }
-
-                    }
-                );
-
-
-        if (error) {
-
-            console.error(
-                "CV list error:",
-                error
-            );
-
-            setCVStatus(
-                "CV is currently unavailable."
-            );
-
-            return;
-
-        }
-
-
-        if (
-            !data ||
-            !data.length
-        ) {
-
-            setCVStatus(
-                "CV will appear here once uploaded."
-            );
-
-            return;
-
-        }
-
-
-        const latest =
-            data[0];
-
-
-        const url =
-            getPublicFileUrl(
-                BUCKETS.cv,
-                latest.name
-            );
-
-
-        setCVLinks(url);
-
-        setCVStatus(
-            "CV available for viewing and download."
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Load CV error:",
-            error
-        );
-
-    }
-
-}
-
-
-/* ============================================================
-   SET CV LINKS
-   ============================================================ */
-
-function setCVLinks(url) {
-
-    const view =
-        document.getElementById(
-            "viewCV"
-        );
-
-    const download =
-        document.getElementById(
-            "downloadCV"
+        data
+            .filter(item => !item.id ? true : true)
+            .sort(
+                (a, b) =>
+                    new Date(b.created_at) -
+                    new Date(a.created_at)
+            )[0];
+
+
+    const url =
+        getPublicUrl(
+            BUCKETS.cv,
+            file.name
         );
 
 
     if (view) {
 
         view.href = url;
+
+        view.classList.remove(
+            "disabled-link"
+        );
 
     }
 
@@ -1091,54 +914,40 @@ function setCVLinks(url) {
 
         download.href = url;
 
-    }
-
-}
-
-
-/* ============================================================
-   CV STATUS
-   ============================================================ */
-
-function setCVStatus(
-    text
-) {
-
-    const status =
-        document.getElementById(
-            "cvStatus"
+        download.classList.remove(
+            "disabled-link"
         );
+
+    }
 
 
     if (status) {
 
         status.textContent =
-            text;
+            `Current CV: ${file.name}`;
 
     }
 
 }
 
 
-/* ============================================================
-   PROFILE PICTURE UPLOAD
-   ============================================================ */
+/* =========================================================
+   PROFILE UPLOAD
+========================================================= */
 
 async function uploadProfile() {
 
     const input =
-        document.getElementById(
-            "profileFile"
-        );
-
+        document.getElementById("profileFile");
 
     if (
         !input ||
         !input.files.length
     ) {
 
-        showAdminMessage(
-            "Please select a profile photograph.",
+        setStatus(
+            "profileUploadStatus",
+            "Please select an image.",
             "error"
         );
 
@@ -1150,102 +959,48 @@ async function uploadProfile() {
     const file =
         input.files[0];
 
-
-    if (
-        !file.type.startsWith(
-            "image/"
-        )
-    ) {
-
-        showAdminMessage(
-            "Please select an image file.",
-            "error"
-        );
-
-        return;
-
-    }
+    const extension =
+        getExtension(file.name) || "jpg";
 
 
-    showAdminMessage(
-        "Uploading profile photograph...",
-        "loading"
-    );
+    const path =
+        `profile-${Date.now()}.${extension}`;
 
 
     try {
 
-        const {
-            data: oldFiles
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.profile
-                )
-                .list();
-
-
-        if (
-            oldFiles &&
-            oldFiles.length
-        ) {
-
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.profile
-                )
-                .remove(
-                    oldFiles.map(
-                        file =>
-                            file.name
-                    )
-                );
-
-        }
-
-
-        const result =
-            await uploadFileToBucket(
-                file,
-                BUCKETS.profile
-            );
-
-
-        const url =
-            getPublicFileUrl(
-                BUCKETS.profile,
-                result.path
-            );
-
-
-        displayProfilePicture(
-            url
+        setStatus(
+            "profileUploadStatus",
+            "Uploading profile photograph..."
         );
 
 
-        showAdminMessage(
-            "Profile picture uploaded successfully.",
+        await uploadFile(
+            BUCKETS.profile,
+            path,
+            file
+        );
+
+
+        setStatus(
+            "profileUploadStatus",
+            "Profile photograph uploaded successfully.",
             "success"
         );
 
+
+        await loadProfile();
 
         input.value = "";
 
 
     } catch (error) {
 
-        console.error(
-            "Profile upload error:",
-            error
-        );
+        console.error(error);
 
-
-        showAdminMessage(
-            getFriendlyStorageError(
-                error
-            ),
+        setStatus(
+            "profileUploadStatus",
+            `Upload failed: ${error.message}`,
             "error"
         );
 
@@ -1254,104 +1009,65 @@ async function uploadProfile() {
 }
 
 
-/* ============================================================
-   LOAD PROFILE PICTURE
-   ============================================================ */
+/* =========================================================
+   LOAD PROFILE
+========================================================= */
 
-async function loadProfilePicture() {
+async function loadProfile() {
 
-    try {
+    const {
+        data,
+        error
+    } = await db.storage
+        .from(BUCKETS.profile)
+        .list("", {
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.profile
-                )
-                .list(
-                    "",
-                    {
+            limit: 100,
 
-                        limit: 100,
+            sortBy: {
+                column: "created_at",
+                order: "desc"
+            }
 
-                        sortBy: {
-                            column:
-                                "created_at",
-
-                            order:
-                                "desc"
-
-                        }
-
-                    }
-                );
+        });
 
 
-        if (error) {
+    if (error) {
 
-            console.error(
-                "Profile list error:",
-                error
-            );
+        console.error(error);
 
-            return;
-
-        }
-
-
-        if (
-            !data ||
-            !data.length
-        ) {
-
-            return;
-
-        }
-
-
-        const latest =
-            data[0];
-
-
-        const url =
-            getPublicFileUrl(
-                BUCKETS.profile,
-                latest.name
-            );
-
-
-        displayProfilePicture(
-            url
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Profile load error:",
-            error
-        );
+        return;
 
     }
 
-}
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        return;
+
+    }
 
 
-/* ============================================================
-   DISPLAY PROFILE PICTURE
-   ============================================================ */
+    const file =
+        data.sort(
+            (a, b) =>
+                new Date(b.created_at) -
+                new Date(a.created_at)
+        )[0];
 
-function displayProfilePicture(
-    url
-) {
+
+    const url =
+        getPublicUrl(
+            BUCKETS.profile,
+            file.name
+        );
+
 
     const frame =
-        document.getElementById(
-            "profileFrame"
-        );
+        document.getElementById("profileFrame");
 
 
     if (!frame) {
@@ -1362,9 +1078,8 @@ function displayProfilePicture(
     frame.innerHTML = `
 
         <img
-            src="${escapeAttribute(url)}"
+            src="${escapeHTML(url)}"
             alt="Edwin Kuchio Okello"
-            class="profile-image"
         >
 
     `;
@@ -1372,24 +1087,22 @@ function displayProfilePicture(
 }
 
 
-/* ============================================================
+/* =========================================================
    PICTORIAL UPLOAD
-   ============================================================ */
+========================================================= */
 
 async function uploadPictorial() {
 
     const input =
-        document.getElementById(
-            "pictorialFile"
-        );
-
+        document.getElementById("pictorialFile");
 
     if (
         !input ||
         !input.files.length
     ) {
 
-        showAdminMessage(
+        setStatus(
+            "pictorialUploadStatus",
             "Please select one or more photographs.",
             "error"
         );
@@ -1400,74 +1113,69 @@ async function uploadPictorial() {
 
 
     const files =
-        Array.from(
-            input.files
-        );
+        Array.from(input.files);
 
 
-    showAdminMessage(
-        "Uploading photographs...",
-        "loading"
-    );
-
-
-    let uploaded =
-        0;
+    let successful = 0;
 
 
     try {
 
         for (
-            const file of files
+            let index = 0;
+            index < files.length;
+            index++
         ) {
 
-            if (
-                !file.type.startsWith(
-                    "image/"
-                )
-            ) {
+            const file =
+                files[index];
 
-                continue;
+            const extension =
+                getExtension(file.name) || "jpg";
 
-            }
+            const safeName =
+                `${Date.now()}-${index}-${slugify(
+                    file.name.replace(/\.[^/.]+$/, "")
+                )}.${extension}`;
 
 
-            await uploadFileToBucket(
-                file,
-                BUCKETS.pictorial
+            setStatus(
+                "pictorialUploadStatus",
+                `Uploading image ${index + 1} of ${files.length}...`
             );
 
 
-            uploaded++;
+            await uploadFile(
+                BUCKETS.pictorial,
+                safeName,
+                file
+            );
+
+
+            successful++;
 
         }
 
 
-        showAdminMessage(
-            uploaded +
-            " photograph(s) uploaded successfully.",
+        setStatus(
+            "pictorialUploadStatus",
+            `${successful} image(s) uploaded successfully.`,
             "success"
         );
 
 
         input.value = "";
 
-
-        await loadPictorial();
+        await loadGallery();
 
 
     } catch (error) {
 
-        console.error(
-            "Pictorial upload error:",
-            error
-        );
+        console.error(error);
 
-
-        showAdminMessage(
-            getFriendlyStorageError(
-                error
-            ),
+        setStatus(
+            "pictorialUploadStatus",
+            `Upload stopped: ${error.message}`,
             "error"
         );
 
@@ -1476,208 +1184,148 @@ async function uploadPictorial() {
 }
 
 
-/* ============================================================
-   LOAD PICTORIAL
-   ============================================================ */
+/* =========================================================
+   LOAD GALLERY
+========================================================= */
 
-async function loadPictorial() {
+async function loadGallery() {
 
     const gallery =
-        document.getElementById(
-            "gallery"
-        );
-
+        document.getElementById("gallery");
 
     if (!gallery) {
         return;
     }
 
 
-    try {
+    const {
+        data,
+        error
+    } = await db.storage
+        .from(BUCKETS.pictorial)
+        .list("", {
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.pictorial
-                )
-                .list(
-                    "",
-                    {
+            limit: 200,
 
-                        limit: 500,
+            sortBy: {
+                column: "created_at",
+                order: "desc"
+            }
 
-                        sortBy: {
-                            column:
-                                "created_at",
-
-                            order:
-                                "desc"
-
-                        }
-
-                    }
-                );
+        });
 
 
-        if (error) {
+    if (error) {
 
-            console.error(
-                "Gallery error:",
-                error
+        console.error(error);
+
+        gallery.innerHTML = `
+
+            <div class="gallery-empty">
+
+                <i class="fas fa-triangle-exclamation"></i>
+
+                <h3>Unable to load pictorial</h3>
+
+                <p>${escapeHTML(error.message)}</p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const files =
+        (data || [])
+            .filter(file => file.name);
+
+
+    if (!files.length) {
+
+        gallery.innerHTML = `
+
+            <div class="gallery-empty">
+
+                <i class="fas fa-images"></i>
+
+                <h3>Your pictorial will appear here</h3>
+
+                <p>
+                    Images can be added through the administrator area.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    gallery.innerHTML = "";
+
+
+    files.forEach(file => {
+
+        const url =
+            getPublicUrl(
+                BUCKETS.pictorial,
+                file.name
             );
 
-            return;
 
-        }
+        const item =
+            document.createElement("div");
 
-
-        const images =
-            (data || [])
-                .filter(
-                    file =>
-                        isImageFile(
-                            file.name
-                        )
-                );
+        item.className =
+            "gallery-item";
 
 
-        if (!images.length) {
+        item.innerHTML = `
 
-            gallery.innerHTML = `
+            <img
+                src="${escapeHTML(url)}"
+                alt="Portfolio photograph"
+                loading="lazy"
+            >
 
-                <div class="gallery-empty">
-
-                    <i class="fas fa-images"></i>
-
-                    <h3>
-                        Your pictorial will appear here
-                    </h3>
-
-                    <p>
-                        Images can be added through the administrator area.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
+        `;
 
 
-        gallery.innerHTML =
-            "";
+        item.addEventListener(
+            "click",
+            function() {
 
-
-        images.forEach(
-            function (file) {
-
-                const url =
-                    getPublicFileUrl(
-                        BUCKETS.pictorial,
-                        file.name
-                    );
-
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className =
-                    "gallery-item";
-
-
-                item.innerHTML = `
-
-                    <img
-                        src="${escapeAttribute(url)}"
-                        alt="Portfolio photograph"
-                        loading="lazy"
-                    >
-
-                    <div class="gallery-overlay">
-
-                        <i class="fas fa-expand"></i>
-
-                    </div>
-
-                `;
-
-
-                item.addEventListener(
-                    "click",
-                    function () {
-
-                        openImageViewer(
-                            url
-                        );
-
-                    }
-                );
-
-
-                gallery.appendChild(
-                    item
+                window.open(
+                    url,
+                    "_blank",
+                    "noopener"
                 );
 
             }
         );
 
 
-    } catch (error) {
+        gallery.appendChild(item);
 
-        console.error(
-            "Gallery loading failed:",
-            error
-        );
-
-    }
+    });
 
 }
 
 
-/* ============================================================
-   EKO PROJECT UPLOADS
-   ============================================================ */
+/* =========================================================
+   EKO PORTFOLIO UPLOAD
+========================================================= */
 
-/*
-   THIS IS THE IMPORTANT PART.
-
-   You can select MULTIPLE files in the EKO upload box.
-
-   Example:
-
-   Project 01
-   Project 02
-   Project 03
-   Project 04
-   Project 05
-   EKO Dashboard
-   EKO Report
-   EKO Research
-   etc.
-
-   They all go into the EKO bucket.
-*/
-
-async function uploadEKOProjects() {
+async function uploadEKOPortfolio() {
 
     const input =
         document.getElementById(
-            "ekoFile"
-        );
-
-
-    const status =
-        document.getElementById(
-            "ekoUploadStatus"
+            "ekoPortfolioFile"
         );
 
 
@@ -1686,9 +1334,9 @@ async function uploadEKOProjects() {
         !input.files.length
     ) {
 
-        setUploadStatus(
-            status,
-            "Please select one or more EKO projects.",
+        setStatus(
+            "ekoPortfolioUploadStatus",
+            "Please select one or more EKO portfolio files.",
             "error"
         );
 
@@ -1698,115 +1346,65 @@ async function uploadEKOProjects() {
 
 
     const files =
-        Array.from(
-            input.files
-        );
+        Array.from(input.files);
 
 
-    setUploadStatus(
-        status,
-        "Uploading " +
-        files.length +
-        " EKO project(s)...",
-        "loading"
-    );
-
-
-    let successful =
-        0;
-
-
-    const failures =
-        [];
+    let successful = 0;
 
 
     try {
 
         for (
-            const file of files
+            let index = 0;
+            index < files.length;
+            index++
         ) {
 
-            try {
-
-                await uploadFileToBucket(
-                    file,
-                    BUCKETS.eko
-                );
+            const file =
+                files[index];
 
 
-                successful++;
+            const safeName =
+                `portfolio/${Date.now()}-${index}-${slugify(file.name)}`;
 
 
-            } catch (error) {
-
-                console.error(
-                    "EKO file error:",
-                    file.name,
-                    error
-                );
+            setStatus(
+                "ekoPortfolioUploadStatus",
+                `Uploading EKO portfolio file ${index + 1} of ${files.length}...`
+            );
 
 
-                failures.push(
-                    file.name
-                );
+            await uploadFile(
+                BUCKETS.eko,
+                safeName,
+                file
+            );
 
-            }
+
+            successful++;
 
         }
 
 
-        if (
-            failures.length
-        ) {
-
-            setUploadStatus(
-                status,
-
-                successful +
-                " uploaded. " +
-                failures.length +
-                " failed.",
-
-                "error"
-            );
-
-        } else {
-
-            setUploadStatus(
-                status,
-
-                successful +
-                " EKO project(s) uploaded successfully.",
-
-                "success"
-            );
-
-        }
+        setStatus(
+            "ekoPortfolioUploadStatus",
+            `${successful} EKO portfolio file(s) uploaded successfully.`,
+            "success"
+        );
 
 
         input.value = "";
 
-
-        /*
-           Refresh the EKO library immediately.
-        */
-
-        await loadEKOProjects();
+        await loadEKOPortfolio();
 
 
     } catch (error) {
 
-        console.error(
-            "EKO upload error:",
-            error
-        );
+        console.error(error);
 
-
-        setUploadStatus(
-            status,
-            getFriendlyStorageError(
-                error
-            ),
+        setStatus(
+            "ekoPortfolioUploadStatus",
+            `Upload failed: ${error.message}`,
             "error"
         );
 
@@ -1815,9 +1413,354 @@ async function uploadEKOProjects() {
 }
 
 
-/* ============================================================
+/* =========================================================
+   LOAD EKO PORTFOLIO
+========================================================= */
+
+async function loadEKOPortfolio() {
+
+    const container =
+        document.getElementById(
+            "ekoPortfolioDocuments"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } = await db.storage
+        .from(BUCKETS.eko)
+        .list("portfolio", {
+
+            limit: 100,
+
+            sortBy: {
+                column: "created_at",
+                order: "desc"
+            }
+
+        });
+
+
+    if (error) {
+
+        container.innerHTML = `
+
+            <div class="document-placeholder small">
+
+                <i class="fas fa-triangle-exclamation"></i>
+
+                Unable to load EKO portfolio.
+
+            </div>
+
+        `;
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        !data.length
+    ) {
+
+        container.innerHTML = `
+
+            <div class="document-placeholder small">
+
+                <i class="fas fa-folder-open"></i>
+
+                <p>
+                    No EKO portfolio files have been uploaded yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    data
+        .filter(file => file.name)
+        .forEach(file => {
+
+            const url =
+                getPublicUrl(
+                    BUCKETS.eko,
+                    `portfolio/${file.name}`
+                );
+
+
+            container.appendChild(
+                createDocumentCard(
+                    file,
+                    url
+                )
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   CREATE EKO PROJECT
+========================================================= */
+
+async function uploadNewEKOProject() {
+
+    const number =
+        document
+            .getElementById("ekoProjectNumber")
+            .value
+            .trim();
+
+
+    const title =
+        document
+            .getElementById("ekoProjectTitle")
+            .value
+            .trim();
+
+
+    const description =
+        document
+            .getElementById("ekoProjectDescription")
+            .value
+            .trim();
+
+
+    const category =
+        document
+            .getElementById("ekoProjectCategory")
+            .value
+            .trim();
+
+
+    const filesInput =
+        document
+            .getElementById("ekoProjectFiles");
+
+
+    if (!number) {
+
+        setStatus(
+            "ekoProjectUploadStatus",
+            "Please enter a project number.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!title) {
+
+        setStatus(
+            "ekoProjectUploadStatus",
+            "Please enter the project title.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!filesInput.files.length) {
+
+        setStatus(
+            "ekoProjectUploadStatus",
+            "Please select at least one project file.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const files =
+        Array.from(filesInput.files);
+
+
+    const projectSlug =
+        `project-${String(number).padStart(2, "0")}-${slugify(title)}`;
+
+
+    /*
+       The project metadata is stored in a small JSON file
+       inside the project folder. This allows the public
+       portfolio to reconstruct the project without requiring
+       another database table.
+    */
+
+    const metadata = {
+
+        number: String(number).padStart(2, "0"),
+
+        title: title,
+
+        description:
+            description ||
+            "EKO Analytics & Research project.",
+
+        category:
+            category ||
+            "EKO ANALYTICS & RESEARCH",
+
+        created_at:
+            new Date().toISOString()
+
+    };
+
+
+    try {
+
+        await requireAuthenticatedUser();
+
+
+        setStatus(
+            "ekoProjectUploadStatus",
+            "Creating project..."
+        );
+
+
+        /*
+           Upload metadata first.
+        */
+
+        const metadataBlob =
+            new Blob(
+                [
+                    JSON.stringify(
+                        metadata,
+                        null,
+                        2
+                    )
+                ],
+                {
+                    type: "application/json"
+                }
+            );
+
+
+        await uploadFile(
+            BUCKETS.eko,
+            `${projectSlug}/project.json`,
+            metadataBlob,
+            {
+                upsert: true
+            }
+        );
+
+
+        let successful = 0;
+
+
+        for (
+            let index = 0;
+            index < files.length;
+            index++
+        ) {
+
+            const file =
+                files[index];
+
+
+            setStatus(
+                "ekoProjectUploadStatus",
+                `Uploading project file ${index + 1} of ${files.length}...`
+            );
+
+
+            const safeFileName =
+                `${index + 1}-${slugify(file.name)}`;
+
+
+            await uploadFile(
+                BUCKETS.eko,
+                `${projectSlug}/${safeFileName}`,
+                file
+            );
+
+
+            successful++;
+
+        }
+
+
+        setStatus(
+            "ekoProjectUploadStatus",
+            `Project ${metadata.number} created successfully with ${successful} file(s).`,
+            "success"
+        );
+
+
+        /*
+           Clear form.
+        */
+
+        document
+            .getElementById("ekoProjectNumber")
+            .value = "";
+
+        document
+            .getElementById("ekoProjectTitle")
+            .value = "";
+
+        document
+            .getElementById("ekoProjectDescription")
+            .value = "";
+
+        document
+            .getElementById("ekoProjectCategory")
+            .value = "";
+
+        filesInput.value = "";
+
+
+        /*
+           Refresh public EKO library.
+        */
+
+        await loadEKOProjects();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        setStatus(
+            "ekoProjectUploadStatus",
+            `EKO project upload failed: ${error.message}`,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
    LOAD EKO PROJECTS
-   ============================================================ */
+========================================================= */
 
 async function loadEKOProjects() {
 
@@ -1838,437 +1781,132 @@ async function loadEKOProjects() {
 
             <i class="fas fa-spinner fa-spin"></i>
 
-            <h3>
-                Loading EKO projects...
-            </h3>
+            <h3>Loading EKO projects...</h3>
 
         </div>
 
     `;
 
 
-    try {
+    const {
+        data,
+        error
+    } = await db.storage
+        .from(BUCKETS.eko)
+        .list("", {
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.eko
-                )
-                .list(
-                    "",
-                    {
+            limit: 200,
 
-                        limit: 500,
-
-                        sortBy: {
-                            column:
-                                "created_at",
-
-                            order:
-                                "desc"
-
-                        }
-
-                    }
-                );
-
-
-        if (error) {
-
-            console.error(
-                "EKO list error:",
-                error
-            );
-
-
-            container.innerHTML = `
-
-                <div class="document-placeholder">
-
-                    <i class="fas fa-circle-exclamation"></i>
-
-                    <h3>
-                        Unable to load EKO projects.
-                    </h3>
-
-                    <p>
-                        Check the Supabase EKO bucket and storage policies.
-                    </p>
-
-                </div>
-
-            `;
-
-
-            return;
-
-        }
-
-
-        const files =
-            (data || [])
-                .filter(
-                    file =>
-                        file.name
-                );
-
-
-        if (!files.length) {
-
-            container.innerHTML = `
-
-                <div class="document-placeholder">
-
-                    <i class="fas fa-folder-open"></i>
-
-                    <h3>
-                        No additional EKO projects yet.
-                    </h3>
-
-                    <p>
-                        Upload projects through the administrator area.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        container.innerHTML =
-            "";
-
-
-        files.forEach(
-            function (file, index) {
-
-                const url =
-                    getPublicFileUrl(
-                        BUCKETS.eko,
-                        file.name
-                    );
-
-
-                const card =
-                    createDocumentCard(
-                        file,
-                        url,
-                        "EKO PROJECT",
-                        index + 1
-                    );
-
-
-                container.appendChild(
-                    card
-                );
-
+            sortBy: {
+                column: "created_at",
+                order: "desc"
             }
-        );
+
+        });
 
 
-    } catch (error) {
+    if (error) {
 
-        console.error(
-            "EKO loading failed:",
-            error
-        );
+        console.error(error);
 
-    }
+        container.innerHTML = `
 
-}
+            <div class="document-placeholder">
 
+                <i class="fas fa-triangle-exclamation"></i>
 
-/* ============================================================
-   EKO PORTFOLIO
-   ============================================================ */
+                <h3>Unable to load EKO projects</h3>
 
-/*
-   EKO Portfolio is kept inside the EKO ecosystem.
+                <p>
+                    ${escapeHTML(error.message)}
+                </p>
 
-   To keep the structure clear:
+            </div>
 
-   EKO Analytics & Research
-   │
-   ├── EKO Portfolio
-   │
-   ├── Project 01
-   ├── Project 02
-   ├── Project 03
-   ├── Project 04
-   └── Future Projects
+        `;
 
-   The EKO bucket stores all EKO project files.
-
-   If your HTML has an EKO Portfolio button/container,
-   these functions can be connected directly to it.
-*/
-
-
-async function loadEKOPortfolio() {
-
-    const container =
-        document.getElementById(
-            "ekoPortfolioDocuments"
-        );
-
-
-    if (!container) {
         return;
-    }
-
-
-    container.innerHTML = `
-
-        <div class="document-placeholder">
-
-            <i class="fas fa-spinner fa-spin"></i>
-
-            <h3>
-                Loading EKO portfolio...
-            </h3>
-
-        </div>
-
-    `;
-
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.eko
-                )
-                .list(
-                    "portfolio",
-                    {
-
-                        limit: 500,
-
-                        sortBy: {
-                            column:
-                                "created_at",
-
-                            order:
-                                "desc"
-
-                        }
-
-                    }
-                );
-
-
-        if (error) {
-
-            console.error(
-                "EKO portfolio error:",
-                error
-            );
-
-
-            container.innerHTML = `
-
-                <div class="document-placeholder">
-
-                    <i class="fas fa-circle-exclamation"></i>
-
-                    <h3>
-                        Unable to load EKO Portfolio.
-                    </h3>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        if (
-            !data ||
-            !data.length
-        ) {
-
-            container.innerHTML = `
-
-                <div class="document-placeholder">
-
-                    <i class="fas fa-folder-open"></i>
-
-                    <h3>
-                        EKO Portfolio is empty.
-                    </h3>
-
-                    <p>
-                        Upload EKO Portfolio materials from the administrator area.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        container.innerHTML =
-            "";
-
-
-        data.forEach(
-            function (file, index) {
-
-                const path =
-                    "portfolio/" +
-                    file.name;
-
-
-                const url =
-                    getPublicFileUrl(
-                        BUCKETS.eko,
-                        path
-                    );
-
-
-                const card =
-                    createDocumentCard(
-                        file,
-                        url,
-                        "EKO PORTFOLIO",
-                        index + 1
-                    );
-
-
-                container.appendChild(
-                    card
-                );
-
-            }
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "EKO Portfolio loading error:",
-            error
-        );
 
     }
 
-}
+
+    /*
+       At the root of the bucket we expect folders.
+    */
+
+    const folders =
+        (data || [])
+            .filter(item => item.id === null);
 
 
-/* ============================================================
-   UPLOAD EKO PORTFOLIO MATERIAL
-   ============================================================ */
+    if (!folders.length) {
 
-async function uploadEKOPortfolio() {
+        container.innerHTML = `
 
-    const input =
-        document.getElementById(
-            "ekoPortfolioFile"
+            <div class="document-placeholder">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>No additional EKO projects yet</h3>
+
+                <p>
+                    New projects uploaded through the Administrator
+                    will appear here automatically.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+       Don't display the portfolio folder here.
+    */
+
+    const projectFolders =
+        folders.filter(
+            folder =>
+                folder.name !== "portfolio"
         );
 
 
-    const status =
-        document.getElementById(
-            "ekoPortfolioUploadStatus"
-        );
+    if (!projectFolders.length) {
+
+        container.innerHTML = `
+
+            <div class="document-placeholder">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>No additional EKO projects yet</h3>
+
+                <p>
+                    Upload your next EKO project through the Administrator.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
 
 
-    if (
-        !input ||
-        !input.files.length
+    container.innerHTML = "";
+
+
+    for (
+        const folder of projectFolders
     ) {
 
-        setUploadStatus(
-            status,
-            "Please select EKO Portfolio materials.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const files =
-        Array.from(
-            input.files
-        );
-
-
-    setUploadStatus(
-        status,
-        "Uploading EKO Portfolio materials...",
-        "loading"
-    );
-
-
-    let successful =
-        0;
-
-
-    try {
-
-        for (
-            const file of files
-        ) {
-
-            await uploadFileToBucket(
-                file,
-                BUCKETS.eko,
-                "portfolio"
-            );
-
-
-            successful++;
-
-        }
-
-
-        setUploadStatus(
-            status,
-            successful +
-            " EKO Portfolio file(s) uploaded.",
-            "success"
-        );
-
-
-        input.value = "";
-
-
-        await loadEKOPortfolio();
-
-
-    } catch (error) {
-
-        console.error(
-            "EKO Portfolio upload error:",
-            error
-        );
-
-
-        setUploadStatus(
-            status,
-            getFriendlyStorageError(
-                error
-            ),
-            "error"
+        await renderEKOProject(
+            folder.name,
+            container
         );
 
     }
@@ -2276,9 +1914,247 @@ async function uploadEKOPortfolio() {
 }
 
 
-/* ============================================================
-   ACADEMIC DOCUMENT UPLOAD
-   ============================================================ */
+/* =========================================================
+   RENDER ONE EKO PROJECT
+========================================================= */
+
+async function renderEKOProject(
+    folderName,
+    container
+) {
+
+    const {
+        data,
+        error
+    } = await db.storage
+        .from(BUCKETS.eko)
+        .list(folderName, {
+
+            limit: 200,
+
+            sortBy: {
+                column: "created_at",
+                order: "asc"
+            }
+
+        });
+
+
+    if (error) {
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    const metadataFile =
+        data.find(
+            file =>
+                file.name === "project.json"
+        );
+
+
+    let metadata = {
+
+        number: "",
+
+        title: folderName,
+
+        description:
+            "EKO Analytics & Research project.",
+
+        category:
+            "EKO ANALYTICS & RESEARCH"
+
+    };
+
+
+    if (metadataFile) {
+
+        try {
+
+            const metadataUrl =
+                getPublicUrl(
+                    BUCKETS.eko,
+                    `${folderName}/project.json`
+                );
+
+
+            const response =
+                await fetch(metadataUrl);
+
+
+            if (response.ok) {
+
+                metadata =
+                    await response.json();
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Could not read project metadata.",
+                error
+            );
+
+        }
+
+    }
+
+
+    const projectFiles =
+        data.filter(
+            file =>
+                file.name &&
+                file.name !== "project.json"
+        );
+
+
+    const card =
+        document.createElement("div");
+
+
+    card.className =
+        "eko-dynamic-project";
+
+
+    const filesHTML =
+        projectFiles.length
+            ? projectFiles.map(file => {
+
+                const url =
+                    getPublicUrl(
+                        BUCKETS.eko,
+                        `${folderName}/${file.name}`
+                    );
+
+
+                return `
+
+                    <div class="document-card">
+
+                        <div class="document-main">
+
+                            <div class="document-icon">
+
+                                <i class="fas ${getFileIcon(file.name)}"></i>
+
+                            </div>
+
+                            <div class="document-info">
+
+                                <h4>
+                                    ${escapeHTML(file.name)}
+                                </h4>
+
+                                <span>
+                                    ${escapeHTML(
+                                        formatFileSize(file.metadata?.size)
+                                    )}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="document-actions">
+
+                            <a
+                                href="${escapeHTML(url)}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <i class="fas fa-eye"></i>
+                                View
+                            </a>
+
+                            <a
+                                href="${escapeHTML(url)}"
+                                download
+                                class="download"
+                            >
+                                <i class="fas fa-download"></i>
+                                Download
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("")
+
+            : `
+
+                <div class="document-placeholder small">
+
+                    <p>
+                        No project files found.
+                    </p>
+
+                </div>
+
+            `;
+
+
+    card.innerHTML = `
+
+        <div class="eko-dynamic-project-header">
+
+            <div>
+
+                <span>
+                    ${escapeHTML(
+                        metadata.category ||
+                        "EKO ANALYTICS & RESEARCH"
+                    )}
+                </span>
+
+                <h3>
+
+                    ${
+                        metadata.number
+                            ? `Project ${escapeHTML(metadata.number)} — `
+                            : ""
+                    }
+
+                    ${escapeHTML(metadata.title)}
+
+                </h3>
+
+                <p>
+                    ${escapeHTML(metadata.description)}
+                </p>
+
+            </div>
+
+            <div>
+                <i class="fas fa-folder-open"></i>
+            </div>
+
+        </div>
+
+        <div class="eko-dynamic-project-body">
+
+            ${filesHTML}
+
+        </div>
+
+    `;
+
+
+    container.appendChild(card);
+
+}
+
+
+/* =========================================================
+   ACADEMIC UPLOAD
+========================================================= */
 
 async function uploadAcademicDocuments() {
 
@@ -2288,20 +2164,14 @@ async function uploadAcademicDocuments() {
         );
 
 
-    const status =
-        document.getElementById(
-            "academicUploadStatus"
-        );
-
-
     if (
         !input ||
         !input.files.length
     ) {
 
-        setUploadStatus(
-            status,
-            "Please select academic documents.",
+        setStatus(
+            "academicUploadStatus",
+            "Please select one or more academic files.",
             "error"
         );
 
@@ -2311,31 +2181,38 @@ async function uploadAcademicDocuments() {
 
 
     const files =
-        Array.from(
-            input.files
-        );
+        Array.from(input.files);
 
 
-    setUploadStatus(
-        status,
-        "Uploading academic work...",
-        "loading"
-    );
-
-
-    let successful =
-        0;
+    let successful = 0;
 
 
     try {
 
         for (
-            const file of files
+            let index = 0;
+            index < files.length;
+            index++
         ) {
 
-            await uploadFileToBucket(
-                file,
-                BUCKETS.academic
+            const file =
+                files[index];
+
+
+            const path =
+                `${Date.now()}-${index}-${slugify(file.name)}`;
+
+
+            setStatus(
+                "academicUploadStatus",
+                `Uploading academic file ${index + 1} of ${files.length}...`
+            );
+
+
+            await uploadFile(
+                BUCKETS.academic,
+                path,
+                file
             );
 
 
@@ -2344,33 +2221,25 @@ async function uploadAcademicDocuments() {
         }
 
 
-        setUploadStatus(
-            status,
-            successful +
-            " academic document(s) uploaded successfully.",
+        setStatus(
+            "academicUploadStatus",
+            `${successful} academic file(s) uploaded successfully.`,
             "success"
         );
 
 
         input.value = "";
 
-
         await loadAcademicDocuments();
 
 
     } catch (error) {
 
-        console.error(
-            "Academic upload error:",
-            error
-        );
+        console.error(error);
 
-
-        setUploadStatus(
-            status,
-            getFriendlyStorageError(
-                error
-            ),
+        setStatus(
+            "academicUploadStatus",
+            `Upload failed: ${error.message}`,
             "error"
         );
 
@@ -2379,9 +2248,9 @@ async function uploadAcademicDocuments() {
 }
 
 
-/* ============================================================
-   LOAD ACADEMIC DOCUMENTS
-   ============================================================ */
+/* =========================================================
+   LOAD ACADEMIC
+========================================================= */
 
 async function loadAcademicDocuments() {
 
@@ -2402,122 +2271,104 @@ async function loadAcademicDocuments() {
 
             <i class="fas fa-spinner fa-spin"></i>
 
-            <h3>
-                Loading academic work...
-            </h3>
+            <h3>Loading academic work...</h3>
 
         </div>
 
     `;
 
 
-    try {
+    const {
+        data,
+        error
+    } = await db.storage
+        .from(BUCKETS.academic)
+        .list("", {
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.academic
-                )
-                .list(
-                    "",
-                    {
+            limit: 200,
 
-                        limit: 500,
-
-                        sortBy: {
-                            column:
-                                "created_at",
-
-                            order:
-                                "desc"
-
-                        }
-
-                    }
-                );
-
-
-        if (error) {
-
-            console.error(
-                "Academic list error:",
-                error
-            );
-
-
-            renderEmptyDocumentState(
-                container,
-                "Unable to load academic work."
-            );
-
-
-            return;
-
-        }
-
-
-        if (
-            !data ||
-            !data.length
-        ) {
-
-            renderEmptyDocumentState(
-                container,
-                "No academic work has been uploaded yet."
-            );
-
-
-            return;
-
-        }
-
-
-        container.innerHTML =
-            "";
-
-
-        data.forEach(
-            function (file, index) {
-
-                const url =
-                    getPublicFileUrl(
-                        BUCKETS.academic,
-                        file.name
-                    );
-
-
-                container.appendChild(
-                    createDocumentCard(
-                        file,
-                        url,
-                        "ACADEMIC WORK",
-                        index + 1
-                    )
-                );
-
+            sortBy: {
+                column: "created_at",
+                order: "desc"
             }
-        );
+
+        });
 
 
-    } catch (error) {
+    if (error) {
 
-        console.error(
-            "Academic loading failed:",
-            error
-        );
+        container.innerHTML = `
+
+            <div class="document-placeholder">
+
+                <i class="fas fa-triangle-exclamation"></i>
+
+                <h3>Unable to load academic work</h3>
+
+                <p>
+                    ${escapeHTML(error.message)}
+                </p>
+
+            </div>
+
+        `;
+
+        return;
 
     }
+
+
+    if (
+        !data ||
+        !data.length
+    ) {
+
+        container.innerHTML = `
+
+            <div class="document-placeholder">
+
+                <i class="fas fa-book-open"></i>
+
+                <h3>No academic work uploaded yet</h3>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    data
+        .filter(file => file.name)
+        .forEach(file => {
+
+            const url =
+                getPublicUrl(
+                    BUCKETS.academic,
+                    file.name
+                );
+
+
+            container.appendChild(
+                createDocumentCard(
+                    file,
+                    url
+                )
+            );
+
+        });
 
 }
 
 
-/* ============================================================
+/* =========================================================
    PROFESSIONAL PORTFOLIO UPLOAD
-   ============================================================ */
+========================================================= */
 
 async function uploadPortfolioDocuments() {
 
@@ -2527,20 +2378,14 @@ async function uploadPortfolioDocuments() {
         );
 
 
-    const status =
-        document.getElementById(
-            "portfolioUploadStatus"
-        );
-
-
     if (
         !input ||
         !input.files.length
     ) {
 
-        setUploadStatus(
-            status,
-            "Please select portfolio materials.",
+        setStatus(
+            "portfolioUploadStatus",
+            "Please select one or more portfolio files.",
             "error"
         );
 
@@ -2550,31 +2395,38 @@ async function uploadPortfolioDocuments() {
 
 
     const files =
-        Array.from(
-            input.files
-        );
+        Array.from(input.files);
 
 
-    setUploadStatus(
-        status,
-        "Uploading professional portfolio materials...",
-        "loading"
-    );
-
-
-    let successful =
-        0;
+    let successful = 0;
 
 
     try {
 
         for (
-            const file of files
+            let index = 0;
+            index < files.length;
+            index++
         ) {
 
-            await uploadFileToBucket(
-                file,
-                BUCKETS.portfolio
+            const file =
+                files[index];
+
+
+            const path =
+                `${Date.now()}-${index}-${slugify(file.name)}`;
+
+
+            setStatus(
+                "portfolioUploadStatus",
+                `Uploading portfolio file ${index + 1} of ${files.length}...`
+            );
+
+
+            await uploadFile(
+                BUCKETS.professional,
+                path,
+                file
             );
 
 
@@ -2583,33 +2435,25 @@ async function uploadPortfolioDocuments() {
         }
 
 
-        setUploadStatus(
-            status,
-            successful +
-            " professional portfolio file(s) uploaded successfully.",
+        setStatus(
+            "portfolioUploadStatus",
+            `${successful} professional portfolio file(s) uploaded successfully.`,
             "success"
         );
 
 
         input.value = "";
 
-
         await loadPortfolioDocuments();
 
 
     } catch (error) {
 
-        console.error(
-            "Portfolio upload error:",
-            error
-        );
+        console.error(error);
 
-
-        setUploadStatus(
-            status,
-            getFriendlyStorageError(
-                error
-            ),
+        setStatus(
+            "portfolioUploadStatus",
+            `Upload failed: ${error.message}`,
             "error"
         );
 
@@ -2618,9 +2462,9 @@ async function uploadPortfolioDocuments() {
 }
 
 
-/* ============================================================
+/* =========================================================
    LOAD PROFESSIONAL PORTFOLIO
-   ============================================================ */
+========================================================= */
 
 async function loadPortfolioDocuments() {
 
@@ -2641,211 +2485,171 @@ async function loadPortfolioDocuments() {
 
             <i class="fas fa-spinner fa-spin"></i>
 
-            <h3>
-                Loading portfolio materials...
-            </h3>
+            <h3>Loading portfolio materials...</h3>
 
         </div>
 
     `;
 
 
-    try {
+    const {
+        data,
+        error
+    } = await db.storage
+        .from(BUCKETS.professional)
+        .list("", {
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .storage
-                .from(
-                    BUCKETS.portfolio
-                )
-                .list(
-                    "",
-                    {
+            limit: 200,
 
-                        limit: 500,
-
-                        sortBy: {
-                            column:
-                                "created_at",
-
-                            order:
-                                "desc"
-
-                        }
-
-                    }
-                );
-
-
-        if (error) {
-
-            console.error(
-                "Portfolio list error:",
-                error
-            );
-
-
-            renderEmptyDocumentState(
-                container,
-                "Unable to load portfolio materials."
-            );
-
-
-            return;
-
-        }
-
-
-        if (
-            !data ||
-            !data.length
-        ) {
-
-            renderEmptyDocumentState(
-                container,
-                "No professional portfolio materials have been uploaded yet."
-            );
-
-
-            return;
-
-        }
-
-
-        container.innerHTML =
-            "";
-
-
-        data.forEach(
-            function (file, index) {
-
-                const url =
-                    getPublicFileUrl(
-                        BUCKETS.portfolio,
-                        file.name
-                    );
-
-
-                container.appendChild(
-                    createDocumentCard(
-                        file,
-                        url,
-                        "PROFESSIONAL PORTFOLIO",
-                        index + 1
-                    )
-                );
-
+            sortBy: {
+                column: "created_at",
+                order: "desc"
             }
-        );
+
+        });
 
 
-    } catch (error) {
+    if (error) {
 
-        console.error(
-            "Portfolio loading failed:",
-            error
-        );
+        container.innerHTML = `
+
+            <div class="document-placeholder">
+
+                <i class="fas fa-triangle-exclamation"></i>
+
+                <h3>Unable to load portfolio materials</h3>
+
+                <p>
+                    ${escapeHTML(error.message)}
+                </p>
+
+            </div>
+
+        `;
+
+        return;
 
     }
+
+
+    if (
+        !data ||
+        !data.length
+    ) {
+
+        container.innerHTML = `
+
+            <div class="document-placeholder">
+
+                <i class="fas fa-briefcase"></i>
+
+                <h3>No portfolio materials uploaded yet</h3>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    data
+        .filter(file => file.name)
+        .forEach(file => {
+
+            const url =
+                getPublicUrl(
+                    BUCKETS.professional,
+                    file.name
+                );
+
+
+            container.appendChild(
+                createDocumentCard(
+                    file,
+                    url
+                )
+            );
+
+        });
 
 }
 
 
-/* ============================================================
-   CREATE DOCUMENT CARD
-   ============================================================ */
+/* =========================================================
+   GENERIC DOCUMENT CARD
+========================================================= */
 
 function createDocumentCard(
     file,
-    url,
-    category,
-    number
+    url
 ) {
 
     const card =
-        document.createElement(
-            "article"
-        );
+        document.createElement("div");
 
 
     card.className =
-        "uploaded-document";
+        "document-card";
 
 
-    const icon =
-        getFileIcon(
-            file.name
-        );
-
-
-    const fileSize =
-        formatFileSize(
-            file.metadata &&
-            file.metadata.size
-                ? file.metadata.size
-                : 0
-        );
-
-
-    const title =
-        formatFileName(
-            file.name
-        );
+    const size =
+        file.metadata &&
+        file.metadata.size
+            ? formatFileSize(
+                file.metadata.size
+            )
+            : "";
 
 
     card.innerHTML = `
 
-        <div class="document-icon">
+        <div class="document-main">
 
-            <i class="${icon}"></i>
+            <div class="document-icon">
+
+                <i class="fas ${getFileIcon(file.name)}"></i>
+
+            </div>
+
+            <div class="document-info">
+
+                <h4>
+                    ${escapeHTML(file.name)}
+                </h4>
+
+                <span>
+                    ${escapeHTML(size)}
+                </span>
+
+            </div>
 
         </div>
-
-
-        <div class="document-info">
-
-            <span class="document-category">
-                ${escapeHtml(category)}
-            </span>
-
-            <h3>
-                ${escapeHtml(title)}
-            </h3>
-
-            <p>
-                ${fileSize}
-            </p>
-
-        </div>
-
 
         <div class="document-actions">
 
             <a
-                href="${escapeAttribute(url)}"
+                href="${escapeHTML(url)}"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="document-view"
             >
 
                 <i class="fas fa-eye"></i>
-
                 View
 
             </a>
 
-
             <a
-                href="${escapeAttribute(url)}"
+                href="${escapeHTML(url)}"
                 download
-                class="document-download"
+                class="download"
             >
 
                 <i class="fas fa-download"></i>
-
                 Download
 
             </a>
@@ -2860,764 +2664,70 @@ function createDocumentCard(
 }
 
 
-/* ============================================================
-   EMPTY DOCUMENT STATE
-   ============================================================ */
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
 
-function renderEmptyDocumentState(
-    container,
-    message
-) {
+async function initializePortfolio() {
 
-    container.innerHTML = `
-
-        <div class="document-placeholder">
-
-            <i class="fas fa-folder-open"></i>
-
-            <h3>
-                ${escapeHtml(message)}
-            </h3>
-
-        </div>
-
-    `;
-
-}
-
-
-/* ============================================================
-   FILE ICON
-   ============================================================ */
-
-function getFileIcon(
-    fileName
-) {
-
-    const extension =
-        fileName
-            .split(".")
-            .pop()
-            .toLowerCase();
-
-
-    if (
-        extension === "pdf"
-    ) {
-
-        return "fas fa-file-pdf";
-
-    }
-
-
-    if (
-        ["doc", "docx"]
-            .includes(
-                extension
-            )
-    ) {
-
-        return "fas fa-file-word";
-
-    }
-
-
-    if (
-        ["xls", "xlsx", "csv"]
-            .includes(
-                extension
-            )
-    ) {
-
-        return "fas fa-file-excel";
-
-    }
-
-
-    if (
-        ["ppt", "pptx"]
-            .includes(
-                extension
-            )
-    ) {
-
-        return "fas fa-file-powerpoint";
-
-    }
-
-
-    if (
-        [
-            "jpg",
-            "jpeg",
-            "png",
-            "gif",
-            "webp"
-        ]
-            .includes(
-                extension
-            )
-    ) {
-
-        return "fas fa-file-image";
-
-    }
-
-
-    if (
-        ["txt", "md"]
-            .includes(
-                extension
-            )
-    ) {
-
-        return "fas fa-file-lines";
-
-    }
-
-
-    return "fas fa-file";
-
-}
-
-
-/* ============================================================
-   FILE SIZE
-   ============================================================ */
-
-function formatFileSize(
-    bytes
-) {
-
-    if (
-        !bytes ||
-        bytes <= 0
-    ) {
-
-        return "File";
-
-    }
-
-
-    const units = [
-        "Bytes",
-        "KB",
-        "MB",
-        "GB"
-    ];
-
-
-    const index =
-        Math.floor(
-            Math.log(bytes) /
-            Math.log(1024)
-        );
-
-
-    return (
-        Math.round(
-            bytes /
-            Math.pow(
-                1024,
-                index
-            ) *
-            10
-        ) / 10
-    ) +
-    " " +
-    units[index];
-
-}
-
-
-/* ============================================================
-   FORMAT FILE NAME
-   ============================================================ */
-
-function formatFileName(
-    fileName
-) {
-
-    return fileName
-        .replace(
-            /^\d+_[a-z0-9]+_/i,
-            ""
-        )
-        .replace(
-            /\.[^/.]+$/,
-            ""
-        )
-        .replace(
-            /[-_]+/g,
-            " "
-        )
-        .replace(
-            /\b\w/g,
-            letter =>
-                letter.toUpperCase()
-        );
-
-}
-
-
-/* ============================================================
-   IMAGE FILE CHECK
-   ============================================================ */
-
-function isImageFile(
-    fileName
-) {
-
-    return /\.(jpg|jpeg|png|gif|webp|avif)$/i
-        .test(
-            fileName
-        );
-
-}
-
-
-/* ============================================================
-   UPLOAD STATUS
-   ============================================================ */
-
-function setUploadStatus(
-    element,
-    text,
-    type
-) {
-
-    if (!element) {
-        return;
-    }
-
-
-    element.textContent =
-        text;
-
-
-    element.className =
-        "upload-status " +
-        type;
-
-}
-
-
-/* ============================================================
-   MODAL SYSTEM
-   ============================================================ */
-
-function setupModalSystem() {
-
-    document
-        .querySelectorAll(
-            ".modal"
-        )
-        .forEach(
-            function (modal) {
-
-                modal.addEventListener(
-                    "click",
-                    function (event) {
-
-                        if (
-                            event.target ===
-                            modal
-                        ) {
-
-                            closeModal(
-                                modal.id
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key ===
-                "Escape"
-            ) {
-
-                document
-                    .querySelectorAll(
-                        ".modal.active"
-                    )
-                    .forEach(
-                        function (modal) {
-
-                            closeModal(
-                                modal.id
-                            );
-
-                        }
-                    );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   OPEN MODAL
-   ============================================================ */
-
-function openModal(
-    modalId
-) {
-
-    const modal =
-        document.getElementById(
-            modalId
-        );
-
-
-    if (!modal) {
-
-        console.warn(
-            "Modal not found:",
-            modalId
-        );
-
-        return;
-
-    }
-
-
-    modal.classList.add(
-        "active"
-    );
-
-
-    document.body.classList.add(
-        "modal-open"
+    console.log(
+        "Initializing Edwin Kuchio Okello Portfolio..."
     );
 
 
     /*
-       Automatically refresh relevant
-       document libraries.
+       Public content.
     */
 
-    if (
-        modalId ===
-        "ekoModal"
-    ) {
+    await Promise.allSettled([
 
-        loadEKOProjects();
+        loadCV(),
 
-        loadEKOPortfolio();
+        loadProfile(),
 
-    }
+        loadGallery(),
 
+        loadEKOPortfolio()
 
-    if (
-        modalId ===
-        "academicModal"
-    ) {
-
-        loadAcademicDocuments();
-
-    }
+    ]);
 
 
-    if (
-        modalId ===
-        "portfolioModal"
-    ) {
+    /*
+       Admin state.
+    */
 
-        loadPortfolioDocuments();
-
-    }
-
-}
+    await checkAdminSession();
 
 
-/* ============================================================
-   CLOSE MODAL
-   ============================================================ */
-
-function closeModal(
-    modalId
-) {
-
-    const modal =
-        document.getElementById(
-            modalId
-        );
-
-
-    if (!modal) {
-        return;
-    }
-
-
-    modal.classList.remove(
-        "active"
-    );
-
-
-    if (
-        !document.querySelector(
-            ".modal.active"
-        )
-    ) {
-
-        document.body.classList.remove(
-            "modal-open"
-        );
-
-    }
-
-}
-
-
-/* ============================================================
-   PROJECT 01
-   ============================================================ */
-
-function openProject01() {
-
-    closeModal(
-        "ekoModal"
-    );
-
-
-    setTimeout(
-        function () {
-
-            openModal(
-                "project01Modal"
-            );
-
-        },
-        150
+    console.log(
+        "Portfolio initialization complete."
     );
 
 }
 
 
-/* ============================================================
-   IMAGE VIEWER
-   ============================================================ */
+/* =========================================================
+   DOM READY
+========================================================= */
 
-function openImageViewer(
-    url
-) {
-
-    const viewer =
-        document.createElement(
-            "div"
-        );
+document.addEventListener(
+    "DOMContentLoaded",
+    initializePortfolio
+);
 
 
-    viewer.className =
-        "image-viewer";
+/* =========================================================
+   GLOBAL ERROR HANDLING
+========================================================= */
 
+window.addEventListener(
+    "unhandledrejection",
+    function(event) {
 
-    viewer.innerHTML = `
-
-        <button
-            class="image-viewer-close"
-            aria-label="Close image"
-        >
-            &times;
-        </button>
-
-        <img
-            src="${escapeAttribute(url)}"
-            alt="Portfolio photograph"
-        >
-
-    `;
-
-
-    document.body.appendChild(
-        viewer
-    );
-
-
-    viewer
-        .querySelector(
-            ".image-viewer-close"
-        )
-        .addEventListener(
-            "click",
-            function () {
-
-                viewer.remove();
-
-            }
-        );
-
-
-    viewer.addEventListener(
-        "click",
-        function (event) {
-
-            if (
-                event.target ===
-                viewer
-            ) {
-
-                viewer.remove();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   COPYRIGHT YEAR
-   ============================================================ */
-
-function setupCopyrightYear() {
-
-    const year =
-        document.getElementById(
-            "year"
-        );
-
-
-    if (year) {
-
-        year.textContent =
-            new Date()
-                .getFullYear();
-
-    }
-
-}
-
-
-/* ============================================================
-   FRIENDLY SUPABASE ERROR
-   ============================================================ */
-
-function getFriendlyStorageError(
-    error
-) {
-
-    if (!error) {
-
-        return "An unknown error occurred.";
-
-    }
-
-
-    const message =
-        error.message ||
-        "";
-
-
-    if (
-        message
-            .toLowerCase()
-            .includes(
-                "row-level security"
-            )
-    ) {
-
-        return (
-            "Supabase storage permissions are blocking this upload. " +
-            "Check the storage policies for the bucket."
+        console.error(
+            "Unhandled promise rejection:",
+            event.reason
         );
 
     }
-
-
-    if (
-        message
-            .toLowerCase()
-            .includes(
-                "bucket"
-            )
-    ) {
-
-        return (
-            "The Supabase storage bucket could not be accessed. " +
-            "Check that the bucket name is correct."
-        );
-
-    }
-
-
-    if (
-        message
-            .toLowerCase()
-            .includes(
-                "permission"
-            )
-    ) {
-
-        return (
-            "Permission denied. Check your Supabase Storage policies."
-        );
-
-    }
-
-
-    return message;
-
-}
-
-
-/* ============================================================
-   HTML ESCAPING
-   ============================================================ */
-
-function escapeHtml(
-    value
-) {
-
-    return String(
-        value
-    )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* ============================================================
-   ATTRIBUTE ESCAPING
-   ============================================================ */
-
-function escapeAttribute(
-    value
-) {
-
-    return escapeHtml(
-        value
-    );
-
-}
-
-
-/* ============================================================
-   SUPABASE AUTH STATE LISTENER
-   ============================================================ */
-
-supabaseClient
-    .auth
-    .onAuthStateChange(
-        function (
-            event,
-            session
-        ) {
-
-            if (
-                session
-            ) {
-
-                showAdminDashboard();
-
-            } else {
-
-                showLoginArea();
-
-            }
-
-        }
-    );
-
-
-/* ============================================================
-   GLOBAL FUNCTIONS
-   ============================================================
-
-   These make the functions accessible to buttons using:
-
-   onclick="functionName()"
-
-   ============================================================ */
-
-window.openAdmin =
-    openAdmin;
-
-window.closeAdmin =
-    closeAdmin;
-
-window.adminLogin =
-    adminLogin;
-
-window.adminLogout =
-    adminLogout;
-
-window.uploadCV =
-    uploadCV;
-
-window.uploadProfile =
-    uploadProfile;
-
-window.uploadPictorial =
-    uploadPictorial;
-
-window.uploadEKOProjects =
-    uploadEKOProjects;
-
-window.uploadEKOPortfolio =
-    uploadEKOPortfolio;
-
-window.uploadAcademicDocuments =
-    uploadAcademicDocuments;
-
-window.uploadPortfolioDocuments =
-    uploadPortfolioDocuments;
-
-window.loadEKOProjects =
-    loadEKOProjects;
-
-window.loadEKOPortfolio =
-    loadEKOPortfolio;
-
-window.loadAcademicDocuments =
-    loadAcademicDocuments;
-
-window.loadPortfolioDocuments =
-    loadPortfolioDocuments;
-
-window.openModal =
-    openModal;
-
-window.closeModal =
-    closeModal;
-
-window.openProject01 =
-    openProject01;
-
-
-/* ============================================================
-   END SCRIPT
-   ============================================================ */
+);
