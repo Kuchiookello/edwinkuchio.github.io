@@ -1,5 +1,6 @@
-    <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,20 @@
     <title>Edwin Kuchio Okello | Professional Portfolio</title>
 
     <meta name="description"
-          content="Edwin Kuchio Okello — Research, Analytics, Writing, Communication and EKO Analytics & Research.">
+        content="Professional portfolio of Edwin Kuchio Okello — research, analytics, writing, communication and EKO Analytics & Research.">
 
     <meta name="author" content="Edwin Kuchio Okello">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -41,10 +42,15 @@
             <span class="logo-sub">Okello</span>
         </a>
 
-        <button class="menu-toggle"
-                id="menuToggle"
-                aria-label="Open navigation menu">
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
+
             <i class="fas fa-bars"></i>
+
         </button>
 
         <div class="nav-links" id="navLinks">
@@ -140,7 +146,7 @@
 
             <div class="profile-frame" id="profileFrame">
 
-                <div class="profile-placeholder">
+                <div class="profile-placeholder" id="profilePlaceholder">
 
                     <div class="profile-icon">
                         <i class="fas fa-user"></i>
@@ -315,6 +321,7 @@
 
 
     <div class="experience-timeline">
+
 
         <article class="experience-item">
 
@@ -951,12 +958,12 @@
         </span>
 
         <h2>
-            Selected Projects
+            Selected Projects &amp; Written Work
         </h2>
 
         <p>
-            Professional initiatives, analytical projects, academic research
-            and selected portfolio materials.
+            Explore EKO Analytics &amp; Research, academic research and
+            professional portfolio materials.
         </p>
 
     </div>
@@ -964,7 +971,11 @@
 
     <div class="projects-grid">
 
-        <!-- EKO -->
+
+        <!-- =================================================
+             EKO ANALYTICS & RESEARCH
+             PARENT COLLECTION
+        ================================================== -->
 
         <article class="project-card eko-parent-card">
 
@@ -984,6 +995,7 @@
 
             </div>
 
+
             <div class="project-content">
 
                 <span class="project-category">
@@ -999,6 +1011,7 @@
                     analysis, data-informed insights, reporting and
                     information-based professional services.
                 </p>
+
 
                 <div class="eko-feature-list">
 
@@ -1024,6 +1037,7 @@
 
                 </div>
 
+
                 <div class="project-tags">
 
                     <span>Research</span>
@@ -1033,10 +1047,13 @@
 
                 </div>
 
-                <button class="project-button"
-                        onclick="openModal('ekoModal'); loadEKOProjects();">
 
-                    Explore EKO
+                <button
+                    class="project-button"
+                    type="button"
+                    id="openEKOButton">
+
+                    Explore EKO Analytics &amp; Research
                     <i class="fas fa-arrow-right"></i>
 
                 </button>
@@ -1046,7 +1063,9 @@
         </article>
 
 
-        <!-- ACADEMIC -->
+        <!-- =================================================
+             ACADEMIC
+        ================================================== -->
 
         <article class="project-card">
 
@@ -1061,6 +1080,7 @@
                 </span>
 
             </div>
+
 
             <div class="project-content">
 
@@ -1079,13 +1099,18 @@
                 </p>
 
                 <div class="project-tags">
+
                     <span>Essays</span>
                     <span>Research</span>
                     <span>Academic Writing</span>
+
                 </div>
 
-                <button class="project-button"
-                        onclick="openModal('academicModal'); loadAcademicDocuments();">
+
+                <button
+                    class="project-button"
+                    type="button"
+                    id="openAcademicButton">
 
                     View Academic Work
                     <i class="fas fa-arrow-right"></i>
@@ -1097,7 +1122,9 @@
         </article>
 
 
-        <!-- PROFESSIONAL PORTFOLIO -->
+        <!-- =================================================
+             PROFESSIONAL PORTFOLIO
+        ================================================== -->
 
         <article class="project-card">
 
@@ -1113,10 +1140,11 @@
 
             </div>
 
+
             <div class="project-content">
 
                 <span class="project-category">
-                    PROFESSIONAL BRANDING
+                    PROFESSIONAL PORTFOLIO
                 </span>
 
                 <h3>
@@ -1124,21 +1152,26 @@
                 </h3>
 
                 <p>
-                    A collection of professional documents, presentations,
-                    materials and selected work demonstrating my professional
-                    development.
+                    A collection of professional documents, materials,
+                    presentations and selected work demonstrating my
+                    professional development.
                 </p>
 
                 <div class="project-tags">
+
                     <span>Portfolio</span>
                     <span>Professional Branding</span>
                     <span>Digital Presentation</span>
+
                 </div>
 
-                <button class="project-button"
-                        onclick="openModal('portfolioModal'); loadPortfolioDocuments();">
 
-                    Explore Portfolio
+                <button
+                    class="project-button"
+                    type="button"
+                    id="openPortfolioButton">
+
+                    Explore Professional Portfolio
                     <i class="fas fa-arrow-right"></i>
 
                 </button>
@@ -1153,17 +1186,23 @@
 
 
 <!-- =========================================================
-     EKO MODAL
+     EKO MAIN MODAL
 ========================================================= -->
 
-<div class="modal" id="ekoModal">
+<div class="modal" id="ekoModal" aria-hidden="true">
 
     <div class="modal-box eko-modal-box">
 
-        <button class="modal-close"
-                onclick="closeModal('ekoModal')">
+        <button
+            class="modal-close"
+            type="button"
+            data-close-modal="ekoModal"
+            aria-label="Close">
+
             &times;
+
         </button>
+
 
         <div class="eko-modal-header">
 
@@ -1178,7 +1217,7 @@
                 </span>
 
                 <h2>
-                    EKO Portfolio &amp; Project Library
+                    Research. Analysis. Insight.
                 </h2>
 
             </div>
@@ -1191,7 +1230,7 @@
             <p>
                 EKO Analytics &amp; Research is a developing professional
                 initiative focused on transforming information into useful
-                research, analysis and actionable insights.
+                research, analysis, reporting and actionable insights.
             </p>
 
             <div class="eko-modal-pillars">
@@ -1221,45 +1260,64 @@
         </div>
 
 
-        <!-- EKO PORTFOLIO -->
+        <!-- =================================================
+             EKO PORTFOLIO
+        ================================================== -->
 
-        <div class="library-section">
+        <div class="eko-subsection">
 
-            <div class="library-heading">
+            <div class="eko-uploaded-heading">
 
                 <div>
 
                     <span class="modal-label">
-                        EKO PROFESSIONAL PORTFOLIO
+                        EKO PORTFOLIO
                     </span>
 
                     <h3>
-                        EKO Portfolio
+                        EKO Analytics &amp; Research Portfolio
                     </h3>
 
                 </div>
 
-                <button class="small-refresh"
-                        onclick="loadEKOPortfolio()">
+            </div>
 
-                    <i class="fas fa-arrows-rotate"></i>
 
-                </button>
+            <div class="eko-portfolio-intro">
+
+                <div class="eko-portfolio-icon">
+                    <i class="fas fa-building-columns"></i>
+                </div>
+
+                <div>
+
+                    <h4>
+                        About the EKO Portfolio
+                    </h4>
+
+                    <p>
+                        This collection presents the professional identity,
+                        services, capabilities, approach and selected
+                        materials of EKO Analytics &amp; Research.
+                    </p>
+
+                </div>
 
             </div>
 
-            <p class="library-description">
-                The core EKO Analytics &amp; Research portfolio, including
-                company profiles, service documents, rate cards, presentations,
-                methodologies and other professional materials.
-            </p>
 
-            <div id="ekoPortfolioDocuments"
-                 class="uploaded-document-list">
+            <div
+                id="ekoPortfolioDocuments"
+                class="uploaded-document-list">
 
                 <div class="document-placeholder">
+
                     <i class="fas fa-spinner fa-spin"></i>
-                    <h3>Loading EKO portfolio...</h3>
+
+                    <h3>
+                        Loading EKO portfolio...
+                    </h3>
+
                 </div>
 
             </div>
@@ -1267,11 +1325,205 @@
         </div>
 
 
-        <!-- EKO PROJECTS -->
+        <!-- =================================================
+             PROJECT 01
+        ================================================== -->
 
-        <div class="library-section">
+        <div class="eko-subsection eko-project-section">
 
-            <div class="library-heading">
+            <div class="eko-uploaded-heading">
+
+                <div>
+
+                    <span class="modal-label">
+                        EKO PROJECT 01
+                    </span>
+
+                    <h3>
+                        SME Sales &amp; Customer Performance Analysis
+                    </h3>
+
+                </div>
+
+                <span class="eko-library-note">
+                    Featured EKO project
+                </span>
+
+            </div>
+
+
+            <div class="eko-project-featured">
+
+                <div class="eko-project-number">
+
+                    PROJECT
+
+                    <strong>
+                        01
+                    </strong>
+
+                </div>
+
+
+                <div class="eko-project-main">
+
+                    <div class="eko-project-category">
+                        SME BUSINESS ANALYTICS
+                    </div>
+
+                    <h3>
+                        SME Sales &amp; Customer Performance Analysis
+                    </h3>
+
+                    <p class="eko-project-summary">
+                        A practical business analytics project designed to
+                        examine sales performance, customer behaviour and
+                        business performance patterns within a small or
+                        medium-sized enterprise.
+                    </p>
+
+
+                    <div class="eko-project-grid">
+
+
+                        <div class="eko-project-info">
+
+                            <div class="info-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Objective
+                                </h4>
+
+                                <p>
+                                    To transform sales and customer information
+                                    into clear business insights that can
+                                    support better decision-making and
+                                    performance improvement.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="eko-project-info">
+
+                            <div class="info-icon">
+                                <i class="fas fa-chart-column"></i>
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Analytical Focus
+                                </h4>
+
+                                <p>
+                                    Revenue trends, product performance,
+                                    customer contribution, sales patterns,
+                                    geographic or segment performance and
+                                    customer behaviour.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="eko-project-info">
+
+                            <div class="info-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Data Approach
+                                </h4>
+
+                                <p>
+                                    Structured business data can be cleaned,
+                                    organised and analysed to identify trends,
+                                    patterns, relationships and performance
+                                    indicators.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="eko-project-info">
+
+                            <div class="info-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Expected Insights
+                                </h4>
+
+                                <p>
+                                    Identification of strong and weak-performing
+                                    areas, customer patterns, opportunities
+                                    for improvement and evidence-based
+                                    recommendations.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="eko-project-tags">
+
+                        <span>SME Analytics</span>
+                        <span>Sales Analysis</span>
+                        <span>Customer Analysis</span>
+                        <span>Performance Measurement</span>
+                        <span>Business Insights</span>
+
+                    </div>
+
+
+                    <div class="eko-project-actions">
+
+                        <button
+                            class="eko-action-primary"
+                            type="button"
+                            id="openProject01Button">
+
+                            <i class="fas fa-folder-open"></i>
+
+                            Explore Project 01
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ADDITIONAL EKO PROJECT LIBRARY
+        ================================================== -->
+
+        <div class="eko-subsection">
+
+            <div class="eko-uploaded-heading">
 
                 <div>
 
@@ -1280,32 +1532,390 @@
                     </span>
 
                     <h3>
-                        EKO Projects
+                        Additional EKO Projects
                     </h3>
 
                 </div>
 
-                <button class="small-refresh"
-                        onclick="loadEKOProjects()">
+                <button
+                    type="button"
+                    class="refresh-library-button"
+                    id="refreshEKOProjectsButton">
 
                     <i class="fas fa-arrows-rotate"></i>
+                    Refresh
 
                 </button>
 
             </div>
 
+
             <p class="library-description">
-                Multiple analytical projects can be uploaded here. New
-                projects are automatically added to the library.
+                Additional EKO projects uploaded through the administrator
+                area will appear here automatically. Multiple projects can
+                be added over time.
             </p>
 
-            <div id="ekoProjects"
-                 class="uploaded-document-list">
+
+            <div
+                id="ekoProjects"
+                class="uploaded-document-list">
 
                 <div class="document-placeholder">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <h3>Loading EKO projects...</h3>
+
+                    <i class="fas fa-folder-open"></i>
+
+                    <h3>
+                        No additional EKO projects loaded yet.
+                    </h3>
+
+                    <p>
+                        Projects uploaded by the administrator will appear
+                        here.
+                    </p>
+
                 </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PROJECT 01 DETAIL MODAL
+========================================================= -->
+
+<div class="modal" id="project01Modal" aria-hidden="true">
+
+    <div class="modal-box project-detail-modal">
+
+        <button
+            class="modal-close"
+            type="button"
+            data-close-modal="project01Modal"
+            aria-label="Close">
+
+            &times;
+
+        </button>
+
+
+        <div class="project-detail-top">
+
+            <div class="project-detail-number">
+                01
+            </div>
+
+            <div>
+
+                <span class="modal-label">
+                    EKO ANALYTICS &amp; RESEARCH
+                </span>
+
+                <h2>
+                    SME Sales &amp; Customer Performance Analysis
+                </h2>
+
+                <p class="project-detail-subtitle">
+                    A practical business analytics project
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="project-detail-body">
+
+
+            <div class="detail-section">
+
+                <span class="detail-number">
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        Project Overview
+                    </h3>
+
+                    <p>
+                        SME Sales &amp; Customer Performance Analysis is a
+                        practical analytics project developed under EKO
+                        Analytics &amp; Research. The project demonstrates
+                        how business data can be organised and analysed to
+                        understand sales performance and customer behaviour.
+                    </p>
+
+                    <p>
+                        The purpose is not simply to produce charts, but to
+                        translate business information into meaningful
+                        insights that can help an SME understand what is
+                        working, where performance is changing and where
+                        opportunities may exist.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-section">
+
+                <span class="detail-number">
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        Business Questions
+                    </h3>
+
+                    <div class="question-grid">
+
+                        <div>
+                            <i class="fas fa-arrow-trend-up"></i>
+                            <span>How are sales performing over time?</span>
+                        </div>
+
+                        <div>
+                            <i class="fas fa-box"></i>
+                            <span>Which products or categories perform best?</span>
+                        </div>
+
+                        <div>
+                            <i class="fas fa-users"></i>
+                            <span>Which customers contribute most to revenue?</span>
+                        </div>
+
+                        <div>
+                            <i class="fas fa-chart-pie"></i>
+                            <span>What customer segments emerge from the data?</span>
+                        </div>
+
+                        <div>
+                            <i class="fas fa-location-dot"></i>
+                            <span>Are there geographic or market differences?</span>
+                        </div>
+
+                        <div>
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Where are the strongest opportunities for improvement?</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-section">
+
+                <span class="detail-number">
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        Analytical Framework
+                    </h3>
+
+                    <div class="framework-grid">
+
+                        <div class="framework-card">
+
+                            <i class="fas fa-database"></i>
+
+                            <h4>
+                                Data Preparation
+                            </h4>
+
+                            <p>
+                                Organising, checking and preparing business
+                                data for meaningful analysis.
+                            </p>
+
+                        </div>
+
+
+                        <div class="framework-card">
+
+                            <i class="fas fa-chart-line"></i>
+
+                            <h4>
+                                Sales Analysis
+                            </h4>
+
+                            <p>
+                                Examining revenue, volume, trends and
+                                performance across relevant periods.
+                            </p>
+
+                        </div>
+
+
+                        <div class="framework-card">
+
+                            <i class="fas fa-users"></i>
+
+                            <h4>
+                                Customer Analysis
+                            </h4>
+
+                            <p>
+                                Understanding customer contribution,
+                                purchasing behaviour and segmentation.
+                            </p>
+
+                        </div>
+
+
+                        <div class="framework-card">
+
+                            <i class="fas fa-bullseye"></i>
+
+                            <h4>
+                                Performance Insights
+                            </h4>
+
+                            <p>
+                                Translating analytical findings into practical
+                                business observations and recommendations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-section">
+
+                <span class="detail-number">
+                    04
+                </span>
+
+                <div>
+
+                    <h3>
+                        Key Deliverables
+                    </h3>
+
+                    <ul class="deliverables-list">
+
+                        <li>
+                            <i class="fas fa-check"></i>
+                            Clean and structured analytical dataset
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check"></i>
+                            Sales performance analysis
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check"></i>
+                            Customer performance analysis
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check"></i>
+                            Visual dashboards and charts
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check"></i>
+                            Key findings and business insights
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check"></i>
+                            Practical recommendations
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-section">
+
+                <span class="detail-number">
+                    05
+                </span>
+
+                <div>
+
+                    <h3>
+                        Professional Value
+                    </h3>
+
+                    <p>
+                        This project demonstrates the ability to approach a
+                        business problem systematically: understand the
+                        question, organise information, analyse patterns,
+                        communicate findings and connect evidence to practical
+                        recommendations.
+                    </p>
+
+                    <div class="professional-value">
+
+                        <span>
+                            <i class="fas fa-magnifying-glass"></i>
+                            Research
+                        </span>
+
+                        <span>
+                            <i class="fas fa-chart-line"></i>
+                            Analysis
+                        </span>
+
+                        <span>
+                            <i class="fas fa-comments"></i>
+                            Communication
+                        </span>
+
+                        <span>
+                            <i class="fas fa-lightbulb"></i>
+                            Problem Solving
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-detail-footer">
+
+                <p>
+                    <strong>EKO Analytics &amp; Research</strong><br>
+                    Research. Analysis. Insight.
+                </p>
+
+                <button
+                    class="eko-action-primary"
+                    type="button"
+                    id="backToEKOFromProject01">
+
+                    <i class="fas fa-arrow-left"></i>
+                    Back to EKO
+
+                </button>
 
             </div>
 
@@ -1320,13 +1930,18 @@
      ACADEMIC MODAL
 ========================================================= -->
 
-<div class="modal" id="academicModal">
+<div class="modal" id="academicModal" aria-hidden="true">
 
-    <div class="modal-box">
+    <div class="modal-box academic-modal-box">
 
-        <button class="modal-close"
-                onclick="closeModal('academicModal')">
+        <button
+            class="modal-close"
+            type="button"
+            data-close-modal="academicModal"
+            aria-label="Close">
+
             &times;
+
         </button>
 
         <div class="modal-icon">
@@ -1346,12 +1961,38 @@
             academic work.
         </p>
 
-        <div id="academicDocuments"
-             class="uploaded-document-list">
+
+        <div class="library-toolbar">
+
+            <span>
+                <i class="fas fa-folder-open"></i>
+                Academic Library
+            </span>
+
+            <button
+                type="button"
+                id="refreshAcademicButton">
+
+                <i class="fas fa-arrows-rotate"></i>
+                Refresh
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="academicDocuments"
+            class="uploaded-document-list">
 
             <div class="document-placeholder">
+
                 <i class="fas fa-spinner fa-spin"></i>
-                <h3>Loading academic work...</h3>
+
+                <h3>
+                    Loading academic work...
+                </h3>
+
             </div>
 
         </div>
@@ -1365,13 +2006,18 @@
      PROFESSIONAL PORTFOLIO MODAL
 ========================================================= -->
 
-<div class="modal" id="portfolioModal">
+<div class="modal" id="portfolioModal" aria-hidden="true">
 
     <div class="modal-box">
 
-        <button class="modal-close"
-                onclick="closeModal('portfolioModal')">
+        <button
+            class="modal-close"
+            type="button"
+            data-close-modal="portfolioModal"
+            aria-label="Close">
+
             &times;
+
         </button>
 
         <div class="modal-icon">
@@ -1391,12 +2037,38 @@
             materials.
         </p>
 
-        <div id="portfolioDocuments"
-             class="uploaded-document-list">
+
+        <div class="library-toolbar">
+
+            <span>
+                <i class="fas fa-folder-open"></i>
+                Professional Library
+            </span>
+
+            <button
+                type="button"
+                id="refreshPortfolioButton">
+
+                <i class="fas fa-arrows-rotate"></i>
+                Refresh
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="portfolioDocuments"
+            class="uploaded-document-list">
 
             <div class="document-placeholder">
+
                 <i class="fas fa-spinner fa-spin"></i>
-                <h3>Loading portfolio materials...</h3>
+
+                <h3>
+                    Loading portfolio materials...
+                </h3>
+
             </div>
 
         </div>
@@ -1430,23 +2102,27 @@
             View or download my current professional curriculum vitae.
         </p>
 
+
         <div class="cv-buttons">
 
-            <a id="viewCV"
-               href="#"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-primary disabled-link">
+            <a
+                id="viewCV"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary">
 
                 <i class="fas fa-eye"></i>
                 View My CV
 
             </a>
 
-            <a id="downloadCV"
-               href="#"
-               download
-               class="btn btn-outline disabled-link">
+
+            <a
+                id="downloadCV"
+                href="#"
+                download
+                class="btn btn-outline">
 
                 <i class="fas fa-download"></i>
                 Download CV
@@ -1454,6 +2130,7 @@
             </a>
 
         </div>
+
 
         <div id="cvStatus" class="cv-status">
             Loading CV...
@@ -1533,6 +2210,7 @@
 
     <div class="contact-card">
 
+
         <div class="contact-item">
 
             <div class="contact-icon">
@@ -1587,9 +2265,10 @@
                     LinkedIn
                 </span>
 
-                <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a
+                    href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
+                    target="_blank"
+                    rel="noopener noreferrer">
 
                     View LinkedIn Profile
 
@@ -1625,7 +2304,8 @@
         </div>
 
         <p>
-            &copy; <span id="year"></span>
+            &copy;
+            <span id="year"></span>
             Edwin Kuchio Okello. All Rights Reserved.
         </p>
 
@@ -1635,15 +2315,35 @@
 
 
 <!-- =========================================================
-     ADMIN LOCK
+     ADMIN LOCK BUTTON
+     THIS BUTTON IS ALWAYS AVAILABLE
 ========================================================= -->
 
-<button class="admin-lock"
-        id="adminLock"
-        title="Administrator"
-        aria-label="Open administrator area">
+<button
+    class="admin-lock"
+    id="adminLock"
+    type="button"
+    title="Administrator Login"
+    aria-label="Open Administrator Login">
 
     <i class="fas fa-lock"></i>
+
+</button>
+
+
+<!-- =========================================================
+     BACK TO TOP BUTTON
+     THIS BUTTON IS CONTROLLED BY SCRIPT
+========================================================= -->
+
+<button
+    id="backToTop"
+    class="back-to-top"
+    type="button"
+    title="Back to top"
+    aria-label="Back to top">
+
+    <i class="fas fa-arrow-up"></i>
 
 </button>
 
@@ -1652,15 +2352,25 @@
      ADMIN PANEL
 ========================================================= -->
 
-<div class="admin-panel" id="adminPanel">
+<div
+    class="admin-panel"
+    id="adminPanel"
+    aria-hidden="true">
 
     <div class="admin-box">
 
-        <button class="admin-close"
-                onclick="closeAdmin()">
+        <button
+            class="admin-close"
+            id="adminClose"
+            type="button"
+            aria-label="Close Administrator">
+
             &times;
+
         </button>
 
+
+        <!-- ADMIN HEADER -->
 
         <div class="admin-heading">
 
@@ -1683,7 +2393,9 @@
         </div>
 
 
-        <!-- LOGIN -->
+        <!-- =================================================
+             LOGIN
+        ================================================== -->
 
         <div id="loginArea">
 
@@ -1691,16 +2403,18 @@
                 This area is restricted to the portfolio administrator.
             </p>
 
+
             <div class="form-group">
 
                 <label for="adminEmail">
                     Administrator Email
                 </label>
 
-                <input type="email"
-                       id="adminEmail"
-                       autocomplete="username"
-                       placeholder="Enter administrator email">
+                <input
+                    type="email"
+                    id="adminEmail"
+                    autocomplete="username"
+                    placeholder="Enter administrator email">
 
             </div>
 
@@ -1711,18 +2425,22 @@
                     Password
                 </label>
 
-                <input type="password"
-                       id="adminPassword"
-                       autocomplete="current-password"
-                       placeholder="Enter password">
+                <input
+                    type="password"
+                    id="adminPassword"
+                    autocomplete="current-password"
+                    placeholder="Enter password">
 
             </div>
 
 
-            <button class="btn btn-primary admin-login-btn"
-                    onclick="adminLogin()">
+            <button
+                class="btn btn-primary admin-login-btn"
+                id="adminLoginButton"
+                type="button">
 
                 <i class="fas fa-sign-in-alt"></i>
+
                 Sign In
 
             </button>
@@ -1730,10 +2448,14 @@
         </div>
 
 
-        <!-- ADMIN DASHBOARD -->
+        <!-- =================================================
+             ADMIN DASHBOARD
+        ================================================== -->
 
-        <div id="adminDashboard"
-             style="display:none;">
+        <div
+            id="adminDashboard"
+            style="display:none;">
+
 
             <div class="admin-welcome">
 
@@ -1744,7 +2466,9 @@
             </div>
 
 
-            <!-- CV -->
+            <!-- =================================================
+                 CV UPLOAD
+            ================================================== -->
 
             <div class="admin-section">
 
@@ -1766,26 +2490,35 @@
 
                 </div>
 
-                <input type="file"
-                       id="cvFile"
-                       accept=".pdf">
 
-                <button class="admin-action"
-                        onclick="uploadCV()">
+                <input
+                    type="file"
+                    id="cvFile"
+                    accept=".pdf">
+
+
+                <button
+                    class="admin-action"
+                    id="uploadCVButton"
+                    type="button">
 
                     <i class="fas fa-cloud-arrow-up"></i>
                     Upload CV
 
                 </button>
 
-                <div id="cvUploadStatus"
-                     class="upload-status">
+
+                <div
+                    id="cvUploadStatus"
+                    class="upload-status">
                 </div>
 
             </div>
 
 
-            <!-- PROFILE -->
+            <!-- =================================================
+                 PROFILE PICTURE
+            ================================================== -->
 
             <div class="admin-section">
 
@@ -1807,26 +2540,35 @@
 
                 </div>
 
-                <input type="file"
-                       id="profileFile"
-                       accept="image/*">
 
-                <button class="admin-action"
-                        onclick="uploadProfile()">
+                <input
+                    type="file"
+                    id="profileFile"
+                    accept="image/*">
+
+
+                <button
+                    class="admin-action"
+                    id="uploadProfileButton"
+                    type="button">
 
                     <i class="fas fa-cloud-arrow-up"></i>
                     Upload Profile Picture
 
                 </button>
 
-                <div id="profileUploadStatus"
-                     class="upload-status">
+
+                <div
+                    id="profileUploadStatus"
+                    class="upload-status">
                 </div>
 
             </div>
 
 
-            <!-- PICTORIAL -->
+            <!-- =================================================
+                 PICTORIAL
+            ================================================== -->
 
             <div class="admin-section">
 
@@ -1848,27 +2590,88 @@
 
                 </div>
 
-                <input type="file"
-                       id="pictorialFile"
-                       accept="image/*"
-                       multiple>
 
-                <button class="admin-action"
-                        onclick="uploadPictorial()">
+                <input
+                    type="file"
+                    id="pictorialFile"
+                    accept="image/*"
+                    multiple>
+
+
+                <button
+                    class="admin-action"
+                    id="uploadPictorialButton"
+                    type="button">
 
                     <i class="fas fa-cloud-arrow-up"></i>
                     Upload Images
 
                 </button>
 
-                <div id="pictorialUploadStatus"
-                     class="upload-status">
+
+                <div
+                    id="pictorialUploadStatus"
+                    class="upload-status">
                 </div>
 
             </div>
 
 
-            <!-- EKO PORTFOLIO -->
+            <!-- =================================================
+                 EKO PORTFOLIO
+            ================================================== -->
+
+            <div class="admin-section admin-eko-section">
+
+                <div class="admin-section-title">
+
+                    <i class="fas fa-building-columns"></i>
+
+                    <div>
+
+                        <h3>
+                            EKO Portfolio
+                        </h3>
+
+                        <p>
+                            Upload the portfolio and professional materials
+                            belonging to EKO Analytics &amp; Research itself.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <input
+                    type="file"
+                    id="ekoPortfolioFile"
+                    accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.txt,image/*"
+                    multiple>
+
+
+                <button
+                    class="admin-action"
+                    id="uploadEKOPortfolioButton"
+                    type="button">
+
+                    <i class="fas fa-cloud-arrow-up"></i>
+                    Upload EKO Portfolio
+
+                </button>
+
+
+                <div
+                    id="ekoPortfolioUploadStatus"
+                    class="upload-status">
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EKO PROJECTS
+            ================================================== -->
 
             <div class="admin-section admin-eko-section">
 
@@ -1879,56 +2682,13 @@
                     <div>
 
                         <h3>
-                            EKO Analytics &amp; Research — Portfolio
-                        </h3>
-
-                        <p>
-                            Upload EKO company profiles, service documents,
-                            rate cards, presentations, methodologies and
-                            other EKO professional materials.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <input type="file"
-                       id="ekoPortfolioFile"
-                       accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.txt,image/*"
-                       multiple>
-
-                <button class="admin-action"
-                        onclick="uploadEKOPortfolio()">
-
-                    <i class="fas fa-cloud-arrow-up"></i>
-                    Upload EKO Portfolio Materials
-
-                </button>
-
-                <div id="ekoPortfolioUploadStatus"
-                     class="upload-status">
-                </div>
-
-            </div>
-
-
-            <!-- EKO PROJECTS -->
-
-            <div class="admin-section admin-eko-section">
-
-                <div class="admin-section-title">
-
-                    <i class="fas fa-folder-tree"></i>
-
-                    <div>
-
-                        <h3>
                             EKO Projects
                         </h3>
 
                         <p>
-                            Add numerous EKO projects. You may select multiple
-                            files belonging to a project.
+                            Upload multiple EKO projects. Project 01 remains
+                            the featured project while additional projects
+                            can be added here indefinitely.
                         </p>
 
                     </div>
@@ -1936,40 +2696,35 @@
                 </div>
 
 
-                <div class="form-group">
-
-                    <label for="ekoProjectName">
-                        Project Name
-                    </label>
-
-                    <input type="text"
-                           id="ekoProjectName"
-                           placeholder="e.g. SME Sales & Customer Performance Analysis">
-
-                </div>
+                <input
+                    type="file"
+                    id="ekoFile"
+                    accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.txt,image/*"
+                    multiple>
 
 
-                <input type="file"
-                       id="ekoProjectFiles"
-                       accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.txt,image/*"
-                       multiple>
-
-                <button class="admin-action"
-                        onclick="uploadEKOProject()">
+                <button
+                    class="admin-action"
+                    id="uploadEKOProjectsButton"
+                    type="button">
 
                     <i class="fas fa-cloud-arrow-up"></i>
-                    Add EKO Project
+                    Upload EKO Projects
 
                 </button>
 
-                <div id="ekoProjectUploadStatus"
-                     class="upload-status">
+
+                <div
+                    id="ekoUploadStatus"
+                    class="upload-status">
                 </div>
 
             </div>
 
 
-            <!-- ACADEMIC -->
+            <!-- =================================================
+                 ACADEMIC
+            ================================================== -->
 
             <div class="admin-section">
 
@@ -1991,27 +2746,36 @@
 
                 </div>
 
-                <input type="file"
-                       id="academicFile"
-                       accept=".pdf,.doc,.docx,.ppt,.pptx,.txt"
-                       multiple>
 
-                <button class="admin-action"
-                        onclick="uploadAcademicDocuments()">
+                <input
+                    type="file"
+                    id="academicFile"
+                    accept=".pdf,.doc,.docx,.ppt,.pptx,.txt"
+                    multiple>
+
+
+                <button
+                    class="admin-action"
+                    id="uploadAcademicButton"
+                    type="button">
 
                     <i class="fas fa-cloud-arrow-up"></i>
                     Upload Academic Work
 
                 </button>
 
-                <div id="academicUploadStatus"
-                     class="upload-status">
+
+                <div
+                    id="academicUploadStatus"
+                    class="upload-status">
                 </div>
 
             </div>
 
 
-            <!-- PROFESSIONAL PORTFOLIO -->
+            <!-- =================================================
+                 PROFESSIONAL PORTFOLIO
+            ================================================== -->
 
             <div class="admin-section">
 
@@ -2026,35 +2790,67 @@
                         </h3>
 
                         <p>
-                            Upload professional materials and documents.
+                            Upload professional materials separate from
+                            EKO Analytics &amp; Research.
                         </p>
 
                     </div>
 
                 </div>
 
-                <input type="file"
-                       id="portfolioFile"
-                       accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.txt,image/*"
-                       multiple>
 
-                <button class="admin-action"
-                        onclick="uploadPortfolioDocuments()">
+                <input
+                    type="file"
+                    id="portfolioFile"
+                    accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.txt,image/*"
+                    multiple>
+
+
+                <button
+                    class="admin-action"
+                    id="uploadPortfolioButton"
+                    type="button">
 
                     <i class="fas fa-cloud-arrow-up"></i>
                     Upload Portfolio Materials
 
                 </button>
 
-                <div id="portfolioUploadStatus"
-                     class="upload-status">
+
+                <div
+                    id="portfolioUploadStatus"
+                    class="upload-status">
                 </div>
 
             </div>
 
 
-            <button class="admin-logout"
-                    onclick="adminLogout()">
+            <!-- =================================================
+                 ADMIN STATUS
+            ================================================== -->
+
+            <div
+                id="adminActivity"
+                class="admin-activity">
+
+                <h3>
+                    <i class="fas fa-clock-rotate-left"></i>
+                    Administrator Activity
+                </h3>
+
+                <div id="adminActivityLog">
+                    Ready.
+                </div>
+
+            </div>
+
+
+            <!-- LOGOUT -->
+
+            <button
+                class="admin-logout"
+                id="adminLogoutButton"
+                type="button">
 
                 <i class="fas fa-sign-out-alt"></i>
                 Sign Out
@@ -2064,8 +2860,9 @@
         </div>
 
 
-        <div id="adminMessage"
-             class="admin-message">
+        <div
+            id="adminMessage"
+            class="admin-message">
         </div>
 
     </div>
@@ -2074,20 +2871,32 @@
 
 
 <!-- =========================================================
-     BACK TO TOP
+     PAGE LOADING INDICATOR
 ========================================================= -->
 
-<button id="backToTop"
-        class="back-to-top"
-        title="Back to top"
-        aria-label="Back to top">
+<div
+    id="pageLoader"
+    class="page-loader">
 
-    <i class="fas fa-arrow-up"></i>
+    <div class="loader-inner">
 
-</button>
+        <div class="loader-spinner"></div>
 
+        <p>
+            Loading portfolio...
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
