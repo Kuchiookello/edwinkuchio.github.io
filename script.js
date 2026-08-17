@@ -1,7 +1,5 @@
-<script>
-
-/* =========================================================
-   SUPABASE
+    /* =========================================================
+   SUPABASE CONNECTION
 ========================================================= */
 
 const SUPABASE_URL =
@@ -18,53 +16,30 @@ const supabaseClient =
 
 
 /* =========================================================
-   STORAGE BUCKETS
+   SUPABASE BUCKETS
 ========================================================= */
 
-const CV_BUCKET = "CV";
-const PROFILE_BUCKET = "Profile";
-const PICTORIAL_BUCKET = "Pictorial";
+const CV_BUCKET =
+    "CV";
 
-/*
-   IMPORTANT:
-   Create this bucket in Supabase Storage:
+const PROFILE_BUCKET =
+    "Profile";
 
-   Bucket name:
-   Projects
+const PICTORIAL_BUCKET =
+    "Pictorial";
 
-   Make the bucket PUBLIC if you want visitors
-   to open the uploaded projects.
-*/
+const EKO_BUCKET =
+    "eko";
 
-const PROJECT_BUCKET = "Projects";
+const ACADEMIC_BUCKET =
+    "Academic Essays and Research";
+
+const PORTFOLIO_BUCKET =
+    "Professional Portfolio";
 
 
 /* =========================================================
-   PROJECT CATEGORIES
-========================================================= */
-
-const PROJECT_CATEGORIES = {
-
-    eko: {
-        name: "EKO Analytics & Research",
-        folder: "eko"
-    },
-
-    academic: {
-        name: "Academic Essays & Research",
-        folder: "academic"
-    },
-
-    portfolio: {
-        name: "Professional Portfolio",
-        folder: "portfolio"
-    }
-
-};
-
-
-/* =========================================================
-   MOBILE MENU
+   MOBILE NAVIGATION
 ========================================================= */
 
 const menuToggle =
@@ -73,29 +48,35 @@ const menuToggle =
 const navLinks =
     document.getElementById("navLinks");
 
-if (menuToggle && navLinks) {
 
-    menuToggle.addEventListener("click", function() {
+if (menuToggle) {
 
-        navLinks.classList.toggle("active");
+    menuToggle.addEventListener(
+        "click",
+        function () {
 
-    });
+            navLinks.classList.toggle("active");
+
+        }
+    );
 
 }
 
 
-document.querySelectorAll(".nav-links a")
-.forEach(function(link) {
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(function (link) {
 
-    link.addEventListener("click", function() {
+        link.addEventListener(
+            "click",
+            function () {
 
-        if (navLinks) {
-            navLinks.classList.remove("active");
-        }
+                navLinks.classList.remove("active");
+
+            }
+        );
 
     });
-
-});
 
 
 /* =========================================================
@@ -114,7 +95,7 @@ if (yearElement) {
 
 
 /* =========================================================
-   MODALS
+   MODAL SYSTEM
 ========================================================= */
 
 function openModal(id) {
@@ -126,30 +107,7 @@ function openModal(id) {
 
     modal.classList.add("active");
 
-    document.body.style.overflow = "hidden";
-
-    /*
-       Automatically refresh project lists
-       whenever a project modal is opened.
-    */
-
-    if (id === "ekoModal") {
-
-        loadProjects("eko");
-
-    }
-
-    if (id === "academicModal") {
-
-        loadProjects("academic");
-
-    }
-
-    if (id === "portfolioModal") {
-
-        loadProjects("portfolio");
-
-    }
+    document.body.classList.add("modal-open");
 
 }
 
@@ -163,47 +121,113 @@ function closeModal(id) {
 
     modal.classList.remove("active");
 
-    document.body.style.overflow = "";
+    if (
+        document.querySelectorAll(
+            ".modal.active"
+        ).length === 0
+    ) {
+
+        document.body.classList.remove(
+            "modal-open"
+        );
+
+    }
 
 }
 
 
-document.querySelectorAll(".modal")
-.forEach(function(modal) {
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING BACKDROP
+========================================================= */
 
-    modal.addEventListener("click", function(event) {
+document
+    .querySelectorAll(".modal")
+    .forEach(function (modal) {
 
-        if (event.target === modal) {
+        modal.addEventListener(
+            "click",
+            function (event) {
 
-            modal.classList.remove("active");
+                if (
+                    event.target === modal
+                ) {
 
-            document.body.style.overflow = "";
+                    modal.classList.remove(
+                        "active"
+                    );
 
-        }
+                    if (
+                        document.querySelectorAll(
+                            ".modal.active"
+                        ).length === 0
+                    ) {
+
+                        document.body.classList.remove(
+                            "modal-open"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
 
     });
 
-});
 
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-    if (event.key === "Escape") {
+        if (event.key !== "Escape") {
+            return;
+        }
 
-        document.querySelectorAll(".modal.active")
-        .forEach(function(modal) {
+        document
+            .querySelectorAll(".modal.active")
+            .forEach(function (modal) {
 
-            modal.classList.remove("active");
+                modal.classList.remove(
+                    "active"
+                );
 
-        });
+            });
 
         closeAdmin();
 
-        document.body.style.overflow = "";
+        document.body.classList.remove(
+            "modal-open"
+        );
 
     }
+);
 
-});
+
+/* =========================================================
+   PROJECT 01
+========================================================= */
+
+function openProject01() {
+
+    closeModal("ekoModal");
+
+    setTimeout(
+        function () {
+
+            openModal(
+                "project01Modal"
+            );
+
+        },
+        150
+    );
+
+}
 
 
 /* =========================================================
@@ -211,26 +235,38 @@ document.addEventListener("keydown", function(event) {
 ========================================================= */
 
 const backToTop =
-    document.getElementById("backToTop");
+    document.getElementById(
+        "backToTop"
+    );
 
-if (backToTop) {
 
-    window.addEventListener("scroll", function() {
+window.addEventListener(
+    "scroll",
+    function () {
 
-        if (window.scrollY > 450) {
+        if (
+            window.scrollY > 450
+        ) {
 
-            backToTop.classList.add("show");
+            backToTop.classList.add(
+                "show"
+            );
 
         } else {
 
-            backToTop.classList.remove("show");
+            backToTop.classList.remove(
+                "show"
+            );
 
         }
 
-    });
+    }
+);
 
 
-    backToTop.addEventListener("click", function() {
+backToTop.addEventListener(
+    "click",
+    function () {
 
         window.scrollTo({
 
@@ -240,9 +276,8 @@ if (backToTop) {
 
         });
 
-    });
-
-}
+    }
+);
 
 
 /* =========================================================
@@ -250,47 +285,51 @@ if (backToTop) {
 ========================================================= */
 
 const adminLock =
-    document.getElementById("adminLock");
+    document.getElementById(
+        "adminLock"
+    );
 
 const adminPanel =
-    document.getElementById("adminPanel");
+    document.getElementById(
+        "adminPanel"
+    );
 
 
-if (adminLock) {
+adminLock.addEventListener(
+    "click",
+    function () {
 
-    adminLock.addEventListener("click", function() {
+        adminPanel.classList.add(
+            "active"
+        );
 
-        adminPanel.classList.add("active");
-
-    });
-
-}
+    }
+);
 
 
 function closeAdmin() {
 
-    if (adminPanel) {
-
-        adminPanel.classList.remove("active");
-
-    }
+    adminPanel.classList.remove(
+        "active"
+    );
 
 }
 
 
-if (adminPanel) {
+adminPanel.addEventListener(
+    "click",
+    function (event) {
 
-    adminPanel.addEventListener("click", function(event) {
-
-        if (event.target === adminPanel) {
+        if (
+            event.target === adminPanel
+        ) {
 
             closeAdmin();
 
         }
 
-    });
-
-}
+    }
+);
 
 
 /* =========================================================
@@ -300,13 +339,19 @@ if (adminPanel) {
 async function adminLogin() {
 
     const email =
-        document.getElementById("adminEmail")
-        .value
-        .trim();
+        document
+            .getElementById(
+                "adminEmail"
+            )
+            .value
+            .trim();
 
     const password =
-        document.getElementById("adminPassword")
-        .value;
+        document
+            .getElementById(
+                "adminPassword"
+            )
+            .value;
 
 
     if (!email || !password) {
@@ -327,15 +372,19 @@ async function adminLogin() {
     );
 
 
-    const { data, error } =
-        await supabaseClient.auth
-        .signInWithPassword({
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .auth
+            .signInWithPassword({
 
-            email: email,
+                email: email,
 
-            password: password
+                password: password
 
-        });
+            });
 
 
     if (error) {
@@ -352,18 +401,26 @@ async function adminLogin() {
 
     if (data.session) {
 
-        document.getElementById("loginArea")
-            .style.display = "none";
+        document
+            .getElementById(
+                "loginArea"
+            )
+            .style.display =
+            "none";
 
-        document.getElementById("adminDashboard")
-            .style.display = "block";
+
+        document
+            .getElementById(
+                "adminDashboard"
+            )
+            .style.display =
+            "block";
+
 
         showAdminMessage(
             "Administrator signed in successfully.",
             "success"
         );
-
-        loadAllProjects();
 
     }
 
@@ -376,42 +433,64 @@ async function adminLogin() {
 
 async function checkAdminSession() {
 
-    const { data } =
-        await supabaseClient.auth.getSession();
+    const {
+        data
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
 
 
     if (data.session) {
 
-        document.getElementById("loginArea")
-            .style.display = "none";
+        document
+            .getElementById(
+                "loginArea"
+            )
+            .style.display =
+            "none";
 
-        document.getElementById("adminDashboard")
-            .style.display = "block";
 
-        loadAllProjects();
+        document
+            .getElementById(
+                "adminDashboard"
+            )
+            .style.display =
+            "block";
 
     }
 
 }
 
+
 checkAdminSession();
 
 
 /* =========================================================
-   LOGOUT
+   ADMIN LOGOUT
 ========================================================= */
 
 async function adminLogout() {
 
-    await supabaseClient.auth.signOut();
+    await supabaseClient
+        .auth
+        .signOut();
 
 
-    document.getElementById("loginArea")
-        .style.display = "block";
+    document
+        .getElementById(
+            "loginArea"
+        )
+        .style.display =
+        "block";
 
 
-    document.getElementById("adminDashboard")
-        .style.display = "none";
+    document
+        .getElementById(
+            "adminDashboard"
+        )
+        .style.display =
+        "none";
 
 
     showAdminMessage(
@@ -426,17 +505,24 @@ async function adminLogout() {
    ADMIN MESSAGE
 ========================================================= */
 
-function showAdminMessage(message, type) {
+function showAdminMessage(
+    message,
+    type
+) {
 
     const box =
-        document.getElementById("adminMessage");
+        document.getElementById(
+            "adminMessage"
+        );
 
-    if (!box) return;
 
-    box.textContent = message;
+    box.textContent =
+        message;
+
 
     box.className =
-        "admin-message show " + type;
+        "admin-message show " +
+        type;
 
 }
 
@@ -448,8 +534,11 @@ function showAdminMessage(message, type) {
 async function uploadCV() {
 
     const file =
-        document.getElementById("cvFile")
-        .files[0];
+        document
+            .getElementById(
+                "cvFile"
+            )
+            .files[0];
 
 
     if (!file) {
@@ -464,7 +553,10 @@ async function uploadCV() {
     }
 
 
-    if (file.type !== "application/pdf") {
+    if (
+        file.type !==
+        "application/pdf"
+    ) {
 
         showAdminMessage(
             "The CV must be a PDF file.",
@@ -486,30 +578,28 @@ async function uploadCV() {
         "Edwin-Kuchio-Okello-CV.pdf";
 
 
-    const { error } =
-        await supabaseClient.storage
-        .from(CV_BUCKET)
-        .upload(
-
-            fileName,
-
-            file,
-
-            {
-
-                upsert: true,
-
-                contentType: "application/pdf"
-
-            }
-
-        );
+    const {
+        error
+    } =
+        await supabaseClient
+            .storage
+            .from(CV_BUCKET)
+            .upload(
+                fileName,
+                file,
+                {
+                    upsert: true,
+                    contentType:
+                        "application/pdf"
+                }
+            );
 
 
     if (error) {
 
         showAdminMessage(
-            "CV upload failed: " + error.message,
+            "CV upload failed: " +
+            error.message,
             "error"
         );
 
@@ -535,25 +625,28 @@ async function uploadCV() {
 
 async function loadCV() {
 
-    const { data } =
-        supabaseClient.storage
-        .from(CV_BUCKET)
-        .getPublicUrl(
-            "Edwin-Kuchio-Okello-CV.pdf"
-        );
+    const {
+        data
+    } =
+        supabaseClient
+            .storage
+            .from(CV_BUCKET)
+            .getPublicUrl(
+                "Edwin-Kuchio-Okello-CV.pdf"
+            );
 
 
-    if (!data || !data.publicUrl) {
+    if (
+        !data ||
+        !data.publicUrl
+    ) {
 
-        const status =
-            document.getElementById("cvStatus");
-
-        if (status) {
-
-            status.textContent =
-                "CV currently unavailable.";
-
-        }
+        document
+            .getElementById(
+                "cvStatus"
+            )
+            .textContent =
+            "CV currently unavailable.";
 
         return;
 
@@ -566,38 +659,31 @@ async function loadCV() {
         Date.now();
 
 
-    const viewCV =
-        document.getElementById("viewCV");
-
-    const downloadCV =
-        document.getElementById("downloadCV");
-
-    const cvStatus =
-        document.getElementById("cvStatus");
+    document
+        .getElementById(
+            "viewCV"
+        )
+        .href =
+        url;
 
 
-    if (viewCV) {
-
-        viewCV.href = url;
-
-    }
-
-
-    if (downloadCV) {
-
-        downloadCV.href = url;
-
-    }
+    document
+        .getElementById(
+            "downloadCV"
+        )
+        .href =
+        url;
 
 
-    if (cvStatus) {
-
-        cvStatus.textContent =
-            "CV available for viewing and download.";
-
-    }
+    document
+        .getElementById(
+            "cvStatus"
+        )
+        .textContent =
+        "CV available for viewing and download.";
 
 }
+
 
 loadCV();
 
@@ -609,8 +695,11 @@ loadCV();
 async function uploadProfile() {
 
     const file =
-        document.getElementById("profileFile")
-        .files[0];
+        document
+            .getElementById(
+                "profileFile"
+            )
+            .files[0];
 
 
     if (!file) {
@@ -625,7 +714,11 @@ async function uploadProfile() {
     }
 
 
-    if (!file.type.startsWith("image/")) {
+    if (
+        !file.type.startsWith(
+            "image/"
+        )
+    ) {
 
         showAdminMessage(
             "Please select an image file.",
@@ -645,33 +738,31 @@ async function uploadProfile() {
 
     const extension =
         file.name
-        .split(".")
-        .pop()
-        .toLowerCase();
+            .split(".")
+            .pop()
+            .toLowerCase();
 
 
     const fileName =
-        "profile." + extension;
+        "profile." +
+        extension;
 
 
-    const { error } =
-        await supabaseClient.storage
-        .from(PROFILE_BUCKET)
-        .upload(
-
-            fileName,
-
-            file,
-
-            {
-
-                upsert: true,
-
-                contentType: file.type
-
-            }
-
-        );
+    const {
+        error
+    } =
+        await supabaseClient
+            .storage
+            .from(PROFILE_BUCKET)
+            .upload(
+                fileName,
+                file,
+                {
+                    upsert: true,
+                    contentType:
+                        file.type
+                }
+            );
 
 
     if (error) {
@@ -705,56 +796,67 @@ async function uploadProfile() {
 async function loadProfile() {
 
     const extensions = [
-
         "jpg",
         "jpeg",
         "png",
         "webp"
-
     ];
 
 
     const frame =
-        document.getElementById("profileFrame");
+        document.getElementById(
+            "profileFrame"
+        );
 
 
-    if (!frame) return;
+    for (
+        const extension
+        of extensions
+    ) {
+
+        const {
+            data
+        } =
+            supabaseClient
+                .storage
+                .from(PROFILE_BUCKET)
+                .getPublicUrl(
+                    "profile." +
+                    extension
+                );
 
 
-    for (const extension of extensions) {
-
-        const { data } =
-            supabaseClient.storage
-            .from(PROFILE_BUCKET)
-            .getPublicUrl(
-                "profile." + extension
-            );
-
-
-        if (!data || !data.publicUrl) {
+        if (
+            !data ||
+            !data.publicUrl
+        ) {
 
             continue;
 
         }
 
 
-        const testImage =
+        const image =
             new Image();
 
 
-        testImage.onload = function() {
+        image.onload =
+            function () {
 
-            frame.innerHTML = "";
+                frame.innerHTML =
+                    "";
 
-            testImage.alt =
-                "Edwin Kuchio Okello";
+                image.alt =
+                    "Edwin Kuchio Okello";
 
-            frame.appendChild(testImage);
+                frame.appendChild(
+                    image
+                );
 
-        };
+            };
 
 
-        testImage.src =
+        image.src =
             data.publicUrl +
             "?t=" +
             Date.now();
@@ -762,6 +864,7 @@ async function loadProfile() {
     }
 
 }
+
 
 loadProfile();
 
@@ -772,80 +875,23 @@ loadProfile();
 
 async function uploadPictorial() {
 
-    const file =
-        document.getElementById("pictorialFile")
-        .files[0];
-
-
-    if (!file) {
-
-        showAdminMessage(
-            "Please select an image.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!file.type.startsWith("image/")) {
-
-        showAdminMessage(
-            "Please select an image file.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    showAdminMessage(
-        "Uploading pictorial image...",
-        "success"
-    );
-
-
-    const extension =
-        file.name
-        .split(".")
-        .pop()
-        .toLowerCase();
-
-
-    const uniqueName =
-        "photo-" +
-        Date.now() +
-        "." +
-        extension;
-
-
-    const { error } =
-        await supabaseClient.storage
-        .from(PICTORIAL_BUCKET)
-        .upload(
-
-            uniqueName,
-
-            file,
-
-            {
-
-                upsert: false,
-
-                contentType: file.type
-
-            }
-
+    const input =
+        document.getElementById(
+            "pictorialFile"
         );
 
 
-    if (error) {
+    const files =
+        input.files;
+
+
+    if (
+        !files ||
+        files.length === 0
+    ) {
 
         showAdminMessage(
-            "Pictorial upload failed: " +
-            error.message,
+            "Please select at least one image.",
             "error"
         );
 
@@ -855,12 +901,84 @@ async function uploadPictorial() {
 
 
     showAdminMessage(
-        "Pictorial image uploaded successfully.",
+        "Uploading pictorial images...",
         "success"
     );
 
 
-    document.getElementById("pictorialFile").value = "";
+    let uploaded = 0;
+
+
+    for (
+        const file
+        of files
+    ) {
+
+        if (
+            !file.type.startsWith(
+                "image/"
+            )
+        ) {
+
+            continue;
+
+        }
+
+
+        const extension =
+            file.name
+                .split(".")
+                .pop()
+                .toLowerCase();
+
+
+        const uniqueName =
+            "photo-" +
+            Date.now() +
+            "-" +
+            Math.random()
+                .toString(36)
+                .substring(2,8) +
+            "." +
+            extension;
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .storage
+                .from(PICTORIAL_BUCKET)
+                .upload(
+                    uniqueName,
+                    file,
+                    {
+                        upsert: false,
+                        contentType:
+                            file.type
+                    }
+                );
+
+
+        if (!error) {
+
+            uploaded++;
+
+        }
+
+    }
+
+
+    input.value =
+        "";
+
+
+    showAdminMessage(
+        uploaded +
+        " pictorial image(s) uploaded successfully.",
+        "success"
+    );
+
 
     loadGallery();
 
@@ -874,130 +992,37 @@ async function uploadPictorial() {
 async function loadGallery() {
 
     const gallery =
-        document.getElementById("gallery");
-
-
-    if (!gallery) return;
-
-
-    const { data, error } =
-        await supabaseClient.storage
-        .from(PICTORIAL_BUCKET)
-        .list(
-
-            "",
-
-            {
-
-                limit: 100,
-
-                sortBy: {
-
-                    column: "created_at",
-
-                    order: "desc"
-
-                }
-
-            }
-
+        document.getElementById(
+            "gallery"
         );
 
 
-    if (error || !data || data.length === 0) {
-
-        return;
-
-    }
-
-
-    gallery.innerHTML = "";
-
-
-    data.forEach(function(file) {
-
-        if (!file.name) return;
-
-
-        const { data: urlData } =
-            supabaseClient.storage
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .storage
             .from(PICTORIAL_BUCKET)
-            .getPublicUrl(
-                file.name
+            .list(
+                "",
+                {
+                    limit: 100,
+
+                    sortBy: {
+                        column:
+                            "created_at",
+                        order:
+                            "desc"
+                    }
+                }
             );
 
 
-        if (!urlData || !urlData.publicUrl) {
-
-            return;
-
-        }
-
-
-        const item =
-            document.createElement("div");
-
-        item.className =
-            "gallery-item";
-
-
-        const image =
-            document.createElement("img");
-
-        image.src =
-            urlData.publicUrl;
-
-        image.alt =
-            "Edwin Kuchio Okello — portfolio photograph";
-
-
-        item.appendChild(image);
-
-        gallery.appendChild(item);
-
-    });
-
-}
-
-loadGallery();
-
-
-/* =========================================================
-   =========================================================
-   PROJECT MANAGEMENT
-   =========================================================
-========================================================= */
-
-
-/*
-   The project information is stored in Supabase Storage.
-
-   Every uploaded project gets:
-
-   Category
-   Title
-   Description
-   File
-   Date
-
-   The file itself is stored in:
-
-   Projects/eko/
-   Projects/academic/
-   Projects/portfolio/
-*/
-
-
-/* =========================================================
-   CREATE PROJECT UPLOAD INTERFACE
-========================================================= */
-
-function createProjectUploadArea() {
-
     if (
-        document.getElementById(
-            "projectUploadArea"
-        )
+        error ||
+        !data ||
+        data.length === 0
     ) {
 
         return;
@@ -1005,426 +1030,295 @@ function createProjectUploadArea() {
     }
 
 
-    const dashboard =
-        document.getElementById(
-            "adminDashboard"
-        );
+    gallery.innerHTML =
+        "";
 
 
-    if (!dashboard) return;
+    data.forEach(
+        function (file) {
+
+            if (!file.name) {
+                return;
+            }
 
 
-    const section =
-        document.createElement("div");
-
-    section.className =
-        "admin-section";
-
-    section.id =
-        "projectUploadArea";
-
-
-    section.innerHTML = `
-
-        <div class="admin-section-title">
-
-            <i class="fas fa-folder-plus"></i>
-
-            <div>
-
-                <h3>
-                    Projects &amp; Written Work
-                </h3>
-
-                <p>
-                    Upload multiple projects,
-                    essays, research papers and
-                    portfolio documents.
-                </p>
-
-            </div>
-
-        </div>
+            const {
+                data:
+                    urlData
+            } =
+                supabaseClient
+                    .storage
+                    .from(
+                        PICTORIAL_BUCKET
+                    )
+                    .getPublicUrl(
+                        file.name
+                    );
 
 
-        <div class="form-group">
+            if (
+                !urlData ||
+                !urlData.publicUrl
+            ) {
 
-            <label for="projectCategory">
-                Project Category
-            </label>
+                return;
 
-            <select id="projectCategory">
-
-                <option value="eko">
-                    EKO Analytics &amp; Research
-                </option>
-
-                <option value="academic">
-                    Academic Essays &amp; Research
-                </option>
-
-                <option value="portfolio">
-                    Professional Portfolio
-                </option>
-
-            </select>
-
-        </div>
+            }
 
 
-        <div class="form-group">
-
-            <label for="projectTitle">
-                Project Title
-            </label>
-
-            <input
-                type="text"
-                id="projectTitle"
-                placeholder="Enter project title"
-            >
-
-        </div>
+            const item =
+                document.createElement(
+                    "div"
+                );
 
 
-        <div class="form-group">
-
-            <label for="projectDescription">
-                Project Description
-            </label>
-
-            <textarea
-                id="projectDescription"
-                rows="4"
-                placeholder="Briefly describe this project..."
-            ></textarea>
-
-        </div>
+            item.className =
+                "gallery-item";
 
 
-        <div class="form-group">
-
-            <label for="projectFile">
-                Project File
-            </label>
-
-            <input
-                type="file"
-                id="projectFile"
-                accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt"
-            >
-
-        </div>
+            const image =
+                document.createElement(
+                    "img"
+                );
 
 
-        <button
-            class="admin-action"
-            onclick="uploadProject()"
-        >
-
-            <i class="fas fa-cloud-arrow-up"></i>
-
-            Upload Project
-
-        </button>
+            image.src =
+                urlData.publicUrl;
 
 
-        <div
-            id="adminProjectList"
-            class="admin-project-list"
-        ></div>
-
-    `;
+            image.alt =
+                "Edwin Kuchio Okello — portfolio photograph";
 
 
-    dashboard.appendChild(section);
+            image.loading =
+                "lazy";
+
+
+            item.appendChild(
+                image
+            );
+
+
+            gallery.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+loadGallery();
+
+
+/* =========================================================
+   FILE NAME
+========================================================= */
+
+function cleanFileName(
+    fileName
+) {
+
+    return fileName
+        .replace(
+            /\.[^/.]+$/,
+            ""
+        )
+        .replace(
+            /[-_]+/g,
+            " "
+        )
+        .replace(
+            /\s+/g,
+            " "
+        )
+        .trim();
 
 }
 
 
 /* =========================================================
-   UPLOAD PROJECT
+   FILE ICON
 ========================================================= */
 
-async function uploadProject() {
-
-    const category =
-        document.getElementById(
-            "projectCategory"
-        ).value;
-
-
-    const title =
-        document.getElementById(
-            "projectTitle"
-        ).value.trim();
-
-
-    const description =
-        document.getElementById(
-            "projectDescription"
-        ).value.trim();
-
-
-    const file =
-        document.getElementById(
-            "projectFile"
-        ).files[0];
-
-
-    if (!category) {
-
-        showAdminMessage(
-            "Please select a project category.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!title) {
-
-        showAdminMessage(
-            "Please enter a project title.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!file) {
-
-        showAdminMessage(
-            "Please select a project file.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const categoryInfo =
-        PROJECT_CATEGORIES[category];
-
-
-    if (!categoryInfo) {
-
-        showAdminMessage(
-            "Invalid project category.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    showAdminMessage(
-        "Uploading project...",
-        "success"
-    );
-
-
-    /*
-       Create a unique filename.
-    */
+function getFileIcon(
+    fileName
+) {
 
     const extension =
-        file.name
-        .split(".")
-        .pop()
-        .toLowerCase();
+        fileName
+            .split(".")
+            .pop()
+            .toLowerCase();
 
 
-    const safeTitle =
-        title
-        .replace(/[^a-zA-Z0-9-_ ]/g, "")
-        .replace(/\s+/g, "-")
-        .substring(0, 80);
+    if (
+        extension ===
+        "pdf"
+    ) {
+
+        return "fa-file-pdf";
+
+    }
 
 
-    const uniqueName =
-        Date.now() +
-        "-" +
-        safeTitle +
-        "." +
-        extension;
+    if (
+        extension === "doc" ||
+        extension === "docx"
+    ) {
+
+        return "fa-file-word";
+
+    }
 
 
-    const filePath =
-        categoryInfo.folder +
-        "/" +
-        uniqueName;
+    if (
+        extension === "ppt" ||
+        extension === "pptx"
+    ) {
+
+        return "fa-file-powerpoint";
+
+    }
 
 
-    /*
-       Upload the actual file.
-    */
+    if (
+        extension === "xls" ||
+        extension === "xlsx" ||
+        extension === "csv"
+    ) {
 
-    const { error } =
-        await supabaseClient.storage
-        .from(PROJECT_BUCKET)
-        .upload(
+        return "fa-file-excel";
 
-            filePath,
+    }
 
-            file,
 
-            {
+    if (
+        extension === "jpg" ||
+        extension === "jpeg" ||
+        extension === "png" ||
+        extension === "webp"
+    ) {
 
-                upsert: false,
+        return "fa-file-image";
 
-                contentType:
-                    file.type ||
-                    "application/octet-stream"
+    }
 
-            }
 
+    return "fa-file-lines";
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(
+    text
+) {
+
+    const div =
+        document.createElement(
+            "div"
         );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   GET BUCKET FILES
+========================================================= */
+
+async function getBucketFiles(
+    bucketName
+) {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .storage
+            .from(bucketName)
+            .list(
+                "",
+                {
+                    limit: 100,
+
+                    sortBy: {
+                        column:
+                            "created_at",
+                        order:
+                            "desc"
+                    }
+                }
+            );
 
 
     if (error) {
 
-        showAdminMessage(
-            "Project upload failed: " +
-            error.message,
-            "error"
+        console.error(
+            "Bucket error:",
+            bucketName,
+            error
         );
 
-        return;
+        return [];
 
     }
 
 
-    /*
-       Store project information in
-       browser metadata file.
+    return (
+        data || []
+    )
+        .filter(
+            function (file) {
 
-       NOTE:
-       This requires a Supabase database table
-       called "projects".
+                return (
+                    file.name &&
+                    !file.name.endsWith(
+                        "/"
+                    )
+                );
 
-       If the table does not yet exist,
-       see the SQL section I provide below.
-    */
+            }
+        )
+        .map(
+            function (file) {
 
-    const { error: databaseError } =
-        await supabaseClient
-        .from("projects")
-        .insert({
+                return {
 
-            title: title,
+                    ...file,
 
-            description: description,
+                    bucket:
+                        bucketName
 
-            category: category,
+                };
 
-            file_path: filePath,
-
-            file_name: file.name
-
-        });
-
-
-    if (databaseError) {
-
-        /*
-           Delete uploaded file if database
-           insertion fails.
-        */
-
-        await supabaseClient.storage
-            .from(PROJECT_BUCKET)
-            .remove([filePath]);
-
-
-        showAdminMessage(
-            "Project information could not be saved: " +
-            databaseError.message,
-            "error"
+            }
         );
-
-        return;
-
-    }
-
-
-    showAdminMessage(
-        "Project uploaded successfully.",
-        "success"
-    );
-
-
-    /*
-       Clear form.
-    */
-
-    document.getElementById(
-        "projectTitle"
-    ).value = "";
-
-
-    document.getElementById(
-        "projectDescription"
-    ).value = "";
-
-
-    document.getElementById(
-        "projectFile"
-    ).value = "";
-
-
-    /*
-       Refresh administrator project list.
-    */
-
-    loadAdminProjects();
 
 }
 
 
 /* =========================================================
-   GET PROJECT URL
+   DISPLAY DOCUMENTS
 ========================================================= */
 
-function getProjectURL(filePath) {
-
-    const { data } =
-        supabaseClient.storage
-        .from(PROJECT_BUCKET)
-        .getPublicUrl(filePath);
-
-
-    if (!data) {
-
-        return null;
-
-    }
-
-
-    return data.publicUrl;
-
-}
-
-
-/* =========================================================
-   LOAD PROJECTS
-========================================================= */
-
-async function loadProjects(category) {
-
-    const containerId =
-        category === "eko"
-            ? "ekoProjects"
-            : category === "academic"
-                ? "academicDocuments"
-                : "portfolioProjects";
-
+function displayUploadedDocuments(
+    containerId,
+    files,
+    emptyMessage
+) {
 
     const container =
         document.getElementById(
@@ -1432,7 +1326,184 @@ async function loadProjects(category) {
         );
 
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML =
+        "";
+
+
+    if (
+        !files ||
+        files.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="document-placeholder">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>
+                    No additional files uploaded yet
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        emptyMessage
+                    )}
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    files.forEach(
+        function (file) {
+
+            if (!file.name) {
+                return;
+            }
+
+
+            const {
+                data
+            } =
+                supabaseClient
+                    .storage
+                    .from(
+                        file.bucket
+                    )
+                    .getPublicUrl(
+                        file.name
+                    );
+
+
+            if (
+                !data ||
+                !data.publicUrl
+            ) {
+
+                return;
+
+            }
+
+
+            const url =
+                data.publicUrl;
+
+
+            const title =
+                cleanFileName(
+                    file.name
+                );
+
+
+            const icon =
+                getFileIcon(
+                    file.name
+                );
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "uploaded-document";
+
+
+            card.innerHTML = `
+
+                <div class="uploaded-document-icon">
+
+                    <i class="fas ${icon}"></i>
+
+                </div>
+
+
+                <div class="uploaded-document-info">
+
+                    <h3>
+                        ${escapeHTML(
+                            title
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            file.name
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="uploaded-document-actions">
+
+                    <a
+                        href="${url}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="document-view"
+                    >
+
+                        <i class="fas fa-eye"></i>
+                        View
+
+                    </a>
+
+
+                    <a
+                        href="${url}"
+                        download
+                        class="document-download"
+                    >
+
+                        <i class="fas fa-download"></i>
+                        Download
+
+                    </a>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LOAD EKO PROJECTS
+========================================================= */
+
+async function loadEKOProjects() {
+
+    const container =
+        document.getElementById(
+            "ekoProjects"
+        );
+
+
+    if (!container) {
+        return;
+    }
 
 
     container.innerHTML = `
@@ -1442,7 +1513,62 @@ async function loadProjects(category) {
             <i class="fas fa-spinner fa-spin"></i>
 
             <h3>
-                Loading projects...
+                Loading EKO project library...
+            </h3>
+
+            <p>
+                Retrieving projects from EKO Analytics & Research.
+            </p>
+
+        </div>
+
+    `;
+
+
+    const files =
+        await getBucketFiles(
+            EKO_BUCKET
+        );
+
+
+    displayUploadedDocuments(
+
+        "ekoProjects",
+
+        files,
+
+        "Future EKO projects uploaded through the administrator area will appear here."
+
+    );
+
+}
+
+
+/* =========================================================
+   LOAD ACADEMIC
+========================================================= */
+
+async function loadAcademicDocuments() {
+
+    const container =
+        document.getElementById(
+            "academicDocuments"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = `
+
+        <div class="document-placeholder">
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            <h3>
+                Loading academic work...
             </h3>
 
         </div>
@@ -1450,358 +1576,128 @@ async function loadProjects(category) {
     `;
 
 
-    const { data, error } =
-        await supabaseClient
-        .from("projects")
-        .select("*")
-        .eq("category", category)
-        .order(
-            "created_at",
-            {
-                ascending: false
-            }
+    const files =
+        await getBucketFiles(
+            ACADEMIC_BUCKET
         );
 
 
-    if (error) {
+    displayUploadedDocuments(
 
-        container.innerHTML = `
+        "academicDocuments",
 
-            <div class="document-placeholder">
+        files,
 
-                <i class="fas fa-circle-exclamation"></i>
+        "Academic essays and research papers will appear here after they are uploaded."
 
-                <h3>
-                    Projects could not be loaded
-                </h3>
-
-                <p>
-                    ${escapeHTML(error.message)}
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    if (!data || data.length === 0) {
-
-        const categoryName =
-            PROJECT_CATEGORIES[category].name;
-
-
-        container.innerHTML = `
-
-            <div class="document-placeholder">
-
-                <i class="fas fa-folder-open"></i>
-
-                <h3>
-                    No projects yet
-                </h3>
-
-                <p>
-                    Projects uploaded under
-                    ${escapeHTML(categoryName)}
-                    will appear here.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML = "";
-
-
-    data.forEach(function(project) {
-
-        const url =
-            getProjectURL(
-                project.file_path
-            );
-
-
-        const card =
-            document.createElement("article");
-
-        card.className =
-            "uploaded-project-card";
-
-
-        card.innerHTML = `
-
-            <div class="uploaded-project-icon">
-
-                <i class="fas fa-file-lines"></i>
-
-            </div>
-
-
-            <div class="uploaded-project-content">
-
-                <span class="uploaded-project-category">
-
-                    ${escapeHTML(
-                        PROJECT_CATEGORIES[
-                            category
-                        ].name
-                    )}
-
-                </span>
-
-
-                <h3>
-                    ${escapeHTML(
-                        project.title
-                    )}
-                </h3>
-
-
-                <p>
-                    ${escapeHTML(
-                        project.description ||
-                        "No description provided."
-                    )}
-                </p>
-
-
-                <div class="uploaded-project-actions">
-
-                    ${
-                        url
-                        ?
-                        `
-                        <a
-                            href="${url}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="project-open-button"
-                        >
-
-                            <i class="fas fa-eye"></i>
-
-                            Open Project
-
-                        </a>
-                        `
-                        :
-                        ""
-                    }
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(card);
-
-    });
+    );
 
 }
 
 
 /* =========================================================
-   LOAD ALL PROJECTS
+   LOAD PROFESSIONAL PORTFOLIO
 ========================================================= */
 
-function loadAllProjects() {
-
-    loadProjects("eko");
-
-    loadProjects("academic");
-
-    loadProjects("portfolio");
-
-}
-
-
-/* =========================================================
-   ADMIN PROJECT LIST
-========================================================= */
-
-async function loadAdminProjects() {
+async function loadPortfolioDocuments() {
 
     const container =
         document.getElementById(
-            "adminProjectList"
+            "portfolioDocuments"
         );
 
 
-    if (!container) return;
-
-
-    container.innerHTML = `
-
-        <p>
-            Loading uploaded projects...
-        </p>
-
-    `;
-
-
-    const { data, error } =
-        await supabaseClient
-        .from("projects")
-        .select("*")
-        .order(
-            "created_at",
-            {
-                ascending: false
-            }
-        );
-
-
-    if (error) {
-
-        container.innerHTML = `
-
-            <p>
-                Could not load projects:
-                ${escapeHTML(error.message)}
-            </p>
-
-        `;
-
+    if (!container) {
         return;
-
-    }
-
-
-    if (!data || data.length === 0) {
-
-        container.innerHTML = `
-
-            <p>
-                No projects uploaded yet.
-            </p>
-
-        `;
-
-        return;
-
     }
 
 
     container.innerHTML = `
 
-        <h4>
-            Uploaded Projects
-        </h4>
+        <div class="document-placeholder">
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            <h3>
+                Loading portfolio materials...
+            </h3>
+
+        </div>
 
     `;
 
 
-    data.forEach(function(project) {
-
-        const category =
-            PROJECT_CATEGORIES[
-                project.category
-            ];
+    const files =
+        await getBucketFiles(
+            PORTFOLIO_BUCKET
+        );
 
 
-        const item =
-            document.createElement("div");
+    displayUploadedDocuments(
 
-        item.className =
-            "admin-project-item";
+        "portfolioDocuments",
 
+        files,
 
-        item.innerHTML = `
+        "Professional portfolio materials will appear here after they are uploaded."
 
-            <div>
-
-                <strong>
-                    ${escapeHTML(
-                        project.title
-                    )}
-                </strong>
-
-                <small>
-                    ${
-                        category
-                        ?
-                        escapeHTML(category.name)
-                        :
-                        "Project"
-                    }
-                </small>
-
-            </div>
-
-
-            <button
-                class="admin-delete-project"
-                onclick="deleteProject('${project.id}', '${escapeAttribute(project.file_path)}')"
-            >
-
-                <i class="fas fa-trash"></i>
-
-            </button>
-
-        `;
-
-
-        container.appendChild(item);
-
-    });
+    );
 
 }
 
 
 /* =========================================================
-   DELETE PROJECT
+   GENERIC FILE NAME
 ========================================================= */
 
-async function deleteProject(
-    projectId,
-    filePath
+function createUniqueFileName(
+    originalName
 ) {
 
-    const confirmed =
-        window.confirm(
-            "Are you sure you want to delete this project?"
+    const safeName =
+        originalName
+            .replace(
+                /[^a-zA-Z0-9._-]/g,
+                "-"
+            );
+
+
+    return (
+        Date.now() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2,8) +
+        "-" +
+        safeName
+    );
+
+}
+
+
+/* =========================================================
+   UPLOAD EKO PROJECTS
+========================================================= */
+
+async function uploadEKOProjects() {
+
+    const input =
+        document.getElementById(
+            "ekoFile"
         );
 
 
-    if (!confirmed) {
-
-        return;
-
-    }
+    const files =
+        input.files;
 
 
-    showAdminMessage(
-        "Deleting project...",
-        "success"
-    );
-
-
-    /*
-       Delete file from storage.
-    */
-
-    const { error: storageError } =
-        await supabaseClient.storage
-        .from(PROJECT_BUCKET)
-        .remove([filePath]);
-
-
-    if (storageError) {
+    if (
+        !files ||
+        files.length === 0
+    ) {
 
         showAdminMessage(
-            "Could not delete project file: " +
-            storageError.message,
+            "Please select at least one EKO project.",
             "error"
         );
 
@@ -1810,22 +1706,125 @@ async function deleteProject(
     }
 
 
-    /*
-       Delete database record.
-    */
-
-    const { error: databaseError } =
-        await supabaseClient
-        .from("projects")
-        .delete()
-        .eq("id", projectId);
+    const status =
+        document.getElementById(
+            "ekoUploadStatus"
+        );
 
 
-    if (databaseError) {
+    status.textContent =
+        "Uploading EKO project(s)...";
+
+
+    let uploaded = 0;
+
+    let failed = 0;
+
+
+    for (
+        const file
+        of files
+    ) {
+
+        const uniqueName =
+            createUniqueFileName(
+                file.name
+            );
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .storage
+                .from(EKO_BUCKET)
+                .upload(
+                    uniqueName,
+                    file,
+                    {
+                        upsert: false,
+
+                        contentType:
+                            file.type ||
+                            "application/octet-stream"
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "EKO upload error:",
+                error
+            );
+
+            failed++;
+
+        } else {
+
+            uploaded++;
+
+        }
+
+    }
+
+
+    input.value =
+        "";
+
+
+    status.textContent =
+        uploaded +
+        " EKO project(s) uploaded successfully." +
+        (
+            failed > 0
+                ? " " +
+                  failed +
+                  " failed."
+                : ""
+        );
+
+
+    showAdminMessage(
+
+        uploaded +
+        " EKO project(s) uploaded successfully.",
+
+        failed > 0
+            ? "error"
+            : "success"
+
+    );
+
+
+    loadEKOProjects();
+
+}
+
+
+/* =========================================================
+   UPLOAD ACADEMIC
+========================================================= */
+
+async function uploadAcademicDocuments() {
+
+    const input =
+        document.getElementById(
+            "academicFile"
+        );
+
+
+    const files =
+        input.files;
+
+
+    if (
+        !files ||
+        files.length === 0
+    ) {
 
         showAdminMessage(
-            "Could not delete project record: " +
-            databaseError.message,
+            "Please select at least one academic document.",
             "error"
         );
 
@@ -1834,71 +1833,261 @@ async function deleteProject(
     }
 
 
-    showAdminMessage(
-        "Project deleted successfully.",
-        "success"
-    );
+    const status =
+        document.getElementById(
+            "academicUploadStatus"
+        );
 
 
-    loadAdminProjects();
-
-    loadAllProjects();
-
-}
+    status.textContent =
+        "Uploading academic documents...";
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
+    let uploaded = 0;
 
-function escapeHTML(value) {
+    let failed = 0;
 
-    if (value === null ||
-        value === undefined) {
 
-        return "";
+    for (
+        const file
+        of files
+    ) {
+
+        const uniqueName =
+            createUniqueFileName(
+                file.name
+            );
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .storage
+                .from(
+                    ACADEMIC_BUCKET
+                )
+                .upload(
+                    uniqueName,
+                    file,
+                    {
+                        upsert: false,
+
+                        contentType:
+                            file.type ||
+                            "application/octet-stream"
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Academic upload error:",
+                error
+            );
+
+            failed++;
+
+        } else {
+
+            uploaded++;
+
+        }
 
     }
 
 
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    input.value =
+        "";
+
+
+    status.textContent =
+        uploaded +
+        " academic document(s) uploaded successfully.";
+
+
+    showAdminMessage(
+
+        uploaded +
+        " academic document(s) uploaded successfully.",
+
+        failed > 0
+            ? "error"
+            : "success"
+
+    );
+
+
+    loadAcademicDocuments();
 
 }
 
 
 /* =========================================================
-   ESCAPE ATTRIBUTE
+   UPLOAD PORTFOLIO
 ========================================================= */
 
-function escapeAttribute(value) {
+async function uploadPortfolioDocuments() {
 
-    if (!value) return "";
+    const input =
+        document.getElementById(
+            "portfolioFile"
+        );
 
-    return String(value)
-        .replace(/\\/g, "\\\\")
-        .replace(/'/g, "\\'")
-        .replace(/"/g, "&quot;");
+
+    const files =
+        input.files;
+
+
+    if (
+        !files ||
+        files.length === 0
+    ) {
+
+        showAdminMessage(
+            "Please select at least one portfolio file.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const status =
+        document.getElementById(
+            "portfolioUploadStatus"
+        );
+
+
+    status.textContent =
+        "Uploading portfolio materials...";
+
+
+    let uploaded = 0;
+
+    let failed = 0;
+
+
+    for (
+        const file
+        of files
+    ) {
+
+        const uniqueName =
+            createUniqueFileName(
+                file.name
+            );
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .storage
+                .from(
+                    PORTFOLIO_BUCKET
+                )
+                .upload(
+                    uniqueName,
+                    file,
+                    {
+                        upsert: false,
+
+                        contentType:
+                            file.type ||
+                            "application/octet-stream"
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Portfolio upload error:",
+                error
+            );
+
+            failed++;
+
+        } else {
+
+            uploaded++;
+
+        }
+
+    }
+
+
+    input.value =
+        "";
+
+
+    status.textContent =
+        uploaded +
+        " portfolio file(s) uploaded successfully.";
+
+
+    showAdminMessage(
+
+        uploaded +
+        " portfolio material(s) uploaded successfully.",
+
+        failed > 0
+            ? "error"
+            : "success"
+
+    );
+
+
+    loadPortfolioDocuments();
 
 }
 
 
 /* =========================================================
-   INITIALISE PROJECT ADMIN AREA
+   AUTH STATE LISTENER
 ========================================================= */
 
-createProjectUploadArea();
+supabaseClient
+    .auth
+    .onAuthStateChange(
+        function (
+            event,
+            session
+        ) {
+
+            const loginArea =
+                document.getElementById(
+                    "loginArea"
+                );
+
+            const dashboard =
+                document.getElementById(
+                    "adminDashboard"
+                );
 
 
-/*
-   Load existing projects when the page starts.
-*/
+            if (
+                session
+            ) {
 
-loadAllProjects();
+                loginArea.style.display =
+                    "none";
 
+                dashboard.style.display =
+                    "block";
 
-</script>
+            } else {
+
+                loginArea.style.display =
+                    "block";
+
+                dashboard.style.display =
+                    "none";
+
+            }
+
+        }
+    );
